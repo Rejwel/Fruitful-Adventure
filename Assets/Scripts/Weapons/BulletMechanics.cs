@@ -7,7 +7,7 @@ public class BulletMechanics : MonoBehaviour
 {
     private Rigidbody thisRb;
     private Vector3 bulletForce;
-    private float force = 1000f;
+    private float force = 700f;
 
     void Awake()
     {
