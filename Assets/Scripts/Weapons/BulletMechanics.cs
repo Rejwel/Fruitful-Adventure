@@ -5,19 +5,18 @@ using UnityEngine;
 
 public class BulletMechanics : MonoBehaviour
 {
-    private Rigidbody thisRb;
-    private Vector3 bulletForce;
-    private float force = 700f;
-
-    void Awake()
-    {
-        thisRb = gameObject.GetComponent<Rigidbody>();
-        bulletForce = new Vector3(0f, 0f, force);
-    }
-
     void Start()
     {
-        thisRb.AddForce(bulletForce);
+        Destroy(gameObject, 5);
     }
 
+    private void OnTriggerEnter(Collider hit)
+    {
+        EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
+        if (hit.tag.Equals("Enemy"))
+        {
+            enemy.Die();
+            Destroy(gameObject);
+        }
+    }
 }

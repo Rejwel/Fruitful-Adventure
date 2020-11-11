@@ -72,3 +72,6 @@ crashlytics-build.properties
 
 # idea folder
 .idea/*
+
+# vscode folder
+.vscode/*

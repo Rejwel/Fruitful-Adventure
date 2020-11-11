@@ -6,13 +6,16 @@ using UnityEngine.UIElements;
 public class PlayerShoot : MonoBehaviour
 {
     public Transform firePoint;
-    public GameObject bullet;
+    public Rigidbody bullet;
+    private float bulletSpeed = 500f;
 
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(bullet, firePoint.position, firePoint.rotation);
+            Rigidbody bulletRigidbody;
+            bulletRigidbody = Instantiate(bullet, firePoint.position, firePoint.rotation) as Rigidbody;
+            bulletRigidbody.AddForce(firePoint.forward * bulletSpeed);
         }
     }
 }
