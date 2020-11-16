@@ -14,20 +14,10 @@ public class HealthPlayer : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
-
     
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(20);
-        }
-
-    }
-
     void OnCollisionEnter(Collision CollisionInfo)
     {
-        if (CollisionInfo.collider.tag == "Enemy")
+        if (CollisionInfo.collider.CompareTag("Enemy"))
         {
             TakeDamage(30);
         }

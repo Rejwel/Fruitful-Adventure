@@ -13,9 +13,12 @@ public class BulletMechanics : MonoBehaviour
     private void OnTriggerEnter(Collider hit)
     {
         EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
+        HealthEnemy enemyHealth = hit.GetComponent<HealthEnemy>();
+        
         if (hit.tag.Equals("Enemy"))
         {
-            enemy.Die();
+            enemyHealth.TakeDamage(20);
+            if(enemyHealth.currentHealth <= 0) enemy.Die();
             Destroy(gameObject);
         }
     }
