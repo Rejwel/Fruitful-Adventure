@@ -34,7 +34,7 @@ public class TBullet : MonoBehaviour
     void HitTarget()
     {
         GameObject effectIns = Instantiate(impactEfect, transform.position,transform.rotation);
-        Destroy(effectIns,2f);
+        Destroy(effectIns,1.5f);
         Destroy(gameObject);
     }
     
