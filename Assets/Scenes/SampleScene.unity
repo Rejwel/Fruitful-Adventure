@@ -364,6 +364,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   healthBar: {fileID: 972834991}
+  thePlayer: {fileID: 0}
 --- !u!1001 &624812735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1764,6 +1765,16 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 1211090546}
+    - target: {fileID: 4702223696389900615, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: knockBackTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702223696389900615, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: knockBackForce
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5550324620086176462, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
       propertyPath: m_Name
@@ -1909,6 +1920,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023815288036179939, guid: 532b53a1fe3c8984db67ea858c47a829,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 156.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023815288036179939, guid: 532b53a1fe3c8984db67ea858c47a829,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 9023815288851839410, guid: 532b53a1fe3c8984db67ea858c47a829,
         type: 3}
