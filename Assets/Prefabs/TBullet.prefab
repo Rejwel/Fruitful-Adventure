@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5379143004303622748}
   - component: {fileID: 7130402614064863198}
   - component: {fileID: -1822543697851247294}
+  - component: {fileID: -8547026943660405019}
   m_Layer: 0
   m_Name: TBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,3 +96,16 @@ MonoBehaviour:
   impactEfect: {fileID: 3469111594310983775, guid: 026640530e14e6f4c9e6eecf591862d2,
     type: 3}
   speed: 70
+--- !u!135 &-8547026943660405019
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241270803229334794}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.49999997
+  m_Center: {x: 0, y: 0, z: 0}

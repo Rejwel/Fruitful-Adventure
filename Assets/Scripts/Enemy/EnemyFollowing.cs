@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Diagnostics;
 
 public class EnemyFollowing : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class EnemyFollowing : MonoBehaviour
     private void Start()
     {
         enemyRb = gameObject.GetComponent<Rigidbody>();
+        if (Player == null)
+        {
+            Player = GameObject.FindWithTag("Player").transform;
+        }
     }
     
     private void OnCollisionEnter(Collision other)
