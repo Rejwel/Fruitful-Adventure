@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class Money : MonoBehaviour
 {
     public int CurrentMoney;
-    public Text text;
+    public Text Score;
 
     public void AddMoney()
     {
         CurrentMoney += 5;
-        Debug.Log(CurrentMoney);
+        Score.text = CurrentMoney.ToString();
     }
 
     void Start()
