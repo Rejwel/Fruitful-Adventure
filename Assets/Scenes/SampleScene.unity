@@ -256,6 +256,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2874718898421768074}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &604596831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604596825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75c4d0d44310f3489181160de3015c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentMoney: 0
+  text: {fileID: 0}
 --- !u!114 &604596832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,6 +942,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2334235848394214220, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334235848624914636, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334235848651705821, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2334235848864080056, guid: cd11c42dfb3202f4594a7976f73d0b78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -987,6 +1016,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Turret (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334235848864080058, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334235849235807624, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334235850194418431, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd11c42dfb3202f4594a7976f73d0b78, type: 3}
@@ -1265,6 +1309,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2334235848394214220, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334235848624914636, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334235848651705821, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2334235848864080056, guid: cd11c42dfb3202f4594a7976f73d0b78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1324,6 +1383,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334235848864080058, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334235849235807624, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334235850194418431, guid: cd11c42dfb3202f4594a7976f73d0b78,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd11c42dfb3202f4594a7976f73d0b78, type: 3}

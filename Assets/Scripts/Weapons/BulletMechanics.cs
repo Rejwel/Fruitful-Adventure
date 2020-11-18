@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class BulletMechanics : MonoBehaviour
 {
+    Money Money;
+
     void Start()
     {
+        Money = FindObjectOfType<Money>(); 
         Destroy(gameObject, 5);
     }
 
@@ -20,7 +23,11 @@ public class BulletMechanics : MonoBehaviour
             // print("enemy: " + hit.transform.position);
             
             enemyHealth.TakeDamage(20);
-            if(enemyHealth.currentHealth <= 0) enemy.Die();
+            if (enemyHealth.currentHealth <= 0)
+            {
+                Money.AddMoney();
+                enemy.Die();
+            }
             Destroy(gameObject);
         }
     }
