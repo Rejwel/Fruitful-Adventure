@@ -21,7 +21,7 @@ public class EnemyFollowing : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if(other.collider.CompareTag("Bullet"))
+        if(other.collider.CompareTag("Bullet") || other.collider.CompareTag("Enemy"))
         {
             Invoke("StopMoving", 0.2f);
         }
