@@ -9,9 +9,12 @@ public class EnemyFollowing : MonoBehaviour
     public NavMeshAgent enemy;
     public Transform Player;
     private Rigidbody enemyRb;
+    private bool follow = false;
     
     private void Start()
     {
+        StartCoroutine(HoldNavAgent());
+        
         enemyRb = gameObject.GetComponent<Rigidbody>();
         if (Player == null)
         {
@@ -29,12 +32,21 @@ public class EnemyFollowing : MonoBehaviour
 
     void Update()
     {
-        enemy.SetDestination(Player.position);
+        if(follow)
+            enemy.SetDestination(Player.position);
     }
     
     public void StopMoving()
     {
         enemyRb.velocity = Vector3.zero;
         enemy.SetDestination(Player.position);
+    }
+    
+    public IEnumerator HoldNavAgent() 
+    { 
+        yield return new WaitForSeconds(0.5f);
+        enemy.enabled = true;
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
+        follow = true;
     }
 }

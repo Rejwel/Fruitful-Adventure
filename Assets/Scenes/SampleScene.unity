@@ -2053,7 +2053,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: af897722f255d1441923a88a4d65ca23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4738,7 +4738,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: af897722f255d1441923a88a4d65ca23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5040,7 +5040,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8c6108ff700276d429f213e73521e201, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5123,7 +5123,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8c6108ff700276d429f213e73521e201, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5167,7 +5167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2036247306
 Transform:
   m_ObjectHideFlags: 0
@@ -5491,8 +5491,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135892386}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -58.59, y: -1.16, z: -9.76}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 9.1, y: -6.8, z: 7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1876746337}
@@ -5501,7 +5501,7 @@ Transform:
   - {fileID: 674148536}
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2135892389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5514,6 +5514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030a31aa646dc1548bb8e8a7a11c1eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 7281006544878983968, guid: f464df1c3ed04704a806733004b65395, type: 3}
+  - {fileID: 254587136096602265, guid: 7266a973fe33c5e418c39d684d89598b, type: 3}
+  - {fileID: 9033190547601265110, guid: a41f12c7ccc54db44ae44de2d4874fa0, type: 3}
+  - {fileID: 6142323270256696200, guid: 40f36fe9019b0b443a6039c3269cde23, type: 3}
 --- !u!1 &2143046009
 GameObject:
   m_ObjectHideFlags: 0
@@ -5847,12 +5852,12 @@ PrefabInstance:
     - target: {fileID: 6528037128508978117, guid: f464df1c3ed04704a806733004b65395,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6528037128508978117, guid: f464df1c3ed04704a806733004b65395,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7281006544878983968, guid: f464df1c3ed04704a806733004b65395,
         type: 3}
@@ -5926,12 +5931,12 @@ PrefabInstance:
     - target: {fileID: 4814133868911687987, guid: a41f12c7ccc54db44ae44de2d4874fa0,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4814133868911687987, guid: a41f12c7ccc54db44ae44de2d4874fa0,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033190547601265107, guid: a41f12c7ccc54db44ae44de2d4874fa0,
         type: 3}
@@ -6327,12 +6332,12 @@ PrefabInstance:
     - target: {fileID: 7687224235552207725, guid: 40f36fe9019b0b443a6039c3269cde23,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7687224235552207725, guid: 40f36fe9019b0b443a6039c3269cde23,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7687224236324370702, guid: 40f36fe9019b0b443a6039c3269cde23,
         type: 3}
@@ -6411,12 +6416,12 @@ PrefabInstance:
     - target: {fileID: 4331075708374016124, guid: 7266a973fe33c5e418c39d684d89598b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4331075708374016124, guid: 7266a973fe33c5e418c39d684d89598b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7266a973fe33c5e418c39d684d89598b, type: 3}

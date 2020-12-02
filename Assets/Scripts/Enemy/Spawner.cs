@@ -15,26 +15,52 @@ public class Spawner : MonoBehaviour
     //    
     //
 
-    private Transform [][] spawnPoints;
+    private Transform [,] spawnPoints;
     private Transform spawnPoint;
+    public GameObject[] enemies;
     private void Start()
     {
-        spawnPoint = this.transform;
+        spawnPoints = new Transform[4, 4];
         setPositions(spawnPoints);
+        spawnEnemies(spawnPoints);
     }
 
-    void setPositions(Transform [][] spawnPoints)
+    void setPositions(Transform [,] spawnPoints)
     {
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
             {
                 string obj = "spawn" + i + j;
-                //print(obj);
-                //print(GameObject.Find(obj).transform);
-                //spawnPoints[i][j] = GameObject.Find(obj).transform;
-                //print(spawnPoints[i][j]);
+                spawnPoints[i, j] = GameObject.Find(obj).transform;
             }
+        }
+    }
+
+    void spawnEnemies(Transform [,] spawnPoints)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            print(spawnPoints[0,i]);
+            Instantiate(enemies[3], spawnPoints[0, i].position, spawnPoints[0, i].rotation);
+        }
+        
+        for (int i = 0; i < 4; i++)
+        {
+            print(spawnPoints[1,i]);
+            Instantiate(enemies[1], spawnPoints[1, i].position, spawnPoints[1, i].rotation);
+        }
+        
+        for (int i = 0; i < 4; i++)
+        {
+            print(spawnPoints[2,i]);
+            Instantiate(enemies[0], spawnPoints[2, i].position, spawnPoints[2, i].rotation);
+        }
+        
+        for (int i = 0; i < 4; i++)
+        {
+            print(spawnPoints[3,i]);
+            Instantiate(enemies[2], spawnPoints[3, i].position, spawnPoints[3, i].rotation);
         }
     }
     
