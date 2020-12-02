@@ -38,7 +38,8 @@ public class Spawner : MonoBehaviour
     }
 
     void spawnEnemies(Transform [,] spawnPoints)
-    {
+    { 
+        // | 0 - mage | 1 - melee | 2 - ranged | 3 - tank | ARRAY INDEX | 
         for (int i = 0; i < 4; i++)
         {
             print(spawnPoints[0,i]);
