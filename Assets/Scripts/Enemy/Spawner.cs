@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
@@ -14,15 +16,21 @@ public class Spawner : MonoBehaviour
     //    VI       I    II    III    IV      RANGED MAGE
     //    
     //
-
+    // SETTING SPAWNPOINTS
     private Transform [,] spawnPoints;
-    private Transform spawnPoint;
-    public GameObject[] enemies;
+    private Transform [] spawnPointsArray;
+    List<Transform> spawnPointsList = new List<Transform>();
+    public GameObject [] enemies;
     private void Start()
     {
         spawnPoints = new Transform[4, 4];
         setPositions(spawnPoints);
-        spawnEnemies(spawnPoints);
+
+        spawnPointsArray = GetComponentsInChildren<Transform>();
+        spawnPointsList = spawnPointsArray.ToList();
+        spawnPointsList.Remove(spawnPointsList[0]);
+        
+        spawnEnemies(spawnPointsList, enemies);
     }
 
     void setPositions(Transform [,] spawnPoints)
@@ -37,31 +45,12 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    void spawnEnemies(Transform [,] spawnPoints)
-    { 
-        // | 0 - mage | 1 - melee | 2 - ranged | 3 - tank | ARRAY INDEX | 
-        for (int i = 0; i < 4; i++)
+    void spawnEnemies(List<Transform> Spawnpoints, GameObject [] enemies)
+    {
+        foreach (var spawnpoint in Spawnpoints)
         {
-            print(spawnPoints[0,i]);
-            Instantiate(enemies[3], spawnPoints[0, i].position, spawnPoints[0, i].rotation);
-        }
-        
-        for (int i = 0; i < 4; i++)
-        {
-            print(spawnPoints[1,i]);
-            Instantiate(enemies[1], spawnPoints[1, i].position, spawnPoints[1, i].rotation);
-        }
-        
-        for (int i = 0; i < 4; i++)
-        {
-            print(spawnPoints[2,i]);
-            Instantiate(enemies[0], spawnPoints[2, i].position, spawnPoints[2, i].rotation);
-        }
-        
-        for (int i = 0; i < 4; i++)
-        {
-            print(spawnPoints[3,i]);
-            Instantiate(enemies[2], spawnPoints[3, i].position, spawnPoints[3, i].rotation);
+            print(spawnpoint.name);
+            Instantiate(enemies[Random.Range(0,4)], spawnpoint.position, spawnpoint.rotation);
         }
     }
     
