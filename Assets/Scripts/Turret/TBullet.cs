@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TBullet : MonoBehaviour
 {
     private Transform target;
+    
+    Money Money;
+    private Spawner Enemy;
 
     public GameObject impactEfect;
     public float speed = 70f;
@@ -12,6 +16,11 @@ public class TBullet : MonoBehaviour
         target = _target;
     }
 
+    private void Start()
+    {
+        Enemy = FindObjectOfType<Spawner>();
+        Money = FindObjectOfType<Money>(); 
+    }
 
     void Update()
     {
@@ -49,7 +58,12 @@ public class TBullet : MonoBehaviour
             
             enemyHealth.TakeDamage(20);
             HitTarget();
-            if(enemyHealth.currentHealth <= 0) enemy.Die();
+            if (enemyHealth.currentHealth <= 0)
+            {
+                Money.AddMoney();
+                Enemy.EnemyKill();
+                enemy.Die();
+            }
             Destroy(gameObject);
         }
     }

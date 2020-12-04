@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class BulletMechanics : MonoBehaviour
 {
     Money Money;
+    private Spawner Enemy;
 
     void Start()
     {
+        Enemy = FindObjectOfType<Spawner>();
         Money = FindObjectOfType<Money>(); 
         Destroy(gameObject, 5);
     }
@@ -26,6 +29,7 @@ public class BulletMechanics : MonoBehaviour
             if (enemyHealth.currentHealth <= 0)
             {
                 Money.AddMoney();
+                Enemy.EnemyKill();
                 enemy.Die();
             }
             Destroy(gameObject);
