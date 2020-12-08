@@ -34,6 +34,7 @@ public class Spawner : MonoBehaviour
         spawnPointsArray = GetComponentsInChildren<Transform>();
         spawnPointsList = spawnPointsArray.ToList();
         spawnPointsList.Remove(spawnPointsList[0]);
+        setEnemies();
     }
     // void setPositions(Transform [,] spawnPoints)
     // {
@@ -65,15 +66,16 @@ public class Spawner : MonoBehaviour
         foreach (var spawnpoint in Spawnpoints)
         {
             Instantiate(enemies[Random.Range(0,4)], spawnpoint.position, spawnpoint.rotation);
-            enemyCounter++;
         }
     }
 
-    public void EnemyKill()
+    void setEnemies()
     {
-        enemyCounter--;
+        foreach (var spawnpoint in spawnPointsList)
+        {
+            enemyCounter++;
+        }
     }
-
     public int getEmemies()
     {
         return enemyCounter;

@@ -2918,8 +2918,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastWave: 3
-  prepareTimer: 60
-  waveTimer: 60
+  prepareTimer: 5
+  waveTimer: 20
   enemies:
   - {fileID: 7281006544878983968, guid: f464df1c3ed04704a806733004b65395, type: 3}
   - {fileID: 254587136096602265, guid: 7266a973fe33c5e418c39d684d89598b, type: 3}

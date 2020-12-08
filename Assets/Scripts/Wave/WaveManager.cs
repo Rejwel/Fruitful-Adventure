@@ -57,7 +57,6 @@ public class WaveManager : MonoBehaviour
         {
             if (spawning && isPreparation == false)
             {
-                enemyCounter = 0;
                 foreach (var spawner in spawners)
                 {
                     spawner.spawnEnemies(spawner.getSpawnpoints(), enemies);
@@ -74,7 +73,6 @@ public class WaveManager : MonoBehaviour
 
             if (waveCounter == lastWave)
             {
-                enemyCounter = 0;
                 foreach (var spawner in spawners)
                 {
                     spawner.spawnEnemies(spawner.getSpawnpoints(), enemies);
@@ -105,6 +103,11 @@ public class WaveManager : MonoBehaviour
     float setTimer(float time)
     {
         return time;
+    }
+
+    public void killEnemy()
+    {
+        enemyCounter--;
     }
 
 }

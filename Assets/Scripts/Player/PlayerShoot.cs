@@ -8,14 +8,24 @@ public class PlayerShoot : MonoBehaviour
     public Transform firePoint;
     public Rigidbody bullet;
     private float bulletSpeed = 500f;
+    
+    private float fireRate = 0.5f;
+    private float nextTimeToFire = 0f;
+
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
-            Rigidbody bulletRigidbody;
-            bulletRigidbody = Instantiate(bullet, firePoint.position, firePoint.rotation) as Rigidbody;
-            bulletRigidbody.AddForce(firePoint.forward * bulletSpeed);
+            Shoot();
         }
+    }
+
+    void Shoot()
+    {
+        nextTimeToFire = Time.time + fireRate;
+        Rigidbody bulletRigidbody;
+        bulletRigidbody = Instantiate(bullet, firePoint.position, firePoint.rotation) as Rigidbody;
+        bulletRigidbody.AddForce(firePoint.forward * bulletSpeed);
     }
 }

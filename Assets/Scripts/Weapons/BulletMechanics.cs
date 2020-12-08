@@ -7,11 +7,11 @@ using UnityEngine;
 public class BulletMechanics : MonoBehaviour
 {
     Money Money;
-    private Spawner Enemy;
+    private WaveManager WaveManager;
 
     void Start()
     {
-        Enemy = FindObjectOfType<Spawner>();
+        WaveManager = FindObjectOfType<WaveManager>();
         Money = FindObjectOfType<Money>(); 
         Destroy(gameObject, 5);
     }
@@ -29,7 +29,7 @@ public class BulletMechanics : MonoBehaviour
             if (enemyHealth.currentHealth <= 0)
             {
                 Money.AddMoney();
-                Enemy.EnemyKill();
+                WaveManager.killEnemy();
                 enemy.Die();
             }
             Destroy(gameObject);
