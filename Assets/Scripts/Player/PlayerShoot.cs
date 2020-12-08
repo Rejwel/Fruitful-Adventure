@@ -9,7 +9,7 @@ public class PlayerShoot : MonoBehaviour
     public Rigidbody bullet;
     private float bulletSpeed = 500f;
     
-    private float fireRate = 0.5f;
+    private float fireRate = 0.1f;
     private float nextTimeToFire = 0f;
 
 

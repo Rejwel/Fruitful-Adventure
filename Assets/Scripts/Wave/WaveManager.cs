@@ -17,8 +17,7 @@ public class WaveManager : MonoBehaviour
 
     private bool isPreparation = true;
     private bool spawning = false;
-    private bool lastSpawn = true;
-    
+
     private Text timer;
     private Text waveCount;
     private Text enemiesLeft;
@@ -53,7 +52,7 @@ public class WaveManager : MonoBehaviour
             waveCount.text = "Last wave, Kill all the enemies!";
             timer.text = "";
         }
-        else
+        else if (waveCounter < lastWave)
         {
             if (spawning && isPreparation == false)
             {
