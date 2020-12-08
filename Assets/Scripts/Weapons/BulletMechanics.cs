@@ -7,9 +7,12 @@ public class BulletMechanics : MonoBehaviour
 {
     Money Money;
     private WaveManager WaveManager;
+    private PlayerShoot player;
+    private Gun gun;
 
     void Start()
     {
+        player = FindObjectOfType<PlayerShoot>();
         WaveManager = FindObjectOfType<WaveManager>();
         Money = FindObjectOfType<Money>(); 
         Destroy(gameObject, 5);
@@ -23,13 +26,14 @@ public class BulletMechanics : MonoBehaviour
         {
             // print("bullet: " + gameObject.transform.position);
             // print("enemy: " + hit.transform.position);
+            gun = player.GetCurrentGun();
+            enemyHealth.TakeDamage(gun.GetDamage());
             
-            enemyHealth.TakeDamage(20);
             if (enemyHealth.currentHealth <= 0)
             {
+                enemy.Die();
                 Money.AddMoney();
                 WaveManager.killEnemy();
-                enemy.Die();
             }
             Destroy(gameObject);
         }

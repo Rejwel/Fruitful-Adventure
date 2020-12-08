@@ -5,13 +5,13 @@ using UnityEngine;
 public class Gun
 {
     private float fireRate;
-    private float bullets;
+    private int bullets;
     private float spread;
     private float speed;
     private string description;
     private int damage;
 
-    public Gun(float fireRate, float bullets, float spread, float speed, string desc, int damage)
+    public Gun(float fireRate, int bullets, float spread, float speed, string desc, int damage)
     {
         this.fireRate = fireRate;
         this.bullets = bullets;
@@ -26,7 +26,7 @@ public class Gun
         return fireRate;
     }
     
-    public float GetBullets()
+    public int GetBullets()
     {
         return bullets;
     }

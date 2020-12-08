@@ -22,4 +22,9 @@ Zaimplementowane demo :
 -> towery (nie mozna ich stawiac)
 -> wave system
 
+Znane bugi :
+-> Zeby wejsc do domu trzeba wskoczyc
+-> Da sie stac na przeciwniku, nic nam wtedy nie zrobi
+-> Po utracie hp nadal zyjemy
+->
 

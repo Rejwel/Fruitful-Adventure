@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private Gun gun;
-    
-    public Gun GetFirstGun()
-    {
-        return GunContainer.GetGun(0);
-    }
+   
 }
