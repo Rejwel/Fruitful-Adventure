@@ -24,7 +24,7 @@ public class Pickup : MonoBehaviour
         RaycastHit hit;
         if (Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance, layerMask))
         {
-            print("sth");
+            print(hit);
         }
         
     }

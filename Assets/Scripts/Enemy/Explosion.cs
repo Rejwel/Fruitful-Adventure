@@ -29,7 +29,7 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Ground")
+        if (other.gameObject.name == "Terrain")
         {
             explode();
         }
@@ -70,7 +70,7 @@ public class Explosion : MonoBehaviour
 
         piece.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
         piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
-        piece.AddComponent<Collider>().isTrigger = true;
+
         piece.AddComponent<Rigidbody>();
         piece.AddComponent<PlayerMovement>();
         piece.gameObject.tag = "Money";
