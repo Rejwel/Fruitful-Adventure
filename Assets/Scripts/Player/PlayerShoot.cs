@@ -14,6 +14,7 @@ public class PlayerShoot : MonoBehaviour
     private float bulletSpeed = 500f;
     private int bullets;
     private float randomSpread;
+    private string desc;
 
     private Weapon weapon;
 
@@ -68,6 +69,7 @@ public class PlayerShoot : MonoBehaviour
     {
         fireRate = currentGun.GetFireRate();
         bullets = currentGun.GetBullets();
+        desc = currentGun.GetDesc();
 
         //randomSpread = Random.Range(-currentGun.GetSpread(), currentGun.GetSpread());
         //firePoint.rotation = Quaternion.Euler(new Vector3(firePoint.rotation.x, firePoint.rotation.y, firePoint.rotation.z + randomSpread));
@@ -83,6 +85,7 @@ public class PlayerShoot : MonoBehaviour
         
         for (int i = 0; i < bullets; i++)
         {
+            AudioManager.playSound(desc);
             Rigidbody bulletRigidbody;
             bulletRigidbody = Instantiate(bullet, firePoint.position, firePoint.rotation) as Rigidbody;
             //bulletRigidbody.AddForce(firePoint.forward * bulletSpeed);
