@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1665005421434415293}
   - component: {fileID: 2956680218366870976}
   - component: {fileID: 7814951605601634634}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Melee
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -199,6 +199,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 254587136096602268}
     m_Modifications:
+    - target: {fileID: 3526056543338158176, guid: 36a80762d51a8db4ea11537f960660ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3526056543338158177, guid: 36a80762d51a8db4ea11537f960660ee,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -209,6 +214,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3526056543902569556, guid: 36a80762d51a8db4ea11537f960660ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526056544398350510, guid: 36a80762d51a8db4ea11537f960660ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526056544643674810, guid: 36a80762d51a8db4ea11537f960660ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526056544991670635, guid: 36a80762d51a8db4ea11537f960660ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3526056545251168770, guid: 36a80762d51a8db4ea11537f960660ee,
         type: 3}
       propertyPath: cam
@@ -218,6 +243,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'CanvasHealthEnemy '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526056545251168772, guid: 36a80762d51a8db4ea11537f960660ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3526056545251168773, guid: 36a80762d51a8db4ea11537f960660ee,
         type: 3}

@@ -60,9 +60,9 @@ public class TBullet : MonoBehaviour
             HitTarget();
             if (enemyHealth.currentHealth <= 0)
             {
+                enemy.Die();
                 Money.AddMoney();
                 WaveManager.killEnemy();
-                enemy.Die();
             }
             Destroy(gameObject);
         }
