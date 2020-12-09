@@ -11,7 +11,7 @@ public class Money : MonoBehaviour
 
     public void AddMoney()
     {
-        CurrentMoney += 5;
+        CurrentMoney += 3;
         Score.text = CurrentMoney.ToString();
     }
 

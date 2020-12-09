@@ -3093,7 +3093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &513389693
 Transform:
   m_ObjectHideFlags: 0
@@ -3160,7 +3160,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1211090547}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &604596825 stripped
 GameObject:
@@ -4625,8 +4625,8 @@ Transform:
   m_LocalPosition: {x: 24.1, y: 1, z: -114.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 580975921}
   - {fileID: 2874718898421768075}
+  - {fileID: 580975921}
   - {fileID: 1548909914}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -7064,11 +7064,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHitObject: {fileID: 0}
-  sphereRadius: 1.5
-  maxDistance: 5
+  sphereRadius: 1
+  maxDistance: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 2048
 --- !u!1001 &1565799733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8344,7 +8344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2036247306
 Transform:
   m_ObjectHideFlags: 0
@@ -9354,7 +9354,7 @@ PrefabInstance:
     - target: {fileID: 2682917186886493258, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2682917186886493258, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
@@ -9441,6 +9441,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank
       objectReference: {fileID: 0}
+    - target: {fileID: 6142323270256696200, guid: 40f36fe9019b0b443a6039c3269cde23,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6142323270256696201, guid: 40f36fe9019b0b443a6039c3269cde23,
         type: 3}
       propertyPath: Player
@@ -9504,12 +9509,12 @@ PrefabInstance:
     - target: {fileID: 7687224235552207725, guid: 40f36fe9019b0b443a6039c3269cde23,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7687224235552207725, guid: 40f36fe9019b0b443a6039c3269cde23,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7687224236324370702, guid: 40f36fe9019b0b443a6039c3269cde23,
         type: 3}

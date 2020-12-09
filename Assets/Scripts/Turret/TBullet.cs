@@ -6,8 +6,8 @@ using UnityEngine;
 public class TBullet : MonoBehaviour
 {
     private Transform target;
-
-    Money Money;
+    private Explosion explosion;
+    
     private WaveManager WaveManager;
 
     public GameObject impactEfect;
@@ -18,8 +18,8 @@ public class TBullet : MonoBehaviour
 
     private void Start()
     {
+        explosion = FindObjectOfType<Explosion>();
         WaveManager = FindObjectOfType<WaveManager>();
-        Money = FindObjectOfType<Money>(); 
     }
 
     void Update()
@@ -61,7 +61,7 @@ public class TBullet : MonoBehaviour
             if (enemyHealth.currentHealth <= 0)
             {
                 enemy.Die();
-                Money.AddMoney();
+                explosion.explode();
                 WaveManager.killEnemy();
             }
             Destroy(gameObject);

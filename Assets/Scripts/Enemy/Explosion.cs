@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Explosion : MonoBehaviour
 {
@@ -13,27 +14,13 @@ public class Explosion : MonoBehaviour
     public float explosionForce = 100f;
     public float explosionUpward = 0.2f;
 
-    
-    // Start is called before the first frame update
+
     void Start()
     {
         cubesPivotDistance = cubeSize * cubesInRow / 2;
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "Terrain")
-        {
-            explode();
-        }
-    }
+    
 
     public void explode()
     {
@@ -72,8 +59,8 @@ public class Explosion : MonoBehaviour
         piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
 
         piece.AddComponent<Rigidbody>();
-        piece.AddComponent<PlayerMovement>();
-        piece.gameObject.tag = "Money";
+        piece.AddComponent<MoneyDisappear>();
+        piece.gameObject.layer = 11;
 
 
         piece.GetComponent<Rigidbody>().mass = cubeSize;

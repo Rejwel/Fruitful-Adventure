@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class BulletMechanics : MonoBehaviour
 {
-    Money Money;
     private WaveManager WaveManager;
+    private Explosion explosion;
     private PlayerShoot player;
     private Gun gun;
 
     void Start()
     {
+        explosion = FindObjectOfType<Explosion>();
         player = FindObjectOfType<PlayerShoot>();
         WaveManager = FindObjectOfType<WaveManager>();
-        Money = FindObjectOfType<Money>(); 
         Destroy(gameObject, 5);
     }
 
@@ -32,7 +32,7 @@ public class BulletMechanics : MonoBehaviour
             if (enemyHealth.currentHealth <= 0)
             {
                 enemy.Die();
-                Money.AddMoney();
+                explosion.explode();
                 WaveManager.killEnemy();
             }
             Destroy(gameObject);

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7624425721677361650}
   - component: {fileID: 6330956796562381967}
   - component: {fileID: 1342185130220687365}
+  - component: {fileID: -1422783523207199391}
   m_Layer: 10
   m_Name: Range
   m_TagString: Enemy
@@ -192,6 +193,23 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   healthBar: {fileID: 4814133869411677445}
+--- !u!114 &-1422783523207199391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9033190547601265110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a197d6611a68f240a38378b52b3baef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 2
+  explosionRadius: 3
+  explosionForce: 50
+  explosionUpward: 0.2
 --- !u!1001 &8223621855868920146
 PrefabInstance:
   m_ObjectHideFlags: 0

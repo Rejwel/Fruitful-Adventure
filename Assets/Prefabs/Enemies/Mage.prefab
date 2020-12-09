@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8185403225177914116}
   - component: {fileID: 5731694436414183033}
   - component: {fileID: 790210567228054259}
+  - component: {fileID: 8897657786077220135}
   m_Layer: 10
   m_Name: Mage
   m_TagString: Enemy
@@ -192,6 +193,23 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   healthBar: {fileID: 6528037127942012915}
+--- !u!114 &8897657786077220135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281006544878983968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a197d6611a68f240a38378b52b3baef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.18
+  cubesInRow: 2
+  explosionRadius: 3
+  explosionForce: 50
+  explosionUpward: 0.2
 --- !u!1001 &7671651690131123108
 PrefabInstance:
   m_ObjectHideFlags: 0

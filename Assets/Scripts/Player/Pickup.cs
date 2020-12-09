@@ -6,6 +6,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     public GameObject currentHitObject;
+    Money Money;
     
     public float sphereRadius;
     public float maxDistance;
@@ -16,6 +17,11 @@ public class Pickup : MonoBehaviour
 
     private float currentHitDistance;
 
+    private void Start()
+    {
+        Money = FindObjectOfType<Money>();
+    }
+
     private void Update()
     {
         origin = transform.position;
@@ -24,7 +30,8 @@ public class Pickup : MonoBehaviour
         RaycastHit hit;
         if (Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance, layerMask))
         {
-            print(hit);
+            Money.AddMoney();
+            Destroy(hit.transform.gameObject);
         }
         
     }
