@@ -209,7 +209,7 @@ MonoBehaviour:
   cubesInRow: 2
   explosionRadius: 3
   explosionForce: 50
-  explosionUpward: 0.2
+  explosionUpward: 0.5
 --- !u!1001 &8223621855868920146
 PrefabInstance:
   m_ObjectHideFlags: 0

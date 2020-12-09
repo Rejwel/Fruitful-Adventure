@@ -22,9 +22,8 @@ public class Explosion : MonoBehaviour
     }
     
 
-    public void explode()
+    public void explode(GameObject enemy)
     {
-        gameObject.SetActive(false);
 
         for (int x = 0; x < cubesInRow; x++)
         {
@@ -32,40 +31,35 @@ public class Explosion : MonoBehaviour
             {
                 for (int z = 0; z < cubesInRow; z++)
                 {
-                    createPiece(x, y, z);
+                    createPiece(x, y, z, enemy);
                 }
             }
         }
-
-        Vector3 explosionPos = transform.position;
+        
+        Vector3 explosionPos = enemy.transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
+                rb.AddExplosionForce(explosionForce, enemy.transform.position, explosionRadius, explosionUpward);
             }
         }
 
     }
 
-    public void createPiece(int x, int y, int z)
+    public void createPiece(int x, int y, int z, GameObject enemy)
     {
         GameObject piece;
         piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
-        piece.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
+        
+        piece.transform.position = enemy.transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
         piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
-
+        piece.gameObject.layer = 11;
         piece.AddComponent<Rigidbody>();
         piece.AddComponent<MoneyDisappear>();
-        piece.gameObject.layer = 11;
-
-
         piece.GetComponent<Rigidbody>().mass = cubeSize;
-
-
     }
 
 

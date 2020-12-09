@@ -6,9 +6,17 @@ using UnityEngine;
 
 public class MoneyDisappear : MonoBehaviour
 {
+    private Vector3 scaleChange;
     private void Start()
     {
-        Invoke("destroyMoney", 20);
+        Invoke("startDestroyMoney", 15);
+    }
+
+    private void Update()
+    {
+        if(scaleChange != new Vector3())
+            this.gameObject.transform.localScale += scaleChange * Time.deltaTime * 50f;
+        if(this.gameObject.transform.localScale.x <= 0) Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -19,8 +27,8 @@ public class MoneyDisappear : MonoBehaviour
         }
     }
 
-    void destroyMoney()
+    void startDestroyMoney()
     {
-        Destroy(this.gameObject);
+        scaleChange = new Vector3(-0.01f, -0.01f, -0.01f);
     }
 }
