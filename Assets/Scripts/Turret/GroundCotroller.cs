@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class GroundCotroller : MonoBehaviour
     private GameObject currentPlaceableObject;
 
     private float mouseWheelRotation;
+    
 
     private void Update()
     {
@@ -20,6 +22,10 @@ public class GroundCotroller : MonoBehaviour
 
         if (currentPlaceableObject != null)
         {
+            if (currentPlaceableObject.tag.Equals("Turret"))
+            {
+                currentPlaceableObject.GetComponent<Turret>().enabled = false;
+            }
             MoveCurrentObjectToMouse();
             RotateFromMouseWheel();
             ReleaseIfClicked();
@@ -61,6 +67,10 @@ public class GroundCotroller : MonoBehaviour
 
     private void ReleaseIfClicked()
     {
+        if (currentPlaceableObject.tag.Equals("Turret"))
+        {
+            currentPlaceableObject.GetComponent<Turret>().enabled = true;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             currentPlaceableObject = null;
