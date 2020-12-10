@@ -695,7 +695,7 @@ PrefabInstance:
     - target: {fileID: 6446918675095401329, guid: ddf9001f60b0a6543af9d6e8c3ea3b3a,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6446918675095401329, guid: ddf9001f60b0a6543af9d6e8c3ea3b3a,
         type: 3}
@@ -2883,7 +2883,7 @@ PrefabInstance:
     - target: {fileID: 2334235848864080056, guid: cd11c42dfb3202f4594a7976f73d0b78,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 532.9625
+      value: 533.27
       objectReference: {fileID: 0}
     - target: {fileID: 2334235848864080056, guid: cd11c42dfb3202f4594a7976f73d0b78,
         type: 3}
@@ -3222,7 +3222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628640171}
   m_LocalRotation: {x: -0, y: -0.0000101260375, z: -0, w: 1}
-  m_LocalPosition: {x: 224.47464, y: -531.8825, z: 669.8948}
+  m_LocalPosition: {x: 224.47464, y: -533, z: 669.8948}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2334235850054271904}
@@ -8933,6 +8933,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeableObjectPrefab: {fileID: 2334235848864080058, guid: cd11c42dfb3202f4594a7976f73d0b78,
     type: 3}
+  terrain:
+    serializedVersion: 2
+    m_Bits: 4096
   newObjectHotkey: 112
 --- !u!1001 &2139437490
 PrefabInstance:

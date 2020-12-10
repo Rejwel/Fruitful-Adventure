@@ -8,6 +8,8 @@ public class GroundCotroller : MonoBehaviour
     [SerializeField]
     private GameObject placeableObjectPrefab;
 
+    public LayerMask terrain;
+
     [SerializeField]
     private KeyCode newObjectHotkey = KeyCode.A;
 
@@ -52,7 +54,7 @@ public class GroundCotroller : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo))
+        if (Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
             currentPlaceableObject.transform.position = hitInfo.point;
             currentPlaceableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
