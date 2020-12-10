@@ -62,9 +62,12 @@ public class Spawner : MonoBehaviour
 
     public void spawnEnemies(List<Transform> Spawnpoints, GameObject [] enemies)
     {
-        foreach (var spawnpoint in Spawnpoints)
+        for (int i = 0; i < Spawnpoints.Count; i++)
         {
-            Instantiate(enemies[Random.Range(0,4)], spawnpoint.position, spawnpoint.rotation);
+            if (i < 4) Instantiate(enemies[3], Spawnpoints[i].position, Spawnpoints[i].rotation);
+            if (i > 3 && i < 8) Instantiate(enemies[1], Spawnpoints[i].position, Spawnpoints[i].rotation);
+            if (i > 7 && i < 12) Instantiate(enemies[0], Spawnpoints[i].position, Spawnpoints[i].rotation);
+            if (i > 11 && i < 17) Instantiate(enemies[2], Spawnpoints[i].position, Spawnpoints[i].rotation);
         }
     }
 
