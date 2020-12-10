@@ -1,4 +1,6 @@
-/# first_game by Salto angels						\
+![cover](./cover/coverPhoto.png)
+
+# first_game by Salto angels						\
    _____         _  _                                      _      	|
   / ____|       | || |                                    | |     	|
  | (___    __ _ | || |_  ___     __ _  _ __    __ _   ___ | | ___ 	|
@@ -9,20 +11,20 @@
                                               |___/          		|
 \-----------------------------------------------------------------------/
 
-v. 0.1 
+## v. 0.1 
 Uwaga! Gra nie posiada menu, trzeba wylaczac ja z procesow.
 Wstepny build gry typu towerdefence. 
 
 Gra na stan obecny opiera sie na zabijaniu przeciwnikow. Gracz wygrywa
 zabijajac wszystkich przeciwnikow po ostatnim wave.
 
-Zaimplementowane demo :
+### Zaimplementowane demo :
 -> movement
 -> strzelanie
 -> towery (nie mozna ich stawiac)
 -> wave system
 
-Znane bugi :
+### Znane bugi :
 -> Zeby wejsc do domu trzeba wskoczyc
 -> Da sie stac na przeciwniku, nic nam wtedy nie zrobi
 -> Po utracie hp nadal zyjemy
