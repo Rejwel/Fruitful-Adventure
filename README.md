@@ -1,6 +1,6 @@
-![cover](./cover/coverPhoto.png)
+![cover](./Cover/coverPhoto.png)
 
-# first_game by Salto angels						\
+# first_game by Salto angels						
    _____         _  _                                      _      	|
   / ____|       | || |                                    | |     	|
  | (___    __ _ | || |_  ___     __ _  _ __    __ _   ___ | | ___ 	|
