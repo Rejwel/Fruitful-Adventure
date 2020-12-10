@@ -1,4 +1,4 @@
-![cover](./Cover/coverPhoto.png)
+![cover](./Cover/coverPhoto.PNG)
 
 # first_game by Salto angels						
    _____         _  _                                      _      	|
