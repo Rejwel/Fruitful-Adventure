@@ -8663,6 +8663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2092975416}
+  - component: {fileID: 2092975417}
   m_Layer: 0
   m_Name: GroundControll
   m_TagString: Untagged
@@ -8684,6 +8685,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2092975417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092975415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36285adc6d5b1d458c907ddc23aa541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeableObjectPrefab: {fileID: 2334235848864080058, guid: cd11c42dfb3202f4594a7976f73d0b78,
+    type: 3}
+  newObjectHotkey: 112
 --- !u!1001 &2139437490
 PrefabInstance:
   m_ObjectHideFlags: 0
