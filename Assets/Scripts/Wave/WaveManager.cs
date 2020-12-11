@@ -87,6 +87,7 @@ public class WaveManager : MonoBehaviour
                     prepareTime -= Time.deltaTime;
                     timer.text = prepareTime.ToString("f2");
                     spawning = true;
+                    
                 }
                 else
                 {
@@ -95,6 +96,7 @@ public class WaveManager : MonoBehaviour
                     waveCount.text = waveCounter + " Wave";
                     timer.text = waveTime.ToString("f2"); 
                     waveTime -= Time.deltaTime;
+                    
                 } 
             }
         }

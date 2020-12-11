@@ -7,8 +7,8 @@ public class GroundCotroller : MonoBehaviour
 {
     [SerializeField]
     private GameObject placeableObjectPrefab;
-
     public LayerMask terrain;
+    private bool canRotate = false;
 
     [SerializeField]
     private KeyCode newObjectHotkey = KeyCode.A;
@@ -36,13 +36,15 @@ public class GroundCotroller : MonoBehaviour
 
     private void HandleNewObjectHotkey()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
         if (Input.GetKeyDown(newObjectHotkey))
         {
             if (currentPlaceableObject != null)
             {
                 Destroy(currentPlaceableObject);
             }
-            else
+            else if (Physics.Raycast(ray, out hitInfo, 8f, terrain))
             {
                 currentPlaceableObject = Instantiate(placeableObjectPrefab);
             }
@@ -52,28 +54,38 @@ public class GroundCotroller : MonoBehaviour
     private void MoveCurrentObjectToMouse()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
+            canRotate = true;
             currentPlaceableObject.transform.position = hitInfo.point;
             currentPlaceableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+        }
+        else
+        {
+            canRotate = false;
         }
     }
 
     private void RotateFromMouseWheel()
     {
-        mouseWheelRotation += Input.mouseScrollDelta.y;
-        currentPlaceableObject.transform.Rotate(Vector3.up, mouseWheelRotation * 10f);
+        currentPlaceableObject.transform.Rotate(Vector3.up, 0f);
+        if (canRotate)
+        {
+            mouseWheelRotation += Input.mouseScrollDelta.y;
+            currentPlaceableObject.transform.Rotate(Vector3.up, mouseWheelRotation * 10f);
+        }
     }
 
     private void ReleaseIfClicked()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
         if (currentPlaceableObject.tag.Equals("Turret"))
         {
             currentPlaceableObject.GetComponent<Turret>().enabled = true;
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
             currentPlaceableObject = null;
         }
