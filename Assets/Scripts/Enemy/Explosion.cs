@@ -14,13 +14,11 @@ public class Explosion : MonoBehaviour
     public float explosionForce = 100f;
     public float explosionUpward = 0.2f;
 
-
     void Start()
     {
         cubesPivotDistance = cubeSize * cubesInRow / 2;
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
     }
-    
 
     public void explode(GameObject enemy)
     {
@@ -46,7 +44,6 @@ public class Explosion : MonoBehaviour
                 rb.AddExplosionForce(explosionForce, enemy.transform.position, explosionRadius, explosionUpward);
             }
         }
-
     }
 
     public void createPiece(int x, int y, int z, GameObject enemy)
@@ -61,8 +58,4 @@ public class Explosion : MonoBehaviour
         piece.AddComponent<MoneyDisappear>();
         piece.GetComponent<Rigidbody>().mass = cubeSize;
     }
-
-
-
-
 }

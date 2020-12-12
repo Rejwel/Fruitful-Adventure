@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 
@@ -18,6 +20,7 @@ public class HealthPlayer : MonoBehaviour
         thePlayer = FindObjectOfType<PlayerMovement>();
     }
     
+
     void OnCollisionEnter(Collision CollisionInfo)
     {
         if (CollisionInfo.collider.CompareTag("Enemy"))
