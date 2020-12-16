@@ -37,7 +37,7 @@ public class PlayerShoot : MonoBehaviour
     {
         
         
-        
+     
         
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
