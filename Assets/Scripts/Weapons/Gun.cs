@@ -10,8 +10,9 @@ public class Gun
     private float speed;
     private string description;
     private int damage;
+    private int magazine;
 
-    public Gun(float fireRate, int bullets, float spread, float speed, string desc, int damage)
+    public Gun(float fireRate, int bullets, float spread, float speed, string desc, int damage, int magazine)
     {
         this.fireRate = fireRate;
         this.bullets = bullets;
@@ -19,6 +20,7 @@ public class Gun
         this.speed = speed;
         this.description = desc;
         this.damage = damage;
+        this.magazine = magazine;
     }
 
     public float GetFireRate()
@@ -49,5 +51,10 @@ public class Gun
     public int GetDamage()
     {
         return damage;
+    }
+    
+    public int GetMagazine()
+    {
+        return magazine;
     }
 }

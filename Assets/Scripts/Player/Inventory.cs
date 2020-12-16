@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-   
+   private int bulletAmmount;
+
 }

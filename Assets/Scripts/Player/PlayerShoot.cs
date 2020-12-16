@@ -12,68 +12,85 @@ public class PlayerShoot : MonoBehaviour
     public Transform firePoint;
     public Rigidbody bullet;
     private float bulletSpeed = 500f;
+    private float magazine;
     private int bullets;
     private float randomSpread;
     private string desc;
+    private bool firstEmptyBullet;
 
     private Weapon weapon;
 
     private float fireRate;
     private Gun currentGun;
     private float nextTimeToFire = 0f;
+    private float timer = 0f;
+    private float nextTimer = 0.5f;
 
     private TextMeshProUGUI  currentGunText;
+    private TextMeshProUGUI currentAmmoText;
 
 
     private void Start()
     {
+        firstEmptyBullet = true;
         currentGunText = GameObject.Find("CurrentGunText").GetComponent<TextMeshProUGUI>();
+        currentAmmoText = GameObject.Find("Magazine").GetComponent<TextMeshProUGUI>();
         currentGun = GunContainer.GetGun(0);
-        fireRate = currentGun.GetFireRate();
-        currentGunText.text = "Gun: " + currentGun.GetDesc();
+        ChangeGun(GunContainer.GetGun(0));
     }
 
     void Update()
     {
-        
-        
-     
-        
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine > 0) 
         {
             Shoot();
+            currentAmmoText.text = "Ammo " + magazine;
+        }
+        else if (magazine == 0 && firstEmptyBullet)
+        {
+            firstEmptyBullet = false;
+            timer = Time.time + nextTimer;
+        }
+        else if (Input.GetButton("Fire1") && magazine == 0 && Time.time >= timer)
+        {
+            if (currentGun.GetDesc().Equals("Pistol"))
+            {
+                Empty("Pistol_empty");
+            }
+            else if (currentGun.GetDesc() != "Pistol")
+            {
+                Empty("Gun_empty");
+            }
         }
         if (Input.GetKeyDown("1"))
         {
             currentGun = GunContainer.GetGun(0);
-            currentGunText.text = "Gun: " + currentGun.GetDesc();
+            ChangeGun(currentGun);
         }
         if (Input.GetKeyDown("2"))
         {
             currentGun = GunContainer.GetGun(1);
-            currentGunText.text = "Gun: " + currentGun.GetDesc();
+            ChangeGun(currentGun);
         }
         if (Input.GetKeyDown("3"))
         {
             currentGun = GunContainer.GetGun(2);
-            currentGunText.text = "Gun: " + currentGun.GetDesc();
+            ChangeGun(currentGun);
         }
         if (Input.GetKeyDown("4"))
         {
             currentGun = GunContainer.GetGun(3);
-            currentGunText.text = "Gun: " + currentGun.GetDesc();
+            ChangeGun(currentGun);
         }
     }
 
     void Shoot()
     {
+        magazine--;
         fireRate = currentGun.GetFireRate();
         bullets = currentGun.GetBullets();
         desc = currentGun.GetDesc();
 
-        //randomSpread = Random.Range(-currentGun.GetSpread(), currentGun.GetSpread());
-        //firePoint.rotation = Quaternion.Euler(new Vector3(firePoint.rotation.x, firePoint.rotation.y, firePoint.rotation.z + randomSpread));
-        
         nextTimeToFire = Time.time + fireRate;
         float maxDeviation = 2f;
         Vector3 forwardVector = Vector3.forward;
@@ -88,7 +105,6 @@ public class PlayerShoot : MonoBehaviour
             AudioManager.playSound(desc);
             Rigidbody bulletRigidbody;
             bulletRigidbody = Instantiate(bullet, firePoint.position, firePoint.rotation) as Rigidbody;
-            //bulletRigidbody.AddForce(firePoint.forward * bulletSpeed);
             bulletRigidbody.AddForce(forwardVector * bulletSpeed);
         }
     }
@@ -96,5 +112,20 @@ public class PlayerShoot : MonoBehaviour
     public Gun GetCurrentGun()
     {
         return currentGun;
+    }
+
+    private void ChangeGun(Gun currentGun)
+    {
+        firstEmptyBullet = true;
+        magazine = currentGun.GetMagazine();
+        fireRate = currentGun.GetFireRate();
+        currentGunText.text = "Gun: " + currentGun.GetDesc();
+        currentAmmoText.text = "Ammo " + magazine;
+    }
+
+    private void Empty(string sound)
+    {
+        timer = Time.time + nextTimer;
+        AudioManager.playSound(sound);
     }
 }
