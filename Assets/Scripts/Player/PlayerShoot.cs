@@ -9,52 +9,57 @@ using Random = UnityEngine.Random;
 
 public class PlayerShoot : MonoBehaviour
 {
+    [Header("Misc")]
     public Transform firePoint;
     public Rigidbody bullet;
+    private Inventory inventory;
+    private Gun currentGun;
+    private Weapon weapon;
     private float bulletSpeed = 500f;
-    private float magazine;
+    private int[] magazine = new int[4];
+    private int stashAmmo;
     private int bullets;
     private float randomSpread;
     private string desc;
     private bool firstEmptyBullet;
-    private Gun currentGun;
-    private Weapon weapon;
 
+    [Header("Timers")]
     private float fireRate;
     private float emptyTime = 0.8f;
     private float reloadTime = 2f;
-    
     private float nextTimeToFire = 0f;
     private float nextTimeToEmpty = 0f;
     private float nextTimeToReload = 0f;
     
-
+    [Header("TMP")]
     private TextMeshProUGUI  currentGunText;
     private TextMeshProUGUI currentAmmoText;
-
+    private TextMeshProUGUI  currentStashAmmoText;
 
     private void Start()
     {
         firstEmptyBullet = true;
+        inventory = FindObjectOfType<Inventory>();
+        currentStashAmmoText = GameObject.Find("StashAmmo").GetComponent<TextMeshProUGUI>();
         currentGunText = GameObject.Find("CurrentGunText").GetComponent<TextMeshProUGUI>();
         currentAmmoText = GameObject.Find("Magazine").GetComponent<TextMeshProUGUI>();
+        SetStartingAmmo();
         currentGun = GunContainer.GetGun(0);
-        ChangeGun(GunContainer.GetGun(0));
+        ChangeGun(currentGun);
     }
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine > 0) 
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine[currentGun.GetId()] > 0) 
         {
             Shoot();
-            currentAmmoText.text = "Ammo " + magazine;
         }
-        else if (magazine == 0 && firstEmptyBullet)
+        else if (magazine[currentGun.GetId()] == 0 && firstEmptyBullet)
         {
             firstEmptyBullet = false;
             nextTimeToEmpty = Time.time + emptyTime;
         }
-        else if (Input.GetButton("Fire1") && magazine == 0 && Time.time >= nextTimeToEmpty)
+        else if (Input.GetButton("Fire1") && magazine[currentGun.GetId()] == 0 && Time.time >= nextTimeToEmpty)
         {
             if (currentGun.GetDesc().Equals("Pistol"))
             {
@@ -65,7 +70,7 @@ public class PlayerShoot : MonoBehaviour
                 Empty("Gun_empty");
             }
         }
-        if (Input.GetKey(KeyCode.R) && Time.time >= nextTimeToReload)
+        if (Input.GetKey(KeyCode.R) && Time.time >= nextTimeToReload && inventory.bulletAmmount[currentGun.GetId()] > 0 && magazine[currentGun.GetId()] != currentGun.GetMagazine())
         {
             Reload(currentGun);
         }
@@ -93,7 +98,8 @@ public class PlayerShoot : MonoBehaviour
 
     void Shoot()
     {
-        magazine--;
+        magazine[currentGun.GetId()]--;
+        currentAmmoText.text = "Ammo " + magazine[currentGun.GetId()];
         fireRate = currentGun.GetFireRate();
         bullets = currentGun.GetBullets();
         desc = currentGun.GetDesc();
@@ -124,10 +130,13 @@ public class PlayerShoot : MonoBehaviour
     private void ChangeGun(Gun currentGun)
     {
         firstEmptyBullet = true;
-        magazine = currentGun.GetMagazine();
         fireRate = currentGun.GetFireRate();
+
+        currentStashAmmoText.text = inventory.bulletAmmount[currentGun.GetId()].ToString();
+        currentAmmoText.text = currentGun.GetMagazine().ToString();
+        
         currentGunText.text = "Gun: " + currentGun.GetDesc();
-        currentAmmoText.text = "Ammo " + magazine;
+        currentAmmoText.text = "Ammo " + magazine[currentGun.GetId()];
     }
 
     private void Empty(string sound)
@@ -138,11 +147,40 @@ public class PlayerShoot : MonoBehaviour
 
     private void Reload(Gun currentGun)
     {
+        LowerStashAmmo(currentGun);
         nextTimeToReload = Time.time + reloadTime;
         firstEmptyBullet = true;
         AudioManager.playSound("Gun_reload");
         nextTimeToFire = Time.time + reloadTime;
-        magazine = currentGun.GetMagazine();
-        currentAmmoText.text = "Ammo " + magazine;
+    }
+
+    private void LowerStashAmmo(Gun currentGun)
+    {
+
+        int ammoToSubstract;
+        
+        if (inventory.bulletAmmount[currentGun.GetId()] + magazine[currentGun.GetId()] <= currentGun.GetMagazine())
+        {
+            magazine[currentGun.GetId()] += inventory.bulletAmmount[currentGun.GetId()];
+            inventory.bulletAmmount[currentGun.GetId()] = 0;
+            currentAmmoText.text = "Ammo " + magazine[currentGun.GetId()];
+        }
+        else if (inventory.bulletAmmount[currentGun.GetId()] + magazine[currentGun.GetId()] > currentGun.GetMagazine())
+        {
+            ammoToSubstract = currentGun.GetMagazine() - magazine[currentGun.GetId()];
+            magazine[currentGun.GetId()] = currentGun.GetMagazine();
+            inventory.bulletAmmount[currentGun.GetId()] -= ammoToSubstract;
+            currentAmmoText.text = "Ammo " + currentGun.GetMagazine();
+        }
+        currentStashAmmoText.text = inventory.bulletAmmount[currentGun.GetId()].ToString();
+    }
+
+    private void SetStartingAmmo()
+    {
+        Gun gun;
+        for (int i = 0; i < 4; i++)
+        {
+            magazine[i] = GunContainer.GetGun(i).GetMagazine();
+        }
     }
 }

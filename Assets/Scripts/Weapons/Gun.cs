@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gun
 {
+    private int id;
     private float fireRate;
     private int bullets;
     private float spread;
@@ -12,8 +13,9 @@ public class Gun
     private int damage;
     private int magazine;
 
-    public Gun(float fireRate, int bullets, float spread, float speed, string desc, int damage, int magazine)
+    public Gun(int id, float fireRate, int bullets, float spread, float speed, string desc, int damage, int magazine)
     {
+        this.id = id;
         this.fireRate = fireRate;
         this.bullets = bullets;
         this.spread = spread;
@@ -56,5 +58,10 @@ public class Gun
     public int GetMagazine()
     {
         return magazine;
+    }
+    
+    public int GetId()
+    {
+        return id;
     }
 }
