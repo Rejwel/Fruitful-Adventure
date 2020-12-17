@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioClip pistol, rifle, shotgun, minigun, pistolEmpty, gunEmpty;
+    public static AudioClip pistol, rifle, shotgun, minigun, pistolEmpty, gunEmpty, gunReload;
     private static AudioSource audioSrc;
 
     private void Start()
     {
         pistol = Resources.Load<AudioClip>("Pistol");
+        gunReload = Resources.Load <AudioClip>("Gun_reload");
         pistolEmpty = Resources.Load<AudioClip>("Pistol_empty");
         gunEmpty = Resources.Load<AudioClip>("Gun_empty");
         shotgun = Resources.Load<AudioClip>("Pistol");
@@ -42,6 +43,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case "Gun_empty":
                 audioSrc.PlayOneShot(gunEmpty);
+                break;
+            case "Gun_reload":
+                audioSrc.PlayOneShot(gunReload);
                 break;
         }
     }

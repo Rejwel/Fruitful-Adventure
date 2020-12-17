@@ -2060,6 +2060,23 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1651609611, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 87.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651609612, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_text
+      value: 'Switch weapons (1-4)
+
+        Click p to put turrets
+
+        Press
+        r to reload gun'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651609612, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_margin.w
+      value: -50.25057
+      objectReference: {fileID: 0}
     - target: {fileID: 1782037897, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0

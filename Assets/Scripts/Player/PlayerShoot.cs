@@ -17,14 +17,17 @@ public class PlayerShoot : MonoBehaviour
     private float randomSpread;
     private string desc;
     private bool firstEmptyBullet;
-
+    private Gun currentGun;
     private Weapon weapon;
 
     private float fireRate;
-    private Gun currentGun;
+    private float emptyTime = 0.8f;
+    private float reloadTime = 2f;
+    
     private float nextTimeToFire = 0f;
-    private float timer = 0f;
-    private float nextTimer = 0.5f;
+    private float nextTimeToEmpty = 0f;
+    private float nextTimeToReload = 0f;
+    
 
     private TextMeshProUGUI  currentGunText;
     private TextMeshProUGUI currentAmmoText;
@@ -49,9 +52,9 @@ public class PlayerShoot : MonoBehaviour
         else if (magazine == 0 && firstEmptyBullet)
         {
             firstEmptyBullet = false;
-            timer = Time.time + nextTimer;
+            nextTimeToEmpty = Time.time + emptyTime;
         }
-        else if (Input.GetButton("Fire1") && magazine == 0 && Time.time >= timer)
+        else if (Input.GetButton("Fire1") && magazine == 0 && Time.time >= nextTimeToEmpty)
         {
             if (currentGun.GetDesc().Equals("Pistol"))
             {
@@ -61,6 +64,10 @@ public class PlayerShoot : MonoBehaviour
             {
                 Empty("Gun_empty");
             }
+        }
+        if (Input.GetKey(KeyCode.R) && Time.time >= nextTimeToReload)
+        {
+            Reload(currentGun);
         }
         if (Input.GetKeyDown("1"))
         {
@@ -125,7 +132,17 @@ public class PlayerShoot : MonoBehaviour
 
     private void Empty(string sound)
     {
-        timer = Time.time + nextTimer;
+        nextTimeToEmpty = Time.time + emptyTime;
         AudioManager.playSound(sound);
+    }
+
+    private void Reload(Gun currentGun)
+    {
+        nextTimeToReload = Time.time + reloadTime;
+        firstEmptyBullet = true;
+        AudioManager.playSound("Gun_reload");
+        nextTimeToFire = Time.time + reloadTime;
+        magazine = currentGun.GetMagazine();
+        currentAmmoText.text = "Ammo " + magazine;
     }
 }
