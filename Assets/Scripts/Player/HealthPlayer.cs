@@ -39,4 +39,10 @@ public class HealthPlayer : MonoBehaviour
         thePlayer.Knockback(direction);
     }
 
+    public void TakePlayerDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+    }
+
 }
