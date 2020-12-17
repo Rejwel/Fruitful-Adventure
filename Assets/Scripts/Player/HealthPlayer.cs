@@ -31,6 +31,7 @@ public class HealthPlayer : MonoBehaviour
     }
 
 
+
     void TakeDamage(int damage, Vector3 direction)
     {
         currentHealth -= damage;
