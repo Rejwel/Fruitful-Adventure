@@ -19,7 +19,7 @@ zabijajac wszystkich przeciwnikow po ostatnim wave.
 -> movement <br />
 -> strzelanie wraz z przeładowaniem <br />
 -> SFX <br />
--> system amunicji (z sfx) <br />
+-> system amunicji <br />
 -> bronie (klawisze 1-4) <br />
 -> towery (stawiamy na klawisz "p") <br />
 -> waluta <br />
