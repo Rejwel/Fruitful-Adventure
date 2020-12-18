@@ -28,7 +28,6 @@ zabijajac wszystkich przeciwnikow po ostatnim wave.
 W tym : <br />
 -> Drzewa <br />
 -> Fontanna <br />
--> Drzewa <br />
 -> Dom <br />
 -> Stodoła <br /> 
 -> Szopa <br />
