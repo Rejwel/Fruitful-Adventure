@@ -10,24 +10,31 @@ Paweł Dera https://github.com/Rejwel <br />
 
 -------------------------------------------------------------
 
-## v. 0.2
-Uwaga! Gra nie posiada menu, trzeba wylaczac ja z procesow.
-Wstepny build gry typu towerdefence. 
+## v. 0.3
 
 Gra na stan obecny opiera sie na zabijaniu przeciwnikow. Gracz wygrywa
 zabijajac wszystkich przeciwnikow po ostatnim wave.
 
 ### Zaimplementowane demo :
 -> movement <br />
--> strzelanie (z sfx) <br />
+-> strzelanie wraz z przeładowaniem <br />
+-> SFX <br />
+-> system amunicji (z sfx) <br />
 -> bronie (klawisze 1-4) <br />
 -> towery (stawiamy na klawisz "p") <br />
 -> waluta <br />
 -> wave system <br />
 -> modele <br />
+W tym : <br />
+-> Drzewa <br />
+-> Fontanna <br />
+-> Drzewa <br />
+-> Dom <br />
+-> Stodoła <br /> 
+-> Szopa <br />
+
 
 ### Znane bugi : 
--> Zeby wejsc do domu trzeba wskoczyc <br />
 -> Da sie stac na przeciwniku, nic nam wtedy nie zrobi <br />
 -> Po utracie hp nadal zyjemy <br />
 
