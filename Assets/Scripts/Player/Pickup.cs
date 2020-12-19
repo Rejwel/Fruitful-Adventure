@@ -15,7 +15,7 @@ public class Pickup : MonoBehaviour
     private Vector3 origin;
     private Vector3 direction;
 
-    private float currentHitDistance;
+    // float currentHitDistance;
 
     private void Start()
     {
@@ -40,7 +40,7 @@ public class Pickup : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Debug.DrawLine(origin, origin+direction*currentHitDistance);
-        Gizmos.DrawWireSphere(origin + direction * currentHitDistance, sphereRadius);
+        Debug.DrawLine(origin, origin+direction);
+        Gizmos.DrawWireSphere(origin + direction, sphereRadius);
     }
 }
