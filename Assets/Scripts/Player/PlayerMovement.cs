@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
+    private float x;
+    private float z;
     
     // for double jump
     private int jumps = 0;
@@ -20,9 +22,10 @@ public class PlayerMovement : MonoBehaviour
     private float buttonCd = 0.5f;
     private int buttonCount = 0;
     KeyCode CurrKey;
-    float axis;
     private float dashCounter = 0;
     private float dashTime = 0.1f;
+    private float dashStrength = 8f;
+
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -44,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        print(move);
+        
         Dash();
         ResetJump();
         
@@ -51,8 +56,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (knockBackCounter <= 0)
         {
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
+            x = Input.GetAxis("Horizontal");
+            z = Input.GetAxis("Vertical");
             
             if (isGrounded && velocity.y < 0)
             {
@@ -124,10 +129,7 @@ public class PlayerMovement : MonoBehaviour
             
             if (buttonCd > 0 && buttonCount == 1)
             {
-                //controller.Move((move * -playerTransform.position.z).normalized * 5f);
-                //controller.Move(move * playerTransform);
-                print(move);
-                print("W");
+                controller.Move(transform.forward * dashStrength);
             }
             else if (CurrKey == KeyCode.W)
             {
@@ -143,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
             
             if (buttonCd > 0 && buttonCount == 1)
             {
-                print("A");
+                controller.Move(-transform.right * dashStrength);
             }
             else if (CurrKey == KeyCode.A)
             {
@@ -159,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
             
             if (buttonCd > 0 && buttonCount == 1)
             {
-                print("S");
+                controller.Move(-transform.forward * dashStrength);
             }
             else if (CurrKey == KeyCode.S)
             {
@@ -175,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
             
             if (buttonCd > 0 && buttonCount == 1)
             {
-                print("D");
+                controller.Move(transform.right * dashStrength);
             }
             else if (CurrKey == KeyCode.D)
             {

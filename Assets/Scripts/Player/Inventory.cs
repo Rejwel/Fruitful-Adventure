@@ -14,19 +14,12 @@ public class Inventory : MonoBehaviour
    private bool dash;
    private bool shield;
 
-
-
    private void Awake()
    {
       bulletAmmount = new int[] {999, 999, 999, 999};
       doubleJump = true;
       dash = true;
    }
-
-
-
-
-
 
    public bool CanDoubleJump()
    {
