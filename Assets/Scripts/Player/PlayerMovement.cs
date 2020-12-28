@@ -19,12 +19,17 @@ public class PlayerMovement : MonoBehaviour
     private bool checkJump = false;
     
     //for dash
+    public ParticleSystem forwardDashParticle;
+    public ParticleSystem backwardDashParticle;
+    public ParticleSystem leftDashParticle;
+    public ParticleSystem rightDashParticle;
     private float buttonCd = 0.5f;
     private int buttonCount = 0;
     KeyCode CurrKey;
     private float dashCounter = 0;
     private float dashTime = 0.1f;
-    private float dashStrength = 8f;
+    private float dashStrength = 800f;
+    private float dashCd = 0f;
 
 
     public Transform groundCheck;
@@ -47,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        print(move);
-        
         Dash();
         ResetJump();
         
@@ -116,86 +119,88 @@ public class PlayerMovement : MonoBehaviour
         {
             dashCounter -= Time.deltaTime;
         }
-        // else
-        // {
-        //     velocity = Vector3.zero;
-        // }
-        
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            if (CurrKey != KeyCode.W) buttonCount = 0;
-            CurrKey = KeyCode.W;
-            
-            if (buttonCd > 0 && buttonCount == 1)
-            {
-                controller.Move(transform.forward * dashStrength);
-            }
-            else if (CurrKey == KeyCode.W)
-            {
-                buttonCount += 1;
-                buttonCd = 0.3f;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (CurrKey != KeyCode.A) buttonCount = 0;
-            CurrKey = KeyCode.A;
-            
-            if (buttonCd > 0 && buttonCount == 1)
-            {
-                controller.Move(-transform.right * dashStrength);
-            }
-            else if (CurrKey == KeyCode.A)
-            {
-                buttonCount += 1;
-                buttonCd = 0.3f;
-            }
-        }
-        
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (CurrKey != KeyCode.S) buttonCount = 0;
-            CurrKey = KeyCode.S;
-            
-            if (buttonCd > 0 && buttonCount == 1)
-            {
-                controller.Move(-transform.forward * dashStrength);
-            }
-            else if (CurrKey == KeyCode.S)
-            {
-                buttonCount += 1;
-                buttonCd = 0.3f;
-            }
-        }
-        
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (CurrKey != KeyCode.D) buttonCount = 0;
-            CurrKey = KeyCode.D;
-            
-            if (buttonCd > 0 && buttonCount == 1)
-            {
-                controller.Move(transform.right * dashStrength);
-            }
-            else if (CurrKey == KeyCode.D)
-            {
-                buttonCount += 1;
-                buttonCd = 0.3f;
-            }
-        }
-
-        if (buttonCd > 0)
-        {
-            buttonCd -= 1 * Time.deltaTime;
-        }
         else
         {
-            buttonCount = 0;
-        }
-        
-        
-    }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                if (CurrKey != KeyCode.W) buttonCount = 0;
+                CurrKey = KeyCode.W;
+                
+                if (buttonCd > 0 && buttonCount == 1)
+                {
+                    dashCounter = dashCd;
+                    forwardDashParticle.Play();
+                    controller.Move(transform.forward * dashStrength * Time.deltaTime);
+                }
+                else if (CurrKey == KeyCode.W)
+                {
+                    buttonCount += 1;
+                    buttonCd = 0.3f;
+                }
+            }
     
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                if (CurrKey != KeyCode.A) buttonCount = 0;
+                CurrKey = KeyCode.A;
+                
+                if (buttonCd > 0 && buttonCount == 1)
+                {
+                    dashCounter = dashCd;
+                    leftDashParticle.Play();
+                    controller.Move(-transform.right * dashStrength * Time.deltaTime);
+                }
+                else if (CurrKey == KeyCode.A)
+                {
+                    buttonCount += 1;
+                    buttonCd = 0.3f;
+                }
+            }
+            
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                if (CurrKey != KeyCode.S) buttonCount = 0;
+                CurrKey = KeyCode.S;
+                
+                if (buttonCd > 0 && buttonCount == 1)
+                {
+                    dashCounter = dashCd;
+                    backwardDashParticle.Play();
+                    controller.Move(-transform.forward * dashStrength * Time.deltaTime);
+                }
+                else if (CurrKey == KeyCode.S)
+                {
+                    buttonCount += 1;
+                    buttonCd = 0.3f;
+                }
+            }
+            
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                if (CurrKey != KeyCode.D) buttonCount = 0;
+                CurrKey = KeyCode.D;
+                
+                if (buttonCd > 0 && buttonCount == 1)
+                {
+                    dashCounter = dashCd;
+                    rightDashParticle.Play();
+                    controller.Move(transform.right * dashStrength * Time.deltaTime);
+                }
+                else if (CurrKey == KeyCode.D)
+                {
+                    buttonCount += 1;
+                    buttonCd = 0.3f;
+                }
+            }
+    
+            if (buttonCd > 0)
+            {
+                buttonCd -= 1 * Time.deltaTime;
+            }
+            else
+            {
+                buttonCount = 0;
+            }
+        }
+    }
 }
