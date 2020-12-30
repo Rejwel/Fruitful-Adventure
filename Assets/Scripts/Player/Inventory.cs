@@ -19,6 +19,7 @@ public class Inventory : MonoBehaviour
       bulletAmmount = new int[] {999, 999, 999, 999};
       doubleJump = true;
       dash = true;
+      shield = true;
    }
 
    public bool CanDoubleJump()

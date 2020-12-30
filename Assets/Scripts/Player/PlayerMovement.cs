@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,17 +20,19 @@ public class PlayerMovement : MonoBehaviour
     private bool checkJump = false;
     
     //for dash
+    public Image dashImage;
     public ParticleSystem forwardDashParticle;
     public ParticleSystem backwardDashParticle;
     public ParticleSystem leftDashParticle;
     public ParticleSystem rightDashParticle;
+    public ParticleSystem dJumpParticle;
     private float buttonCd = 0.5f;
     private int buttonCount = 0;
     KeyCode CurrKey;
-    private float dashCounter = 0;
+    private float dashCounter = 0f;
     private float dashTime = 0.1f;
     private float dashStrength = 800f;
-    private float dashCd = 0f;
+    private float dashCd = 5f;
 
 
     public Transform groundCheck;
@@ -40,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     public Vector3 move;
     bool isGrounded;
+    bool doubleJumpParticleOn = true;
 
     public float knockBackForce;
     public float knockBackTime;
@@ -66,11 +70,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 velocity.y = -2f;
             }
-            
+            if (jumps == 1 && doubleJumpParticleOn)
+            {
+                dJumpParticle.Play();
+                doubleJumpParticleOn = false;
+            }
             if (Input.GetButtonDown("Jump") && inventory.CanDoubleJump() && jumps < 1)
             {
                 checkJump = false;
                 jumps++;
+
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
             else if (Input.GetButtonDown("Jump") && isGrounded)
@@ -109,14 +118,15 @@ public class PlayerMovement : MonoBehaviour
         {
             jumps = 0;
             checkJump = true;
+            doubleJumpParticleOn = true;
         }
     }
     
     private void Dash()
     {
-        
         if (dashCounter > 0)
         {
+            dashImage.fillAmount += 1f / dashCd * Time.deltaTime;
             dashCounter -= Time.deltaTime;
         }
         else
@@ -128,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
                 
                 if (buttonCd > 0 && buttonCount == 1)
                 {
+                    dashImage.fillAmount = 0;
                     dashCounter = dashCd;
                     forwardDashParticle.Play();
                     controller.Move(transform.forward * dashStrength * Time.deltaTime);
@@ -146,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
                 
                 if (buttonCd > 0 && buttonCount == 1)
                 {
+                    dashImage.fillAmount = 0;
                     dashCounter = dashCd;
                     leftDashParticle.Play();
                     controller.Move(-transform.right * dashStrength * Time.deltaTime);
@@ -164,6 +176,7 @@ public class PlayerMovement : MonoBehaviour
                 
                 if (buttonCd > 0 && buttonCount == 1)
                 {
+                    dashImage.fillAmount = 0;
                     dashCounter = dashCd;
                     backwardDashParticle.Play();
                     controller.Move(-transform.forward * dashStrength * Time.deltaTime);
@@ -182,6 +195,7 @@ public class PlayerMovement : MonoBehaviour
                 
                 if (buttonCd > 0 && buttonCount == 1)
                 {
+                    dashImage.fillAmount = 0;
                     dashCounter = dashCd;
                     rightDashParticle.Play();
                     controller.Move(transform.right * dashStrength * Time.deltaTime);
