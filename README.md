@@ -16,6 +16,8 @@ Gra na stan obecny opiera sie na zabijaniu przeciwnikow. Gracz wygrywa
 zabijajac wszystkich przeciwnikow po ostatnim wave.
 
 ### Zaimplementowane demo :
+-> sklep <br />
+-> skille (dash,djump,shield) <br />
 -> movement <br />
 -> strzelanie wraz z przeładowaniem <br />
 -> SFX <br />
@@ -24,8 +26,7 @@ zabijajac wszystkich przeciwnikow po ostatnim wave.
 -> towery (stawiamy na klawisz "p") <br />
 -> waluta <br />
 -> wave system <br />
--> modele <br />
-W tym : <br />
+### Modele <br />
 -> Drzewa <br />
 -> Fontanna <br />
 -> Dom <br />
@@ -34,7 +35,6 @@ W tym : <br />
 
 
 ### Znane bugi : 
--> Da sie stac na przeciwniku, nic nam wtedy nie zrobi <br />
 -> Po utracie hp nadal zyjemy <br />
 
 
