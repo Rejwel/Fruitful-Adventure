@@ -16,10 +16,10 @@ public class Inventory : MonoBehaviour
 
    private void Awake()
    {
-      bulletAmmount = new int[] {999, 999, 999, 999};
-      doubleJump = true;
-      dash = true;
-      shield = true;
+      bulletAmmount = new int[] {300, 300, 300, 300};
+      doubleJump = false;
+      dash = false;
+      shield = false;
    }
 
    public bool CanDoubleJump()
@@ -29,6 +29,31 @@ public class Inventory : MonoBehaviour
    public bool CanDash()
    {
       return dash;
+   }
+
+   public bool isShielded()
+   {
+      return shield;
+   }
+
+   public void activeDash()
+   {
+      dash = true;
+   }
+
+   public void activeDoubleJump()
+   {
+      doubleJump = true;
+   }
+
+   public void activeShield()
+   {
+      shield = true;
+   }
+
+   public void removeShield()
+   {
+      shield = false;
    }
    
 }

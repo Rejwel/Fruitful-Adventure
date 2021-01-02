@@ -12,7 +12,7 @@ public class MouseLook : MonoBehaviour
 
     private float mouseY;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }

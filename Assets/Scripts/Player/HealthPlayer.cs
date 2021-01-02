@@ -12,9 +12,12 @@ public class HealthPlayer : MonoBehaviour
 
     public HealthBarScript healthBar;
     public PlayerMovement thePlayer;
+    private Inventory inv;
+    public GameObject shield;
 
     void Start()
     {
+        inv = FindObjectOfType<Inventory>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         thePlayer = FindObjectOfType<PlayerMovement>();
@@ -34,15 +37,33 @@ public class HealthPlayer : MonoBehaviour
 
     void TakeDamage(int damage, Vector3 direction)
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-        thePlayer.Knockback(direction);
+        if (inv.isShielded())
+        {
+            inv.removeShield();
+            shield.SetActive(false);
+            thePlayer.Knockback(direction);
+        }
+        else
+        {
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+            thePlayer.Knockback(direction);
+        }
+        
     }
 
     public void TakePlayerDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        if (inv.isShielded())
+        {
+            inv.removeShield();
+            shield.SetActive(false);
+        }
+        else
+        {
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth); 
+        }
     }
 
 }

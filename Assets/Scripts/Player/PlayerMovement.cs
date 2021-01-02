@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem leftDashParticle;
     public ParticleSystem rightDashParticle;
     public ParticleSystem dJumpParticle;
-    private float buttonCd = 0.5f;
+    private float buttonCd = 0.3f;
     private int buttonCount = 0;
     KeyCode CurrKey;
     private float dashCounter = 0f;
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Dash();
+        if (inventory.CanDash()) Dash();
         ResetJump();
         
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (CurrKey == KeyCode.A)
                 {
                     buttonCount += 1;
-                    buttonCd = 0.3f;
+                    buttonCd = 0.15f;
                 }
             }
             
@@ -184,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (CurrKey == KeyCode.S)
                 {
                     buttonCount += 1;
-                    buttonCd = 0.3f;
+                    buttonCd = 0.15f;
                 }
             }
             
@@ -203,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (CurrKey == KeyCode.D)
                 {
                     buttonCount += 1;
-                    buttonCd = 0.3f;
+                    buttonCd = 0.15f;
                 }
             }
     
