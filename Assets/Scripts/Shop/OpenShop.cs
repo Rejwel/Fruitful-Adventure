@@ -41,6 +41,7 @@ public class OpenShop : MonoBehaviour
         Time.timeScale = 0f;
 
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         text.SetActive(false);
         player.GetComponent<PlayerShoot>().enabled = false;
         inGameGui.SetActive(false);
@@ -61,6 +62,7 @@ public class OpenShop : MonoBehaviour
         inGameGui.SetActive(true);
         shopGui.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         
         Time.timeScale = 1f;
     }

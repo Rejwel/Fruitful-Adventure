@@ -92,27 +92,27 @@ public class ShopGui : MonoBehaviour
 
     public void BuyDoubleJump()
     {
-        if (money.CurrentMoney >= 200)
+        if (money.CurrentMoney >= 500)
         {
-            money.CurrentMoney -= 200;
+            money.CurrentMoney -= 500;
             inv.activeDoubleJump();
         }
     }
     
     public void BuyDash()
     {
-        if (money.CurrentMoney >= 200)
+        if (money.CurrentMoney >= 500)
         {
-            money.CurrentMoney -= 200;
+            money.CurrentMoney -= 500;
             inv.activeDash();
         }
     }
     
     public void BuyShiled()
     {
-        if (money.CurrentMoney >= 30)
+        if (money.CurrentMoney >= 50)
         {
-            money.CurrentMoney -= 30;
+            money.CurrentMoney -= 50;
             inv.activeShield();
         }
     }
@@ -128,27 +128,27 @@ public class ShopGui : MonoBehaviour
     
     public void BuyShotgunAmmo(int ammo = 10)
     {
-        if (money.CurrentMoney >= ammo * 3)
+        if (money.CurrentMoney >= ammo * 1)
         {
-            money.CurrentMoney -= ammo * 3;
+            money.CurrentMoney -= ammo * 1;
             inv.bulletAmmount[1] += ammo;
         }
     }
     
     public void BuyRifleAmmo(int ammo = 10)
     {
-        if (money.CurrentMoney >= ammo * 4)
+        if (money.CurrentMoney >= ammo * 1)
         {
-            money.CurrentMoney -= ammo * 4;
+            money.CurrentMoney -= ammo * 1;
             inv.bulletAmmount[2] += ammo;
         }
     }
     
     public void BuyMinigunAmmo(int ammo = 10)
     {
-        if (money.CurrentMoney >= ammo * 2)
+        if (money.CurrentMoney >= ammo * 1)
         {
-            money.CurrentMoney -= ammo * 2;
+            money.CurrentMoney -= ammo * 1;
             inv.bulletAmmount[3] += ammo;
         }
     }
