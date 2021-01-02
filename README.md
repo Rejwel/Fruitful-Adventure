@@ -26,7 +26,7 @@ zabijajac wszystkich przeciwnikow po ostatnim wave.
 -> towery (stawiamy na klawisz "p") <br />
 -> waluta <br />
 -> wave system <br />
-### Modele <br />
+### Modele :<br />
 -> Drzewa <br />
 -> Fontanna <br />
 -> Dom <br />
