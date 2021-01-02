@@ -10,7 +10,7 @@ Paweł Dera https://github.com/Rejwel <br />
 
 -------------------------------------------------------------
 
-## v. 0.3
+## v. 0.4
 
 Gra na stan obecny opiera sie na zabijaniu przeciwnikow. Gracz wygrywa
 zabijajac wszystkich przeciwnikow po ostatnim wave.
@@ -26,6 +26,7 @@ zabijajac wszystkich przeciwnikow po ostatnim wave.
 -> towery (stawiamy na klawisz "p") <br />
 -> waluta <br />
 -> wave system <br />
+-> enemy <br />
 ### Modele :<br />
 -> Drzewa <br />
 -> Fontanna <br />
