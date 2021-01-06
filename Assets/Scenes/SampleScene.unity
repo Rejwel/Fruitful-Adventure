@@ -28863,6 +28863,7 @@ MonoBehaviour:
   skills: {fileID: 1574716857}
   AreYouSureMenu: {fileID: 860155938}
   AreYouSureQuit: {fileID: 2063641373}
+  player: {fileID: 1948208340}
 --- !u!1 &1589004440
 GameObject:
   m_ObjectHideFlags: 0

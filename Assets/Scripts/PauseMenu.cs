@@ -17,6 +17,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject skills;
     public GameObject AreYouSureMenu;
     public GameObject AreYouSureQuit;
+    public GameObject player;
+    
 
 
     void Start()
@@ -53,8 +55,8 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
-        
+        player.GetComponent<PlayerShoot>().enabled = true;
+
     }
 
     void Pause ()
@@ -71,7 +73,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        
+        player.GetComponent<PlayerShoot>().enabled = false;
     }
 
     public void SureMenu()
