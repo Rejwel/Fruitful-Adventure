@@ -15,6 +15,9 @@ public class PauseMenu : MonoBehaviour
     public GameObject help;
     public GameObject Guns;
     public GameObject skills;
+    public GameObject AreYouSureMenu;
+    public GameObject AreYouSureQuit;
+
 
     void Start()
     {
@@ -48,8 +51,9 @@ public class PauseMenu : MonoBehaviour
         skills.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        
         
     }
 
@@ -65,13 +69,26 @@ public class PauseMenu : MonoBehaviour
         skills.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
-        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
+    }
+
+    public void SureMenu()
+    {
+        pauseMenuUI.SetActive(false);
+        AreYouSureMenu.SetActive(true);
+    }
+
+    public void SureQuit()
+    {
+        pauseMenuUI.SetActive(false);
+        AreYouSureQuit.SetActive(true);
     }
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame()
@@ -79,5 +96,12 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Wyjdz");
         Application.Quit();
     }    
+
+    public void NoSure()
+    {
+        pauseMenuUI.SetActive(true);
+        AreYouSureMenu.SetActive(false); 
+        AreYouSureQuit.SetActive(false);
+    }
 
 }
