@@ -9,10 +9,10 @@ using Random = UnityEngine.Random;
 
 public class WaveManager : MonoBehaviour
 {
-    private int wave = 0;
+    private int wave = 1;
     private float enemiesLeft = 0;
     private float waveTime = 0;
-    private float nextWaveTime = 60f;
+    private float nextWaveTime;
 
     private bool isPreparation = true;
     private bool spawning = false;
@@ -38,9 +38,10 @@ public class WaveManager : MonoBehaviour
     private void Update()
     {
         timerText.text = waveTime.ToString("f2");
-        waveCountText.text = wave == 0 ? "Prepare for first Wave" : "Wave " + wave;
+        waveCountText.text = wave == 1 ? "Prepare for first Wave" : "Wave " + wave;
         enemiesLeftText.text = enemiesLeft.ToString();
-        nextWaveTime = wave == 0 ? 10f : 60f;
+        
+        nextWaveTime = wave == 1 ? 2f : 60f;
 
         if (waveTime >= nextWaveTime)
         {
@@ -49,8 +50,7 @@ public class WaveManager : MonoBehaviour
             // getSpawns 1-4 (which spawners to activate), enemiesSpawnType type of spawn 1-11
             spawnEnemies(getSpawns("12"), enemiesSpawnType(++wave));
         }
-        
-        
+
         waveTime += Time.deltaTime;
     }
 

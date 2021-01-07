@@ -7,23 +7,17 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
-    public GameObject Camera;
-    public GameObject CrossHair;
-    public GameObject HP;
-    public GameObject Money;
-    public GameObject Waves;
-    public GameObject help;
-    public GameObject Guns;
-    public GameObject skills;
     public GameObject AreYouSureMenu;
     public GameObject AreYouSureQuit;
     public GameObject player;
-    
 
+    public GameObject GUI;
 
-    void Start()
+    void Awake()
     {
         pauseMenuUI.SetActive(false);
+        GameIsPaused = false;
+        GUI = GameObject.Find("GUI");
     }
 
     void Update()
@@ -37,20 +31,14 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
-
         }
     }
 
     public void Resume ()
     {
         pauseMenuUI.SetActive(false);
-        CrossHair.SetActive(true);
-        Money.SetActive(true);
-        HP.SetActive(true);
-        Waves.SetActive(true);
-        help.SetActive(true);
-        Guns.SetActive(true);
-        skills.SetActive(true);
+
+        GUI.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
         Cursor.visible = false;
@@ -62,13 +50,8 @@ public class PauseMenu : MonoBehaviour
     void Pause ()
     {
         pauseMenuUI.SetActive(true);
-        CrossHair.SetActive(false);
-        HP.SetActive(false);
-        Money.SetActive(false);
-        Waves.SetActive(false);
-        help.SetActive(false);
-        Guns.SetActive(false);
-        skills.SetActive(false);
+
+        GUI.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
         Cursor.visible = true;
@@ -78,6 +61,7 @@ public class PauseMenu : MonoBehaviour
 
     public void SureMenu()
     {
+        print("SURE");
         pauseMenuUI.SetActive(false);
         AreYouSureMenu.SetActive(true);
     }
