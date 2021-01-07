@@ -1,106 +1,59 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class WaveManager : MonoBehaviour
 {
-    public int lastWave = 3;
-    private int waveCounter;
-    public float prepareTimer = 60f;
-    public float waveTimer = 60f;
-    private float prepareTime;
-    private float waveTime;
-    
-    
-    private float enemyCounter = 0;
+    private int wave = 0;
+    private float enemiesLeft = 0;
+    private float waveTime = 0;
+    private float nextWaveTime = 60f;
 
     private bool isPreparation = true;
     private bool spawning = false;
 
-    private Text timer;
-    private Text waveCount;
-    private Text enemiesLeft;
+    private Text timerText;
+    private Text waveCountText;
+    private Text enemiesLeftText;
 
-    private Spawner [] spawners;
-    
+    public Spawner [] spawners;
     public GameObject [] enemies;
     
+    
+
     void Start()
     {
-        prepareTime = prepareTimer;
-        waveTime = waveTimer;
-        spawners = GameObject.FindObjectsOfType<Spawner>();
-        timer = GameObject.Find("TimerManager").GetComponent<Text>();
-        waveCount = GameObject.Find("WaveManager").GetComponent<Text>();
-        enemiesLeft = GameObject.Find("EnemiesRemain").GetComponent<Text>();
+        timerText = GameObject.Find("TimerManager").GetComponent<Text>();
+        waveCountText = GameObject.Find("WaveManager").GetComponent<Text>();
+        enemiesLeftText = GameObject.Find("EnemiesRemain").GetComponent<Text>();
         
-        waveCounter = 1;
+        //spawnEnemies(getSpawns("03"), enemiesSpawnType(2));
     }
 
     private void Update()
     {
-        enemiesLeft.text = enemyCounter.ToString();
+        timerText.text = waveTime.ToString("f2");
+        waveCountText.text = wave == 0 ? "Prepare for first Wave" : "Wave " + wave;
+        enemiesLeftText.text = enemiesLeft.ToString();
+        nextWaveTime = wave == 0 ? 10f : 60f;
+
+        if (waveTime >= nextWaveTime)
+        {
+            waveTime = 0f;
+            
+            // getSpawns 1-4 (which spawners to activate), enemiesSpawnType type of spawn 1-11
+            spawnEnemies(getSpawns("12"), enemiesSpawnType(++wave));
+        }
         
-        if (waveCounter == lastWave && enemyCounter == 0)
-        {
-            waveCount.text = "you Won!";
-            timer.text = "";
-        }
-        else if (waveCounter == lastWave && enemyCounter > 0)
-        {
-            waveCount.text = "Last wave, Kill all the enemies!";
-            timer.text = "";
-        }
-        else if (waveCounter < lastWave)
-        {
-            if (spawning && isPreparation == false)
-            {
-                foreach (var spawner in spawners)
-                {
-                    spawner.spawnEnemies(spawner.getSpawnpoints(), enemies);
-                    enemyCounter += spawner.getEmemies();
-                }
-                spawning = false;
-            }
-
-            if (waveTime <= 0f && isPreparation == false)
-            {
-                isPreparation = true;
-                waveCounter++;
-            }
-
-            if (waveCounter == lastWave)
-            {
-                foreach (var spawner in spawners)
-                {
-                    spawner.spawnEnemies(spawner.getSpawnpoints(), enemies);
-                    enemyCounter += spawner.getEmemies();
-                }
-            }
-            else
-            {
-                if (prepareTime > 0f && isPreparation) 
-                {
-                    waveTime = setTimer(waveTimer);
-                    waveCount.text = $"Prepare for the {waveCounter} Wave";
-                    prepareTime -= Time.deltaTime;
-                    timer.text = prepareTime.ToString("f2");
-                    spawning = true;
-                    
-                }
-                else
-                {
-                    isPreparation = false;
-                    prepareTime = setTimer(prepareTimer);
-                    waveCount.text = waveCounter + " Wave";
-                    timer.text = waveTime.ToString("f2"); 
-                    waveTime -= Time.deltaTime;
-                    
-                } 
-            }
-        }
+        
+        waveTime += Time.deltaTime;
     }
+
     float setTimer(float time)
     {
         return time;
@@ -108,7 +61,192 @@ public class WaveManager : MonoBehaviour
 
     public void killEnemy()
     {
-        enemyCounter--;
+        enemiesLeft--;
+    }
+
+    public List<Transform>[] getSpawns(string combo)
+    {
+        List<Transform>[] spawnersList = new List<Transform>[combo.ToString().Length];
+        
+        for (int i = 0; i < combo.Length; i++)
+        {
+            spawnersList[i] = spawners[int.Parse(combo.Substring(i, 1))].getSpawnpoints().ToList();
+        }
+
+        return spawnersList;
+    }
+    public void spawnEnemies(List<Transform>[] Spawnpoints, GameObject[] enemiesToSpawn)
+    {
+        for (int i = 0; i < Spawnpoints.Length; i++)
+        {
+            int j = 0;
+            
+            foreach (var spawnpoint in Spawnpoints[i])
+            {
+                if (enemiesToSpawn[j] == null);
+                else
+                {
+                    enemiesLeft++;
+                    Instantiate(enemiesToSpawn[j], spawnpoint.position, spawnpoint.rotation);
+                }
+
+                j++;
+            }
+        }
+    }
+
+    public GameObject[] enemiesSpawnType(int x)
+    {
+        GameObject[] enemiesToSpawn = new GameObject[16];
+        switch (x)
+        {
+            case 1:
+            {
+                //front melee
+                for (int i = 0; i < 4; i++)
+                {
+                    enemiesToSpawn[i] = enemies[1];
+                }
+
+                return enemiesToSpawn;
+            }
+
+            case 2:
+            {
+                //front tank
+                //middle melee
+                enemiesToSpawn[1] = enemies[3];
+                enemiesToSpawn[2] = enemies[3];
+                enemiesToSpawn[4] = enemies[1];
+                enemiesToSpawn[7] = enemies[1];
+
+                return enemiesToSpawn;
+            }
+            
+            case 3:
+            {
+                //front melee
+                //middle range
+                enemiesToSpawn[1] = enemies[1];
+                enemiesToSpawn[2] = enemies[1];
+                enemiesToSpawn[4] = enemies[2];
+                enemiesToSpawn[7] = enemies[2];
+
+                return enemiesToSpawn;
+            }
+            
+            case 4:
+            {
+                //front melee tank 
+                //back range mage weak
+                enemiesToSpawn[1] = enemies[3];
+                enemiesToSpawn[2] = enemies[3];
+                enemiesToSpawn[0] = enemies[1];
+                enemiesToSpawn[3] = enemies[1];
+                enemiesToSpawn[8] = enemies[0];
+                enemiesToSpawn[11] = enemies[2];
+
+                return enemiesToSpawn;
+            }
+            
+            case 5:
+            {
+                //front melee tank 
+                //back range mage strong
+                enemiesToSpawn[0] = enemies[1];
+                enemiesToSpawn[3] = enemies[1];
+                enemiesToSpawn[1] = enemies[3];
+                enemiesToSpawn[2] = enemies[3];
+                enemiesToSpawn[12] = enemies[0];
+                enemiesToSpawn[13] = enemies[2];
+                enemiesToSpawn[14] = enemies[0];
+                enemiesToSpawn[15] = enemies[2];
+
+                return enemiesToSpawn;
+            }
+            
+            case 6:
+            {
+                //front middle melee
+                for(int i = 0; i < 8; i++)
+                {
+                    enemiesToSpawn[i] = enemies[1];
+                }
+
+                return enemiesToSpawn;
+            }
+            
+            case 7:
+            {
+                //front tank
+                // middle mix
+                for (int i = 0; i < 4; i++)
+                {
+                    enemiesToSpawn[i] = enemies[3];
+                }
+                enemiesToSpawn[4] = enemies[1];
+                enemiesToSpawn[7] = enemies[1];
+                enemiesToSpawn[7] = enemies[0];
+                enemiesToSpawn[7] = enemies[0];
+
+                return enemiesToSpawn;
+            }
+            
+            case 8:
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    enemiesToSpawn[i] = enemies[3];
+                }
+
+                enemiesToSpawn[8] = enemies[0];
+                enemiesToSpawn[9] = enemies[0];
+                enemiesToSpawn[10] = enemies[0];
+                enemiesToSpawn[11] = enemies[0];
+
+                return enemiesToSpawn;
+            }
+            
+            case 9:
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    enemiesToSpawn[i] = enemies[3];
+                }
+                
+                enemiesToSpawn[8] = enemies[0];
+                enemiesToSpawn[9] = enemies[0];
+                enemiesToSpawn[10] = enemies[0];
+                enemiesToSpawn[11] = enemies[0];
+                enemiesToSpawn[12] = enemies[2];
+                enemiesToSpawn[13] = enemies[2];
+                enemiesToSpawn[14] = enemies[2];
+                enemiesToSpawn[15] = enemies[2];
+
+                return enemiesToSpawn;
+            }
+            
+            case 10:
+            {
+                for (int i = 0; i < 16; i++)
+                {
+                    enemiesToSpawn[i] = enemies[Random.Range(0, 4)];
+                }
+
+                return enemiesToSpawn;
+            }
+            
+            case 11:
+            {
+                print("boss");
+
+                return enemiesToSpawn;
+            }
+
+            default:
+                print("default spawnType");
+                return enemiesToSpawn;
+        }
     }
 
 }

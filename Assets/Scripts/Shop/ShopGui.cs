@@ -72,11 +72,27 @@ public class ShopGui : MonoBehaviour
 
         // TEXT
         currMoney.text = $"Your current money {money.CurrentMoney} ■";
-        currPistolAmmo.text = $"Current : {inv.bulletAmmount[0]}";
-        currShotgunAmmo.text = $"Current : {inv.bulletAmmount[1]}";
-        currRifleAmmo.text = $"Current : {inv.bulletAmmount[2]}";
-        currMinigunAmmo.text = $"Current : {inv.bulletAmmount[3]}";
         
+        if(inv.bulletAmmount[0] > 10000)
+            currPistolAmmo.text = "Current : ∞";
+        else
+            currPistolAmmo.text = $"Current : {inv.bulletAmmount[0]}";
+        
+        if(inv.bulletAmmount[1] > 10000)
+            currShotgunAmmo.text = "Current : ∞";
+        else
+            currShotgunAmmo.text = $"Current : {inv.bulletAmmount[1]}";
+        
+        if(inv.bulletAmmount[2] > 10000)
+            currRifleAmmo.text = "Current : ∞";
+        else
+            currRifleAmmo.text = $"Current : {inv.bulletAmmount[2]}";
+        
+        if(inv.bulletAmmount[3] > 10000)
+            currMinigunAmmo.text = "Current : ∞";
+        else
+            currMinigunAmmo.text = $"Current : {inv.bulletAmmount[3]}";
+
     }
 
     public void changeRed(Image img)

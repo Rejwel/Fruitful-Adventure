@@ -14,7 +14,6 @@ public class PlayerShoot : MonoBehaviour
     public Rigidbody bullet;
     private Inventory inventory;
     private Gun currentGun;
-    private Weapon weapon;
     private float bulletSpeed = 500f;
     private int[] magazine = new int[4];
     private int stashAmmo;
@@ -22,6 +21,7 @@ public class PlayerShoot : MonoBehaviour
     private float randomSpread;
     private string desc;
     private bool firstEmptyBullet;
+    private bool reloading = false;
 
     [Header("Timers")]
     private float fireRate;
@@ -50,6 +50,12 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
+        if (reloading && Time.time >= nextTimeToFire)
+        {
+            reloading = false;
+            LowerStashAmmo(currentGun);
+        }
+        
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine[currentGun.GetId()] > 0) 
         {
             Shoot();
@@ -129,10 +135,21 @@ public class PlayerShoot : MonoBehaviour
 
     private void ChangeGun(Gun currentGun)
     {
+        AudioManager.stopSound();
+        reloading = false;
+        
         firstEmptyBullet = true;
         fireRate = currentGun.GetFireRate();
 
-        currentStashAmmoText.text = inventory.bulletAmmount[currentGun.GetId()].ToString();
+        if(inventory.bulletAmmount[currentGun.GetId()] > 100000)
+        {
+            currentStashAmmoText.text = "∞";
+        }
+        else
+        {
+            currentStashAmmoText.text = inventory.bulletAmmount[currentGun.GetId()].ToString();
+        }
+
         currentAmmoText.text = currentGun.GetMagazine().ToString();
         
         currentGunText.text = "Gun: " + currentGun.GetDesc();
@@ -147,7 +164,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Reload(Gun currentGun)
     {
-        LowerStashAmmo(currentGun);
+        reloading = true;
         nextTimeToReload = Time.time + reloadTime;
         firstEmptyBullet = true;
         AudioManager.playSound("Gun_reload");
@@ -172,12 +189,18 @@ public class PlayerShoot : MonoBehaviour
             inventory.bulletAmmount[currentGun.GetId()] -= ammoToSubstract;
             currentAmmoText.text = "Ammo " + currentGun.GetMagazine();
         }
-        currentStashAmmoText.text = inventory.bulletAmmount[currentGun.GetId()].ToString();
+        if(inventory.bulletAmmount[currentGun.GetId()] > 10000)
+        {
+            currentStashAmmoText.text = "∞";
+        }
+        else
+        {
+            currentStashAmmoText.text = inventory.bulletAmmount[currentGun.GetId()].ToString();
+        }
     }
 
     private void SetStartingAmmo()
     {
-        Gun gun;
         for (int i = 0; i < 4; i++)
         {
             magazine[i] = GunContainer.GetGun(i).GetMagazine();

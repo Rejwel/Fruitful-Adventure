@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour
 
    private void Awake()
    {
-      bulletAmmount = new int[] {300, 300, 300, 300};
+      bulletAmmount = new int[] {999999, 300, 300, 300};
       doubleJump = false;
       dash = false;
       shield = false;

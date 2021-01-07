@@ -8,6 +8,11 @@ public class AudioManager : MonoBehaviour
     public static AudioClip pistol, rifle, shotgun, minigun, pistolEmpty, gunEmpty, gunReload;
     private static AudioSource audioSrc;
 
+    private void Awake()
+    {
+        audioSrc = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         pistol = Resources.Load<AudioClip>("Pistol");
@@ -18,8 +23,6 @@ public class AudioManager : MonoBehaviour
         rifle = Resources.Load<AudioClip>("Rifle");
         minigun = Resources.Load<AudioClip>("Minigun");
         
-
-        audioSrc = GetComponent<AudioSource>();
     }
 
     public static void playSound(string clip)
@@ -49,4 +52,9 @@ public class AudioManager : MonoBehaviour
                 break;
         }
     }
+    public static void stopSound()
+    {
+        audioSrc.Stop();
+    }
 }
+
