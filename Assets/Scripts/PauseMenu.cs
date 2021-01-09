@@ -61,7 +61,6 @@ public class PauseMenu : MonoBehaviour
 
     public void SureMenu()
     {
-        print("SURE");
         pauseMenuUI.SetActive(false);
         AreYouSureMenu.SetActive(true);
     }
