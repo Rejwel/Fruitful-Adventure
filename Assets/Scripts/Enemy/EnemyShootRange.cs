@@ -12,7 +12,8 @@ public class EnemyShootRange : MonoBehaviour
 
 
     //Attacking
-    public float timeBetweenAttacks;
+    private float timeBetweenAttacksShort = 2;
+    private float timeBetweenAttacksLong = 3;
     bool alreadyAttacked;
     public GameObject projectile;
 
@@ -32,7 +33,7 @@ public class EnemyShootRange : MonoBehaviour
         playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, whatIsPlayer);
         playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
 
-        
+
         if (playerInLongRange || playerInShortRange) AttackPlayer();
     }
 
@@ -45,18 +46,35 @@ public class EnemyShootRange : MonoBehaviour
         if (!alreadyAttacked)
         {
             ///Attack code here
-            
-            if (playerInShortRange == true || playerInLongRange == true)     
-            { 
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 2.6f , ForceMode.Impulse);
-            rb.AddForce(transform.up * 1.7f , ForceMode.Impulse);
-            }
-            
-            ///End of attack code
 
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            if (playerInShortRange == true && playerInLongRange == true)  //short
+            {
+                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+                rb.AddForce(transform.forward * 5f, ForceMode.Impulse);
+                rb.AddForce(transform.up * 1.2f, ForceMode.Impulse);
+                GetComponent<NavMeshAgent>().speed = 2;
+
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacksShort);
+            }
+
+            if (playerInShortRange == false && playerInLongRange == true)   //long
+            {
+                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+                rb.AddForce(transform.forward * 7f, ForceMode.Impulse);
+                rb.AddForce(transform.up * 1.6f, ForceMode.Impulse);
+                GetComponent<NavMeshAgent>().speed = 4;
+
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacksLong);
+            }
+
+            if (playerInShortRange == false && playerInLongRange == false)  //idle
+            {
+                GetComponent<NavMeshAgent>().speed = 6;
+            }
+
+
         }
     }
     private void ResetAttack()

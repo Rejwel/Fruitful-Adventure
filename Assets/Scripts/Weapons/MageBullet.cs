@@ -5,13 +5,17 @@ using UnityEngine;
 public class MageBullet : MonoBehaviour
 {
     private Transform firepoint;
-
     private HealthPlayer givedamage;
-
+   
 
     void Start()
     {
-        Destroy(gameObject, 4);
+        Destroy(gameObject, 2);
+        
+    }
+
+    private void Update()
+    {
         
     }
 
@@ -35,9 +39,12 @@ public class MageBullet : MonoBehaviour
             givedamage.TakePlayerDamage(35);
             Destroy(gameObject);
         }
+
+        
     }
 
-   
+    
+
 
 }
 

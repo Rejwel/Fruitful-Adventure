@@ -10,7 +10,9 @@ public class EnemyFollowing : MonoBehaviour
     public Transform Player;
     private Rigidbody enemyRb;
     private bool follow = false;
+   
     
+
     private void Start()
     {
         StartCoroutine(HoldNavAgent());
@@ -34,6 +36,7 @@ public class EnemyFollowing : MonoBehaviour
     {
         if(follow)
             enemy.SetDestination(Player.position);
+      
     }
     
     public void StopMoving()
