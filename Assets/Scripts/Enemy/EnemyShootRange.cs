@@ -1,90 +1,86 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyShootRange : MonoBehaviour
 {
     public NavMeshAgent agent;
-
-    public Transform player;
-
     public LayerMask whatIsPlayer;
-
-
-    //Attacking
-    private float timeBetweenAttacksShort = 2;
-    private float timeBetweenAttacksLong = 3;
-    bool alreadyAttacked;
+    public Transform player;
     public GameObject projectile;
 
-    //States
+    //Attacking
+    //private float timeBetweenAttacksShort = 2;
+    //private float timeBetweenAttacksLong = 3;
+
+    public float timeBetweenAttacks;
+    bool alreadyAttacked;
+
     public float shortAttack, longAttack;
-    public bool playerInShortRange, playerInLongRange;
+    public bool playerInShortRange;
+    public bool playerInLongRange;
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        //Check for sight and attack range
         playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, whatIsPlayer);
         playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
 
-
-        if (playerInLongRange || playerInShortRange) AttackPlayer();
+        if (playerInShortRange || playerInLongRange)
+        {
+            AttackPlayer();
+        }
     }
 
     private void AttackPlayer()
     {
-        agent.SetDestination(transform.position);
-
         transform.LookAt(player);
 
-        if (!alreadyAttacked)
+        if(!alreadyAttacked)
         {
-            ///Attack code here
+            if(playerInShortRange == true && playerInLongRange == true)  //short
+            { 
 
-            if (playerInShortRange == true && playerInLongRange == true)  //short
-            {
-                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 5f, ForceMode.Impulse);
-                rb.AddForce(transform.up * 1.2f, ForceMode.Impulse);
-                GetComponent<NavMeshAgent>().speed = 2;
+            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 4f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 1f, ForceMode.Impulse);
 
-                alreadyAttacked = true;
-                Invoke(nameof(ResetAttack), timeBetweenAttacksShort);
-            }
-
-            if (playerInShortRange == false && playerInLongRange == true)   //long
-            {
-                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 7f, ForceMode.Impulse);
-                rb.AddForce(transform.up * 1.6f, ForceMode.Impulse);
-                GetComponent<NavMeshAgent>().speed = 4;
+                GetComponent<NavMeshAgent>().speed = 3;
+                agent.SetDestination(transform.position);
 
                 alreadyAttacked = true;
-                Invoke(nameof(ResetAttack), timeBetweenAttacksLong);
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
-
-            if (playerInShortRange == false && playerInLongRange == false)  //idle
+            else if(playerInShortRange == false && playerInLongRange == true)  //long
             {
-                GetComponent<NavMeshAgent>().speed = 6;
+                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+                rb.AddForce(transform.forward * 6f, ForceMode.Impulse);
+                rb.AddForce(transform.up * 1f , ForceMode.Impulse);
+
+                GetComponent<NavMeshAgent>().speed = 5;
+                agent.SetDestination(transform.position);  //enemy stoppes when he shoots
+
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
-
-
         }
     }
+
     private void ResetAttack()
     {
         alreadyAttacked = false;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, longAttack);
 
-
-
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, shortAttack);
+    }
 
 }
-

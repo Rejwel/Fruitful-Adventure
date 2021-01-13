@@ -15,7 +15,7 @@ public class EnemyShootMage : MonoBehaviour
     private float timeBetweenAttacksShort = 2;
     private float timeBetweenAttacksLong = 3;
 
-    public float timeBetweenAttacks;
+    
     bool alreadyAttacked;
     public GameObject projectile;
 
@@ -43,7 +43,7 @@ public class EnemyShootMage : MonoBehaviour
 
     public void AttackPlayer()
     {
-        agent.SetDestination(transform.position);
+        
 
         transform.LookAt(player);
 
@@ -53,9 +53,10 @@ public class EnemyShootMage : MonoBehaviour
 
             if (playerInShortRange == true && playerInLongRange == true)  //short
             {
+                agent.SetDestination(transform.position);
                 Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 6.5f, ForceMode.Impulse);
-                GetComponent<NavMeshAgent>().speed = 3;
+                rb.AddForce(transform.forward * 6.5f, ForceMode.Impulse);   //the power of the shot
+                GetComponent<NavMeshAgent>().speed = 4;     //speed when we are in short distance
 
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacksShort);
@@ -63,9 +64,10 @@ public class EnemyShootMage : MonoBehaviour
 
             if (playerInShortRange == false && playerInLongRange == true)  //long
             {
+                agent.SetDestination(transform.position);
                 Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 7.5f, ForceMode.Impulse);
-                GetComponent<NavMeshAgent>().speed = 4;
+                rb.AddForce(transform.forward * 7.5f, ForceMode.Impulse);  //the power of the shot
+                GetComponent<NavMeshAgent>().speed = 5;  //speed when we are in long distance
 
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacksLong);
@@ -73,7 +75,7 @@ public class EnemyShootMage : MonoBehaviour
 
             if (playerInShortRange == false && playerInLongRange == false)  //idle
             {
-                GetComponent<NavMeshAgent>().speed = 6;
+                GetComponent<NavMeshAgent>().speed = 6;    //speed when we are in really long distance
             }
         }
     }

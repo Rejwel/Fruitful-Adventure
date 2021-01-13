@@ -23379,6 +23379,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.748
       objectReference: {fileID: 0}
+    - target: {fileID: 2038815869244509998, guid: a41f12c7ccc54db44ae44de2d4874fa0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4814133868911687987, guid: a41f12c7ccc54db44ae44de2d4874fa0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -23394,6 +23399,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1211090547}
+    - target: {fileID: 7687953946999658781, guid: a41f12c7ccc54db44ae44de2d4874fa0,
+        type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687953946999658781, guid: a41f12c7ccc54db44ae44de2d4874fa0,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687953946999658781, guid: a41f12c7ccc54db44ae44de2d4874fa0,
+        type: 3}
+      propertyPath: longAttack
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687953946999658781, guid: a41f12c7ccc54db44ae44de2d4874fa0,
+        type: 3}
+      propertyPath: shortAttack
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 9033190547601265107, guid: a41f12c7ccc54db44ae44de2d4874fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25921,6 +25946,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.65
       objectReference: {fileID: 0}
+    - target: {fileID: 6153303232001250800, guid: f464df1c3ed04704a806733004b65395,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6528037128508978117, guid: f464df1c3ed04704a806733004b65395,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -25934,7 +25964,7 @@ PrefabInstance:
     - target: {fileID: 7281006544878983968, guid: f464df1c3ed04704a806733004b65395,
         type: 3}
       propertyPath: m_Name
-      value: Range
+      value: Mage
       objectReference: {fileID: 0}
     - target: {fileID: 7281006544878983968, guid: f464df1c3ed04704a806733004b65395,
         type: 3}
