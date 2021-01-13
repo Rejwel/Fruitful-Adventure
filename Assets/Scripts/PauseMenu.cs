@@ -10,6 +10,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject AreYouSureMenu;
     public GameObject AreYouSureQuit;
     public GameObject player;
+    public GameObject shopMenu;
+    public GameObject shopMenu2;
 
     public GameObject GUI;
 
@@ -27,7 +29,8 @@ public class PauseMenu : MonoBehaviour
             if(GameIsPaused)
             {
                 Resume();
-            } else
+            }
+            else if (GameIsPaused == false && shopMenu.active == false && shopMenu2.active == false)
             {
                 Pause();
             }

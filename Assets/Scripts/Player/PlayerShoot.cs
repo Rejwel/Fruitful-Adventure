@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mime;
 using TMPro;
 using UnityEngine;
@@ -13,7 +14,10 @@ public class PlayerShoot : MonoBehaviour
     public Transform firePoint;
     public Rigidbody bullet;
     private Inventory inventory;
+    
     private Gun currentGun;
+    private int currentGunIndex;
+
     private float bulletSpeed = 500f;
     private int[] magazine = new int[4];
     private int stashAmmo;
@@ -44,7 +48,9 @@ public class PlayerShoot : MonoBehaviour
         currentGunText = GameObject.Find("CurrentGunText").GetComponent<TextMeshProUGUI>();
         currentAmmoText = GameObject.Find("Magazine").GetComponent<TextMeshProUGUI>();
         SetStartingAmmo();
-        currentGun = GunContainer.GetGun(0);
+        
+        currentGun = inventory.currentGuns[0];
+        currentGunIndex = currentGun.GetId();
         ChangeGun(currentGun);
     }
 
@@ -52,10 +58,9 @@ public class PlayerShoot : MonoBehaviour
     {
         if (reloading && Time.time >= nextTimeToFire)
         {
-            reloading = false;
             LowerStashAmmo(currentGun);
+            reloading = false;
         }
-        
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine[currentGun.GetId()] > 0) 
         {
             Shoot();
@@ -67,11 +72,11 @@ public class PlayerShoot : MonoBehaviour
         }
         else if (Input.GetButton("Fire1") && magazine[currentGun.GetId()] == 0 && Time.time >= nextTimeToEmpty)
         {
-            if (currentGun.GetDesc().Equals("Pistol"))
+            if (currentGun.GetDesc().Equals("Pistol") && !reloading)
             {
                 Empty("Pistol_empty");
             }
-            else if (currentGun.GetDesc() != "Pistol")
+            else if (currentGun.GetDesc() != "Pistol" && !reloading)
             {
                 Empty("Gun_empty");
             }
@@ -80,25 +85,55 @@ public class PlayerShoot : MonoBehaviour
         {
             Reload(currentGun);
         }
+
+        //SCROLL GUN INPUT
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+        {
+            currentGunIndex += (Convert.ToInt32(Input.GetAxis("Mouse ScrollWheel") * 10));
+            if (currentGunIndex < 0)
+            {
+                currentGunIndex = 0;
+            }
+            else if (currentGunIndex > inventory.currentGuns.Count-1)
+            {
+                currentGunIndex = inventory.currentGuns.Count-1;
+            }
+            currentGun = inventory.currentGuns[currentGunIndex];
+            ChangeGun(currentGun);
+        }
+        
+        //KEYBOARD GUN INPUT
         if (Input.GetKeyDown("1"))
         {
-            currentGun = GunContainer.GetGun(0);
-            ChangeGun(currentGun);
+            if (inventory.currentGuns.ElementAtOrDefault(0) != null)
+            {
+                currentGun = inventory.currentGuns[0];
+                ChangeGun(currentGun);
+            }
         }
         if (Input.GetKeyDown("2"))
         {
-            currentGun = GunContainer.GetGun(1);
-            ChangeGun(currentGun);
+            if (inventory.currentGuns.ElementAtOrDefault(1) != null)
+            {
+                currentGun = inventory.currentGuns[1];
+                ChangeGun(currentGun);
+            }
         }
         if (Input.GetKeyDown("3"))
         {
-            currentGun = GunContainer.GetGun(2);
-            ChangeGun(currentGun);
+            if (inventory.currentGuns.ElementAtOrDefault(2) != null)
+            {
+                currentGun = inventory.currentGuns[2];
+                ChangeGun(currentGun);
+            }
         }
         if (Input.GetKeyDown("4"))
         {
-            currentGun = GunContainer.GetGun(3);
-            ChangeGun(currentGun);
+            if (inventory.currentGuns.ElementAtOrDefault(3) != null)
+            {
+                currentGun = inventory.currentGuns[3];
+                ChangeGun(currentGun);
+            }
         }
     }
 
@@ -113,15 +148,16 @@ public class PlayerShoot : MonoBehaviour
         nextTimeToFire = Time.time + fireRate;
         float maxDeviation = 2f;
         Vector3 forwardVector = Vector3.forward;
+        
+        
         float deviation = Random.Range(0f, maxDeviation);
         float angle = Random.Range(0f, 360f);
         forwardVector = Quaternion.AngleAxis(randomSpread, Vector3.up) * forwardVector;
         forwardVector = Quaternion.AngleAxis(angle, Vector3.forward) * forwardVector;
         forwardVector = firePoint.transform.rotation * forwardVector;
-        
+        AudioManager.playSound(desc);
         for (int i = 0; i < bullets; i++)
         {
-            AudioManager.playSound(desc);
             Rigidbody bulletRigidbody;
             bulletRigidbody = Instantiate(bullet, firePoint.position, firePoint.rotation) as Rigidbody;
             bulletRigidbody.AddForce(forwardVector * bulletSpeed);
@@ -173,7 +209,6 @@ public class PlayerShoot : MonoBehaviour
 
     private void LowerStashAmmo(Gun currentGun)
     {
-
         int ammoToSubstract;
         
         if (inventory.bulletAmmount[currentGun.GetId()] + magazine[currentGun.GetId()] <= currentGun.GetMagazine())
