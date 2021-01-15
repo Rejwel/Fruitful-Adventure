@@ -9,7 +9,7 @@ public class GroundCotroller : MonoBehaviour
     private GameObject placeableObjectPrefab;
     public LayerMask terrain;
     private bool canRotate = false;
-    public LayerMask TurretOFF;
+    
     [SerializeField]
     private KeyCode newObjectHotkey = KeyCode.A;
 
@@ -49,7 +49,7 @@ public class GroundCotroller : MonoBehaviour
         RaycastHit hitInfo;
         if (Input.GetKeyDown(newObjectHotkey))
         {
-            if (currentPlaceableObject != null && Physics.Raycast(ray, out hitInfo, TurretOFF))
+            if (currentPlaceableObject != null)
             {
                 Destroy(currentPlaceableObject);
                 player.GetComponent<PlayerShoot>().enabled = true;
