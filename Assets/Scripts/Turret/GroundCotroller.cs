@@ -9,29 +9,38 @@ public class GroundCotroller : MonoBehaviour
     private GameObject placeableObjectPrefab;
     public LayerMask terrain;
     private bool canRotate = false;
-
+    public LayerMask TurretOFF;
     [SerializeField]
     private KeyCode newObjectHotkey = KeyCode.A;
 
-    private GameObject currentPlaceableObject;
-
+    public GameObject currentPlaceableObject;
+    public GameObject player;
     private float mouseWheelRotation;
-    
+    public bool hope;
 
     private void Update()
     {
+        
         HandleNewObjectHotkey();
-
+        
         if (currentPlaceableObject != null)
         {
+            
             if (currentPlaceableObject.tag.Equals("Turret"))
             {
                 currentPlaceableObject.GetComponent<Turret>().enabled = false;
             }
             MoveCurrentObjectToMouse();
             RotateFromMouseWheel();
-            ReleaseIfClicked();
+            if (hope)
+            { 
+                ReleaseIfClicked();
+                
+            }
         }
+        
+           
+        
     }
 
     private void HandleNewObjectHotkey()
@@ -40,12 +49,14 @@ public class GroundCotroller : MonoBehaviour
         RaycastHit hitInfo;
         if (Input.GetKeyDown(newObjectHotkey))
         {
-            if (currentPlaceableObject != null)
+            if (currentPlaceableObject != null && Physics.Raycast(ray, out hitInfo, TurretOFF))
             {
                 Destroy(currentPlaceableObject);
+                player.GetComponent<PlayerShoot>().enabled = true;
             }
             else if (Physics.Raycast(ray, out hitInfo, 8f, terrain))
             {
+                player.GetComponent<PlayerShoot>().enabled = false;
                 currentPlaceableObject = Instantiate(placeableObjectPrefab);
             }
         }
@@ -55,7 +66,7 @@ public class GroundCotroller : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, 8f, terrain))
+        if (Physics.Raycast(ray, out hitInfo, 20f, terrain))
         {
             canRotate = true;
             currentPlaceableObject.transform.position = hitInfo.point;
@@ -67,6 +78,7 @@ public class GroundCotroller : MonoBehaviour
         }
     }
 
+
     private void RotateFromMouseWheel()
     {
         currentPlaceableObject.transform.Rotate(Vector3.up, 0f);
@@ -77,17 +89,29 @@ public class GroundCotroller : MonoBehaviour
         }
     }
 
-    private void ReleaseIfClicked()
+    public void ReleaseIfClicked()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
+
+        
+
         if (currentPlaceableObject.tag.Equals("Turret"))
         {
+
+            
             currentPlaceableObject.GetComponent<Turret>().enabled = true;
+            
+            
         }
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
+            currentPlaceableObject.tag = "ABC";
             currentPlaceableObject = null;
+            
         }
+        
     }
+
+
 }

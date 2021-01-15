@@ -34751,7 +34751,13 @@ MonoBehaviour:
   terrain:
     serializedVersion: 2
     m_Bits: 4096
+  TurretOFF:
+    serializedVersion: 2
+    m_Bits: 16384
   newObjectHotkey: 112
+  currentPlaceableObject: {fileID: 0}
+  player: {fileID: 1948208340}
+  hope: 1
 --- !u!1 &2113130498
 GameObject:
   m_ObjectHideFlags: 0
@@ -36735,7 +36741,7 @@ PrefabInstance:
     - target: {fileID: 5060835075234583435, guid: db87b4b54621d06419c3bf9f9dffeafd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -738.7882
+      value: -739.17
       objectReference: {fileID: 0}
     - target: {fileID: 5060835075234583435, guid: db87b4b54621d06419c3bf9f9dffeafd,
         type: 3}
@@ -36787,6 +36793,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 5580067705022679345, guid: db87b4b54621d06419c3bf9f9dffeafd,
+        type: 3}
+      propertyPath: m_TagString
+      value: ABC
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db87b4b54621d06419c3bf9f9dffeafd, type: 3}
 --- !u!1001 &5719909650245693248
@@ -36805,6 +36816,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872994114103518874, guid: 3da8034b1c09ac3448113e01ee184453,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5254446190178991136, guid: 3da8034b1c09ac3448113e01ee184453,
         type: 3}
