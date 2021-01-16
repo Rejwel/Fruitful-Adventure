@@ -34746,18 +34746,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36285adc6d5b1d458c907ddc23aa541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeableObjectPrefab: {fileID: 2334235848864080058, guid: cd11c42dfb3202f4594a7976f73d0b78,
-    type: 3}
+  placeableObjectPrefabs:
+  - {fileID: 2334235848864080058, guid: cd11c42dfb3202f4594a7976f73d0b78, type: 3}
+  - {fileID: 1762813976542563578, guid: 8dd9fe273f67fea49af0d5a19f14dade, type: 3}
   terrain:
     serializedVersion: 2
     m_Bits: 4096
-  TurretOFF:
-    serializedVersion: 2
-    m_Bits: 16384
-  newObjectHotkey: 112
   currentPlaceableObject: {fileID: 0}
   player: {fileID: 1948208340}
   hope: 1
+  shooting: 0
 --- !u!1 &2113130498
 GameObject:
   m_ObjectHideFlags: 0
@@ -35982,7 +35980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1651609611, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 444
+      value: 441
       objectReference: {fileID: 0}
     - target: {fileID: 1651609611, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
       propertyPath: m_AnchorMin.x
@@ -35994,7 +35992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1651609612, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
       propertyPath: m_text
-      value: 'p -> turrets
+      value: '8,9 -> turrets
 
         r -> reload
 

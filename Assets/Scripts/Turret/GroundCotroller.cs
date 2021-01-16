@@ -6,17 +6,17 @@ using UnityEngine;
 public class GroundCotroller : MonoBehaviour
 {
     [SerializeField]
-    private GameObject placeableObjectPrefab;
+    private GameObject[] placeableObjectPrefabs;
     public LayerMask terrain;
     private bool canRotate = false;
-    
-    [SerializeField]
-    private KeyCode newObjectHotkey = KeyCode.A;
+
+    private int currentPrefabIndex = -1;
 
     public GameObject currentPlaceableObject;
     public GameObject player;
     private float mouseWheelRotation;
-    public bool hope;
+    public bool hope=true;
+    public bool shooting=false;
 
     private void Update()
     {
@@ -25,41 +25,49 @@ public class GroundCotroller : MonoBehaviour
         
         if (currentPlaceableObject != null)
         {
-            
-            if (currentPlaceableObject.tag.Equals("Turret"))
-            {
-                currentPlaceableObject.GetComponent<Turret>().enabled = false;
-            }
             MoveCurrentObjectToMouse();
             RotateFromMouseWheel();
             if (hope)
             { 
                 ReleaseIfClicked();
-                
             }
         }
-        
-           
-        
     }
 
     private void HandleNewObjectHotkey()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Input.GetKeyDown(newObjectHotkey))
+        for (int i = 0; i < placeableObjectPrefabs.Length; i++)
         {
-            if (currentPlaceableObject != null)
+            if (Input.GetKeyDown(KeyCode.Alpha0 + 9 - i))
             {
-                Destroy(currentPlaceableObject);
-                player.GetComponent<PlayerShoot>().enabled = true;
-            }
-            else if (Physics.Raycast(ray, out hitInfo, 8f, terrain))
-            {
-                player.GetComponent<PlayerShoot>().enabled = false;
-                currentPlaceableObject = Instantiate(placeableObjectPrefab);
+                if (PressedKeyOfCurrentPrefab(i))
+                {
+                    Destroy(currentPlaceableObject);
+                    currentPrefabIndex = -1;
+                }
+                else
+                {
+                    if (currentPlaceableObject != null)
+                    {
+                        Destroy(currentPlaceableObject);
+                    }
+
+                    if (Physics.Raycast(ray, out hitInfo, 8f, terrain))
+                    {
+                        currentPlaceableObject = Instantiate(placeableObjectPrefabs[i]);
+                        currentPrefabIndex = i;
+                    }
+                }
+                break;
             }
         }
+    }
+
+    private bool PressedKeyOfCurrentPrefab(int i)
+    {
+        return currentPlaceableObject != null && currentPrefabIndex == i;
     }
 
     private void MoveCurrentObjectToMouse()
@@ -94,16 +102,6 @@ public class GroundCotroller : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
-        
-
-        if (currentPlaceableObject.tag.Equals("Turret"))
-        {
-
-            
-            currentPlaceableObject.GetComponent<Turret>().enabled = true;
-            
-            
-        }
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
             currentPlaceableObject.tag = "ABC";
@@ -112,6 +110,5 @@ public class GroundCotroller : MonoBehaviour
         }
         
     }
-
 
 }
