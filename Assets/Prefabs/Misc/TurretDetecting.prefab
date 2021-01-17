@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2228943520004433689}
   - component: {fileID: 3388170913306825264}
   - component: {fileID: 1762813976542563581}
+  - component: {fileID: -8493134074461511195}
   m_Layer: 2
   m_Name: TurretDetecting
   m_TagString: Turret
@@ -112,6 +113,21 @@ MonoBehaviour:
   enemyTag: Enemy
   partToRotate: {fileID: 6197268220533956819}
   turnSpeed: 10
+--- !u!114 &-8493134074461511195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762813976542563578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 850997be6c04403478526ddbd5d13dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ground: {fileID: 0}
+  WarningCanvas: {fileID: 1351519416926413739, guid: 4f10b606ce5827b4fa38c2505b8bb7df,
+    type: 3}
 --- !u!1 &1762813977012365068
 GameObject:
   m_ObjectHideFlags: 0

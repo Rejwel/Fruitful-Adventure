@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 2334235848864080057}
   - component: {fileID: 2809356153671813977}
   - component: {fileID: 1663844377603718768}
-  - component: {fileID: -3831854074020866706}
+  - component: {fileID: -1239939874290097651}
   m_Layer: 2
   m_Name: Turret
   m_TagString: Turret
@@ -318,7 +318,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-3831854074020866706
+--- !u!114 &-1239939874290097651
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -331,6 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: {fileID: 0}
+  WarningCanvas: {fileID: 1351519416926413739, guid: 4f10b606ce5827b4fa38c2505b8bb7df,
+    type: 3}
 --- !u!1 &2334235849235807624
 GameObject:
   m_ObjectHideFlags: 0

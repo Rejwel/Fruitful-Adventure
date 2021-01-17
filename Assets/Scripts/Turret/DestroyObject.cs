@@ -6,13 +6,20 @@ public class DestroyObject : MonoBehaviour
 {
     public GroundCotroller ground;
 
+
+
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "ABC")
         {
-            Debug.Log("Wchodze");
+           
+
             ground = FindObjectOfType<GroundCotroller>();
             ground.hope = false;
+            ground.warning = true;
         }
     }
 
@@ -20,9 +27,11 @@ public class DestroyObject : MonoBehaviour
     {
         if (other.gameObject.tag == "ABC")
         {
-            Debug.Log("Wychodze");
+           
+            
             ground = FindObjectOfType<GroundCotroller>();
             ground.hope = true;
+            ground.warning = false;
         }
     }
 

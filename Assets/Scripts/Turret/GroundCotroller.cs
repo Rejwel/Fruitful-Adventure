@@ -16,7 +16,9 @@ public class GroundCotroller : MonoBehaviour
     public GameObject player;
     private float mouseWheelRotation;
     public bool hope=true;
-    public bool shooting=false;
+    public GameObject WarningCanvas;
+
+    public bool warning=false;
 
     private void Update()
     {
@@ -28,14 +30,23 @@ public class GroundCotroller : MonoBehaviour
             MoveCurrentObjectToMouse();
             RotateFromMouseWheel();
             if (hope)
-            { 
+            {
+                WarningCanvas.SetActive(warning);
                 ReleaseIfClicked();
             }
+            else
+            {
+                WarningCanvas.SetActive(warning);
+            }
         }
+        
     }
+
+
 
     private void HandleNewObjectHotkey()
     {
+        WarningCanvas.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         for (int i = 0; i < placeableObjectPrefabs.Length; i++)
@@ -51,11 +62,13 @@ public class GroundCotroller : MonoBehaviour
                 {
                     if (currentPlaceableObject != null)
                     {
+
                         Destroy(currentPlaceableObject);
                     }
 
                     if (Physics.Raycast(ray, out hitInfo, 8f, terrain))
                     {
+                        
                         currentPlaceableObject = Instantiate(placeableObjectPrefabs[i]);
                         currentPrefabIndex = i;
                     }
@@ -108,7 +121,7 @@ public class GroundCotroller : MonoBehaviour
             currentPlaceableObject = null;
             
         }
-        
+        player.GetComponent<PlayerShoot>().enabled = true;
     }
 
 }

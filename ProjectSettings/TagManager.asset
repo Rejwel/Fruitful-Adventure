@@ -12,6 +12,7 @@ TagManager:
   - OpenShop
   - Test
   - ABC
+  - WarningCanvas
   layers:
   - Default
   - TransparentFX
