@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class WaveManager : MonoBehaviour
 {
-    private int wave = 1;
+    private int wave = 0;
     private float enemiesLeft = 0;
     private float waveTime = 0;
     private float nextWaveTime;
@@ -38,10 +38,10 @@ public class WaveManager : MonoBehaviour
     private void Update()
     {
         timerText.text = waveTime.ToString("f2");
-        waveCountText.text = wave == 1 ? "Prepare for first Wave" : "Wave " + wave;
+        waveCountText.text = wave == 0 ? "Prepare for first Wave" : "Wave " + wave;
         enemiesLeftText.text = enemiesLeft.ToString();
         
-        nextWaveTime = wave == 1 ? 2f : 60f;
+        nextWaveTime = wave == 0 ? 2f : 60f;
 
         if (waveTime >= nextWaveTime)
         {
@@ -52,11 +52,6 @@ public class WaveManager : MonoBehaviour
         }
 
         waveTime += Time.deltaTime;
-    }
-
-    float setTimer(float time)
-    {
-        return time;
     }
 
     public void killEnemy()
