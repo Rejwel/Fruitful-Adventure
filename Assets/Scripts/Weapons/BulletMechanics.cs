@@ -31,6 +31,7 @@ public class BulletMechanics : MonoBehaviour
             
             if (enemyHealth.currentHealth <= 0)
             {
+                hit.GetComponent<Collider>().enabled = false;
                 enemy.Die();
                 explosion.explode(hit.gameObject);
                 WaveManager.killEnemy();

@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 
 public class WaveManager : MonoBehaviour
 {
+    public string waveCombo;
     private int wave = 0;
     private float enemiesLeft = 0;
     private float waveTime = 0;
@@ -48,7 +49,8 @@ public class WaveManager : MonoBehaviour
             waveTime = 0f;
             
             // getSpawns 1-4 (which spawners to activate), enemiesSpawnType type of spawn 1-11
-            spawnEnemies(getSpawns("12"), enemiesSpawnType(++wave));
+            print(waveCombo);
+            spawnEnemies(getSpawns(waveCombo), enemiesSpawnType(++wave));
         }
 
         waveTime += Time.deltaTime;

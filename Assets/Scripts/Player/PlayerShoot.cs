@@ -19,6 +19,7 @@ public class PlayerShoot : MonoBehaviour
     private int currentGunIndex;
 
     public Vector3 upRecoil;
+    public Vector3 bulletOffset;
     private Vector3 originalRotationOfFirepoint;
     private float bulletSpread;
     private float bulletSpeed = 500f;
@@ -157,16 +158,20 @@ public class PlayerShoot : MonoBehaviour
         nextTimeToFire = Time.time + fireRate;
         Vector3 forwardVector =  Vector3.forward;
         
-        float deviation = Random.Range(0f, bulletSpread);
-        float angle = Random.Range(0f, 360f);
-        forwardVector = Quaternion.AngleAxis(deviation, Vector3.up) * forwardVector;
-        forwardVector = Quaternion.AngleAxis(angle, Vector3.forward) * forwardVector;
-        forwardVector = firePoint.transform.rotation * forwardVector;
+        
 
         AudioManager.playSound(desc);
         for (int i = 0; i < bullets; i++)
         {
             Rigidbody bulletRigidbody;
+            
+            float deviation = Random.Range(0f, bulletSpread);
+            float angle = Random.Range(0f, 360f);
+            forwardVector = Quaternion.AngleAxis(deviation, Vector3.up) * forwardVector;
+            forwardVector = Quaternion.AngleAxis(angle, Vector3.forward) * forwardVector;
+            forwardVector = firePoint.transform.rotation * forwardVector;
+
+            // print(firePoint.position);
             bulletRigidbody = Instantiate(bullet, firePoint.position, firePoint.rotation) as Rigidbody;
             bulletRigidbody.AddForce(forwardVector * bulletSpeed);
         }
