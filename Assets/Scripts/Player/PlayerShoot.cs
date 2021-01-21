@@ -18,11 +18,13 @@ public class PlayerShoot : MonoBehaviour
     private Gun currentGun;
     private int currentGunIndex;
 
+    public Vector3 upRecoil;
+    private Vector3 originalRotationOfFirepoint;
+    private float bulletSpread;
     private float bulletSpeed = 500f;
     private int[] magazine = new int[4];
     private int stashAmmo;
     private int bullets;
-    private float randomSpread;
     private string desc;
     private bool firstEmptyBullet;
     private bool reloading = false;
@@ -42,6 +44,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Start()
     {
+        originalRotationOfFirepoint = firePoint.transform.localEulerAngles;
         firstEmptyBullet = true;
         inventory = FindObjectOfType<Inventory>();
         currentStashAmmoText = GameObject.Find("StashAmmo").GetComponent<TextMeshProUGUI>();
@@ -56,11 +59,15 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
+        // RELOADING CANCEL
         if (reloading && Time.time >= nextTimeToFire)
         {
             LowerStashAmmo(currentGun);
             reloading = false;
         }
+
+        // SHOOTING
+        if (Input.GetButtonDown("Fire1")) ReturnToOriginalRecoil();
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine[currentGun.GetId()] > 0) 
         {
             Shoot();
@@ -81,6 +88,8 @@ public class PlayerShoot : MonoBehaviour
                 Empty("Gun_empty");
             }
         }
+
+        // RELOAD GUN
         if (Input.GetKey(KeyCode.R) && Time.time >= nextTimeToReload && inventory.bulletAmmount[currentGun.GetId()] > 0 && magazine[currentGun.GetId()] != currentGun.GetMagazine())
         {
             Reload(currentGun);
@@ -139,22 +148,21 @@ public class PlayerShoot : MonoBehaviour
 
     void Shoot()
     {
+        AddRecoil();
         magazine[currentGun.GetId()]--;
         currentAmmoText.text = "Ammo " + magazine[currentGun.GetId()];
         fireRate = currentGun.GetFireRate();
         bullets = currentGun.GetBullets();
         desc = currentGun.GetDesc();
-
         nextTimeToFire = Time.time + fireRate;
-        float maxDeviation = 2f;
-        Vector3 forwardVector = Vector3.forward;
+        Vector3 forwardVector =  Vector3.forward;
         
-        
-        float deviation = Random.Range(0f, maxDeviation);
+        float deviation = Random.Range(0f, bulletSpread);
         float angle = Random.Range(0f, 360f);
-        forwardVector = Quaternion.AngleAxis(randomSpread, Vector3.up) * forwardVector;
+        forwardVector = Quaternion.AngleAxis(deviation, Vector3.up) * forwardVector;
         forwardVector = Quaternion.AngleAxis(angle, Vector3.forward) * forwardVector;
         forwardVector = firePoint.transform.rotation * forwardVector;
+
         AudioManager.playSound(desc);
         for (int i = 0; i < bullets; i++)
         {
@@ -176,6 +184,7 @@ public class PlayerShoot : MonoBehaviour
         
         firstEmptyBullet = true;
         fireRate = currentGun.GetFireRate();
+        bulletSpread = currentGun.GetSpread();
 
         if(inventory.bulletAmmount[currentGun.GetId()] > 100000)
         {
@@ -240,5 +249,15 @@ public class PlayerShoot : MonoBehaviour
         {
             magazine[i] = GunContainer.GetGun(i).GetMagazine();
         }
+    }
+    
+    private void AddRecoil()
+    {
+        firePoint.transform.localEulerAngles += upRecoil;
+    }
+
+    private void ReturnToOriginalRecoil()
+    {
+        firePoint.transform.localEulerAngles = originalRotationOfFirepoint;
     }
 }
