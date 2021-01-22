@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 9033190547601265107}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5275149686151965962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2620759094077426196}
+  m_Layer: 10
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2620759094077426196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275149686151965962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.046, y: 0.408, z: 0.422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9033190547601265107}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7368838444813670428
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +172,9 @@ GameObject:
   - component: {fileID: 6330956796562381967}
   - component: {fileID: 1342185130220687365}
   - component: {fileID: -1422783523207199391}
-  - component: {fileID: 7687953946999658781}
+  - component: {fileID: 5198469377565107289}
+  - component: {fileID: -3447098621479245269}
+  - component: {fileID: -8671360481760239241}
   m_Layer: 10
   m_Name: Range
   m_TagString: Enemy
@@ -164,6 +196,7 @@ Transform:
   - {fileID: 4814133868071727959}
   - {fileID: 172624074}
   - {fileID: 2038815869244509998}
+  - {fileID: 2620759094077426196}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,7 +369,7 @@ MonoBehaviour:
   explosionRadius: 3
   explosionForce: 50
   explosionUpward: 0.5
---- !u!114 &7687953946999658781
+--- !u!114 &5198469377565107289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,21 +378,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 9033190547601265110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef50c38c2c99f17458f154ea2ecd3c6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 92e0dcd3ad9ee0f4cbbaf85646e72f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 9033190547601265116}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  player: {fileID: 0}
-  projectile: {fileID: 9142128983991355959, guid: 92411f463ca4a0f4cbfc071a11516143,
+  katWidzenia: 160
+--- !u!114 &-3447098621479245269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9033190547601265110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd7cca448a9e4e48849534cf52444b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  predkoscObrotu: 6
+  gladkiObrot: 1
+  predkoscRuchu: 5
+  zasiegWzroku: 40
+  odstepGracza: 20
+--- !u!114 &-8671360481760239241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9033190547601265110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b06dce7840b664b8b3980981a43c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  czekaj: 2
+  odliczanieDoStrzalu: 0
+  strzalaPrefab: {fileID: 9142128983991355959, guid: 92411f463ca4a0f4cbfc071a11516143,
     type: 3}
-  timeBetweenAttacks: 4
-  shortAttack: 15
-  longAttack: 30
-  playerInShortRange: 0
-  playerInLongRange: 0
+  predkosc: 6
 --- !u!1001 &8223621855868920146
 PrefabInstance:
   m_ObjectHideFlags: 0
