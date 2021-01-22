@@ -6,12 +6,17 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    public static bool GameOver = false;
     public GameObject pauseMenuUI;
     public GameObject AreYouSureMenu;
     public GameObject AreYouSureQuit;
     public GameObject player;
     public GameObject shopMenu;
     public GameObject shopMenu2;
+    public HealthPlayer Health;
+    public GameObject Dead;
+    public GameObject SureGameover;
+
 
     public GameObject GUI;
 
@@ -24,13 +29,14 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        DeadPlayer();
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(GameIsPaused)
+            if(GameIsPaused==true && GameOver==false)
             {
                 Resume();
             }
-            else if (GameIsPaused == false && shopMenu.active == false && shopMenu2.active == false)
+            else if (GameIsPaused == false && shopMenu.active == false && shopMenu2.active == false && GameOver == false)
             {
                 Pause();
             }
@@ -74,6 +80,12 @@ public class PauseMenu : MonoBehaviour
         AreYouSureQuit.SetActive(true);
     }
 
+    public void SureQuitGameOver()
+    {
+        Dead.SetActive(false);
+        SureGameover.SetActive(true);
+    }
+
     public void LoadMenu()
     {
         SceneManager.LoadScene(0);
@@ -90,6 +102,29 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         AreYouSureMenu.SetActive(false); 
         AreYouSureQuit.SetActive(false);
+    }
+
+    public void NoSureGameOver()
+    {
+        Dead.SetActive(true);
+        SureGameover.SetActive(false);
+    }
+
+    public void DeadPlayer()
+    {
+        Health = FindObjectOfType<HealthPlayer>();
+        if(Health.currentHealth <= 0)
+        {
+            GUI.SetActive(false);
+            Dead.SetActive(true);
+            GameOver = true;
+            Health.currentHealth = 1;
+            Time.timeScale = 0f;
+            GameIsPaused = true;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            player.GetComponent<PlayerShoot>().enabled = false;
+        }
     }
 
 }
