@@ -49,7 +49,6 @@ public class WaveManager : MonoBehaviour
             waveTime = 0f;
             
             // getSpawns 1-4 (which spawners to activate), enemiesSpawnType type of spawn 1-11
-            print(waveCombo);
             spawnEnemies(getSpawns(waveCombo), enemiesSpawnType(++wave));
         }
 

@@ -164,7 +164,7 @@ public class PlayerShoot : MonoBehaviour
         for (int i = 0; i < bullets; i++)
         {
             Rigidbody bulletRigidbody;
-            
+              
             float deviation = Random.Range(0f, bulletSpread);
             float angle = Random.Range(0f, 360f);
             forwardVector = Quaternion.AngleAxis(deviation, Vector3.up) * forwardVector;

@@ -34,7 +34,6 @@ public class HealthPlayer : MonoBehaviour
     }
 
 
-
     void TakeDamage(int damage, Vector3 direction)
     {
         if (inv.isShielded())
