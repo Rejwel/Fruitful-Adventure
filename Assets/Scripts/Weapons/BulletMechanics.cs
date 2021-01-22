@@ -15,12 +15,12 @@ public class BulletMechanics : MonoBehaviour
         explosion = FindObjectOfType<Explosion>();
         player = FindObjectOfType<PlayerShoot>();
         WaveManager = FindObjectOfType<WaveManager>();
+        gameObject.tag = "Bullet";
         Destroy(gameObject, 5);
     }
 
     private void OnTriggerEnter(Collider hit)
     {
-        print(hit);
         EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
         HealthEnemy enemyHealth = hit.GetComponent<HealthEnemy>();
         if (hit.tag.Equals("Enemy"))
