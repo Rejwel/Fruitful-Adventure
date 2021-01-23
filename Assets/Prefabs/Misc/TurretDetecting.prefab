@@ -43,11 +43,11 @@ GameObject:
   - component: {fileID: 1762813976542563576}
   - component: {fileID: 2228943520004433689}
   - component: {fileID: 3388170913306825264}
-  - component: {fileID: 1762813976542563581}
   - component: {fileID: -8493134074461511195}
+  - component: {fileID: 2899706631731588115}
   m_Layer: 2
   m_Name: TurretDetecting
-  m_TagString: TurretDetecting
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,23 +96,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1762813976542563581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762813976542563578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01e268de04382994ba50db0d0a5f8a0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 1
-  range: 15
-  enemyTag: Enemy
-  partToRotate: {fileID: 6197268220533956819}
-  turnSpeed: 10
 --- !u!114 &-8493134074461511195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +109,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: {fileID: 0}
+--- !u!114 &2899706631731588115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762813976542563578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e268de04382994ba50db0d0a5f8a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 15
+  enemyTag: Enemy
+  Turret: TurretDetecting
+  progressText: {fileID: 0}
+  CurrentBuilding: 
+  shortestDistanceToBuilding: 0
+  BuildingName: {fileID: 0}
+  House: {fileID: 0}
 --- !u!1 &1762813977012365068
 GameObject:
   m_ObjectHideFlags: 0

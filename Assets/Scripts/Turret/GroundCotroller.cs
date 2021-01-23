@@ -19,6 +19,7 @@ public class GroundCotroller : MonoBehaviour
     public GameObject WarningCanvas;
 
     public bool warning=false;
+    public bool TurrerDetecting = false;
 
     private void Update()
     {
@@ -53,6 +54,7 @@ public class GroundCotroller : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha0 + 9 - i))
             {
+                TurrerDetecting = false;
                 if (PressedKeyOfCurrentPrefab(i))
                 {
                     Destroy(currentPlaceableObject);
@@ -119,9 +121,11 @@ public class GroundCotroller : MonoBehaviour
         {
             currentPlaceableObject.tag = "ABC";
             currentPlaceableObject = null;
-            
+            if (placeableObjectPrefabs[1])
+            {
+                TurrerDetecting = true;
+            }
         }
-        player.GetComponent<PlayerShoot>().enabled = true;
     }
 
 }

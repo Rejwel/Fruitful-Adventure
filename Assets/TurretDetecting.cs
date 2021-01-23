@@ -7,23 +7,24 @@ public class TurretDetecting : MonoBehaviour
     private Transform target;
 
     [Header("Attributes")]
-    public float fireRate = 1f;
-
-    private float fireCountdown = 0f;
     public float range = 15f;
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
-
-    public Transform partToRotate;
-    public float turnSpeed = 10f;
+    public string Turret = "TurretDetecting";
     public GameObject progressText;
-    public string CurrentBuilding;
+    public string CurrentBuilding = "cos";
+    public float shortestDistanceToBuilding;
+    public GameObject House;
 
+    private void Awake()
+    {
+        House = GameObject.Find("house");
+        progressText = GameObject.Find("WarningText");
+    }
     // Start is called before the first frame update
     void Start()
     {
-        progressText = GameObject.Find("WarningText");
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
@@ -31,7 +32,8 @@ public class TurretDetecting : MonoBehaviour
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
+        GameObject nearestEnemy = House;
+
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
@@ -41,6 +43,7 @@ public class TurretDetecting : MonoBehaviour
                 nearestEnemy = enemy;
             }
         }
+        
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
@@ -51,24 +54,51 @@ public class TurretDetecting : MonoBehaviour
         }
     }
 
+    void UpdateBuilding()
+    {
+        GameObject[] Building = GameObject.FindGameObjectsWithTag(Turret);
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = House;
+        foreach (GameObject enemy in Building)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortestDistance)
+            {
+                shortestDistance = distanceToEnemy;
+                nearestEnemy = enemy;
+            }
+        }
+        print(nearestEnemy);
+        if (nearestEnemy!=null)
+        {
+            CurrentBuilding = nearestEnemy.GetComponent<FindingTurret>().Building;
+            shortestDistanceToBuilding = shortestDistance;
+        }
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
+        UpdateBuilding();
+        print(CurrentBuilding);
+        print(shortestDistanceToBuilding);
         if (target == null)
         {
+            
             return;
         }
+        
 
-        //Target lock on
-        Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        if (Time.time >= fireCountdown)
+        if (shortestDistanceToBuilding > range)
         {
+            
+            progressText.GetComponent<Text>().text = "Wykryto wroga obok lasu!";
+        }
+        else
+        {
+            
             progressText.GetComponent<Text>().text = "Wykryto wroga obok " + CurrentBuilding;
-            fireCountdown = 1f / fireRate + Time.time;
         }
     }
 
