@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : MonoBehaviour
+public class ShootMage : MonoBehaviour
 {
     public float czekaj = 2f;
     public float odliczanieDoStrzalu = 0f;
@@ -10,22 +10,22 @@ public class Shoot : MonoBehaviour
     public float predkosc = 5;
 
 
-    private Behaviour wrogastrzal;
+    private BehaviourMage wrogastrzal;
 
     private void Awake()
     {
-        wrogastrzal = FindObjectOfType<Behaviour>();
+        wrogastrzal = FindObjectOfType<BehaviourMage>();
     }
 
     public void strzal()
     {
-        if(odliczanieDoStrzalu < czekaj)
+        if (odliczanieDoStrzalu < czekaj)
         {
             odliczanieDoStrzalu += Time.deltaTime;
         }
-        
 
-        if(odliczanieDoStrzalu >=  czekaj && wrogastrzal.namierzanie() && wrogastrzal.celowanie(wrogastrzal.getZasiegWzroku()))
+
+        if (odliczanieDoStrzalu >= czekaj && wrogastrzal.namierzanie() && wrogastrzal.celowanie(wrogastrzal.getZasiegWzroku()))
         {
             odliczanieDoStrzalu = 0;
 
@@ -33,10 +33,8 @@ public class Shoot : MonoBehaviour
 
             strzala = Instantiate(strzalaPrefab, transform.position + transform.forward, wrogastrzal.getRotacjaPocisku());
             strzala.GetComponent<Rigidbody>().AddForce(transform.forward * predkosc, ForceMode.Impulse);
-            strzala.GetComponent<Rigidbody>().AddForce(transform.up * 1, ForceMode.Impulse);
         }
     }
 
-    
 
 }

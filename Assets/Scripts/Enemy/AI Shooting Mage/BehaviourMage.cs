@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Behaviour : MonoBehaviour
+public class BehaviourMage: MonoBehaviour
 {
     private Transform gracz;
     protected GameObject graczObiekt;
@@ -23,7 +23,7 @@ public class Behaviour : MonoBehaviour
     public bool namierzanie()
     {
         float angle = Quaternion.Angle(gracz.rotation, transform.rotation);
-        if(angle >= katWidzenia)
+        if (angle >= katWidzenia)
         {
             return true;
         }
@@ -43,11 +43,11 @@ public class Behaviour : MonoBehaviour
         Ray ray = new Ray(glowa.position, glowa.forward);
         RaycastHit hitinfo;
 
-        if(Physics.Raycast(ray, out hitinfo, zasieg))
+        if (Physics.Raycast(ray, out hitinfo, zasieg))
         {
             GameObject go = hitinfo.collider.gameObject;
 
-            if(go.name.Equals(graczObiekt.name))
+            if (go.name.Equals(graczObiekt.name))
             {
                 return true;
             }
@@ -57,8 +57,8 @@ public class Behaviour : MonoBehaviour
 
     public float getZasiegWzroku()
     {
-        FollowCamera ai = (FollowCamera)GetComponent<FollowCamera>();
-        if(ai != null)
+        FollowCameraMage ai = (FollowCameraMage)GetComponent<FollowCameraMage>();
+        if (ai != null)
         {
             return ai.zasiegWzroku;
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FollowCamera : MonoBehaviour
 {
@@ -17,6 +18,18 @@ public class FollowCamera : MonoBehaviour
 
     private Shoot strzalLuk;
 
+    public NavMeshAgent agent;
+    public LayerMask whatIsPlayer;
+    public bool playerInShortRange;
+    public bool playerInLongRange;
+    public Transform Player;
+    public float shortAttack, longAttack;
+
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
 
     void Start()
     {
@@ -33,6 +46,19 @@ public class FollowCamera : MonoBehaviour
     
     void Update()
     {
+
+        playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, whatIsPlayer);
+        playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
+
+        if (playerInShortRange || playerInLongRange)
+        {
+            Vector3 dirToPlayer = transform.position - Player.transform.position;  //when player is close he moves back
+            Vector3 newPos = transform.position + dirToPlayer;
+            agent.SetDestination(newPos);
+
+            GetComponent<NavMeshAgent>().speed = 3;
+        }
+
         gracz = GameObject.FindWithTag("Player").transform;
 
         pozycjaGraczaXYZ = new Vector3(gracz.position.x, mojObiekt.position.y, gracz.position.z);
