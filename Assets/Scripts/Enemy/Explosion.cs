@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -54,6 +55,7 @@ public class Explosion : MonoBehaviour
         piece.transform.position = enemy.transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
         piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
         piece.gameObject.layer = 11;
+        piece.GetComponent<Renderer>().material.color = Color.white;
         piece.AddComponent<Rigidbody>();
         piece.AddComponent<MoneyDisappear>();
         piece.GetComponent<Rigidbody>().mass = cubeSize;
