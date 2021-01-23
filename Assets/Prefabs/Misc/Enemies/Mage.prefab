@@ -117,11 +117,41 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5847648874623389449}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.076, y: 0.317, z: -0.573}
+  m_LocalPosition: {x: -0.076, y: 0.551, z: -0.573}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7281006544878983973}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6559517366655703147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7533852557160524786}
+  m_Layer: 10
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7533852557160524786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6559517366655703147}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.445, z: 0.376}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7281006544878983973}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7281006544878983968
 GameObject:
@@ -142,7 +172,9 @@ GameObject:
   - component: {fileID: 5731694436414183033}
   - component: {fileID: 790210567228054259}
   - component: {fileID: 8897657786077220135}
-  - component: {fileID: -1106992768143222576}
+  - component: {fileID: -8789197719951055134}
+  - component: {fileID: 106709244834986847}
+  - component: {fileID: 2284065093671692699}
   m_Layer: 10
   m_Name: Mage
   m_TagString: Enemy
@@ -164,6 +196,7 @@ Transform:
   - {fileID: 6528037127134476705}
   - {fileID: 1900697305536083860}
   - {fileID: 6153303232001250800}
+  - {fileID: 7533852557160524786}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,7 +369,7 @@ MonoBehaviour:
   explosionRadius: 3
   explosionForce: 50
   explosionUpward: 0.5
---- !u!114 &-1106992768143222576
+--- !u!114 &-8789197719951055134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,20 +378,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 7281006544878983968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0658f4853691df643adb3555d22df64f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5609953e7a81251408e2327e6ba984e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 7281006544878983978}
-  player: {fileID: 0}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  projectile: {fileID: 3731326075763220359, guid: 12614e15c8df7ea4987a7d2b457d2908,
+  katWidzenia: 160
+--- !u!114 &106709244834986847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281006544878983968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5126dc90405313d428204c986ebe6634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  predkoscObrotu: 3
+  gladkiObrot: 1
+  predkoscRuchu: 3
+  zasiegWzroku: 30
+  odstepGracza: 2
+--- !u!114 &2284065093671692699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281006544878983968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f6446f79c7bb64f81a7f3e050a7842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  czekaj: 2
+  odliczanieDoStrzalu: 0
+  strzalaPrefab: {fileID: 3731326075763220359, guid: 12614e15c8df7ea4987a7d2b457d2908,
     type: 3}
-  shortAttack: 20
-  longAttack: 40
-  playerInShortRange: 0
-  playerInLongRange: 0
+  predkosc: 5
 --- !u!1001 &7671651690131123108
 PrefabInstance:
   m_ObjectHideFlags: 0

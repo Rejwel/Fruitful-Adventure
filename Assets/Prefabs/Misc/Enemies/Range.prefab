@@ -382,6 +382,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   katWidzenia: 160
+  agent: {fileID: 9033190547601265116}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  playerInShortRange: 0
+  playerInLongRange: 0
+  shortAttack: 15
+  longAttack: 30
 --- !u!114 &-3447098621479245269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +405,7 @@ MonoBehaviour:
   predkoscObrotu: 6
   gladkiObrot: 1
   predkoscRuchu: 5
-  zasiegWzroku: 40
+  zasiegWzroku: 30
   odstepGracza: 20
 --- !u!114 &-8671360481760239241
 MonoBehaviour:
