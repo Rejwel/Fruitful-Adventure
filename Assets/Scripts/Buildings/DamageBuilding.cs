@@ -27,8 +27,6 @@ public class DamageBuilding : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
-            
         
-        print(other);
     }
 }

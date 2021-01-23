@@ -17,12 +17,13 @@ public class TurretDetecting : MonoBehaviour
 
     public Transform partToRotate;
     public float turnSpeed = 10f;
-    public Text progressText;
+    public GameObject progressText;
     public string CurrentBuilding;
 
     // Start is called before the first frame update
     void Start()
     {
+        progressText = GameObject.Find("WarningText");
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
@@ -66,7 +67,7 @@ public class TurretDetecting : MonoBehaviour
 
         if (Time.time >= fireCountdown)
         {
-            progressText.text = "Wykryto wroga obok " + CurrentBuilding;
+            progressText.GetComponent<Text>().text = "Wykryto wroga obok " + CurrentBuilding;
             fireCountdown = 1f / fireRate + Time.time;
         }
     }

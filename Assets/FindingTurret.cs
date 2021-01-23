@@ -20,7 +20,6 @@ public class FindingTurret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
@@ -52,12 +51,17 @@ public class FindingTurret : MonoBehaviour
     void Update()
     {
         TurretInfo = FindObjectOfType<TurretDetecting>();
+        if (TurretInfo == null)
+        {
+            return;
+        }
+        
         if (target == null)
         {
             TurretInfo.CurrentBuilding = deafult;
             return;
         }
-
+        
         if (Time.time >= fireCountdown)
         {
             TurretInfo.CurrentBuilding = Building;

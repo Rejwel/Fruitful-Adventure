@@ -21,7 +21,6 @@ public class BuildingHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        print(currentHealth);
         healthBar.SetHealth(currentHealth);
     }
 
