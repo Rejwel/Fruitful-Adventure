@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: -8493134074461511195}
   m_Layer: 2
   m_Name: TurretDetecting
-  m_TagString: Turret
+  m_TagString: TurretDetecting
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,8 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: {fileID: 0}
-  WarningCanvas: {fileID: 1351519416926413739, guid: 4f10b606ce5827b4fa38c2505b8bb7df,
-    type: 3}
 --- !u!1 &1762813977012365068
 GameObject:
   m_ObjectHideFlags: 0

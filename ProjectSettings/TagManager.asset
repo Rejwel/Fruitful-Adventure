@@ -14,6 +14,8 @@ TagManager:
   - ABC
   - WarningCanvas
   - Healthbar
+  - TurretDetecting
+  - Warning Cavas
   layers:
   - Default
   - TransparentFX

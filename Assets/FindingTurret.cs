@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections;
+using UnityEngine;
 
-
-public class TurretDetecting : MonoBehaviour
+public class FindingTurret : MonoBehaviour
 {
     private Transform target;
 
@@ -13,16 +12,15 @@ public class TurretDetecting : MonoBehaviour
     public float range = 15f;
 
     [Header("Unity Setup Fields")]
-    public string enemyTag = "Enemy";
-
-    public Transform partToRotate;
-    public float turnSpeed = 10f;
-    public Text progressText;
-    public string CurrentBuilding;
+    public string enemyTag = "";
+    public string Building;
+    public string deafult;
+    public TurretDetecting TurretInfo;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
@@ -53,20 +51,16 @@ public class TurretDetecting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TurretInfo = FindObjectOfType<TurretDetecting>();
         if (target == null)
         {
+            TurretInfo.CurrentBuilding = deafult;
             return;
         }
 
-        //Target lock on
-        Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
         if (Time.time >= fireCountdown)
         {
-            progressText.text = "Wykryto wroga obok " + CurrentBuilding;
+            TurretInfo.CurrentBuilding = Building;
             fireCountdown = 1f / fireRate + Time.time;
         }
     }
