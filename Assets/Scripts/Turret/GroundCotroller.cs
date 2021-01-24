@@ -28,16 +28,17 @@ public class GroundCotroller : MonoBehaviour
         
         if (currentPlaceableObject != null)
         {
+            
             MoveCurrentObjectToMouse();
             RotateFromMouseWheel();
             if (hope)
             {
-                WarningCanvas.SetActive(warning);
+                WarningCanvas.SetActive(false);
                 ReleaseIfClicked();
             }
             else
             {
-                WarningCanvas.SetActive(warning);
+                WarningCanvas.SetActive(true);
             }
         }
         
@@ -54,7 +55,9 @@ public class GroundCotroller : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha0 + 9 - i))
             {
+                hope = true;
                 TurrerDetecting = false;
+                WarningCanvas.SetActive(false);
                 if (PressedKeyOfCurrentPrefab(i))
                 {
                     Destroy(currentPlaceableObject);
