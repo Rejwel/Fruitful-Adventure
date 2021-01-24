@@ -35971,8 +35971,6 @@ MonoBehaviour:
   player: {fileID: 1948208340}
   hope: 1
   WarningCanvas: {fileID: 4130897817917187253}
-  warning: 0
-  TurrerDetecting: 0
 --- !u!1001 &2874718898421768074
 PrefabInstance:
   m_ObjectHideFlags: 0
