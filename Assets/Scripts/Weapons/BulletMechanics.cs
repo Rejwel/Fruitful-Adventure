@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.MemoryProfiler;
 using UnityEngine;
 
 public class BulletMechanics : MonoBehaviour
@@ -12,11 +13,13 @@ public class BulletMechanics : MonoBehaviour
 
     void Start()
     {
+        Physics.IgnoreLayerCollision(15,15);
         explosion = FindObjectOfType<Explosion>();
         player = FindObjectOfType<PlayerShoot>();
         WaveManager = FindObjectOfType<WaveManager>();
         gameObject.tag = "Bullet";
         Destroy(gameObject, 5);
+        gameObject.GetComponent<SphereCollider>().enabled = true;
     }
 
     private void OnTriggerEnter(Collider hit)
@@ -40,5 +43,6 @@ public class BulletMechanics : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
     
 }

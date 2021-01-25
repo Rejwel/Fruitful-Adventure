@@ -12,7 +12,7 @@ public class PlayerShoot : MonoBehaviour
 {
     [Header("Misc")]
     public Transform firePoint;
-    public Rigidbody bullet;
+    public GameObject bullet;
     private Inventory inventory;
     
     private Gun currentGun;
@@ -156,24 +156,21 @@ public class PlayerShoot : MonoBehaviour
         bullets = currentGun.GetBullets();
         desc = currentGun.GetDesc();
         nextTimeToFire = Time.time + fireRate;
-        Vector3 forwardVector =  Vector3.forward;
-        
-        
-
+        GameObject InstantiateBullet;
         AudioManager.playSound(desc);
         for (int i = 0; i < bullets; i++)
         {
-            Rigidbody bulletRigidbody;
-              
+            Vector3 forwardVector = Vector3.forward;
+            
             float deviation = Random.Range(0f, bulletSpread);
             float angle = Random.Range(0f, 360f);
+            
             forwardVector = Quaternion.AngleAxis(deviation, Vector3.up) * forwardVector;
             forwardVector = Quaternion.AngleAxis(angle, Vector3.forward) * forwardVector;
             forwardVector = firePoint.transform.rotation * forwardVector;
-
-            // print(firePoint.position);
-            bulletRigidbody = Instantiate(bullet, firePoint.position, firePoint.rotation) as Rigidbody;
-            bulletRigidbody.AddForce(forwardVector * bulletSpeed);
+            
+            InstantiateBullet = Instantiate(bullet, firePoint.position, Quaternion.identity);
+            InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
         }
     }
 
