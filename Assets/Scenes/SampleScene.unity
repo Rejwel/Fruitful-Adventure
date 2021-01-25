@@ -931,6 +931,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6446918675095401328, guid: ddf9001f60b0a6543af9d6e8c3ea3b3a,
+        type: 3}
+      propertyPath: m_EnableTreeColliders
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6446918675095401329, guid: ddf9001f60b0a6543af9d6e8c3ea3b3a,
         type: 3}
       propertyPath: m_Name
@@ -1046,6 +1051,11 @@ PrefabInstance:
       propertyPath: m_MaterialTemplate
       value: 
       objectReference: {fileID: 2100000, guid: 7d52d8fc0c1e5d640aec60dcc67b64db, type: 2}
+    - target: {fileID: 6446918675095401331, guid: ddf9001f60b0a6543af9d6e8c3ea3b3a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddf9001f60b0a6543af9d6e8c3ea3b3a, type: 3}
 --- !u!4 &118773302 stripped
@@ -6674,8 +6684,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000017166, y: 85.3}
-  m_SizeDelta: {x: 290.63806, y: 30}
+  m_AnchoredPosition: {x: -452, y: 94}
+  m_SizeDelta: {x: 350.65875, y: 28.911804}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &243210915
 MonoBehaviour:
@@ -6690,7 +6700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -27138,6 +27148,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2912102337595127316, guid: 8b935e3861f19b34ab8eb9fbc1fe8359,
+        type: 3}
+      propertyPath: m_TagString
+      value: TurretDetecting
+      objectReference: {fileID: 0}
     - target: {fileID: 3299123143141140278, guid: 8b935e3861f19b34ab8eb9fbc1fe8359,
         type: 3}
       propertyPath: cam
@@ -27333,12 +27348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19db041a7f06c9f438c9e4d15268d263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
-  range: 15
-  enemyTag: TurretDetecting
   Building: domu
-  deafult: 'lasu '
-  TurretInfo: {fileID: 0}
 --- !u!1 &1451376426
 GameObject:
   m_ObjectHideFlags: 0
@@ -27636,6 +27646,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743683748004189736, guid: 5fba3ae1e3dc38c458a297ffca5cc1cb,
+        type: 3}
+      propertyPath: m_TagString
+      value: TurretDetecting
       objectReference: {fileID: 0}
     - target: {fileID: 8913977291763449644, guid: 5fba3ae1e3dc38c458a297ffca5cc1cb,
         type: 3}
@@ -35760,6 +35775,25 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 4c5b5d3cc9499c84bb527508ce996707, type: 2}
+--- !u!1 &2023231365 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8743683748004189736, guid: 5fba3ae1e3dc38c458a297ffca5cc1cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1460561592}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2023231366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023231365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19db041a7f06c9f438c9e4d15268d263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Building: stodoly
 --- !u!1 &2082387082
 GameObject:
   m_ObjectHideFlags: 0
@@ -35947,7 +35981,6 @@ MonoBehaviour:
   player: {fileID: 1948208340}
   hope: 1
   WarningCanvas: {fileID: 4130897817917187253}
-  warning: 0
 --- !u!1001 &2874718898421768074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35955,6 +35988,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1211090547}
     m_Modifications:
+    - target: {fileID: -245544144524962046, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: camTransform
+      value: 
+      objectReference: {fileID: 963194228}
+    - target: {fileID: -245544144524962046, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 3464215114637409809, guid: 24f1d4b596a99224b8263c8adefe8a9f,
+        type: 3}
     - target: {fileID: 913872315, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -35973,6 +36017,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1782037897, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089319189, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.04508397
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089319189, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089319189, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089319189, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9989832
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089319189, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2682917186886493258, guid: a5d1c6b1fd001ec4e921a769a3910204,

@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
     public HealthPlayer Health;
     public GameObject Dead;
     public GameObject SureGameover;
+    public GameObject progressText;
 
 
     public GameObject GUI;
