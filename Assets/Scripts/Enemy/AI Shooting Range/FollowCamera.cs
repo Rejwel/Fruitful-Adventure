@@ -13,8 +13,9 @@ public class FollowCamera : MonoBehaviour
 
     private Transform mojObiekt;
     private Transform gracz;
-    private bool patrzNaGracza = false;
+    public bool patrzNaGracza = false;
     private Vector3 pozycjaGraczaXYZ;
+    private EnemyFollowing EnemyFollowing;
 
     private Shoot strzalLuk;
 
@@ -27,6 +28,7 @@ public class FollowCamera : MonoBehaviour
 
     private void Awake()
     {
+        EnemyFollowing = FindObjectOfType<EnemyFollowing>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -45,14 +47,13 @@ public class FollowCamera : MonoBehaviour
     
     private void Update()
     {
-
         playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, whatIsPlayer);
         playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
     
 
         gracz = GameObject.FindWithTag("Player").transform;
 
-        pozycjaGraczaXYZ = new Vector3(gracz.position.x, mojObiekt.position.y, gracz.position.z);
+        pozycjaGraczaXYZ = new Vector3(gracz.position.x, gracz.position.y, gracz.position.z);
 
         //float dist = Vector3.Distance(mojObiekt.position, gracz.position);
 
@@ -62,6 +63,7 @@ public class FollowCamera : MonoBehaviour
         {
             patrzNaGracza = true;
             Vector3 dirToPlayer = transform.position - gracz.transform.position;  //when player is close he moves back
+            //Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube), dirToPlayer + transform.position, transform.rotation);
             Vector3 newPos = transform.position + dirToPlayer;
             agent.SetDestination(newPos);
             wykonajAtak();
@@ -72,7 +74,7 @@ public class FollowCamera : MonoBehaviour
     {
         if(strzalLuk != null)
         { 
-        strzalLuk.strzal();
+            strzalLuk.strzal();
         }
     }
 

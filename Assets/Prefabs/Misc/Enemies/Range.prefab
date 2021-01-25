@@ -303,17 +303,14 @@ MonoBehaviour:
   predkoscObrotu: 6
   gladkiObrot: 1
   predkoscRuchu: 5
-  zasiegWzroku: 30
-  odstepGracza: 20
-  agent: {fileID: 0}
+  agent: {fileID: 9033190547601265116}
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   playerInShortRange: 0
   playerInLongRange: 0
-  Player: {fileID: 0}
-  shortAttack: 0
-  longAttack: 0
+  shortAttack: 15
+  longAttack: 30
 --- !u!114 &-8671360481760239241
 MonoBehaviour:
   m_ObjectHideFlags: 0
