@@ -8,8 +8,8 @@ public class FollowCamera : MonoBehaviour
     public float predkoscObrotu = 6.0f;
     public bool gladkiObrot = true;
     public float predkoscRuchu = 5.0f;
-    public float zasiegWzroku = 30f;
-    public float odstepGracza = 2f;
+   // public float zasiegWzroku = 30f;
+   // public float odstepGracza = 2f;
 
     private Transform mojObiekt;
     private Transform gracz;
@@ -22,7 +22,6 @@ public class FollowCamera : MonoBehaviour
     public LayerMask whatIsPlayer;
     public bool playerInShortRange;
     public bool playerInLongRange;
-    public Transform Player;
     public float shortAttack, longAttack;
 
 
@@ -44,39 +43,27 @@ public class FollowCamera : MonoBehaviour
     }
 
     
-    void Update()
+    private void Update()
     {
 
         playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, whatIsPlayer);
         playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
-
-        if (playerInShortRange || playerInLongRange)
-        {
-            Vector3 dirToPlayer = transform.position - Player.transform.position;  //when player is close he moves back
-            Vector3 newPos = transform.position + dirToPlayer;
-            agent.SetDestination(newPos);
-
-            GetComponent<NavMeshAgent>().speed = 3;
-        }
+    
 
         gracz = GameObject.FindWithTag("Player").transform;
 
         pozycjaGraczaXYZ = new Vector3(gracz.position.x, mojObiekt.position.y, gracz.position.z);
 
-        float dist = Vector3.Distance(mojObiekt.position, gracz.position);
+        //float dist = Vector3.Distance(mojObiekt.position, gracz.position);
 
         patrzNaGracza = false;
 
-        if(dist <= zasiegWzroku && dist > odstepGracza)
+        if (playerInShortRange || playerInLongRange)
         {
             patrzNaGracza = true;
-
-            mojObiekt.position = Vector3.MoveTowards(mojObiekt.position, pozycjaGraczaXYZ, predkoscRuchu * Time.deltaTime);
-            wykonajAtak();
-        }
-        else if(dist <= odstepGracza)
-        {
-            patrzNaGracza = true;
+            Vector3 dirToPlayer = transform.position - gracz.transform.position;  //when player is close he moves back
+            Vector3 newPos = transform.position + dirToPlayer;
+            agent.SetDestination(newPos);
             wykonajAtak();
         }
     }

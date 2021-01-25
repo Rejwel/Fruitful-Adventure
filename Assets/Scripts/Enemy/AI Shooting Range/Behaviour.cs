@@ -63,7 +63,7 @@ public class Behaviour : MonoBehaviour
         FollowCamera ai = (FollowCamera)GetComponent<FollowCamera>();
         if(ai != null)
         {
-            return ai.zasiegWzroku;
+            //return ai.zasiegWzroku;
         }
         return 0;
     }

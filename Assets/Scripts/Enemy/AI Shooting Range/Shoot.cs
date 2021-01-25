@@ -33,7 +33,7 @@ public class Shoot : MonoBehaviour
 
             strzala = Instantiate(strzalaPrefab, transform.position + transform.forward, wrogastrzal.getRotacjaPocisku());
             strzala.GetComponent<Rigidbody>().AddForce(transform.forward * predkosc, ForceMode.Impulse);
-            strzala.GetComponent<Rigidbody>().AddForce(transform.up * 1f, ForceMode.Impulse);
+            strzala.GetComponent<Rigidbody>().AddForce(transform.up * 1.4f, ForceMode.Impulse);
         }
     }
 
