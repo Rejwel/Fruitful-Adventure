@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class TurretDetecting : MonoBehaviour
 {
     private Transform target;
+    private AreaControl AC;
 
     [Header("Attributes")]
     public float range = 15f;
@@ -19,8 +20,9 @@ public class TurretDetecting : MonoBehaviour
 
     private void Awake()
     {
+        AC = FindObjectOfType<AreaControl>();
+        progressText = AC.WarningCanvas;
         House = GameObject.Find("house");
-        progressText = GameObject.Find("WarningText");
     }
     // Start is called before the first frame update
     void Start()
@@ -70,7 +72,7 @@ public class TurretDetecting : MonoBehaviour
                 nearestEnemy = enemy;
             }
         }
-        print(nearestEnemy);
+        // print(nearestEnemy);
         if (nearestEnemy!=null)
         {
             CurrentBuilding = nearestEnemy.GetComponent<FindingTurret>().Building;
@@ -83,24 +85,22 @@ public class TurretDetecting : MonoBehaviour
     void Update()
     {
         UpdateBuilding();
-        print(CurrentBuilding);
-        print(shortestDistanceToBuilding);
+        // print(CurrentBuilding);
+        // print(shortestDistanceToBuilding);
         if (target == null)
         {
-            
+            AC.CloseCanvas();
             return;
         }
         
-
+        AC.OpenCanvas();
         if (shortestDistanceToBuilding > range)
         {
-            
-            progressText.GetComponent<Text>().text = "Wykryto wroga obok lasu!";
+            AC.DefaultWarning();
         }
         else
         {
-            
-            progressText.GetComponent<Text>().text = "Wykryto wroga obok " + CurrentBuilding;
+            AC.BuildingWarning(CurrentBuilding);
         }
     }
 

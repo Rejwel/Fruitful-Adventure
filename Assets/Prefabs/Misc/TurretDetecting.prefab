@@ -127,7 +127,6 @@ MonoBehaviour:
   progressText: {fileID: 0}
   CurrentBuilding: 
   shortestDistanceToBuilding: 0
-  BuildingName: {fileID: 0}
   House: {fileID: 0}
 --- !u!1 &1762813977012365068
 GameObject:
@@ -188,7 +187,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 943b661a1b1250d47a6b1ecda8df3a33, type: 2}
+  - {fileID: 2100000, guid: f917c8d2a053b8e4192e2511e0a6c415, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -313,7 +312,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 943b661a1b1250d47a6b1ecda8df3a33, type: 2}
+  - {fileID: 2100000, guid: f917c8d2a053b8e4192e2511e0a6c415, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
