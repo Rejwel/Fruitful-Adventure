@@ -71,12 +71,14 @@ public class PauseMenu : MonoBehaviour
 
     public void SureMenu()
     {
+        GameOver = true;
         pauseMenuUI.SetActive(false);
         AreYouSureMenu.SetActive(true);
     }
 
     public void SureQuit()
     {
+        GameOver = true;
         pauseMenuUI.SetActive(false);
         AreYouSureQuit.SetActive(true);
     }
@@ -89,6 +91,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+        GameOver = false;
         SceneManager.LoadScene(0);
     }
 
@@ -100,6 +103,7 @@ public class PauseMenu : MonoBehaviour
 
     public void NoSure()
     {
+        GameOver = false;
         pauseMenuUI.SetActive(true);
         AreYouSureMenu.SetActive(false); 
         AreYouSureQuit.SetActive(false);
