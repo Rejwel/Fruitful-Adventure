@@ -37,7 +37,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
-            else if (GameIsPaused == false && shopMenu.active == false && shopMenu2.active == false && GameOver == false)
+            else if (GameIsPaused == false && shopMenu.active == false && shopMenu2.active == false && GameOver == false && BigMiniMap.MiniMapOpen==false)
             {
                 Pause();
             }
