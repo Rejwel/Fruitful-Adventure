@@ -70,7 +70,7 @@ public class FollowCamera : MonoBehaviour
         }
     }
 
-    private void wykonajAtak()
+    private void wykonajAtak()     
     {
         if(strzalLuk != null)
         { 
@@ -78,7 +78,7 @@ public class FollowCamera : MonoBehaviour
         }
     }
 
-    private void obrotGlowy()
+    private void obrotGlowy()   //Obracamy głowę wroga w stronę gracza
     {
         Transform glowa = transform.Find("Head");
 
@@ -91,7 +91,7 @@ public class FollowCamera : MonoBehaviour
         
     }
 
-    private void patrzNaMnie()
+    private void patrzNaMnie()      //Obrót samego przeciwnika w stronę gracza
     {
         if(gladkiObrot && patrzNaGracza == true)
         {
@@ -101,7 +101,7 @@ public class FollowCamera : MonoBehaviour
         }
         else if (!gladkiObrot && patrzNaGracza == true)
         {
-            transform.LookAt(pozycjaGraczaXYZ);
+            transform.LookAt(pozycjaGraczaXYZ);     //Błyskawiczny obrót wroga
         }
     }
 

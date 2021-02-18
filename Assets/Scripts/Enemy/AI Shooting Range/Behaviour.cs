@@ -23,30 +23,30 @@ public class Behaviour : MonoBehaviour
         gracz = graczObiekt.transform;
     }
 
-    public bool namierzanie()
+    public bool namierzanie()       //pobranie aktualnego kąta obrotu wroga w stosunku do gracza
     {
         float angle = Quaternion.Angle(gracz.rotation, transform.rotation);
-        if(angle >= katWidzenia)
+        if(angle >= katWidzenia)    //czy gracz jest widoczny
         {
             return true;
         }
         return false;
     }
 
-    public Quaternion getRotacjaPocisku()
+    public Quaternion getRotacjaPocisku()    //na podstawie pozycji gracza ustala kierunek pozycji pocisku, do której ma zmierzać
     {
         pozycjaGraczaXYZ = new Vector3(gracz.position.x, gracz.position.y, gracz.position.z);
         rotacjaPocisku = Quaternion.LookRotation(pozycjaGraczaXYZ - transform.position);
         return rotacjaPocisku;
     }
 
-    public bool celowanie(float zasieg)
+    public bool celowanie(float zasieg)     //daje informacje czy przeciwnik na nas patrzy
     {
         Transform glowa = transform.Find("Head");
-        Ray ray = new Ray(glowa.position, glowa.forward);
+        Ray ray = new Ray(glowa.position, glowa.forward);   //pobiera promień w jakim kierunku patrzy przeciwnik
         RaycastHit hitinfo;
 
-        if(Physics.Raycast(ray, out hitinfo, zasieg))
+        if(Physics.Raycast(ray, out hitinfo, zasieg))       //Sprawdza czy promień w coś trafił
         {
             GameObject go = hitinfo.collider.gameObject;
 

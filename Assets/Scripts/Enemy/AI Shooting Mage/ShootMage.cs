@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootMage : MonoBehaviour
 {
-    public float czekaj = 2f;
+    public float czekaj = 2f;       //Co ile mozna wykonać strzał
     public float odliczanieDoStrzalu = 0f;
     public GameObject strzalaPrefab;
     public float predkosc = 5;
@@ -17,11 +17,13 @@ public class ShootMage : MonoBehaviour
         wrogastrzal = FindObjectOfType<BehaviourMage>();
     }
 
-    public void strzal()
+
+
+    public void strzal()            //Funkcja odpowiadająca za strzał
     {
         if (odliczanieDoStrzalu < czekaj)
         {
-            odliczanieDoStrzalu += Time.deltaTime;
+            odliczanieDoStrzalu += Time.deltaTime;          //licznik do kolejnego strzału
         }
 
 

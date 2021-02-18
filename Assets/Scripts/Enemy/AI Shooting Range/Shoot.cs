@@ -17,11 +17,11 @@ public class Shoot : MonoBehaviour
         wrogastrzal = FindObjectOfType<Behaviour>();
     }
 
-    public void strzal()
+    public void strzal()    //Funkcja odpowiadająca za strzał
     {
         if(odliczanieDoStrzalu < czekaj)
         {
-            odliczanieDoStrzalu += Time.deltaTime;
+            odliczanieDoStrzalu += Time.deltaTime;  //licznik do kolejnego strzału
         }
         
 
