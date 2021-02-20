@@ -35069,6 +35069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Building: {fileID: 1431717012}
   Icon: {fileID: 1308451159}
+  HP: 0
   Health: {fileID: 0}
 --- !u!1 &1901294880
 GameObject:
