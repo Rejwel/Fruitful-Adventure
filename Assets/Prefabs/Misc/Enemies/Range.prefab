@@ -304,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   predkoscObrotu: 6
   gladkiObrot: 1
-  predkoscRuchu: 5
+  predkoscRuchu: 8
   patrzNaGracza: 0
   agent: {fileID: 9033190547601265116}
   whatIsPlayer:
@@ -351,13 +351,19 @@ MonoBehaviour:
     type: 3}
   predkosc: 7
   patrzNaGracza: 0
+  katWidzenia: 160
+  predkoscObrotu: 6
+  gladkiObrot: 1
+  predkoscRuchu: 5
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8192
   playerInShortRange: 0
   playerInLongRange: 0
+  playerInCenterRange: 0
   shortAttack: 10
   longAttack: 25
+  centerPoint: 20
 --- !u!114 &4163258653326926161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e491f22a7c764ba4ea401ef8ec73cb28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  katWidzenia: 160
+  predkoscObrotu: 6
+  gladkiObrot: 1
+  predkoscRuchu: 5
 --- !u!1001 &8223621855868920146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -386,12 +394,12 @@ PrefabInstance:
     - target: {fileID: 3526056543338158177, guid: 36a80762d51a8db4ea11537f960660ee,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3526056543338158177, guid: 36a80762d51a8db4ea11537f960660ee,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3526056543902569556, guid: 36a80762d51a8db4ea11537f960660ee,
         type: 3}

@@ -11,6 +11,7 @@ public class FollowingAndShooting : MonoBehaviour
     public Transform Player;
     private Rigidbody enemyRb;
     private bool follow = false;
+    private Quaternion rotation;
     
     //Shooting
     public float czekaj = 2f;
@@ -33,7 +34,8 @@ public class FollowingAndShooting : MonoBehaviour
     public LayerMask whatIsPlayer;
     public bool playerInShortRange;
     public bool playerInLongRange;
-    public float shortAttack, longAttack;
+    public bool playerInCenterRange;
+    public float shortAttack, longAttack, centerPoint;
 
    
 
@@ -65,32 +67,31 @@ public class FollowingAndShooting : MonoBehaviour
 
     void Update()
     {
+        // 3 positions of enemy attacking player
         playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, whatIsPlayer);
+        playerInCenterRange = Physics.CheckSphere(transform.position, centerPoint, whatIsPlayer);
         playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
 
-        patrzNaGracza = false;
-
-        if (playerInShortRange && playerInLongRange)
+        if (playerInShortRange || playerInCenterRange)
         {
-            patrzNaGracza = true;
             Vector3 dirToPlayer = transform.position - Player.transform.position;  //when player is close he moves back
-            //Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube), dirToPlayer + transform.position, transform.rotation);
             Vector3 newPos = transform.position + dirToPlayer;
             agent.SetDestination(newPos);
-            wykonajAtak();
-        }
-
-        if(playerInLongRange == true && playerInShortRange == false)
-        {
-            patrzNaGracza = true;
-            if (follow)
-            {              
-                agent.SetDestination(Player.position);
-                GetComponent<Rigidbody>().freezeRotation = true;
-                wykonajAtak();
-            }
             
+            // shoot if possible
+            strzal();
         }
+        else if (playerInLongRange)
+        {
+            agent.SetDestination(Player.transform.position);
+        }
+        else
+        {
+            agent.SetDestination(Player.transform.position);
+        }
+        
+        // transform of object set to looking destination
+        transform.LookAt(Player);
     }
 
 
@@ -185,13 +186,13 @@ public class FollowingAndShooting : MonoBehaviour
 
 
     //Following Part
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.collider.CompareTag("Bullet") || other.collider.CompareTag("Enemy"))
-        {
-            Invoke("StopMoving", 0.2f);
-        }
-    }
+    // private void OnCollisionEnter(Collision other)
+    // {
+    //     if (other.collider.CompareTag("Bullet") || other.collider.CompareTag("Enemy"))
+    //     {
+    //         Invoke("StopMoving", 0.2f);
+    //     }
+    // }
 
     public void StopMoving()
     {
