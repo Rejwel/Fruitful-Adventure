@@ -41,11 +41,6 @@ public class EnemyFollowing : MonoBehaviour
       
     }
     
-    public void StopMoving()
-    {
-        enemyRb.velocity = Vector3.zero;
-        enemy.SetDestination(Player.position);
-    }
     
     public IEnumerator HoldNavAgent() 
     { 
