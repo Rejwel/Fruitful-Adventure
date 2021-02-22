@@ -10,13 +10,13 @@ public class EnemyFollowing : MonoBehaviour
     public Transform Player;
     private Rigidbody enemyRb;
     private bool follow = false;
-    private FollowCamera FollowCamera;
+    
    
     
 
     private void Start()
     {
-        FollowCamera = FindObjectOfType<FollowCamera>();
+        
         StartCoroutine(HoldNavAgent());
         
         enemyRb = gameObject.GetComponent<Rigidbody>();

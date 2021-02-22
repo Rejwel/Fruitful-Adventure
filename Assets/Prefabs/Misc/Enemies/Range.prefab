@@ -72,18 +72,13 @@ GameObject:
   - component: {fileID: 9033190547601265106}
   - component: {fileID: 9033190547601265105}
   - component: {fileID: 9033190547601265104}
-  - component: {fileID: 9033190547601265111}
   - component: {fileID: 9033190547601265116}
   - component: {fileID: 8334998599965250340}
   - component: {fileID: 7624425721677361650}
   - component: {fileID: 6330956796562381967}
   - component: {fileID: 1342185130220687365}
   - component: {fileID: -1422783523207199391}
-  - component: {fileID: 5198469377565107289}
-  - component: {fileID: -3447098621479245269}
-  - component: {fileID: -8671360481760239241}
   - component: {fileID: 2160099932527616359}
-  - component: {fileID: 4163258653326926161}
   m_Layer: 10
   m_Name: Range
   m_TagString: Enemy
@@ -168,20 +163,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9033190547601265111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033190547601265110}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cae29cd28e58c44394c95291d0bfd39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 9033190547601265116}
-  Player: {fileID: 0}
 --- !u!195 &9033190547601265116
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -277,60 +258,6 @@ MonoBehaviour:
   explosionRadius: 3
   explosionForce: 50
   explosionUpward: 0.5
---- !u!114 &5198469377565107289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033190547601265110}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e0dcd3ad9ee0f4cbbaf85646e72f41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  katWidzenia: 160
---- !u!114 &-3447098621479245269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033190547601265110}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd7cca448a9e4e48849534cf52444b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  predkoscObrotu: 6
-  gladkiObrot: 1
-  predkoscRuchu: 8
-  patrzNaGracza: 0
-  agent: {fileID: 9033190547601265116}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  playerInShortRange: 0
-  playerInLongRange: 0
-  shortAttack: 15
-  longAttack: 30
---- !u!114 &-8671360481760239241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033190547601265110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28b06dce7840b664b8b3980981a43c18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  czekaj: 2
-  odliczanieDoStrzalu: 0
-  strzalaPrefab: {fileID: 9142128983991355959, guid: 92411f463ca4a0f4cbfc071a11516143,
-    type: 3}
-  predkosc: 6
 --- !u!114 &2160099932527616359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,21 +291,6 @@ MonoBehaviour:
   shortAttack: 10
   longAttack: 25
   centerPoint: 20
---- !u!114 &4163258653326926161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033190547601265110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e491f22a7c764ba4ea401ef8ec73cb28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  predkoscObrotu: 6
-  gladkiObrot: 1
-  predkoscRuchu: 5
 --- !u!1001 &8223621855868920146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -394,12 +306,12 @@ PrefabInstance:
     - target: {fileID: 3526056543338158177, guid: 36a80762d51a8db4ea11537f960660ee,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3526056543338158177, guid: 36a80762d51a8db4ea11537f960660ee,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3526056543902569556, guid: 36a80762d51a8db4ea11537f960660ee,
         type: 3}

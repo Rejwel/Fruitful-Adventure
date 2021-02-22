@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Diagnostics;
 
-public class FollowingAndShooting : MonoBehaviour
+public class FollowingAndShootingRange : MonoBehaviour
 {
     //Following 
     public NavMeshAgent agent;
@@ -15,7 +15,7 @@ public class FollowingAndShooting : MonoBehaviour
     
     //Shooting
     public float czekaj = 2f;
-    public float odliczanieDoStrzalu = 0f;
+    private float odliczanieDoStrzalu = 0f;
     public GameObject strzalaPrefab;
     public float predkosc = 7;
     public bool patrzNaGracza = false;
@@ -28,7 +28,7 @@ public class FollowingAndShooting : MonoBehaviour
     public bool gladkiObrot = true;
     public float predkoscRuchu = 5.0f;
     private Transform mojObiekt;
-    private EnemyCamera ScriptCamera;
+    
 
     //Distance from Player
     public LayerMask whatIsPlayer;
@@ -47,7 +47,6 @@ public class FollowingAndShooting : MonoBehaviour
     void Start()
     {
         //Following
-        ScriptCamera = FindObjectOfType<EnemyCamera>();
         StartCoroutine(HoldNavAgent());
 
         enemyRb = gameObject.GetComponent<Rigidbody>();
@@ -72,8 +71,12 @@ public class FollowingAndShooting : MonoBehaviour
         playerInCenterRange = Physics.CheckSphere(transform.position, centerPoint, whatIsPlayer);
         playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
 
+        pozycjaGraczaXYZ = new Vector3(Player.position.x, Player.position.y, Player.position.z);
+        patrzNaGracza = false;
+
         if (playerInShortRange || playerInCenterRange)
         {
+            patrzNaGracza = true;
             Vector3 dirToPlayer = transform.position - Player.transform.position;  //when player is close he moves back
             Vector3 newPos = transform.position + dirToPlayer;
             agent.SetDestination(newPos);
@@ -133,10 +136,6 @@ public class FollowingAndShooting : MonoBehaviour
         return rotacjaPocisku;
     }
 
-    private void wykonajAtak()
-    {
-           strzal();       
-    }
 
     private void patrzNaMnie()      //Obrót samego przeciwnika w stronę gracza
     {
@@ -166,7 +165,7 @@ public class FollowingAndShooting : MonoBehaviour
 
     }
 
-    public bool celowanie(float zasieg)     //daje informacje czy przeciwnik na nas patrzy
+   public bool celowanie(float zasieg)     //daje informacje czy przeciwnik na nas patrzy
     {
         Transform glowa = transform.Find("Head");
         Ray ray = new Ray(glowa.position, glowa.forward);   //pobiera promień w jakim kierunku patrzy przeciwnik
@@ -181,20 +180,20 @@ public class FollowingAndShooting : MonoBehaviour
                 return true;
             }
         }
-        return false;
-    }
+        return false;  
+    }  
 
 
-    //Following Part
-    // private void OnCollisionEnter(Collision other)
-    // {
-    //     if (other.collider.CompareTag("Bullet") || other.collider.CompareTag("Enemy"))
-    //     {
-    //         Invoke("StopMoving", 0.2f);
-    //     }
-    // }
+//Following Part
+// private void OnCollisionEnter(Collision other)
+// {
+//     if (other.collider.CompareTag("Bullet") || other.collider.CompareTag("Enemy"))
+//     {
+//         Invoke("StopMoving", 0.2f);
+//     }
+// }
 
-    public void StopMoving()
+public void StopMoving()
     {
         enemyRb.velocity = Vector3.zero;
         agent.SetDestination(Player.position);
