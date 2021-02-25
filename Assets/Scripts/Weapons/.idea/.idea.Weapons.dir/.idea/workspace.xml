@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="10a8649e-ed4a-4158-ae30-b38c1c949d81" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../BigMiniMap.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BigMiniMap.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BigMiniMap.renderTexture" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BigMiniMap.renderTexture.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MiniMap.renderTexture" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MiniMap.renderTexture.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/DesignMaterials/trees/apple trees/apple_t1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/DesignMaterials/trees/apple trees/apple_t1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/DesignMaterials/trees/spruses/sp1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/DesignMaterials/trees/spruses/sp1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Models/Trees/sp1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Models/Trees/sp1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/gr1.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/gr1.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/gr2.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/gr2.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/gr3.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/gr3.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/gr4.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/gr4.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/house.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/house.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r1.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r1.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r10.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r10.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r2.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r2.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r3.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r3.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r4.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r4.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r5.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r5.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r6.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r6.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r7.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r7.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r8.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r8.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r9.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/r9.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/sp1.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/sp1.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/sp2.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/sp2.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/sp3.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/sp3.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/t1.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/t1.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/t2.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/t2.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/tr_f1.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/tr_f1.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/tr_f2.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Desing/Packages/tr_f2.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Prefabs/Misc/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../../Prefabs/Misc/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Scenes/SampleScene/NavMesh.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/SampleScene/NavMesh.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Scenes/SampleScene/Old terrain/New Terrain.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/SampleScene/Old terrain/New Terrain.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1ozPa3OYLhRbOelYL7xkkQh073V" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1614286511113</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614286511113</updated>
+      <workItem from="1614286512281" duration="7000" />
+    </task>
+    <servers />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
