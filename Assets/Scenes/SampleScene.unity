@@ -47678,6 +47678,7 @@ MonoBehaviour:
   hope: 1
   WarningCanvas: {fileID: 4130897817917187253}
   location: {fileID: 158416503}
+  Turret: {fileID: 0}
 --- !u!1 &2109929445
 GameObject:
   m_ObjectHideFlags: 0
@@ -48139,7 +48140,7 @@ PrefabInstance:
     - target: {fileID: 3366098043160033999, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3913907161788900341, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
