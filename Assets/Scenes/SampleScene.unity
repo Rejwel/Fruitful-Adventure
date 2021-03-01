@@ -2225,6 +2225,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155606724}
   m_CullTransparentMesh: 0
+--- !u!4 &158416503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3366098043160033999, guid: a5d1c6b1fd001ec4e921a769a3910204,
+    type: 3}
+  m_PrefabInstance: {fileID: 2874718898421768074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &162101076
 GameObject:
   m_ObjectHideFlags: 0
@@ -47671,6 +47677,7 @@ MonoBehaviour:
   player: {fileID: 1948208340}
   hope: 1
   WarningCanvas: {fileID: 4130897817917187253}
+  location: {fileID: 158416503}
 --- !u!1 &2109929445
 GameObject:
   m_ObjectHideFlags: 0
@@ -48128,6 +48135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366098043160033999, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3913907161788900341, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}

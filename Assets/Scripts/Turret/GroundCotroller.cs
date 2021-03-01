@@ -17,7 +17,8 @@ public class GroundCotroller : MonoBehaviour
     private float mouseWheelRotation;
     public bool hope=true;
     public GameObject WarningCanvas;
-
+    public Transform location;
+    public GameObject Turret;
 
     private void Update()
     {
@@ -68,10 +69,14 @@ public class GroundCotroller : MonoBehaviour
                         Destroy(currentPlaceableObject);
                     }
 
-                    if (Physics.Raycast(ray, out hitInfo, 8f, terrain))
+                    if (Physics.Raycast(ray, out hitInfo, 15f, terrain))
                     {
-                        
+                        Turret = GameObject.FindGameObjectWithTag("Turret");
                         currentPlaceableObject = Instantiate(placeableObjectPrefabs[i]);
+                        currentPrefabIndex = i;
+                    }
+                    else {
+                        currentPlaceableObject = Instantiate(placeableObjectPrefabs[i], location.transform.position, Quaternion.Euler(0,0,0)) as GameObject;
                         currentPrefabIndex = i;
                     }
                 }
@@ -120,6 +125,7 @@ public class GroundCotroller : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
             currentPlaceableObject.tag = "ABC";
+            
             currentPlaceableObject = null;
         }
     }
