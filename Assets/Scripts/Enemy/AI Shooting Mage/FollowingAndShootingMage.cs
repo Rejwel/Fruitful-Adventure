@@ -7,7 +7,7 @@ public class FollowingAndShootingMage : MonoBehaviour
 {
     //Following 
     public NavMeshAgent agent;
-    public Transform Player;
+    private Transform Player;
     private Rigidbody enemyRb;
     private bool follow = false;
     private Quaternion rotation;
@@ -35,11 +35,14 @@ public class FollowingAndShootingMage : MonoBehaviour
     public bool playerInLongRange;
     public bool playerInCenterRange;
     public float shortAttack, longAttack, centerPoint;
+    
+    private GameObject WhatToAttack { get; set; }
 
 
 
     private void Awake()
     {
+        WhatToAttack = WaveManager.AttackingBuilding;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -47,30 +50,21 @@ public class FollowingAndShootingMage : MonoBehaviour
     {
         //Following
         StartCoroutine(HoldNavAgent());
-
         enemyRb = gameObject.GetComponent<Rigidbody>();
-        if (Player == null)
-        {
-            Player = GameObject.FindWithTag("Player").transform;
-        }
-
         mojObiekt = transform;
-        if (GetComponent<Rigidbody>())
-        {
-            GetComponent<Rigidbody>().freezeRotation = true;
-        }
 
     }
 
 
     void Update()
     {
+        if (Player == null) Player = WaveManager.AttackingBuilding.transform;
         // 3 positions of enemy attacking player
-        playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, whatIsPlayer);
-        playerInCenterRange = Physics.CheckSphere(transform.position, centerPoint, whatIsPlayer);
-        playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
+        playerInShortRange = Physics.CheckSphere(Player.transform.position, shortAttack, whatIsPlayer);
+        playerInCenterRange = Physics.CheckSphere(Player.transform.position, centerPoint, whatIsPlayer);
+        playerInLongRange = Physics.CheckSphere(Player.transform.position, longAttack, whatIsPlayer);
 
-        pozycjaGraczaXYZ = new Vector3(Player.position.x, Player.position.y, Player.position.z);    
+        pozycjaGraczaXYZ = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);    
 
         if (playerInShortRange || playerInCenterRange)
         {
@@ -92,7 +86,7 @@ public class FollowingAndShootingMage : MonoBehaviour
         }
 
         // transform of object set to looking destination
-        transform.LookAt(Player);
+        transform.LookAt(Player.transform.position);
     }
 
 
@@ -103,7 +97,6 @@ public class FollowingAndShootingMage : MonoBehaviour
         {
             odliczanieDoStrzalu += Time.deltaTime;  //licznik do kolejnego strzału
         }
-
 
         if (odliczanieDoStrzalu >= czekaj && namierzanie())
         {
@@ -201,7 +194,7 @@ public class FollowingAndShootingMage : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         agent.enabled = true;
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
+        Player = WhatToAttack.transform;
         follow = true;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,20 +22,36 @@ public class WaveManager : MonoBehaviour
     private Text timerText;
     private Text waveCountText;
     private Text enemiesLeftText;
+    private List<GameObject> Buildings { get; set; }
+    private int WhichBuildingToAttack { get; set; }
+    public static GameObject AttackingBuilding { get; set; }
+    private FollowingAndShootingMage enemyType1; 
+    private FollowingAndShootingRange enemyType2;
+    private EnemyFollowing enemyType3;
+    
 
     public Spawner [] spawners;
     public GameObject [] enemies;
-    
-    
 
     void Start()
     {
         timerText = GameObject.Find("TimerManager").GetComponent<Text>();
         waveCountText = GameObject.Find("WaveManager").GetComponent<Text>();
         enemiesLeftText = GameObject.Find("EnemiesRemain").GetComponent<Text>();
+        enemyType1 = FindObjectOfType<FollowingAndShootingMage>();
+        enemyType2 =  FindObjectOfType<FollowingAndShootingRange>();
+        enemyType3 =  FindObjectOfType<EnemyFollowing>();
+
+        // get all buildings
+        Buildings = GetSceneObjects(18);
+
+        foreach (var build in Buildings)
+        {
+            Physics.SphereCast(build.transform.localPosition, 10.0f, transform.forward, out RaycastHit hit, 1, 18);
+        }
         
-        //spawnEnemies(getSpawns("03"), enemiesSpawnType(2));
     }
+
 
     private void Update()
     {
@@ -47,6 +64,14 @@ public class WaveManager : MonoBehaviour
         if (waveTime >= nextWaveTime)
         {
             waveTime = 0f;
+
+            // get random building
+            WhichBuildingToAttack = Random.Range(0, Buildings.Count - 1);
+            AttackingBuilding = Buildings[WhichBuildingToAttack];
+            // print(AttackingBuilding.transform.localPosition);
+            // print(AttackingBuilding);
+            // print(WhichBuildingToAttack);
+            // print(Buildings.Count - 1);
             
             // getSpawns 1-4 (which spawners to activate), enemiesSpawnType type of spawn 1-11
             spawnEnemies(getSpawns(waveCombo), enemiesSpawnType(++wave));
@@ -71,6 +96,7 @@ public class WaveManager : MonoBehaviour
 
         return spawnersList;
     }
+    
     public void spawnEnemies(List<Transform>[] Spawnpoints, GameObject[] enemiesToSpawn)
     {
         for (int i = 0; i < Spawnpoints.Length; i++)
@@ -89,6 +115,12 @@ public class WaveManager : MonoBehaviour
                 j++;
             }
         }
+    }
+
+    private static List<GameObject> GetSceneObjects(int layer)
+    {
+        return Resources.FindObjectsOfTypeAll<GameObject>()
+            .Where(go => go.layer == layer).ToList();
     }
 
     public GameObject[] enemiesSpawnType(int x)

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Diagnostics;
@@ -8,7 +9,7 @@ public class FollowingAndShootingRange : MonoBehaviour
 {
     //Following 
     public NavMeshAgent agent;
-    public Transform Player;
+    private Transform Player;
     private Rigidbody enemyRb;
     private bool follow = false;
     private Quaternion rotation;
@@ -36,11 +37,14 @@ public class FollowingAndShootingRange : MonoBehaviour
     public bool playerInLongRange;
     public bool playerInCenterRange;
     public float shortAttack, longAttack, centerPoint;
+    
+    private GameObject WhatToAttack { get; set; }
 
    
 
     private void Awake()
     {
+        WhatToAttack = WaveManager.AttackingBuilding;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -48,12 +52,7 @@ public class FollowingAndShootingRange : MonoBehaviour
     {
         //Following
         StartCoroutine(HoldNavAgent());
-
         enemyRb = gameObject.GetComponent<Rigidbody>();
-        if (Player == null)
-        {
-            Player = GameObject.FindWithTag("Player").transform;
-        }
 
         mojObiekt = transform;
         if (GetComponent<Rigidbody>())
@@ -66,12 +65,13 @@ public class FollowingAndShootingRange : MonoBehaviour
 
     void Update()
     {
+        if (Player == null) Player = WaveManager.AttackingBuilding.transform;
         // 3 positions of enemy attacking player
-        playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, whatIsPlayer);
-        playerInCenterRange = Physics.CheckSphere(transform.position, centerPoint, whatIsPlayer);
-        playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
+        playerInShortRange = Physics.CheckSphere(Player.transform.position, shortAttack, whatIsPlayer);
+        playerInCenterRange = Physics.CheckSphere(Player.transform.position, centerPoint, whatIsPlayer);
+        playerInLongRange = Physics.CheckSphere(Player.transform.position, longAttack, whatIsPlayer);
 
-        pozycjaGraczaXYZ = new Vector3(Player.position.x, Player.position.y, Player.position.z);
+        pozycjaGraczaXYZ = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
         patrzNaGracza = false;
 
         if (playerInShortRange || playerInCenterRange)
@@ -94,7 +94,7 @@ public class FollowingAndShootingRange : MonoBehaviour
         }
         
         // transform of object set to looking destination
-        transform.LookAt(Player);
+        transform.LookAt(Player.transform.position);
     }
 
 
@@ -184,15 +184,6 @@ public class FollowingAndShootingRange : MonoBehaviour
     }  
 
 
-//Following Part
-// private void OnCollisionEnter(Collision other)
-// {
-//     if (other.collider.CompareTag("Bullet") || other.collider.CompareTag("Enemy"))
-//     {
-//         Invoke("StopMoving", 0.2f);
-//     }
-// }
-
 public void StopMoving()
     {
         enemyRb.velocity = Vector3.zero;
@@ -203,7 +194,7 @@ public void StopMoving()
     {
         yield return new WaitForSeconds(0.5f);
         agent.enabled = true;
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
+        Player = WhatToAttack.transform;
         follow = true;
     }
 }
