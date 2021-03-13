@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class EnemyMechanics : MonoBehaviour
 {
+    public static readonly float AttackSpeed = 5f;
     public void Die()
     {
         Destroy(gameObject);
     }
+    
+    
 
 }

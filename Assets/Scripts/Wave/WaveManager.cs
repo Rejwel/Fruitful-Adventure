@@ -79,7 +79,7 @@ public class WaveManager : MonoBehaviour
 
     private GameObject GetAttackPoint()
     {
-        WhichBuildingToAttack = Random.Range(0, Buildings.Count - 1);
+        WhichBuildingToAttack = Random.Range(0, Buildings.Count);
         return Buildings[WhichBuildingToAttack];
     }
 
