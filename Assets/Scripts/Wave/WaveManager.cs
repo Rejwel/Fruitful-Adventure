@@ -16,8 +16,7 @@ public class WaveManager : MonoBehaviour
     private float waveTime = 0;
     private float nextWaveTime;
 
-    private bool isPreparation = true;
-    private bool spawning = false;
+    private bool waveEnded = false;
 
     private Text timerText;
     private Text waveCountText;
@@ -25,6 +24,7 @@ public class WaveManager : MonoBehaviour
     private List<GameObject> Buildings { get; set; }
     private int WhichBuildingToAttack { get; set; }
     public static GameObject AttackingBuilding { get; set; }
+    private GameObject NextAttackingBuilding { get; set; }
     private FollowingAndShootingMage enemyType1; 
     private FollowingAndShootingRange enemyType2;
     private EnemyFollowing enemyType3;
@@ -44,40 +44,51 @@ public class WaveManager : MonoBehaviour
 
         // get all buildings
         Buildings = GetSceneObjects(18);
-
-        foreach (var build in Buildings)
-        {
-            Physics.SphereCast(build.transform.localPosition, 10.0f, transform.forward, out RaycastHit hit, 1, 18);
-        }
         
+        AttackingBuilding = GetAttackPoint();
+        GetNextBuilding();
     }
 
 
     private void Update()
     {
+
         timerText.text = waveTime.ToString("f2");
-        waveCountText.text = wave == 0 ? "Prepare for first Wave" : "Wave " + wave;
+        waveCountText.text = wave == 0 ? "Prepare for first Wave" + "\n now attacking: " + AttackingBuilding.name + "\n next attacking: " + NextAttackingBuilding.name : "Wave " + wave + "\n now attacking: " + AttackingBuilding.name + "\n next attacking: " + NextAttackingBuilding.name;
         enemiesLeftText.text = enemiesLeft.ToString();
-        
+
         nextWaveTime = wave == 0 ? 2f : 60f;
 
-        if (waveTime >= nextWaveTime)
+        if (waveTime >= nextWaveTime && wave == 0)
         {
             waveTime = 0f;
-
-            // get random building
-            WhichBuildingToAttack = Random.Range(0, Buildings.Count - 1);
-            AttackingBuilding = Buildings[WhichBuildingToAttack];
-            // print(AttackingBuilding.transform.localPosition);
-            // print(AttackingBuilding);
-            // print(WhichBuildingToAttack);
-            // print(Buildings.Count - 1);
-            
             // getSpawns 1-4 (which spawners to activate), enemiesSpawnType type of spawn 1-11
+            spawnEnemies(getSpawns(waveCombo), enemiesSpawnType(++wave));
+        }
+        else if (waveTime >= nextWaveTime)
+        {
+            AttackingBuilding = NextAttackingBuilding;
+            GetNextBuilding();
+            
+            waveTime = 0f;
             spawnEnemies(getSpawns(waveCombo), enemiesSpawnType(++wave));
         }
 
         waveTime += Time.deltaTime;
+    }
+
+    private GameObject GetAttackPoint()
+    {
+        WhichBuildingToAttack = Random.Range(0, Buildings.Count - 1);
+        return Buildings[WhichBuildingToAttack];
+    }
+
+    private void GetNextBuilding()
+    {
+        while (AttackingBuilding == NextAttackingBuilding || NextAttackingBuilding == null)
+        {
+            NextAttackingBuilding = GetAttackPoint();
+        }
     }
 
     public void killEnemy()
