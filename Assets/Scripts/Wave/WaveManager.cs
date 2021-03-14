@@ -25,9 +25,8 @@ public class WaveManager : MonoBehaviour
     private int WhichBuildingToAttack { get; set; }
     public static GameObject AttackingBuilding { get; set; }
     private GameObject NextAttackingBuilding { get; set; }
-    private FollowingAndShootingMage enemyType1; 
-    private FollowingAndShootingRange enemyType2;
-    private EnemyFollowing enemyType3;
+    private EnemyRanged enemyType1;
+    private EnemyMelee enemyType2;
     
 
     public Spawner [] spawners;
@@ -38,14 +37,14 @@ public class WaveManager : MonoBehaviour
         timerText = GameObject.Find("TimerManager").GetComponent<Text>();
         waveCountText = GameObject.Find("WaveManager").GetComponent<Text>();
         enemiesLeftText = GameObject.Find("EnemiesRemain").GetComponent<Text>();
-        enemyType1 = FindObjectOfType<FollowingAndShootingMage>();
-        enemyType2 =  FindObjectOfType<FollowingAndShootingRange>();
-        enemyType3 =  FindObjectOfType<EnemyFollowing>();
+        enemyType1 = FindObjectOfType<EnemyRanged>();
+        enemyType2 =  FindObjectOfType<EnemyMelee>();
 
         // get all buildings
         Buildings = GetSceneObjects(18);
         
         AttackingBuilding = GetAttackPoint();
+        AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
         GetNextBuilding();
     }
 
@@ -67,7 +66,10 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveTime >= nextWaveTime)
         {
+            // setting new attack points
+            AttackingBuilding.GetComponent<SphereCollider>().enabled = false;
             AttackingBuilding = NextAttackingBuilding;
+            AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
             GetNextBuilding();
             
             waveTime = 0f;
@@ -144,8 +146,13 @@ public class WaveManager : MonoBehaviour
                 //front melee
                 for (int i = 0; i < 4; i++)
                 {
-                    //enemiesToSpawn[i] = enemies[2];
-                    enemiesToSpawn[i] = enemies[1];
+                    // enemiesToSpawn[i] = enemies[1];
+                }
+                
+                // this is for testing only!
+                for (int i = 0; i < 4; i++)
+                {
+                    enemiesToSpawn[i] = enemies[i];
                 }
 
                 return enemiesToSpawn;

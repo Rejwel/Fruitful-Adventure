@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Diagnostics;
 
-public class FollowingAndShootingRange : MonoBehaviour
+public class EnemyRanged : MonoBehaviour
 {
     //Following 
     public NavMeshAgent agent;
@@ -16,20 +16,14 @@ public class FollowingAndShootingRange : MonoBehaviour
     
     //Shooting
     public float czekaj = 2f;
-    private float odliczanieDoStrzalu = 0f;
+    private float odliczanieDoStrzalu = 1f;
     public GameObject strzalaPrefab;
     public float predkosc = 7;
     public bool patrzNaGracza = false;
     private Quaternion rotacjaPocisku;
 
     //Wild Moooves 
-    private Vector3 pozycjaGraczaXYZ;  
-    public float katWidzenia = 160f;
-    public float predkoscObrotu = 6.0f;
-    public bool gladkiObrot = true;
-    public float predkoscRuchu = 5.0f;
-    private Transform mojObiekt;
-    
+    private Vector3 pozycjaGraczaXYZ;
 
     //Distance from Player
     public LayerMask whatIsPlayer;
@@ -53,8 +47,7 @@ public class FollowingAndShootingRange : MonoBehaviour
         //Following
         StartCoroutine(HoldNavAgent());
         enemyRb = gameObject.GetComponent<Rigidbody>();
-
-        mojObiekt = transform;
+        
         if (GetComponent<Rigidbody>())
         {
             GetComponent<Rigidbody>().freezeRotation = true;
@@ -67,22 +60,20 @@ public class FollowingAndShootingRange : MonoBehaviour
     {
         if (Player == null) Player = WaveManager.AttackingBuilding.transform;
         // 3 positions of enemy attacking player
-        playerInShortRange = Physics.CheckSphere(Player.transform.position, shortAttack, whatIsPlayer);
-        playerInCenterRange = Physics.CheckSphere(Player.transform.position, centerPoint, whatIsPlayer);
-        playerInLongRange = Physics.CheckSphere(Player.transform.position, longAttack, whatIsPlayer);
+        playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, whatIsPlayer);
+        playerInCenterRange = Physics.CheckSphere(transform.position, centerPoint, whatIsPlayer);
+        playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
 
         pozycjaGraczaXYZ = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
         patrzNaGracza = false;
 
         if (playerInShortRange || playerInCenterRange)
         {
+            strzal();
             patrzNaGracza = true;
             Vector3 dirToPlayer = transform.position - Player.transform.position;  //when player is close he moves back
             Vector3 newPos = transform.position + dirToPlayer;
             agent.SetDestination(newPos);
-            
-            // shoot if possible
-            strzal();
         }
         else if (playerInLongRange)
         {
@@ -101,32 +92,23 @@ public class FollowingAndShootingRange : MonoBehaviour
     //Shooting Part
     public void strzal()    //Funkcja odpowiadająca za strzał
     {
+
         if (odliczanieDoStrzalu < czekaj)
         {
             odliczanieDoStrzalu += Time.deltaTime;  //licznik do kolejnego strzału
         }
 
 
-        if (odliczanieDoStrzalu >= czekaj && namierzanie())
+        if (odliczanieDoStrzalu >= czekaj)
         {
             odliczanieDoStrzalu = 0;
-
             GameObject pocisk;
 
             pocisk = Instantiate(strzalaPrefab, transform.position + transform.forward, getRotacjaPocisku());
             pocisk.GetComponent<Rigidbody>().AddForce(transform.forward * predkosc, ForceMode.Impulse);
             pocisk.GetComponent<Rigidbody>().AddForce(transform.up * 1.4f, ForceMode.Impulse);
+            
         }
-    }
-
-    public bool namierzanie()       //pobranie aktualnego kąta obrotu wroga w stosunku do gracza
-    {
-        float angle = Quaternion.Angle(Player.rotation, transform.rotation);
-        if (angle >= katWidzenia)    //czy gracz jest widoczny
-        {
-            return true;
-        }
-        return false;
     }
 
     public Quaternion getRotacjaPocisku()    //na podstawie pozycji gracza ustala kierunek pozycji pocisku, do której ma zmierzać
@@ -135,60 +117,6 @@ public class FollowingAndShootingRange : MonoBehaviour
         rotacjaPocisku = Quaternion.LookRotation(pozycjaGraczaXYZ - transform.position);
         return rotacjaPocisku;
     }
-
-
-    // private void patrzNaMnie()      //Obrót samego przeciwnika w stronę gracza
-    // {
-    //     if (gladkiObrot && patrzNaGracza == true)
-    //     {
-    //         Quaternion rotation = Quaternion.LookRotation(pozycjaGraczaXYZ - mojObiekt.position);
-    //         mojObiekt.rotation = Quaternion.Slerp(mojObiekt.rotation, rotation, Time.deltaTime * predkoscObrotu);
-    //         obrotGlowy();
-    //     }
-    //     else if (!gladkiObrot && patrzNaGracza == true)
-    //     {
-    //         transform.LookAt(pozycjaGraczaXYZ);     //Błyskawiczny obrót wroga
-    //     }
-    // }
-    //
-    //
-    // public void obrotGlowy()   //Obracamy głowę wroga w stronę gracza
-    // {
-    //     Transform glowa = transform.Find("Head");
-    //
-    //     if (glowa != null)
-    //     {
-    //         Vector3 graczXYZ = new Vector3(Player.position.x, Player.position.y, Player.position.z);
-    //         Quaternion wStroneGracza = Quaternion.LookRotation(graczXYZ - glowa.position);
-    //         glowa.rotation = Quaternion.Slerp(glowa.rotation, wStroneGracza, Time.deltaTime * predkoscObrotu);
-    //     }
-    //
-    // }
-
-//    public bool celowanie(float zasieg)     //daje informacje czy przeciwnik na nas patrzy
-//     {
-//         Transform glowa = transform.Find("Head");
-//         Ray ray = new Ray(glowa.position, glowa.forward);   //pobiera promień w jakim kierunku patrzy przeciwnik
-//         RaycastHit hitinfo;
-//
-//         if (Physics.Raycast(ray, out hitinfo, zasieg))       //Sprawdza czy promień w coś trafił
-//         {
-//             GameObject go = hitinfo.collider.gameObject;
-//
-//             if (go.name.Equals(Player.name))
-//             {
-//                 return true;
-//             }
-//         }
-//         return false;  
-//     }  
-//
-//
-// public void StopMoving()
-//     {
-//         enemyRb.velocity = Vector3.zero;
-//         agent.SetDestination(Player.position);
-//     }
 
     public IEnumerator HoldNavAgent()
     {

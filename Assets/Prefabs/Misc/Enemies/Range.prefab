@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 7624425721677361650}
   - component: {fileID: 1342185130220687365}
   - component: {fileID: -1422783523207199391}
-  - component: {fileID: 2160099932527616359}
+  - component: {fileID: 5069802828548225875}
   m_Layer: 10
   m_Name: Range
   m_TagString: Enemy
@@ -244,7 +244,7 @@ MonoBehaviour:
   explosionRadius: 3
   explosionForce: 50
   explosionUpward: 0.5
---- !u!114 &2160099932527616359
+--- !u!114 &5069802828548225875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bdb0c8b2629ed64ab2adc41fd18a0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 9033190547601265116}
+  agent: {fileID: 0}
   czekaj: 2
   strzalaPrefab: {fileID: 9142128983991355959, guid: 92411f463ca4a0f4cbfc071a11516143,
     type: 3}
@@ -272,9 +272,9 @@ MonoBehaviour:
   playerInShortRange: 0
   playerInLongRange: 0
   playerInCenterRange: 0
-  shortAttack: 10
-  longAttack: 25
-  centerPoint: 20
+  shortAttack: 15
+  longAttack: 30
+  centerPoint: 25
 --- !u!1001 &8223621855868920146
 PrefabInstance:
   m_ObjectHideFlags: 0

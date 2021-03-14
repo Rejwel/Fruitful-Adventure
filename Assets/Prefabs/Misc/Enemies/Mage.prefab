@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 8185403225177914116}
   - component: {fileID: 790210567228054259}
   - component: {fileID: 8897657786077220135}
-  - component: {fileID: -1436000817311412063}
+  - component: {fileID: -7126138228824471991}
   m_Layer: 10
   m_Name: Mage
   m_TagString: Enemy
@@ -244,7 +244,7 @@ MonoBehaviour:
   explosionRadius: 3
   explosionForce: 50
   explosionUpward: 0.5
---- !u!114 &-1436000817311412063
+--- !u!114 &-7126138228824471991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,10 +253,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7281006544878983968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ed64bd9d78bbd946a5baeee5c6b3a3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bdb0c8b2629ed64ab2adc41fd18a0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 7281006544878983978}
+  agent: {fileID: 0}
   czekaj: 2
   strzalaPrefab: {fileID: 3731326075763220359, guid: 12614e15c8df7ea4987a7d2b457d2908,
     type: 3}
@@ -272,9 +272,9 @@ MonoBehaviour:
   playerInShortRange: 0
   playerInLongRange: 0
   playerInCenterRange: 0
-  shortAttack: 10
-  longAttack: 25
-  centerPoint: 20
+  shortAttack: 15
+  longAttack: 30
+  centerPoint: 25
 --- !u!1001 &7671651690131123108
 PrefabInstance:
   m_ObjectHideFlags: 0

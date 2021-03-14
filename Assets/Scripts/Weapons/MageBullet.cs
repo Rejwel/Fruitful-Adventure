@@ -33,7 +33,7 @@ public class MageBullet : MonoBehaviour
         {
             BH = other.gameObject.GetComponentInParent<BuildingHealth>();
             BH.TakeDamage(35);
-            if (BH.currentHealth <= 0)
+            if (BH.currentHealth <= 0 && BH.buildingDestroyed == false)
             {
                 BH.DestroyBuilding();
             }

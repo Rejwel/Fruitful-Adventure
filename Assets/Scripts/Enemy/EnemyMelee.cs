@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Diagnostics;
 
-public class EnemyFollowing : MonoBehaviour
+public class EnemyMelee : MonoBehaviour
 {
     public NavMeshAgent enemy;
     private BuildingHealth BH { get; set; }
@@ -37,7 +37,7 @@ public class EnemyFollowing : MonoBehaviour
         if (Attack && BH != null)
         {
             BH.TakeDamage(20);
-            if (BH.currentHealth <= 0)
+            if (BH.currentHealth <= 0 && BH.buildingDestroyed == false)
             {
                 BH.DestroyBuilding();
             }

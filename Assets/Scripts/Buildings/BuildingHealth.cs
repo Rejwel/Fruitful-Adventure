@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class BuildingHealth : MonoBehaviour
 {
-    public bool buildingDestroyed = false;
+    public bool buildingDestroyed { get; set; }
     public int MaxHealth;
     public int currentHealth;
     public HealthBarScript healthBar;
     
     void Start()
     {
+        buildingDestroyed = false;
         InitColliders();
         currentHealth = MaxHealth;
         healthBar.SetMaxHealth(MaxHealth);
