@@ -6,6 +6,7 @@ public class MageBullet : MonoBehaviour
 {
     private Transform firepoint;
     private HealthPlayer givedamage;
+    private BuildingHealth BH { get; set; }
    
 
     void Start()
@@ -28,24 +29,17 @@ public class MageBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag.Equals("Enemy"))
+        if (other.gameObject.layer == 19)
         {
-            Physics.IgnoreCollision(other.collider, this.GetComponent<Collider>());
-           
-
+            BH = other.gameObject.GetComponentInParent<BuildingHealth>();
+            BH.TakeDamage(35);
+            if (BH.currentHealth <= 0)
+            {
+                BH.DestroyBuilding();
+            }
         }
-        if (other.transform.gameObject.tag.Equals("Player"))
-        {
-            givedamage.TakePlayerDamage(35);
-            Destroy(gameObject);
-        }
-
-        
+        Destroy(gameObject);
     }
-
-    
-
-
 }
 
 

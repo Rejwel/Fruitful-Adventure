@@ -137,58 +137,58 @@ public class FollowingAndShootingRange : MonoBehaviour
     }
 
 
-    private void patrzNaMnie()      //Obrót samego przeciwnika w stronę gracza
-    {
-        if (gladkiObrot && patrzNaGracza == true)
-        {
-            Quaternion rotation = Quaternion.LookRotation(pozycjaGraczaXYZ - mojObiekt.position);
-            mojObiekt.rotation = Quaternion.Slerp(mojObiekt.rotation, rotation, Time.deltaTime * predkoscObrotu);
-            obrotGlowy();
-        }
-        else if (!gladkiObrot && patrzNaGracza == true)
-        {
-            transform.LookAt(pozycjaGraczaXYZ);     //Błyskawiczny obrót wroga
-        }
-    }
+    // private void patrzNaMnie()      //Obrót samego przeciwnika w stronę gracza
+    // {
+    //     if (gladkiObrot && patrzNaGracza == true)
+    //     {
+    //         Quaternion rotation = Quaternion.LookRotation(pozycjaGraczaXYZ - mojObiekt.position);
+    //         mojObiekt.rotation = Quaternion.Slerp(mojObiekt.rotation, rotation, Time.deltaTime * predkoscObrotu);
+    //         obrotGlowy();
+    //     }
+    //     else if (!gladkiObrot && patrzNaGracza == true)
+    //     {
+    //         transform.LookAt(pozycjaGraczaXYZ);     //Błyskawiczny obrót wroga
+    //     }
+    // }
+    //
+    //
+    // public void obrotGlowy()   //Obracamy głowę wroga w stronę gracza
+    // {
+    //     Transform glowa = transform.Find("Head");
+    //
+    //     if (glowa != null)
+    //     {
+    //         Vector3 graczXYZ = new Vector3(Player.position.x, Player.position.y, Player.position.z);
+    //         Quaternion wStroneGracza = Quaternion.LookRotation(graczXYZ - glowa.position);
+    //         glowa.rotation = Quaternion.Slerp(glowa.rotation, wStroneGracza, Time.deltaTime * predkoscObrotu);
+    //     }
+    //
+    // }
 
-
-    public void obrotGlowy()   //Obracamy głowę wroga w stronę gracza
-    {
-        Transform glowa = transform.Find("Head");
-
-        if (glowa != null)
-        {
-            Vector3 graczXYZ = new Vector3(Player.position.x, Player.position.y, Player.position.z);
-            Quaternion wStroneGracza = Quaternion.LookRotation(graczXYZ - glowa.position);
-            glowa.rotation = Quaternion.Slerp(glowa.rotation, wStroneGracza, Time.deltaTime * predkoscObrotu);
-        }
-
-    }
-
-   public bool celowanie(float zasieg)     //daje informacje czy przeciwnik na nas patrzy
-    {
-        Transform glowa = transform.Find("Head");
-        Ray ray = new Ray(glowa.position, glowa.forward);   //pobiera promień w jakim kierunku patrzy przeciwnik
-        RaycastHit hitinfo;
-
-        if (Physics.Raycast(ray, out hitinfo, zasieg))       //Sprawdza czy promień w coś trafił
-        {
-            GameObject go = hitinfo.collider.gameObject;
-
-            if (go.name.Equals(Player.name))
-            {
-                return true;
-            }
-        }
-        return false;  
-    }  
-
-
-public void StopMoving()
-    {
-        enemyRb.velocity = Vector3.zero;
-        agent.SetDestination(Player.position);
-    }
+//    public bool celowanie(float zasieg)     //daje informacje czy przeciwnik na nas patrzy
+//     {
+//         Transform glowa = transform.Find("Head");
+//         Ray ray = new Ray(glowa.position, glowa.forward);   //pobiera promień w jakim kierunku patrzy przeciwnik
+//         RaycastHit hitinfo;
+//
+//         if (Physics.Raycast(ray, out hitinfo, zasieg))       //Sprawdza czy promień w coś trafił
+//         {
+//             GameObject go = hitinfo.collider.gameObject;
+//
+//             if (go.name.Equals(Player.name))
+//             {
+//                 return true;
+//             }
+//         }
+//         return false;  
+//     }  
+//
+//
+// public void StopMoving()
+//     {
+//         enemyRb.velocity = Vector3.zero;
+//         agent.SetDestination(Player.position);
+//     }
 
     public IEnumerator HoldNavAgent()
     {

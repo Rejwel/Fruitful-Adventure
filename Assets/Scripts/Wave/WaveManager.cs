@@ -144,6 +144,7 @@ public class WaveManager : MonoBehaviour
                 //front melee
                 for (int i = 0; i < 4; i++)
                 {
+                    //enemiesToSpawn[i] = enemies[2];
                     enemiesToSpawn[i] = enemies[1];
                 }
 

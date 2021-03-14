@@ -8,9 +8,12 @@ using UnityEngine.Diagnostics;
 public class EnemyFollowing : MonoBehaviour
 {
     public NavMeshAgent enemy;
+    private BuildingHealth BH { get; set; }
     private Rigidbody EnemyRB { get; set; }
     private GameObject WhatToAttack { get; set; }
     private bool IsAttacking { get; set; }
+    private bool Attack = true;
+    private float NextAttack = 0f;
 
     private void Start()
     {
@@ -21,24 +24,37 @@ public class EnemyFollowing : MonoBehaviour
 
     void Update()
     {
+
+        if (NextAttack >= EnemyMechanics.AttackSpeed)
+        {
+            Attack = true;
+            NextAttack = 0f;
+        }
+
         if(!IsAttacking)
             enemy.SetDestination(WhatToAttack.transform.localPosition);
-    }
-
-    private void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.layer == 19)
+        
+        if (Attack && BH != null)
         {
-            IsAttacking = true;
-            enemy.Stop();
-            EnemyRB.constraints = RigidbodyConstraints.FreezeAll;
-            
-            BuildingHealth BH = other.gameObject.GetComponentInParent<BuildingHealth>();
             BH.TakeDamage(20);
             if (BH.currentHealth <= 0)
             {
                 BH.DestroyBuilding();
             }
+            Attack = false;
+        }
+
+        NextAttack += Time.deltaTime;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.layer == 19)
+        {
+            IsAttacking = true;
+            enemy.isStopped = true;
+            EnemyRB.constraints = RigidbodyConstraints.FreezeAll;
+            BH = other.gameObject.GetComponentInParent<BuildingHealth>();
         }
     }
 
@@ -47,6 +63,9 @@ public class EnemyFollowing : MonoBehaviour
         if (other.gameObject.layer == 19)
         {
             IsAttacking = false;
+            enemy.isStopped = false;
+            EnemyRB.constraints = RigidbodyConstraints.None;
+            BH = null;
         }
     }
 

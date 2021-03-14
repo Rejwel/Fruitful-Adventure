@@ -257,7 +257,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 7281006544878983978}
-  Player: {fileID: 0}
   czekaj: 2
   strzalaPrefab: {fileID: 3731326075763220359, guid: 12614e15c8df7ea4987a7d2b457d2908,
     type: 3}
@@ -269,7 +268,7 @@ MonoBehaviour:
   predkoscRuchu: 5
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 262144
   playerInShortRange: 0
   playerInLongRange: 0
   playerInCenterRange: 0

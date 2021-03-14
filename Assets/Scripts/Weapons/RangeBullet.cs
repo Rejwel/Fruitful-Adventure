@@ -7,6 +7,7 @@ public class RangeBullet: MonoBehaviour
     private Transform firepoint;
 
     private HealthPlayer givedamage;
+    private BuildingHealth BH { get; set; }
 
 
     void Start()
@@ -23,21 +24,17 @@ public class RangeBullet: MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag.Equals("Enemy"))
+        if (other.gameObject.layer == 19)
         {
-            Physics.IgnoreCollision(other.collider, this.GetComponent<Collider>());
-            
-
-        }
-        if (other.transform.gameObject.tag.Equals("Player"))
-        {
-            givedamage.TakePlayerDamage(20);
+            BH = other.gameObject.GetComponentInParent<BuildingHealth>();
+            BH.TakeDamage(35);
+            if (BH.currentHealth <= 0)
+            {
+                BH.DestroyBuilding();
+            }
             Destroy(gameObject);
         }
     }
-
-    
-
 
 }
 
