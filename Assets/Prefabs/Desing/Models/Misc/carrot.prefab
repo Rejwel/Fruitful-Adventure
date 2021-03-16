@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 541021759923654689}
   - component: {fileID: 2334816400944751851}
   - component: {fileID: 1748433817309204071}
-  - component: {fileID: 4010308703247136873}
   m_Layer: 0
   m_Name: carrot
   m_TagString: Untagged
@@ -96,19 +95,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1858958456392548328, guid: 5dfa297e4da2b034e8eb928d40162cd3, type: 3}
---- !u!54 &4010308703247136873
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4280129752808736062}
-  serializedVersion: 2
-  m_Mass: 0.25
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
