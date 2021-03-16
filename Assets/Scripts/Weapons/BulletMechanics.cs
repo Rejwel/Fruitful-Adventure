@@ -18,7 +18,7 @@ public class BulletMechanics : MonoBehaviour
         WaveManager = FindObjectOfType<WaveManager>();
         gameObject.tag = "Bullet";
         Destroy(gameObject, 5);
-        gameObject.GetComponent<SphereCollider>().enabled = true;
+        gameObject.GetComponent<MeshCollider>().enabled = true;
     }
 
     private void OnTriggerEnter(Collider hit)
