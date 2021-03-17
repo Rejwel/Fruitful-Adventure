@@ -24,15 +24,14 @@ public class BulletMechanics : MonoBehaviour
     private void OnTriggerEnter(Collider hit)
     {
         EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
-        HealthEnemy enemyHealth = hit.GetComponent<HealthEnemy>();
         if (hit.tag.Equals("Enemy"))
         {
             // print("bullet: " + gameObject.transform.position);
             // print("enemy: " + hit.transform.position);
             gun = player.GetCurrentGun();
-            enemyHealth.TakeDamage(gun.GetDamage());
+            enemy.TakeDamage(gun.GetDamage());
             
-            if (enemyHealth.currentHealth <= 0)
+            if (enemy.GetHealth() <= 0)
             {
                 hit.GetComponent<Collider>().enabled = false;
                 enemy.Die();

@@ -75,8 +75,6 @@ GameObject:
   - component: {fileID: 7281006544878983978}
   - component: {fileID: 7781339455246326226}
   - component: {fileID: 8185403225177914116}
-  - component: {fileID: 790210567228054259}
-  - component: {fileID: 8897657786077220135}
   - component: {fileID: -7126138228824471991}
   m_Layer: 10
   m_Name: Mage
@@ -212,38 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4343971245533874f90cdbaa199ce10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &790210567228054259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7281006544878983968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb82d1fa67502d741abd71a0a704620f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 100
   healthBar: {fileID: 6528037127942012915}
---- !u!114 &8897657786077220135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7281006544878983968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a197d6611a68f240a38378b52b3baef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cubeSize: 0.18
-  cubesInRow: 2
-  explosionRadius: 3
-  explosionForce: 50
-  explosionUpward: 0.5
 --- !u!114 &-7126138228824471991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,10 +230,6 @@ MonoBehaviour:
     type: 3}
   predkosc: 7
   patrzNaGracza: 0
-  katWidzenia: 160
-  predkoscObrotu: 6
-  gladkiObrot: 1
-  predkoscRuchu: 5
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 262144

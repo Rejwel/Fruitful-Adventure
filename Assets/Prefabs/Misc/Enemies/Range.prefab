@@ -75,8 +75,6 @@ GameObject:
   - component: {fileID: 9033190547601265116}
   - component: {fileID: 8334998599965250340}
   - component: {fileID: 7624425721677361650}
-  - component: {fileID: 1342185130220687365}
-  - component: {fileID: -1422783523207199391}
   - component: {fileID: 5069802828548225875}
   m_Layer: 10
   m_Name: Range
@@ -212,38 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4343971245533874f90cdbaa199ce10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1342185130220687365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033190547601265110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb82d1fa67502d741abd71a0a704620f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 100
   healthBar: {fileID: 4814133869411677445}
---- !u!114 &-1422783523207199391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033190547601265110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a197d6611a68f240a38378b52b3baef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cubeSize: 0.2
-  cubesInRow: 2
-  explosionRadius: 3
-  explosionForce: 50
-  explosionUpward: 0.5
 --- !u!114 &5069802828548225875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,10 +230,6 @@ MonoBehaviour:
     type: 3}
   predkosc: 7
   patrzNaGracza: 0
-  katWidzenia: 160
-  predkoscObrotu: 6
-  gladkiObrot: 1
-  predkoscRuchu: 5
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 262144

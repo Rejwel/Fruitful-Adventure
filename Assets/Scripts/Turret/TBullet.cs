@@ -50,15 +50,14 @@ public class TBullet : MonoBehaviour
     private void OnTriggerEnter(Collider hit)
     {
         EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
-        HealthEnemy enemyHealth = hit.GetComponent<HealthEnemy>();
         if (hit.tag.Equals("Enemy"))
         {
             // print("bullet: " + gameObject.transform.position);
             // print("enemy: " + hit.transform.position);
             
-            enemyHealth.TakeDamage(20);
+            enemy.TakeDamage(20);
             HitTarget();
-            if (enemyHealth.currentHealth <= 0)
+            if (enemy.GetHealth() <= 0)
             {
                 enemy.Die();
                 explosion.explode(hit.gameObject);

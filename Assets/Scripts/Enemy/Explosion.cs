@@ -6,13 +6,13 @@ using UnityEngine.Rendering.Universal;
 public class Explosion : MonoBehaviour
 {
     public float cubeSize = 0.2f;
-    public int cubesInRow = 5;
+    public int cubesInRow = 2;
 
     float cubesPivotDistance;
     Vector3 cubesPivot;
-    public float explosionRadius = 4f;
-    public float explosionForce = 100f;
-    public float explosionUpward = 0.2f;
+    public float explosionRadius = 3f;
+    public float explosionForce = 50f;
+    public float explosionUpward = 0.1f;
 
     void Start()
     {

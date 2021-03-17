@@ -15,7 +15,7 @@ public class Grenade : MonoBehaviour
 
     bool hasExploded = false;   //czy granat zrobił BUUMM
     private Transform explosive;    //lokalizacja eksplozji
-    private HealthEnemy givedamage;     //"dołączenie" innego skryptu 
+    private EnemyMechanics givedamage;     //"dołączenie" innego skryptu 
 
     float countdown;        //odliczanie
 
@@ -27,7 +27,7 @@ public class Grenade : MonoBehaviour
     private void Awake()
     {
         explosive = transform;
-        givedamage = FindObjectOfType<HealthEnemy>();
+        givedamage = FindObjectOfType<EnemyMechanics>();
     }
 
     void Update()       //odlicza te 3 sekundy, dzięki hasExploded wybucha tylko raz
@@ -50,7 +50,6 @@ public class Grenade : MonoBehaviour
         foreach (Collider nearbyObject in colliders)    //pęętlaa 
         {
             EnemyMechanics enemy = nearbyObject.GetComponent<EnemyMechanics>();
-            HealthEnemy enemyHealth = nearbyObject.GetComponent<HealthEnemy>();
             Explosion explosion = FindObjectOfType<Explosion>();
             WaveManager WaveManager = FindObjectOfType<WaveManager>();
 
@@ -60,19 +59,19 @@ public class Grenade : MonoBehaviour
 
                 if (distance <= closeArea)      //gdy przeciwnik jest bardzo blisko granatu
                 {
-                    nearbyObject.GetComponent<HealthEnemy>().TakeDamage(75);
+                    nearbyObject.GetComponent<EnemyMechanics>().TakeDamage(75);
                 }
                 else if (distance <= mediumArea) //gdy przeciwnik jest blisko granatu
                 {
-                    nearbyObject.GetComponent<HealthEnemy>().TakeDamage(55);
+                    nearbyObject.GetComponent<EnemyMechanics>().TakeDamage(55);
 
                 }
                 else if (distance <= farArea)   //gdy przeciwnik jest dość daleko od granatu
                 {
-                    nearbyObject.GetComponent<HealthEnemy>().TakeDamage(45);
+                    nearbyObject.GetComponent<EnemyMechanics>().TakeDamage(45);
                 }
 
-                if (enemyHealth.currentHealth <= 0)         //przeciwnik umiera
+                if (enemy.GetHealth() <= 0)         //przeciwnik umiera
                 {
                     nearbyObject.GetComponent<Collider>().enabled = false;
                     enemy.Die();
