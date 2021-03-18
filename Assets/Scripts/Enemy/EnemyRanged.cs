@@ -44,7 +44,6 @@ public class EnemyRanged : MonoBehaviour
 
     void Start()
     {
-        //Following
         StartCoroutine(HoldNavAgent());
         enemyRb = gameObject.GetComponent<Rigidbody>();
         
