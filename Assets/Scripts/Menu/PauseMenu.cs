@@ -118,7 +118,7 @@ public class PauseMenu : MonoBehaviour
     public void DeadPlayer()
     {
         Health = FindObjectOfType<HealthPlayer>();
-        if(Health.currentHealth <= 0)
+        if(Health.currentHealth <= 0 || WaveManager.BuildingCount == 0)
         {
             GUI.SetActive(false);
             Dead.SetActive(true);

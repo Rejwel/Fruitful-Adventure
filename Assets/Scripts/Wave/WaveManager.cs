@@ -22,6 +22,7 @@ public class WaveManager : MonoBehaviour
     private Text waveCountText;
     private Text enemiesLeftText;
     private List<GameObject> Buildings { get; set; }
+    public static int BuildingCount;
     private int WhichBuildingToAttack { get; set; }
     public static GameObject AttackingBuilding { get; set; }
     private GameObject NextAttackingBuilding { get; set; }
@@ -42,6 +43,7 @@ public class WaveManager : MonoBehaviour
 
         // get all buildings
         Buildings = GetSceneObjects(18);
+        BuildingCount = Buildings.Count;
         
         AttackingBuilding = GetAttackPoint();
         AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
@@ -51,11 +53,26 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-
         timerText.text = waveTime.ToString("f2");
-        waveCountText.text = wave == 0 ? "Prepare for first Wave" + "\n now attacking: " + AttackingBuilding.name + "\n next attacking: " + NextAttackingBuilding.name : "Wave " + wave + "\n now attacking: " + AttackingBuilding.name + "\n next attacking: " + NextAttackingBuilding.name;
-        enemiesLeftText.text = enemiesLeft.ToString();
 
+        if (wave == 0)
+        {
+            waveCountText.text = "Prepare for first Wave" + "\n now attacking: " + AttackingBuilding.name +
+                                 "\n next attacking: " + NextAttackingBuilding.name;
+        }
+        else
+        {
+            if (BuildingCount != 1)
+            {
+                waveCountText.text = "Wave " + wave + "\n now attacking: " + AttackingBuilding.name + "\n next attacking: " + NextAttackingBuilding.name;
+            }
+            else
+            {
+                waveCountText.text = "Wave " + wave + "\n now attacking: " + AttackingBuilding.name;
+            }
+        }
+        
+        enemiesLeftText.text = enemiesLeft.ToString();
         nextWaveTime = wave == 0 ? 2f : 60f;
 
         if (waveTime >= nextWaveTime && wave == 0)
@@ -66,11 +83,8 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveTime >= nextWaveTime)
         {
-            // setting new attack points
-            AttackingBuilding.GetComponent<SphereCollider>().enabled = false;
-            AttackingBuilding = NextAttackingBuilding;
-            AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
-            GetNextBuilding();
+            GetBuildings();
+            SetAttack();
             
             waveTime = 0f;
             spawnEnemies(getSpawns(waveCombo), enemiesSpawnType(++wave));
@@ -96,6 +110,22 @@ public class WaveManager : MonoBehaviour
     public void killEnemy()
     {
         enemiesLeft--;
+    }
+    
+    public void GetBuildings()
+    {
+        Buildings.Clear();
+        Buildings = GetSceneObjects(18);
+        BuildingCount = Buildings.Count;
+    }
+
+    public void SetAttack()
+    {
+        // setting new attack points
+        AttackingBuilding.GetComponent<SphereCollider>().enabled = false;
+        AttackingBuilding = NextAttackingBuilding;
+        AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
+        GetNextBuilding();
     }
 
     public List<Transform>[] getSpawns(string combo)

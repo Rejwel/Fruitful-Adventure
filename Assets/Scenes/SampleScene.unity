@@ -6484,6 +6484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232591507}
   - component: {fileID: 232591508}
+  - component: {fileID: 232591509}
   m_Layer: 18
   m_Name: Mill
   m_TagString: Untagged
@@ -6518,6 +6519,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &232591509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232591506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90371075c2136d14d9225601826babae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Building: {fileID: 1978637814}
 --- !u!1 &236941387
 GameObject:
   m_ObjectHideFlags: 0
@@ -12686,6 +12700,12 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &508274997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4294943026723114262, guid: 2f95e33414be1d04ca65d2f610048b29,
+    type: 3}
+  m_PrefabInstance: {fileID: 1880879564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &513389692
 GameObject:
   m_ObjectHideFlags: 0
@@ -25005,6 +25025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 933135375}
   - component: {fileID: 933135377}
+  - component: {fileID: 933135376}
   m_Layer: 18
   m_Name: Right Garage
   m_TagString: Untagged
@@ -25026,6 +25047,19 @@ Transform:
   m_Father: {fileID: 251332716}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &933135376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933135374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90371075c2136d14d9225601826babae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Building: {fileID: 508274997}
 --- !u!135 &933135377
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -26643,7 +26677,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237492612}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 50e20deaf86ce684e873b911d2946be9, type: 2}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: eac8e7d3ce23cf5439508b3585ff05f6, type: 2}
   m_EnableTreeColliders: 1
@@ -27409,7 +27443,7 @@ PrefabInstance:
     - target: {fileID: 3517701918081095596, guid: 2f95e33414be1d04ca65d2f610048b29,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.17864314
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 3517701918081095596, guid: 2f95e33414be1d04ca65d2f610048b29,
         type: 3}
@@ -28132,6 +28166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1510870284}
   - component: {fileID: 1510870286}
+  - component: {fileID: 1510870285}
   m_Layer: 18
   m_Name: Left Garage
   m_TagString: Untagged
@@ -28153,6 +28188,19 @@ Transform:
   m_Father: {fileID: 251332716}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1510870285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510870283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90371075c2136d14d9225601826babae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Building: {fileID: 1517230804}
 --- !u!135 &1510870286
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -28166,6 +28214,12 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1517230804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4294943026723114262, guid: 2f95e33414be1d04ca65d2f610048b29,
+    type: 3}
+  m_PrefabInstance: {fileID: 1393937112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1524136025 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2874718897732605733, guid: a5d1c6b1fd001ec4e921a769a3910204,
@@ -30124,6 +30178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1749707099}
   - component: {fileID: 1749707101}
+  - component: {fileID: 1749707100}
   m_Layer: 18
   m_Name: Barn
   m_TagString: Untagged
@@ -30145,6 +30200,19 @@ Transform:
   m_Father: {fileID: 251332716}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1749707100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749707098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90371075c2136d14d9225601826babae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Building: {fileID: 1936081491}
 --- !u!135 &1749707101
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -35558,7 +35626,7 @@ PrefabInstance:
     - target: {fileID: 3517701918081095596, guid: 2f95e33414be1d04ca65d2f610048b29,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.17999983
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 3517701918081095596, guid: 2f95e33414be1d04ca65d2f610048b29,
         type: 3}
@@ -36049,6 +36117,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910884601}
   m_CullTransparentMesh: 0
+--- !u!1 &1936081491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8871382369161366446, guid: 5fba3ae1e3dc38c458a297ffca5cc1cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 3424837667277041270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1941461852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2227821180346168928, guid: 1e3b65114dda04e4d8af06c3b63764ec,
@@ -36417,6 +36491,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973695689}
   m_CullTransparentMesh: 0
+--- !u!1 &1978637814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5813515946214152314, guid: f55083c56d2e21049877abb42e0f1aaf,
+    type: 3}
+  m_PrefabInstance: {fileID: 286716386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1989220047
 GameObject:
   m_ObjectHideFlags: 0
@@ -37146,6 +37226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2125670519}
   - component: {fileID: 2125670521}
+  - component: {fileID: 2125670520}
   m_Layer: 18
   m_Name: House
   m_TagString: Untagged
@@ -37167,6 +37248,19 @@ Transform:
   m_Father: {fileID: 251332716}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2125670520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125670518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90371075c2136d14d9225601826babae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Building: {fileID: 919132147607693924}
 --- !u!135 &2125670521
 SphereCollider:
   m_ObjectHideFlags: 0

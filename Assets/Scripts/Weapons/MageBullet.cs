@@ -37,8 +37,13 @@ public class MageBullet : MonoBehaviour
             {
                 BH.DestroyBuilding();
             }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else if (other.gameObject.layer == 13)
+        {
+            givedamage.TakePlayerDamage(35/2);
+            Destroy(gameObject);
+        }
     }
 }
 

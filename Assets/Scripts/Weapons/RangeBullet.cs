@@ -34,6 +34,11 @@ public class RangeBullet: MonoBehaviour
             }
             Destroy(gameObject);
         }
+        else if (other.gameObject.layer == 13)
+        {
+            givedamage.TakePlayerDamage(35/2);
+            Destroy(gameObject);
+        }
     }
 
 }

@@ -26,7 +26,11 @@ public class EnemyRanged : MonoBehaviour
     private Vector3 pozycjaGraczaXYZ;
 
     //Distance from Player
-    public LayerMask whatIsPlayer;
+    private CharacterController PlayerTransform;
+    private bool InRange;
+    private bool IsAttacking;
+    public LayerMask PlayerLayer;
+    public LayerMask BuildingLayer;
     public bool playerInShortRange;
     public bool playerInLongRange;
     public bool playerInCenterRange;
@@ -34,17 +38,19 @@ public class EnemyRanged : MonoBehaviour
     
     private GameObject WhatToAttack { get; set; }
 
-   
+
+
 
     private void Awake()
     {
         WhatToAttack = WaveManager.AttackingBuilding;
+        Player = WhatToAttack.transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
     void Start()
     {
-        StartCoroutine(HoldNavAgent());
+        PlayerTransform = FindObjectOfType<HealthPlayer>().Player;
         enemyRb = gameObject.GetComponent<Rigidbody>();
         
         if (GetComponent<Rigidbody>())
@@ -57,36 +63,68 @@ public class EnemyRanged : MonoBehaviour
 
     void Update()
     {
-        if (Player == null) Player = WaveManager.AttackingBuilding.transform;
-        // 3 positions of enemy attacking player
-        playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, whatIsPlayer);
-        playerInCenterRange = Physics.CheckSphere(transform.position, centerPoint, whatIsPlayer);
-        playerInLongRange = Physics.CheckSphere(transform.position, longAttack, whatIsPlayer);
-
-        pozycjaGraczaXYZ = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
-        patrzNaGracza = false;
-
-        if (playerInShortRange || playerInCenterRange)
+        print(WhatToAttack);
+        WhatToAttack = WaveManager.AttackingBuilding;
+        //if (Player == null) Player = WaveManager.AttackingBuilding.transform;
+        InRange = Physics.CheckSphere(transform.position, 20, PlayerLayer);
+        if (InRange && !IsAttacking || WhatToAttack.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>().buildingDestroyed)
         {
-            strzal();
-            patrzNaGracza = true;
-            Vector3 dirToPlayer = transform.position - Player.transform.position;  //when player is close he moves back
-            Vector3 newPos = transform.position + dirToPlayer;
-            agent.SetDestination(newPos);
-        }
-        else if (playerInLongRange)
-        {
-            agent.SetDestination(Player.transform.position);
+            // 3 positions of enemy attacking player
+            playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, PlayerLayer);
+            playerInCenterRange = Physics.CheckSphere(transform.position, centerPoint, PlayerLayer);
+            playerInLongRange = Physics.CheckSphere(transform.position, longAttack, PlayerLayer);
+
+            pozycjaGraczaXYZ = new Vector3(PlayerTransform.transform.position.x, PlayerTransform.transform.position.y, PlayerTransform.transform.position.z);
+            patrzNaGracza = false;
+
+            if (playerInShortRange || playerInCenterRange)
+            {
+                strzal();
+                patrzNaGracza = true;
+                Vector3 dirToPlayer = transform.position - PlayerTransform.transform.position;  //when player is close he moves back
+                Vector3 newPos = transform.position + dirToPlayer;
+                agent.SetDestination(newPos);
+            }
+            else if (playerInLongRange)
+            {
+                agent.SetDestination(PlayerTransform.transform.position);
+            }
+            else
+            {
+                agent.SetDestination(PlayerTransform.transform.position);
+            }
+            transform.LookAt(PlayerTransform.transform.position);
         }
         else
         {
-            agent.SetDestination(Player.transform.position);
-        }
-        
-        // transform of object set to looking destination
-        transform.LookAt(Player.transform.position);
-    }
+            // 3 positions of enemy attacking player
+            playerInShortRange = Physics.CheckSphere(transform.position, shortAttack, BuildingLayer);
+            playerInCenterRange = Physics.CheckSphere(transform.position, centerPoint, BuildingLayer);
+            playerInLongRange = Physics.CheckSphere(transform.position, longAttack, BuildingLayer);
 
+            pozycjaGraczaXYZ = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
+            patrzNaGracza = false;
+
+            if (playerInShortRange || playerInCenterRange)
+            {
+                IsAttacking = true;
+                strzal();
+                patrzNaGracza = true;
+                Vector3 dirToPlayer = transform.position - Player.transform.position;  //when player is close he moves back
+                Vector3 newPos = transform.position + dirToPlayer;
+                agent.SetDestination(newPos);
+            }
+            else if (playerInLongRange)
+            {
+                agent.SetDestination(Player.transform.position);
+            }
+            else
+            {
+                agent.SetDestination(Player.transform.position);
+            }
+            transform.LookAt(Player.transform.position);
+        }
+    }
 
     //Shooting Part
     public void strzal()    //Funkcja odpowiadająca za strzał
@@ -115,13 +153,5 @@ public class EnemyRanged : MonoBehaviour
         pozycjaGraczaXYZ = new Vector3(Player.position.x, Player.position.y, Player.position.z);
         rotacjaPocisku = Quaternion.LookRotation(pozycjaGraczaXYZ - transform.position);
         return rotacjaPocisku;
-    }
-
-    public IEnumerator HoldNavAgent()
-    {
-        yield return new WaitForSeconds(0.5f);
-        agent.enabled = true;
-        Player = WhatToAttack.transform;
-        follow = true;
     }
 }

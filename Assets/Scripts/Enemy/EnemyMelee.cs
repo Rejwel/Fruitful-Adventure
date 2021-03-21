@@ -8,6 +8,7 @@ using UnityEngine.Diagnostics;
 public class EnemyMelee : MonoBehaviour
 {
     public NavMeshAgent enemy;
+    private CharacterController Player;
     private BuildingHealth BH { get; set; }
     private Rigidbody EnemyRB { get; set; }
     private GameObject WhatToAttack { get; set; }
@@ -15,35 +16,53 @@ public class EnemyMelee : MonoBehaviour
     private bool Attack = true;
     private float NextAttack = 0f;
 
+    public LayerMask whatIsPlayer;
+    private bool InRange;
+
     private void Start()
     {
+        Player = FindObjectOfType<HealthPlayer>().Player;
         EnemyRB = GetComponent<Rigidbody>();
         WhatToAttack = WaveManager.AttackingBuilding;
-        StartCoroutine(HoldNavAgent());
     }
+    
 
     void Update()
     {
+        WhatToAttack = WaveManager.AttackingBuilding;
+        InRange = Physics.CheckSphere(transform.position, 20, whatIsPlayer);
 
-        if (NextAttack >= EnemyMechanics.AttackSpeed)
+        // WhatToAttack.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>().buildingDestroyed
+        if (InRange && !IsAttacking || WhatToAttack.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>().buildingDestroyed)
         {
-            Attack = true;
-            NextAttack = 0f;
+            transform.LookAt(Player.transform);
+            enemy.SetDestination(Player.transform.position);
         }
-
-        if(!IsAttacking)
-            enemy.SetDestination(WhatToAttack.transform.localPosition);
-        
-        if (Attack && BH != null)
+        else
         {
-            BH.TakeDamage(20);
-            if (BH.currentHealth <= 0 && BH.buildingDestroyed == false)
+            if (NextAttack >= EnemyMechanics.AttackSpeed)
             {
-                BH.DestroyBuilding();
+                Attack = true;
+                NextAttack = 0f;
             }
-            Attack = false;
+        
+            if (!IsAttacking && !InRange)
+            {
+                enemy.SetDestination(WhatToAttack.transform.localPosition);
+                transform.LookAt(WhatToAttack.transform);
+            }
+            
+            if(Attack && BH != null)
+            {
+                BH.TakeDamage(20);
+                if (BH.currentHealth <= 0 && BH.buildingDestroyed == false)
+                {
+                    BH.DestroyBuilding();
+                }
+                Attack = false;
+            }
+        
         }
-
         NextAttack += Time.deltaTime;
     }
 
@@ -68,10 +87,5 @@ public class EnemyMelee : MonoBehaviour
             BH = null;
         }
     }
-
-    public IEnumerator HoldNavAgent() 
-    { 
-        yield return new WaitForSeconds(0.5f);
-        enemy.enabled = true;
-    }
+    
 }

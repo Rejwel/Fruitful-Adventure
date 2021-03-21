@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BuildingHealth : MonoBehaviour
@@ -9,19 +10,32 @@ public class BuildingHealth : MonoBehaviour
     public int MaxHealth;
     public int currentHealth;
     public HealthBarScript healthBar;
-    
+    public static LayerMask BuildingLayerMask;
+    private WaveManager WaveManager;
+
+    private GameObject[] Buildings;
+
     void Start()
     {
+        Buildings = GetSceneObjects(18);
+        WaveManager = FindObjectOfType<WaveManager>();
         buildingDestroyed = false;
         InitColliders();
         currentHealth = MaxHealth;
         healthBar.SetMaxHealth(MaxHealth);
+        BuildingLayerMask = this.gameObject.layer;
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+    }
+    
+    private GameObject [] GetSceneObjects(int layer)
+    {
+        return Resources.FindObjectsOfTypeAll<GameObject>()
+            .Where(go => go.layer == layer).ToArray();
     }
 
     public void DestroyBuilding()
@@ -46,6 +60,18 @@ public class BuildingHealth : MonoBehaviour
                 childrenList[i].AddComponent<Rigidbody>().AddForce(Vector3.forward*10f);
             }
         buildingDestroyed = true;
+    }
+
+    private GameObject GetThisBuilding()
+    {
+        foreach (var building in Buildings)
+        {
+            if (building.GetComponent<BuildingReference>().Building == this.gameObject)
+            {
+                return building;
+            }
+        }
+        return null;
     }
 
     public void InitColliders()
