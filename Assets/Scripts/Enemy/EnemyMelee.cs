@@ -8,7 +8,7 @@ using UnityEngine.Diagnostics;
 public class EnemyMelee : MonoBehaviour
 {
     public NavMeshAgent enemy;
-    private CharacterController Player;
+    private GameObject Player;
     private BuildingHealth BH { get; set; }
     private Rigidbody EnemyRB { get; set; }
     private GameObject WhatToAttack { get; set; }
@@ -21,7 +21,7 @@ public class EnemyMelee : MonoBehaviour
 
     private void Start()
     {
-        Player = FindObjectOfType<HealthPlayer>().Player;
+        Player = FindObjectOfType<HealthPlayer>().gameObject;
         EnemyRB = GetComponent<Rigidbody>();
         WhatToAttack = WaveManager.AttackingBuilding;
     }
@@ -30,10 +30,11 @@ public class EnemyMelee : MonoBehaviour
     void Update()
     {
         WhatToAttack = WaveManager.AttackingBuilding;
+
         InRange = Physics.CheckSphere(transform.position, 20, whatIsPlayer);
 
         // WhatToAttack.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>().buildingDestroyed
-        if (InRange && !IsAttacking || WhatToAttack.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>().buildingDestroyed)
+        if (InRange && !IsAttacking || WhatToAttack == null)
         {
             transform.LookAt(Player.transform);
             enemy.SetDestination(Player.transform.position);
@@ -57,6 +58,8 @@ public class EnemyMelee : MonoBehaviour
                 BH.TakeDamage(20);
                 if (BH.currentHealth <= 0 && BH.buildingDestroyed == false)
                 {
+                    // transform.LookAt(Player.transform);
+                    // enemy.SetDestination(Player.transform.position);
                     BH.DestroyBuilding();
                 }
                 Attack = false;
@@ -68,7 +71,7 @@ public class EnemyMelee : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == 19)
+        if (WaveManager.AttackingBuilding != null && other.gameObject.layer == 19 && other.transform.parent.gameObject.Equals(WaveManager.AttackingBuilding.GetComponent<BuildingReference>().Building))
         {
             IsAttacking = true;
             enemy.isStopped = true;
@@ -81,10 +84,10 @@ public class EnemyMelee : MonoBehaviour
     {
         if (other.gameObject.layer == 19)
         {
+            BH = null;
             IsAttacking = false;
             enemy.isStopped = false;
             EnemyRB.constraints = RigidbodyConstraints.None;
-            BH = null;
         }
     }
     

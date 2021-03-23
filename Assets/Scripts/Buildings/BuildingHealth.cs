@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Experimental.TerrainAPI;
 
 public class BuildingHealth : MonoBehaviour
 {
@@ -17,13 +18,13 @@ public class BuildingHealth : MonoBehaviour
 
     void Start()
     {
-        Buildings = GetSceneObjects(18);
+        BuildingLayerMask = LayerMask.NameToLayer("BuildingToAttack");
+        Buildings = GetSceneObjects(BuildingLayerMask);
         WaveManager = FindObjectOfType<WaveManager>();
         buildingDestroyed = false;
         InitColliders();
         currentHealth = MaxHealth;
         healthBar.SetMaxHealth(MaxHealth);
-        BuildingLayerMask = this.gameObject.layer;
     }
 
     public void TakeDamage(int damage)
@@ -40,6 +41,16 @@ public class BuildingHealth : MonoBehaviour
 
     public void DestroyBuilding()
     {
+        Buildings = GetSceneObjects(BuildingLayerMask);
+        if (GetThisBuilding() == WaveManager.AttackingBuilding)
+        {
+            WaveManager.AttackingBuilding = null;
+        }
+        Destroy(GetThisBuilding());
+        WaveManager.BuildingCount--;
+        WaveManager.AttackingBuilding = null;
+        buildingDestroyed = true;
+
         List<GameObject> childrenList = new List<GameObject>();
             Transform[] children = GetComponentsInChildren<Transform>();
             for(int i = 0; i < children.Length; i++) {
@@ -59,14 +70,13 @@ public class BuildingHealth : MonoBehaviour
                 childrenList[i].isStatic = false;
                 childrenList[i].AddComponent<Rigidbody>().AddForce(Vector3.forward*10f);
             }
-        buildingDestroyed = true;
     }
 
     private GameObject GetThisBuilding()
     {
         foreach (var building in Buildings)
         {
-            if (building.GetComponent<BuildingReference>().Building == this.gameObject)
+            if (building.GetComponent<BuildingReference>().Building.name == this.gameObject.name)
             {
                 return building;
             }

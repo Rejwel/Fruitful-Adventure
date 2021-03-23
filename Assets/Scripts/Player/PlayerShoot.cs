@@ -169,7 +169,7 @@ public class PlayerShoot : MonoBehaviour
             forwardVector = Quaternion.AngleAxis(angle, Vector3.forward) * forwardVector;
             forwardVector = firePoint.transform.rotation * forwardVector;
             
-            InstantiateBullet = Instantiate(bullet, firePoint.position, Quaternion.identity);
+            InstantiateBullet = Instantiate(bullet, firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(270,0,90)));
             InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
         }
     }

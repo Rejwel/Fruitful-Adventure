@@ -22,12 +22,13 @@ public class WaveManager : MonoBehaviour
     private Text waveCountText;
     private Text enemiesLeftText;
     private List<GameObject> Buildings { get; set; }
-    public static int BuildingCount;
+    public int BuildingCount;
     private int WhichBuildingToAttack { get; set; }
     public static GameObject AttackingBuilding { get; set; }
     private GameObject NextAttackingBuilding { get; set; }
     private EnemyRanged enemyType1;
     private EnemyMelee enemyType2;
+    private string WaveTextGui;
     
 
     public Spawner [] spawners;
@@ -53,22 +54,25 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
+        if(BuildingCount.Equals(0)) this.gameObject.SetActive(false);
+        
         timerText.text = waveTime.ToString("f2");
 
+        WaveTextGui = AttackingBuilding == null ? "Destroyed!" : AttackingBuilding.name;
         if (wave == 0)
         {
-            waveCountText.text = "Prepare for first Wave" + "\n now attacking: " + AttackingBuilding.name +
+            waveCountText.text = "Prepare for first Wave" + "\n now attacking: " + WaveTextGui +
                                  "\n next attacking: " + NextAttackingBuilding.name;
         }
         else
         {
             if (BuildingCount != 1)
             {
-                waveCountText.text = "Wave " + wave + "\n now attacking: " + AttackingBuilding.name + "\n next attacking: " + NextAttackingBuilding.name;
+                waveCountText.text = "Wave " + wave + "\n now attacking: " + WaveTextGui + "\n next attacking: " + NextAttackingBuilding.name;
             }
             else
             {
-                waveCountText.text = "Wave " + wave + "\n now attacking: " + AttackingBuilding.name;
+                waveCountText.text = "Wave " + wave + "\n This is your last building!: " + NextAttackingBuilding;
             }
         }
         
@@ -99,11 +103,29 @@ public class WaveManager : MonoBehaviour
         return Buildings[WhichBuildingToAttack];
     }
 
+    public void SetAttack()
+    {
+        // setting new attack points
+        if(AttackingBuilding != null)
+            AttackingBuilding.GetComponent<SphereCollider>().enabled = false;
+        
+        AttackingBuilding = NextAttackingBuilding;
+        AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
+        GetNextBuilding();
+    }
+    
     private void GetNextBuilding()
     {
-        while (AttackingBuilding == NextAttackingBuilding || NextAttackingBuilding == null)
+        if (Buildings.Count.Equals(1))
         {
-            NextAttackingBuilding = GetAttackPoint();
+            AttackingBuilding = NextAttackingBuilding;
+        }
+        else
+        {
+           while (AttackingBuilding == NextAttackingBuilding || NextAttackingBuilding == null)
+           {
+               NextAttackingBuilding = GetAttackPoint();
+           } 
         }
     }
 
@@ -117,15 +139,6 @@ public class WaveManager : MonoBehaviour
         Buildings.Clear();
         Buildings = GetSceneObjects(18);
         BuildingCount = Buildings.Count;
-    }
-
-    public void SetAttack()
-    {
-        // setting new attack points
-        AttackingBuilding.GetComponent<SphereCollider>().enabled = false;
-        AttackingBuilding = NextAttackingBuilding;
-        AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
-        GetNextBuilding();
     }
 
     public List<Transform>[] getSpawns(string combo)

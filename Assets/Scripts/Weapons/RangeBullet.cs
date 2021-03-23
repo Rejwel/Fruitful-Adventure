@@ -7,11 +7,13 @@ public class RangeBullet: MonoBehaviour
     private Transform firepoint;
 
     private HealthPlayer givedamage;
+    private EnemyRanged EnemyRanged;
     private BuildingHealth BH { get; set; }
 
 
     void Start()
     {
+        EnemyRanged = FindObjectOfType<EnemyRanged>();
         Destroy(gameObject, 4);
     }
 
@@ -24,7 +26,7 @@ public class RangeBullet: MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == 19)
+        if (WaveManager.AttackingBuilding != null && other.gameObject.layer == 19 && other.transform.parent.gameObject.Equals(WaveManager.AttackingBuilding.GetComponent<BuildingReference>().Building))
         {
             BH = other.gameObject.GetComponentInParent<BuildingHealth>();
             BH.TakeDamage(35);

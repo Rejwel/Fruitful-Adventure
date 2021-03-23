@@ -17,12 +17,14 @@ public class PauseMenu : MonoBehaviour
     public GameObject Dead;
     public GameObject SureGameover;
     public GameObject progressText;
+    private WaveManager WaveManager;
 
 
     public GameObject GUI;
 
     void Awake()
     {
+        WaveManager = FindObjectOfType<WaveManager>();
         pauseMenuUI.SetActive(false);
         GameIsPaused = false;
         GUI = GameObject.Find("GUI");
