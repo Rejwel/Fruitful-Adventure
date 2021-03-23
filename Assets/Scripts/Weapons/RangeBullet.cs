@@ -10,15 +10,12 @@ public class RangeBullet: MonoBehaviour
     private EnemyRanged EnemyRanged;
     private BuildingHealth BH { get; set; }
 
-
-    void Start()
-    {
-        EnemyRanged = FindObjectOfType<EnemyRanged>();
-        Destroy(gameObject, 4);
-    }
-
     private void Awake()
     {
+        Physics.IgnoreLayerCollision(15,15);
+        Physics.IgnoreLayerCollision(15, 20);
+        EnemyRanged = FindObjectOfType<EnemyRanged>();
+        Destroy(gameObject, 4);
         firepoint = GetComponent<Transform>();
         givedamage = FindObjectOfType<HealthPlayer>();
     }

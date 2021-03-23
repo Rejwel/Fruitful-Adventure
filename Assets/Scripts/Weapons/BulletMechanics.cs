@@ -13,6 +13,7 @@ public class BulletMechanics : MonoBehaviour
     void Start()
     {
         Physics.IgnoreLayerCollision(15,15);
+        Physics.IgnoreLayerCollision(15, 20);
         explosion = FindObjectOfType<Explosion>();
         player = FindObjectOfType<PlayerShoot>();
         WaveManager = FindObjectOfType<WaveManager>();

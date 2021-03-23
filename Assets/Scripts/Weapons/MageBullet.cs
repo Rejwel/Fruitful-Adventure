@@ -8,17 +8,13 @@ public class MageBullet : MonoBehaviour
     private HealthPlayer givedamage;
     private EnemyRanged EnemyRanged;
     private BuildingHealth BH { get; set; }
-   
-
-    void Start()
-    {
-        EnemyRanged = FindObjectOfType<EnemyRanged>();
-        Destroy(gameObject, 2);
-        
-    }
 
     private void Awake()
     {
+        Physics.IgnoreLayerCollision(15,15);
+        Physics.IgnoreLayerCollision(15, 20);
+        EnemyRanged = FindObjectOfType<EnemyRanged>();
+        Destroy(gameObject, 2);
         firepoint = GetComponent<Transform>();
         givedamage = FindObjectOfType<HealthPlayer>();
     }
