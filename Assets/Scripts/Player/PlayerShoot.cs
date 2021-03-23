@@ -174,26 +174,26 @@ public class PlayerShoot : MonoBehaviour
             // for minigun
             if (currentGun.GetId() == 3)
             {
-                InstantiateBullet = Instantiate(BulletObjects[NumberOfBullet++], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(270,0,90)));
+                InstantiateBullet = Instantiate(BulletObjects[NumberOfBullet++], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(0, 90,0)));
                 InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
                 if (NumberOfBullet == BulletObjects.Length) NumberOfBullet = 0;
             }
             // for pistol
             else if (currentGun.GetId() == 0)
             {
-                InstantiateBullet = Instantiate(BulletObjects[5], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(270,0,90)));
+                InstantiateBullet = Instantiate(BulletObjects[5], firePoint.position, transform.rotation  * Quaternion.Euler(new Vector3(0, 90,0)));
                 InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
             }
             // for rifle
             else if (currentGun.GetId() == 2)
             {
-                InstantiateBullet = Instantiate(BulletObjects[1], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(270,0,90)));
+                InstantiateBullet = Instantiate(BulletObjects[1], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(0, 90,0)));
                 InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
             }
             // for shotgun
             else if (currentGun.GetId() == 1)
             {
-                InstantiateBullet = Instantiate(BulletObjects[6], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(270,0,90)));
+                InstantiateBullet = Instantiate(BulletObjects[6], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(0, 90,0)));
                 InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
             }
         }
