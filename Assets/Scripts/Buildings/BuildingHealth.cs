@@ -15,6 +15,7 @@ public class BuildingHealth : MonoBehaviour
     private WaveManager WaveManager;
 
     private GameObject[] Buildings;
+    public GameObject BrokenBuilding;
 
     void Start()
     {
@@ -51,25 +52,8 @@ public class BuildingHealth : MonoBehaviour
         WaveManager.AttackingBuilding = null;
         buildingDestroyed = true;
 
-        List<GameObject> childrenList = new List<GameObject>();
-            Transform[] children = GetComponentsInChildren<Transform>();
-            for(int i = 0; i < children.Length; i++) {
-                Transform child = children[i];
-                if(child != transform && !child.CompareTag("Healthbar")) {
-                    childrenList.Add(child.gameObject);
-                }
-                else if(child.CompareTag("Healthbar"))
-                {
-                    Destroy(children[i].gameObject);
-                }
-            }
-            for(int i = 0; i < childrenList.Count; i++)
-            {
-                childrenList[i].AddComponent<DestroyAfter5Sec>();
-                childrenList[i].GetComponent<MeshCollider>().convex = true;
-                childrenList[i].isStatic = false;
-                childrenList[i].AddComponent<Rigidbody>().AddForce(Vector3.forward*10f);
-            }
+        Destroy(this.gameObject);
+        Instantiate(BrokenBuilding, transform.position, transform.rotation);
     }
 
     private GameObject GetThisBuilding()

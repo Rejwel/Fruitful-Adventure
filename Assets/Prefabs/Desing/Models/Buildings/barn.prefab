@@ -976,6 +976,8 @@ MonoBehaviour:
   MaxHealth: 1000
   currentHealth: 0
   healthBar: {fileID: 6346563618664137945}
+  BrokenBuilding: {fileID: 8496891974002211215, guid: 86f6df97e7ea0e64cad33eeab99b560f,
+    type: 3}
 --- !u!114 &919132147983763882
 MonoBehaviour:
   m_ObjectHideFlags: 0
