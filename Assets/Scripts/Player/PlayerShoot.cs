@@ -35,9 +35,9 @@ public class PlayerShoot : MonoBehaviour
     private float fireRate;
     private float emptyTime = 0.8f;
     private float reloadTime = 2f;
-    private float nextTimeToFire = 0f;
-    private float nextTimeToEmpty = 0f;
-    private float nextTimeToReload = 0f;
+    private float nextTimeToFire { get; set; }
+    private float nextTimeToEmpty { get; set; }
+    private float nextTimeToReload { get; set; }
     
     [Header("TMP")]
     private TextMeshProUGUI  currentGunText;
@@ -61,6 +61,7 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
+
         // RELOADING CANCEL
         if (reloading && Time.time >= nextTimeToFire)
         {
@@ -286,5 +287,12 @@ public class PlayerShoot : MonoBehaviour
     private void ReturnToOriginalRecoil()
     {
         firePoint.transform.localEulerAngles = originalRotationOfFirepoint;
+    }
+
+    public void AddDelay()
+    {
+        nextTimeToFire = Time.time + 1f;
+        nextTimeToReload = Time.time + reloadTime;
+        nextTimeToEmpty = Time.time + emptyTime;
     }
 }

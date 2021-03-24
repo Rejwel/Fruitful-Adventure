@@ -72,7 +72,7 @@ public class WaveManager : MonoBehaviour
             }
             else
             {
-                waveCountText.text = "Wave " + wave + "\n This is your last building!: " + NextAttackingBuilding;
+                waveCountText.text = "Wave " + wave + "\n This is your last building!: " + NextAttackingBuilding.name;
             }
         }
         
