@@ -167,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBar: {fileID: 7687224234967383899}
+  Money: {fileID: 8232618329337579605, guid: bfffc6ff1fda0554e9116830a5e64295, type: 3}
 --- !u!65 &9204705765825615569
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -7,15 +8,19 @@ public class Explosion : MonoBehaviour
 {
     public float cubeSize = 0.18f;
     public int cubesInRow = 2;
+    private EnemyMechanics EM;
+    private GameObject SugarCube;
 
     float cubesPivotDistance;
     Vector3 cubesPivot;
-    public float explosionRadius = 3f;
+    public float explosionRadius = 5f;
     public float explosionForce = 50f;
-    public float explosionUpward = 0.5f;
+    public float explosionUpward = 3f;
 
     void Start()
     {
+        EM = FindObjectOfType<EnemyMechanics>();
+        SugarCube = EM.Money;
         cubesPivotDistance = cubeSize * cubesInRow / 2;
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
     }
@@ -41,6 +46,7 @@ public class Explosion : MonoBehaviour
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null)
             {
+                print("work");
                 rb.AddExplosionForce(explosionForce, enemy.transform.position, explosionRadius, explosionUpward);
             }
         }
@@ -48,15 +54,6 @@ public class Explosion : MonoBehaviour
 
     public void createPiece(int x, int y, int z, GameObject enemy)
     {
-        GameObject piece;
-        piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        
-        piece.transform.position = enemy.transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
-        piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
-        piece.gameObject.layer = 11;
-        piece.GetComponent<Renderer>().material.color = Color.white;
-        piece.AddComponent<Rigidbody>();
-        piece.AddComponent<MoneyDisappear>();
-        piece.GetComponent<Rigidbody>().mass = cubeSize;
+        Instantiate(SugarCube, enemy.transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot, transform.rotation);
     }
 }

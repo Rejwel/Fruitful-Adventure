@@ -3,7 +3,9 @@ guid: 6a197d6611a68f240a38378b52b3baef
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - SugarCube: {fileID: 8232618329337579605, guid: bfffc6ff1fda0554e9116830a5e64295,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

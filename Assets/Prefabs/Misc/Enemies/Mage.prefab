@@ -212,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBar: {fileID: 6528037127942012915}
+  Money: {fileID: 8232618329337579605, guid: bfffc6ff1fda0554e9116830a5e64295, type: 3}
 --- !u!114 &-7126138228824471991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,9 +237,6 @@ MonoBehaviour:
   BuildingLayer:
     serializedVersion: 2
     m_Bits: 262144
-  playerInShortRange: 0
-  playerInLongRange: 0
-  playerInCenterRange: 0
   shortAttack: 15
   longAttack: 30
   centerPoint: 25
