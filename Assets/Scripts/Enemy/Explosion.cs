@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -25,7 +24,7 @@ public class Explosion : MonoBehaviour
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
     }
 
-    public void explode(GameObject enemy)
+    public void explode(Transform EnemyTransform)
     {
 
         for (int x = 0; x < cubesInRow; x++)
@@ -34,26 +33,25 @@ public class Explosion : MonoBehaviour
             {
                 for (int z = 0; z < cubesInRow; z++)
                 {
-                    createPiece(x, y, z, enemy);
+                    createPiece(x, y, z, EnemyTransform);
                 }
             }
         }
         
-        Vector3 explosionPos = enemy.transform.position;
+        Vector3 explosionPos = EnemyTransform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                print("work");
-                rb.AddExplosionForce(explosionForce, enemy.transform.position, explosionRadius, explosionUpward);
+                rb.AddExplosionForce(explosionForce, EnemyTransform.position, explosionRadius, explosionUpward);
             }
         }
     }
 
-    public void createPiece(int x, int y, int z, GameObject enemy)
+    public void createPiece(int x, int y, int z, Transform EnemyTransform)
     {
-        Instantiate(SugarCube, enemy.transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot, transform.rotation);
+        Instantiate(SugarCube, EnemyTransform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot, transform.rotation);
     }
 }

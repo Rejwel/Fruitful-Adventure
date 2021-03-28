@@ -61,7 +61,7 @@ public class WaveManager : MonoBehaviour
         WaveTextGui = AttackingBuilding == null ? "Destroyed!" : AttackingBuilding.name;
         if (wave == 0)
         {
-            waveCountText.text = "Prepare for first Wave" + "\n now attacking: " + WaveTextGui +
+            waveCountText.text = "First Wave incoming, You have 60 seconds!" + "\n now attacking: " + WaveTextGui +
                                  "\n next attacking: " + NextAttackingBuilding.name;
         }
         else
@@ -77,7 +77,7 @@ public class WaveManager : MonoBehaviour
         }
         
         enemiesLeftText.text = enemiesLeft.ToString();
-        nextWaveTime = wave == 0 ? 2f : 60f;
+        nextWaveTime = wave == 0 ? 60f : 60f;
 
         if (waveTime >= nextWaveTime && wave == 0)
         {

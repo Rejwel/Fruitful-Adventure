@@ -60,7 +60,7 @@ public class TBullet : MonoBehaviour
             if (enemy.GetHealth() <= 0)
             {
                 enemy.Die();
-                explosion.explode(hit.gameObject);
+                explosion.explode(hit.gameObject.transform);
                 WaveManager.killEnemy();
             }
             Destroy(gameObject);

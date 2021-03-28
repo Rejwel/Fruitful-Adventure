@@ -74,7 +74,7 @@ public class Grenade : MonoBehaviour
                 {
                     nearbyObject.GetComponent<Collider>().enabled = false;
                     enemy.Die();
-                    explosion.explode(nearbyObject.gameObject);
+                    explosion.explode(nearbyObject.gameObject.transform);
                     WaveManager.killEnemy();
                 }
             }
