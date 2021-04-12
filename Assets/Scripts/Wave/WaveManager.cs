@@ -79,6 +79,7 @@ public class WaveManager : MonoBehaviour
         enemiesLeftText.text = enemiesLeft.ToString();
         nextWaveTime = wave == 0 ? 60f : 90f;
 
+
         if (waveTime >= nextWaveTime && wave == 0)
         {
             waveTime = 0f;

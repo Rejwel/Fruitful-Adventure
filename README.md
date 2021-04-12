@@ -14,7 +14,7 @@
 ## v. 0.4
 
 Gra na stan obecny opiera sie na zabijaniu przeciwnikow. Gracz wygrywa
-zabijajac wszystkich przeciwnikow po ostatnim wave.
+zabijajac wszystkich przeciwnikow po ostatnim wave hol hol.
 
 ### Zaimplementowane demo :
 - sklep
