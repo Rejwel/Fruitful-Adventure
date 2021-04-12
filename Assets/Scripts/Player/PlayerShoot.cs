@@ -10,10 +10,12 @@ using Random = UnityEngine.Random;
 
 public class PlayerShoot : MonoBehaviour
 {
-    [Header("Misc")]
+    [Header("Misc")] 
+    public Transform cameraTransform;
     public Transform firePoint;
     public GameObject [] BulletObjects;
     private int NumberOfBullet { get; set; }
+    public bool HoldFire { get; set; }
     private Inventory inventory;
     
     private Gun currentGun;
@@ -46,6 +48,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Start()
     {
+        HoldFire = false;
         originalRotationOfFirepoint = firePoint.transform.localEulerAngles;
         firstEmptyBullet = true;
         inventory = FindObjectOfType<Inventory>();
@@ -70,25 +73,27 @@ public class PlayerShoot : MonoBehaviour
         }
 
         // SHOOTING
-        if (Input.GetButtonDown("Fire1")) ReturnToOriginalRecoil();
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine[currentGun.GetId()] > 0) 
-        {
-            Shoot();
-        }
-        else if (magazine[currentGun.GetId()] == 0 && firstEmptyBullet)
-        {
-            firstEmptyBullet = false;
-            nextTimeToEmpty = Time.time + emptyTime;
-        }
-        else if (Input.GetButton("Fire1") && magazine[currentGun.GetId()] == 0 && Time.time >= nextTimeToEmpty)
-        {
-            if (currentGun.GetDesc().Equals("Pistol") && !reloading)
+        if(!HoldFire){
+            if (Input.GetButtonDown("Fire1")) ReturnToOriginalRecoil();
+            if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine[currentGun.GetId()] > 0)
             {
-                Empty("Pistol_empty");
+                Shoot();
             }
-            else if (currentGun.GetDesc() != "Pistol" && !reloading)
+            else if (magazine[currentGun.GetId()] == 0 && firstEmptyBullet)
             {
-                Empty("Gun_empty");
+                firstEmptyBullet = false;
+                nextTimeToEmpty = Time.time + emptyTime;
+            }
+            else if (Input.GetButton("Fire1") && magazine[currentGun.GetId()] == 0 && Time.time >= nextTimeToEmpty)
+            {
+                if (currentGun.GetDesc().Equals("Pistol") && !reloading)
+                {
+                    Empty("Pistol_empty");
+                }
+                else if (currentGun.GetDesc() != "Pistol" && !reloading)
+                {
+                    Empty("Gun_empty");
+                }
             }
         }
 
@@ -207,7 +212,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void ChangeGun(Gun currentGun)
     {
-        AudioManager.stopSound();
+        // AudioManager.stopSound("Gun_reload");
         reloading = false;
         
         firstEmptyBullet = true;
@@ -292,7 +297,7 @@ public class PlayerShoot : MonoBehaviour
     public void AddDelay()
     {
         nextTimeToFire = Time.time + 1f;
-        nextTimeToReload = Time.time + reloadTime;
+        //nextTimeToReload = Time.time + reloadTime;
         nextTimeToEmpty = Time.time + emptyTime;
     }
 }

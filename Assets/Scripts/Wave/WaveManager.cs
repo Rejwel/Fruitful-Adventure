@@ -77,7 +77,11 @@ public class WaveManager : MonoBehaviour
         }
         
         enemiesLeftText.text = enemiesLeft.ToString();
-        nextWaveTime = wave == 0 ? 1f : 60f;
+<<<<<<< HEAD
+        nextWaveTime = wave == 0 ? 60f : 60f;
+=======
+        nextWaveTime = wave == 0 ? 60f : 90f;
+>>>>>>> origin
 
         if (waveTime >= nextWaveTime && wave == 0)
         {
@@ -181,54 +185,50 @@ public class WaveManager : MonoBehaviour
 
     public GameObject[] enemiesSpawnType(int x)
     {
+        // 0 - mage
+        // 1 - melee
+        // 2 - range
+        // 3 - tank
         GameObject[] enemiesToSpawn = new GameObject[16];
         switch (x)
         {
             case 1:
             {
-                //front melee
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 4; i+=2)
                 {
-                    // enemiesToSpawn[i] = enemies[1];
+                    enemiesToSpawn[i] = enemies[1];
                 }
                 
                 // this is for testing only!
-                for (int i = 0; i < 4; i++)
-                {
-                    enemiesToSpawn[i] = enemies[i];
-                }
+                // for (int i = 0; i < 4; i++)
+                // {
+                //     enemiesToSpawn[i] = enemies[i];
+                // }
 
                 return enemiesToSpawn;
             }
 
             case 2:
             {
-                //front tank
-                //middle melee
-                enemiesToSpawn[1] = enemies[3];
-                enemiesToSpawn[2] = enemies[3];
-                enemiesToSpawn[4] = enemies[1];
-                enemiesToSpawn[7] = enemies[1];
+                enemiesToSpawn[1] = enemies[1];
+                enemiesToSpawn[2] = enemies[1];
+                enemiesToSpawn[7] = enemies[2];
 
                 return enemiesToSpawn;
             }
             
             case 3:
             {
-                //front melee
-                //middle range
-                enemiesToSpawn[1] = enemies[1];
+                enemiesToSpawn[1] = enemies[3];
                 enemiesToSpawn[2] = enemies[1];
                 enemiesToSpawn[4] = enemies[2];
-                enemiesToSpawn[7] = enemies[2];
+                enemiesToSpawn[7] = enemies[0];
 
                 return enemiesToSpawn;
             }
             
             case 4:
             {
-                //front melee tank 
-                //back range mage weak
                 enemiesToSpawn[1] = enemies[3];
                 enemiesToSpawn[2] = enemies[3];
                 enemiesToSpawn[0] = enemies[1];
@@ -241,8 +241,6 @@ public class WaveManager : MonoBehaviour
             
             case 5:
             {
-                //front melee tank 
-                //back range mage strong
                 enemiesToSpawn[0] = enemies[1];
                 enemiesToSpawn[3] = enemies[1];
                 enemiesToSpawn[1] = enemies[3];
@@ -257,7 +255,6 @@ public class WaveManager : MonoBehaviour
             
             case 6:
             {
-                //front middle melee
                 for(int i = 0; i < 8; i++)
                 {
                     enemiesToSpawn[i] = enemies[1];
@@ -268,8 +265,6 @@ public class WaveManager : MonoBehaviour
             
             case 7:
             {
-                //front tank
-                // middle mix
                 for (int i = 0; i < 4; i++)
                 {
                     enemiesToSpawn[i] = enemies[3];

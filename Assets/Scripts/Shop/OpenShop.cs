@@ -27,12 +27,16 @@ public class OpenShop : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E))
         {
+            // player.GetComponent<GrenadeThrow>().enabled = false;
+            // player.GetComponent<PlayerShoot>().enabled = false;
+            player.GetComponent<PlayerShoot>().HoldFire = true;
             openShop();
         }
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Escape))
         {
             closeShop();
+            player.GetComponent<PlayerShoot>().HoldFire = false;
         }
     }
 
@@ -43,7 +47,6 @@ public class OpenShop : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         text.SetActive(false);
-        player.GetComponent<PlayerShoot>().enabled = false;
         inGameGui.SetActive(false);
         shopGui.SetActive(true);
         
@@ -58,7 +61,6 @@ public class OpenShop : MonoBehaviour
 
         currentMoney.text = money.CurrentMoney.ToString();
         text.SetActive(true);
-        player.GetComponent<PlayerShoot>().enabled = true;
         inGameGui.SetActive(true);
         shopGui.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;

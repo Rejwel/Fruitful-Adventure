@@ -43,6 +43,4 @@ public class BulletMechanics : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    
 }
