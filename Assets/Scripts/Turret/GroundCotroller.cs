@@ -27,7 +27,9 @@ public class GroundCotroller : MonoBehaviour
         
         if (currentPlaceableObject != null)
         {
-            
+            // player.GetComponent<PlayerShoot>().enabled = false;
+            // player.GetComponent<GrenadeThrow>().enabled = false;
+            player.GetComponent<PlayerShoot>().HoldFire = true;
             MoveCurrentObjectToMouse();
             RotateFromMouseWheel();
             if (hope)
@@ -40,7 +42,7 @@ public class GroundCotroller : MonoBehaviour
                 WarningCanvas.SetActive(true);
             }
         }
-        
+
     }
 
 
@@ -125,8 +127,9 @@ public class GroundCotroller : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
             currentPlaceableObject.tag = "ABC";
-            
             currentPlaceableObject = null;
+            player.GetComponent<PlayerShoot>().AddDelay();
+            player.GetComponent<PlayerShoot>().HoldFire = false;
         }
     }
 

@@ -102,6 +102,9 @@ public class EnemyRanged : MonoBehaviour
 
         if (odliczanieDoStrzalu >= czekaj)
         {
+            if(gameObject.name.Equals("Range(Clone)")) AudioManager.playSound("enemyRanged");
+            else if(gameObject.name.Equals("Mage(Clone)")) AudioManager.playSound("enemyMage");
+            
             odliczanieDoStrzalu = 0;
             GameObject pocisk;
 

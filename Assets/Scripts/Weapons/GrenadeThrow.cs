@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -13,6 +13,7 @@ public class GrenadeThrow : MonoBehaviour
     public GameObject FirePoint;
     public GameObject GrenadeUp;
     public GameObject GrenadeDown;
+    public GameObject Gun;
     private GameObject Grenade;
     private PlayerShoot PlayerShoot;
     private bool GrenadeSelected { get; set; }
@@ -30,6 +31,7 @@ public class GrenadeThrow : MonoBehaviour
         PlayerShoot.enabled = GrenadeSelected ? false : true;
         if (Input.GetKeyDown(KeyCode.G))
         {
+            Gun.SetActive(false);
             if (!GrenadeSelected)
             {
                 Grenade = Instantiate(grenadePrefab, FirePoint.transform.position, FirePoint.transform.rotation);
@@ -45,10 +47,12 @@ public class GrenadeThrow : MonoBehaviour
                 PlayerShoot.AddDelay();
                 ThrowGrenade();
                 GrenadeSelected = false;
+                Gun.SetActive(true);
             }
         }
         else
         {
+            Gun.SetActive(true);
             Destroy(Grenade);
         }
         
