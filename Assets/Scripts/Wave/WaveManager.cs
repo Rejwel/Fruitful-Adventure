@@ -77,11 +77,8 @@ public class WaveManager : MonoBehaviour
         }
         
         enemiesLeftText.text = enemiesLeft.ToString();
-<<<<<<< HEAD
+
         nextWaveTime = wave == 0 ? 60f : 60f;
-=======
-        nextWaveTime = wave == 0 ? 60f : 90f;
->>>>>>> origin
 
         if (waveTime >= nextWaveTime && wave == 0)
         {
