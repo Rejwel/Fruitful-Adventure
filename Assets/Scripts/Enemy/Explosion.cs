@@ -7,20 +7,24 @@ public class Explosion : MonoBehaviour
 {
     public float cubeSize = 0.18f;
     public int cubesInRow = 2;
+    private EnemyMechanics EM;
+    private GameObject SugarCube;
 
     float cubesPivotDistance;
     Vector3 cubesPivot;
-    public float explosionRadius = 3f;
+    public float explosionRadius = 5f;
     public float explosionForce = 50f;
-    public float explosionUpward = 0.5f;
+    public float explosionUpward = 3f;
 
     void Start()
     {
+        EM = FindObjectOfType<EnemyMechanics>();
+        SugarCube = EM.Money;
         cubesPivotDistance = cubeSize * cubesInRow / 2;
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
     }
 
-    public void explode(GameObject enemy)
+    public void explode(Transform EnemyTransform)
     {
 
         for (int x = 0; x < cubesInRow; x++)
@@ -29,34 +33,25 @@ public class Explosion : MonoBehaviour
             {
                 for (int z = 0; z < cubesInRow; z++)
                 {
-                    createPiece(x, y, z, enemy);
+                    createPiece(x, y, z, EnemyTransform);
                 }
             }
         }
         
-        Vector3 explosionPos = enemy.transform.position;
+        Vector3 explosionPos = EnemyTransform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddExplosionForce(explosionForce, enemy.transform.position, explosionRadius, explosionUpward);
+                rb.AddExplosionForce(explosionForce, EnemyTransform.position, explosionRadius, explosionUpward);
             }
         }
     }
 
-    public void createPiece(int x, int y, int z, GameObject enemy)
+    public void createPiece(int x, int y, int z, Transform EnemyTransform)
     {
-        GameObject piece;
-        piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        
-        piece.transform.position = enemy.transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
-        piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
-        piece.gameObject.layer = 11;
-        piece.GetComponent<Renderer>().material.color = Color.white;
-        piece.AddComponent<Rigidbody>();
-        piece.AddComponent<MoneyDisappear>();
-        piece.GetComponent<Rigidbody>().mass = cubeSize;
+        Instantiate(SugarCube, EnemyTransform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot, transform.rotation);
     }
 }

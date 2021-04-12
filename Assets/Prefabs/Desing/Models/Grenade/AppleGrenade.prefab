@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1597859152282774303}
   - component: {fileID: 1597859152282774302}
   - component: {fileID: 1597859152282774301}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: AppleGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,8 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 3
-  explosionEffect: {fileID: 4403637468714709293, guid: 6e3a233b2a4ee3f4cb44891b0caabbc4,
-    type: 3}
   closeArea: 2
   mediumArea: 4
   farArea: 6

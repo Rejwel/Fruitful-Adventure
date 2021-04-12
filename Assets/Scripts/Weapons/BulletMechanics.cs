@@ -13,6 +13,7 @@ public class BulletMechanics : MonoBehaviour
     void Start()
     {
         Physics.IgnoreLayerCollision(15,15);
+        Physics.IgnoreLayerCollision(15, 20);
         explosion = FindObjectOfType<Explosion>();
         player = FindObjectOfType<PlayerShoot>();
         WaveManager = FindObjectOfType<WaveManager>();
@@ -23,20 +24,21 @@ public class BulletMechanics : MonoBehaviour
 
     private void OnTriggerEnter(Collider hit)
     {
-        EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
         if (hit.tag.Equals("Enemy"))
         {
+            EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
             // print("bullet: " + gameObject.transform.position);
             // print("enemy: " + hit.transform.position);
             gun = player.GetCurrentGun();
             enemy.TakeDamage(gun.GetDamage());
             
-            if (enemy.GetHealth() <= 0)
+            if (enemy.GetHealth() <= 0 && enemy != null)
             {
                 hit.GetComponent<Collider>().enabled = false;
-                enemy.Die();
-                explosion.explode(hit.gameObject);
+                Transform EnemyTransform = enemy.transform;
+                explosion.explode(EnemyTransform);
                 WaveManager.killEnemy();
+                enemy.Die();
             }
             Destroy(gameObject);
         }

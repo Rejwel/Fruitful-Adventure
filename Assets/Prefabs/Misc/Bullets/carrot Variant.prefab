@@ -40,6 +40,12 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1748433817309204071, guid: ec548b7b8ac99e44c9856fef3a5718db,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 50e20deaf86ce684e873b911d2946be9,
+        type: 2}
     - target: {fileID: 3471646365712293764, guid: ec548b7b8ac99e44c9856fef3a5718db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -99,6 +105,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: carrot Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280129752808736062, guid: ec548b7b8ac99e44c9856fef3a5718db,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280129752808736062, guid: ec548b7b8ac99e44c9856fef3a5718db,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec548b7b8ac99e44c9856fef3a5718db, type: 3}

@@ -17,12 +17,14 @@ public class PauseMenu : MonoBehaviour
     public GameObject Dead;
     public GameObject SureGameover;
     public GameObject progressText;
+    private WaveManager WaveManager;
 
 
     public GameObject GUI;
 
     void Awake()
     {
+        WaveManager = FindObjectOfType<WaveManager>();
         pauseMenuUI.SetActive(false);
         GameIsPaused = false;
         GUI = GameObject.Find("GUI");
@@ -118,7 +120,7 @@ public class PauseMenu : MonoBehaviour
     public void DeadPlayer()
     {
         Health = FindObjectOfType<HealthPlayer>();
-        if(Health.currentHealth <= 0)
+        if(Health.currentHealth <= 0 || WaveManager.BuildingCount == 0)
         {
             GUI.SetActive(false);
             Dead.SetActive(true);

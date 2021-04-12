@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.Experimental.TerrainAPI;
 
 public class HealthPlayer : MonoBehaviour
 {
@@ -14,6 +16,9 @@ public class HealthPlayer : MonoBehaviour
     public PlayerMovement thePlayer;
     private Inventory inv;
     public GameObject shield;
+    
+    public LayerMask PlayerLayerMask;
+    public CharacterController Player { get; set; }
 
     void Start()
     {
@@ -21,6 +26,7 @@ public class HealthPlayer : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         thePlayer = FindObjectOfType<PlayerMovement>();
+        Player = GetComponentInParent<CharacterController>();
     }
     
 

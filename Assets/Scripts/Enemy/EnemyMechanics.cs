@@ -11,6 +11,7 @@ public class EnemyMechanics : MonoBehaviour
     private int currentHealth;
     public HealthBarScript healthBar;
     private Rigidbody enemyRb;
+    public GameObject Money;
 
     private void Start()
     {
