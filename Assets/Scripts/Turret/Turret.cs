@@ -77,6 +77,25 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (reloadTurret.issOpen()) {
+            Debug.Log("weszlo jak w maslo");
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                Debug.Log("K mi dziala");
+                if (money.CurrentMoney >= 30)
+                {
+                    currentAmmountOfAmmunition = maximumAmmountOfAmmunition;
+                    enoughAmmunition = true;
+                    money.RemoveMoney(30);
+                    Debug.Log("Kupiono amunicje");
+                }
+                else
+                {
+                    Debug.Log("Zbyt malo $$$");
+                }
+            }
+        }
+        
         if(target == null){
             return;
         }
@@ -97,25 +116,6 @@ public class Turret : MonoBehaviour
         {
             enoughAmmunition = false;
             Debug.Log("Brak amunicji");
-        }
-
-        if (reloadTurret.issOpen()) {
-            Debug.Log("weszlo jak w maslo");
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                Debug.Log("K mi dziala");
-                if (money.CurrentMoney >= 50)
-                {
-                    currentAmmountOfAmmunition = maximumAmmountOfAmmunition;
-                    enoughAmmunition = true;
-                    money.RemoveMoney(30);
-                    Debug.Log("Kupiono amunicje");
-                }
-                else
-                {
-                    Debug.Log("Zbyt malo $$$");
-                }
-            }
         }
     }
 
