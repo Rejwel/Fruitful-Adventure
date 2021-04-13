@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GroundCotroller : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] placeableObjectPrefabs;
+    private uint[] placeableObjectPrefabsCount;
+
     public LayerMask terrain;
     private bool canRotate = false;
 
@@ -19,10 +22,15 @@ public class GroundCotroller : MonoBehaviour
     public GameObject WarningCanvas;
     public Transform location;
     public GameObject Turret;
+    private Inventory inv;
+
+    private void Start()
+    {
+        inv = FindObjectOfType<Inventory>();
+    }
 
     private void Update()
     {
-        
         HandleNewObjectHotkey();
         
         if (currentPlaceableObject != null)
@@ -44,15 +52,13 @@ public class GroundCotroller : MonoBehaviour
         }
 
     }
-
-
-
+    
     private void HandleNewObjectHotkey()
     {
         WarningCanvas.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        for (int i = 0; i < placeableObjectPrefabs.Length; i++)
+        for (int i = 0; i < inv.LengthOfTurrets(); i++)
         {
             if (Input.GetKeyDown(KeyCode.Alpha0 + 9 - i))
             {
@@ -126,10 +132,24 @@ public class GroundCotroller : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
+            uint tmpCount = 0;
+            string CurrentObj = string.Concat(currentPlaceableObject.ToString().TakeWhile(x => x != '('));
+            
+            tmpCount = inv.GameObjDictionary[CurrentObj];
+            inv.GameObjDictionary.Remove(CurrentObj);
+            
+            if(currentPlaceableObject.ToString().Split('(')[0].Equals("Turret")) inv.RemoveShootingTurret();
+            else inv.RemoveDetectingTurret();
+            
+            inv.GameObjDictionary.Add(CurrentObj, --tmpCount);
+
+            
+            
             currentPlaceableObject.tag = "ABC";
             currentPlaceableObject = null;
             player.GetComponent<PlayerShoot>().AddDelay();
             player.GetComponent<PlayerShoot>().HoldFire = false;
+            
         }
     }
 

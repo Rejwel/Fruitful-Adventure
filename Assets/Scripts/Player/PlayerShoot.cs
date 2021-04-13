@@ -15,6 +15,7 @@ public class PlayerShoot : MonoBehaviour
     public Transform firePoint;
     public GameObject [] BulletObjects;
     private int NumberOfBullet { get; set; }
+    public GameObject GunPrefab;
     public bool HoldFire { get; set; }
     private Inventory inventory;
     
@@ -74,6 +75,7 @@ public class PlayerShoot : MonoBehaviour
 
         // SHOOTING
         if(!HoldFire){
+            GunPrefab.SetActive(true);
             if (Input.GetButtonDown("Fire1")) ReturnToOriginalRecoil();
             if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine[currentGun.GetId()] > 0)
             {
@@ -95,6 +97,10 @@ public class PlayerShoot : MonoBehaviour
                     Empty("Gun_empty");
                 }
             }
+        }
+        else
+        {
+            GunPrefab.SetActive(false);
         }
 
         // RELOAD GUN

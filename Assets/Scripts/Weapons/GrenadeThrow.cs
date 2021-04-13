@@ -1,7 +1,8 @@
 ﻿    using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+    using TMPro;
+    using UnityEditor;
 using UnityEngine;
 using Quaternion = System.Numerics.Quaternion;
 
@@ -13,10 +14,12 @@ public class GrenadeThrow : MonoBehaviour
     public GameObject FirePoint;
     public GameObject GrenadeUp;
     public GameObject GrenadeDown;
-    public GameObject Gun;
     private GameObject Grenade;
     private PlayerShoot PlayerShoot;
     private bool GrenadeSelected { get; set; }
+    
+    private TextMeshProUGUI  currentGrenades;
+    private Inventory inventory;
 
     private void Start()
     {
@@ -24,36 +27,46 @@ public class GrenadeThrow : MonoBehaviour
         Physics.IgnoreLayerCollision(21,20);
         Physics.IgnoreLayerCollision(21,21);
         PlayerShoot = FindObjectOfType<PlayerShoot>();
+        inventory = FindObjectOfType<Inventory>();
+        currentGrenades = GameObject.Find("GrenadesText").GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
     {
+        currentGrenades.text = $"Grenades : {inventory.GetGrenades()}";
         PlayerShoot.enabled = GrenadeSelected ? false : true;
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Gun.SetActive(false);
-            if (!GrenadeSelected)
-            {
-                Grenade = Instantiate(grenadePrefab, FirePoint.transform.position, FirePoint.transform.rotation);
-            }
-            GrenadeSelected = !GrenadeSelected;
-        }
 
-        if (GrenadeSelected)
+        if(inventory.GetGrenades() > 0)
         {
-            Grenade.transform.position = FirePoint.transform.position;
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetKeyDown(KeyCode.G))
             {
-                PlayerShoot.AddDelay();
-                ThrowGrenade();
-                GrenadeSelected = false;
-                Gun.SetActive(true);
+                PlayerShoot.HoldFire = true;
+                if (!GrenadeSelected)
+                {
+                    Grenade = Instantiate(grenadePrefab, FirePoint.transform.position, FirePoint.transform.rotation);
+                }
+
+                GrenadeSelected = !GrenadeSelected;
+                if (!GrenadeSelected)
+                {
+                    PlayerShoot.HoldFire = false;
+                    Destroy(Grenade);
+                }
             }
-        }
-        else
-        {
-            Gun.SetActive(true);
-            Destroy(Grenade);
+
+            if (GrenadeSelected)
+            {
+                Grenade.transform.position = FirePoint.transform.position;
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    PlayerShoot.AddDelay();
+                    ThrowGrenade();
+                    GrenadeSelected = false;
+                    PlayerShoot.HoldFire = false;
+                    inventory.RemoveGrenade();
+                    Destroy(Grenade);
+                }
+            }
         }
         
     }

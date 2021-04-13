@@ -25,11 +25,18 @@ public class ShopGui : MonoBehaviour
     private int hp75Price = 130;
     private int hp100Price = 160;
 
+    private int GrenadePrice = 75;
+    private int ShootingTurretPrice = 75;
+    private int DetectingTurretPrice = 50;
+    
     private TextMeshProUGUI currMoney;
     private TextMeshProUGUI currPistolAmmo;
     private TextMeshProUGUI currShotgunAmmo;
     private TextMeshProUGUI currRifleAmmo;
     private TextMeshProUGUI currMinigunAmmo;
+    private TextMeshProUGUI currGrenades;
+    private TextMeshProUGUI currShootingTurrets;
+    private TextMeshProUGUI currDetectingTurrets;
     private ColorBlock GreenColorDisabled;
 
     private GameObject dash;
@@ -54,6 +61,10 @@ public class ShopGui : MonoBehaviour
         currShotgunAmmo = GameObject.Find("CurrShotgunAmmo").GetComponent<TextMeshProUGUI>();
         currRifleAmmo = GameObject.Find("CurrRifleAmmo").GetComponent<TextMeshProUGUI>();
         currMinigunAmmo = GameObject.Find("CurrMinigunAmmo").GetComponent<TextMeshProUGUI>();
+        
+        currGrenades = GameObject.Find("CurrGrenades").GetComponent<TextMeshProUGUI>();
+        currShootingTurrets = GameObject.Find("CurrShootingTurrets").GetComponent<TextMeshProUGUI>();
+        currDetectingTurrets = GameObject.Find("CurrDetectingTurrets").GetComponent<TextMeshProUGUI>();
 
         dash = GameObject.Find("BuyDash");
         dJump = GameObject.Find("BuyDoubleJump");
@@ -64,6 +75,8 @@ public class ShopGui : MonoBehaviour
         minigun = GameObject.Find("BuyMinigun");
         
         money = FindObjectOfType<Money>();
+        
+        money.CurrentMoney += 10000;
     }
     
     void Update()
@@ -113,6 +126,10 @@ public class ShopGui : MonoBehaviour
 
         // TEXT
         currMoney.text = $"= {money.CurrentMoney}";
+        currGrenades.text = $"(75) Grenade {inv.GetGrenades()}";
+        currShootingTurrets.text = $"(75) Turret {inv.GetShootingTurret()}";
+        currDetectingTurrets.text = $"(75) Detecting Turret {inv.GetDetectingTurret()}";
+        
 
         if(inv.bulletAmmount[1] > 10000)
             currShotgunAmmo.text = "(50) Current : ∞";
@@ -185,6 +202,38 @@ public class ShopGui : MonoBehaviour
             inv.activeShield();
         }
     }
+    
+    public void BuyGrenade()
+    {
+        if (money.CurrentMoney >= GrenadePrice)
+        {
+            money.CurrentMoney -= GrenadePrice;
+            inv.AddGrenade();
+        }
+    }
+    
+    public void BuyShootingTurret()
+    {
+        if (money.CurrentMoney >= ShootingTurretPrice)
+        {
+            money.CurrentMoney -= ShootingTurretPrice;
+            inv.AddShootingTurret();
+            inv.GameObjDictionary.Remove("Turret");
+            inv.GameObjDictionary.Add("Turret", inv.GetShootingTurret());
+        }
+    }
+    
+    public void BuyDetectingTurret()
+    {
+        if (money.CurrentMoney >= DetectingTurretPrice)
+        {
+            money.CurrentMoney -= DetectingTurretPrice;
+            inv.AddDetectingTurret();
+            inv.GameObjDictionary.Remove("TurretDetecting");
+            inv.GameObjDictionary.Add("TurretDetecting", inv.GetDetectingTurret());
+        }
+    }
+    
     public void BuyShotgunAmmo(int ammo = 10)
     {
         if (money.CurrentMoney >= ammo * shotgunAmmoPrice)

@@ -8,7 +8,12 @@ public class Inventory : MonoBehaviour
 {
    // pistol ammo, shotgun ammo, rifle ammo, minigun ammo
    public int[] bulletAmmount;
+   private uint GrenadesAmmount = 0;
+   private uint ShootingTurretAmmount = 2;
+   private uint DetectingTurretAmmount = 2;
    public List<Gun> currentGuns = new List<Gun>();
+   
+   public Dictionary <string, uint> GameObjDictionary { get; set; }
 
 
    private bool doubleJump;
@@ -17,11 +22,26 @@ public class Inventory : MonoBehaviour
 
    private void Awake()
    {
+      GameObjDictionary = new Dictionary<string, uint>();
+      GameObjDictionary.Add("Turret", ShootingTurretAmmount);
+      GameObjDictionary.Add("TurretDetecting", DetectingTurretAmmount);
+
       bulletAmmount = new int[] {999999, GunContainer.guns[1].GetMagazine(), GunContainer.guns[2].GetMagazine(), GunContainer.guns[3].GetMagazine()};
       currentGuns.Add(GunContainer.GetGun(0));
       doubleJump = false;
       dash = false;
       shield = false;
+   }
+   
+   public uint LengthOfTurrets()
+   {
+      uint tempCount = 0;
+      foreach (var key in GameObjDictionary)
+      {
+         if (key.Value > 0) tempCount++;
+      }
+
+      return tempCount;
    }
 
    public bool CanDoubleJump()
@@ -72,5 +92,45 @@ public class Inventory : MonoBehaviour
    {
       currentGuns.Add(GunContainer.GetGun(3));
    }
+   public uint GetShootingTurret()
+   {
+      return ShootingTurretAmmount;
+   }
+   public void AddShootingTurret()
+   {
+      ShootingTurretAmmount++;
+   }
    
+   public void RemoveShootingTurret()
+   {
+      ShootingTurretAmmount--;
+   }
+   
+   public uint GetDetectingTurret()
+   {
+      return DetectingTurretAmmount;
+   }
+   public void AddDetectingTurret()
+   {
+      DetectingTurretAmmount++;
+   }
+   
+   public void RemoveDetectingTurret()
+   {
+      DetectingTurretAmmount--;
+   }
+   
+   public uint GetGrenades()
+   {
+      return GrenadesAmmount;
+   }
+   public void AddGrenade()
+   {
+      GrenadesAmmount++;
+   }
+   
+   public void RemoveGrenade()
+   {
+      GrenadesAmmount--;
+   }
 }
