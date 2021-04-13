@@ -10,7 +10,7 @@ public class TurretInfoScript : MonoBehaviour
 
     public void Awake()
     {
-        informationOfAmmo = GameObject.Find("TurretAmmo").GetComponent<TextMeshProUGUI>();
+        informationOfAmmo = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void DisplayInfoAmmo(string curr,string max)

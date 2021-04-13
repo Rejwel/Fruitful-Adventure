@@ -35,9 +35,6 @@ public class GroundCotroller : MonoBehaviour
         
         if (currentPlaceableObject != null)
         {
-            // player.GetComponent<PlayerShoot>().enabled = false;
-            // player.GetComponent<GrenadeThrow>().enabled = false;
-            player.GetComponent<PlayerShoot>().HoldFire = true;
             MoveCurrentObjectToMouse();
             RotateFromMouseWheel();
             if (hope)
@@ -50,7 +47,6 @@ public class GroundCotroller : MonoBehaviour
                 WarningCanvas.SetActive(true);
             }
         }
-
     }
     
     private void HandleNewObjectHotkey()
@@ -62,10 +58,12 @@ public class GroundCotroller : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha0 + 9 - i))
             {
+                player.GetComponent<PlayerShoot>().HoldFire = true;
                 hope = true;
                 WarningCanvas.SetActive(false);
                 if (PressedKeyOfCurrentPrefab(i))
                 {
+                    player.GetComponent<PlayerShoot>().HoldFire = false;
                     Destroy(currentPlaceableObject);
                     currentPrefabIndex = -1;
                 }
@@ -73,7 +71,6 @@ public class GroundCotroller : MonoBehaviour
                 {
                     if (currentPlaceableObject != null)
                     {
-
                         Destroy(currentPlaceableObject);
                     }
 
