@@ -9,8 +9,8 @@ public class Inventory : MonoBehaviour
    // pistol ammo, shotgun ammo, rifle ammo, minigun ammo
    public int[] bulletAmmount;
    private uint GrenadesAmmount = 0;
-   private uint ShootingTurretAmmount = 2;
-   private uint DetectingTurretAmmount = 2;
+   private uint ShootingTurretAmmount = 0;
+   private uint DetectingTurretAmmount = 0;
    public List<Gun> currentGuns = new List<Gun>();
    
    public Dictionary <string, uint> GameObjDictionary { get; set; }
@@ -38,6 +38,8 @@ public class Inventory : MonoBehaviour
       uint tempCount = 0;
       foreach (var key in GameObjDictionary)
       {
+         print(key.Key + " " + key.Value);
+         
          if (key.Value > 0) tempCount++;
       }
 

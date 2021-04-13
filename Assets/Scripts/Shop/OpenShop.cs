@@ -24,6 +24,9 @@ public class OpenShop : MonoBehaviour
     public GameObject FocusPoint;
     public GameObject StandingPoint;
 
+    private float timeOnFocus = 0f;
+    private float Delay = 1.2f;
+
     private void Start()
     {
         TempPlayerTransform = PlayerTransform.transform;
@@ -35,12 +38,13 @@ public class OpenShop : MonoBehaviour
     {
         if(inShop)
         {
-            if(Time.time <= Time.time + 1f)
+            if(Time.time <=  timeOnFocus)
                 FocusCamera();
         }
 
         if (Input.GetKey(KeyCode.E))
         {
+            timeOnFocus = Time.time + Delay;
             inShop = true;
             player.GetComponent<PlayerShoot>().HoldFire = true;
             openShop();
