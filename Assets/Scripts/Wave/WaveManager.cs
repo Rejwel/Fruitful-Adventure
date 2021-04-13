@@ -22,11 +22,13 @@ public class WaveManager : MonoBehaviour
     private Text waveCountText;
     private Text enemiesLeftText;
     private List<GameObject> Buildings { get; set; }
+    public int BuildingCount;
     private int WhichBuildingToAttack { get; set; }
     public static GameObject AttackingBuilding { get; set; }
     private GameObject NextAttackingBuilding { get; set; }
     private EnemyRanged enemyType1;
     private EnemyMelee enemyType2;
+    private string WaveTextGui;
     
 
     public Spawner [] spawners;
@@ -42,6 +44,7 @@ public class WaveManager : MonoBehaviour
 
         // get all buildings
         Buildings = GetSceneObjects(18);
+        BuildingCount = Buildings.Count;
         
         AttackingBuilding = GetAttackPoint();
         AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
@@ -51,12 +54,31 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-
+        if(BuildingCount.Equals(0)) this.gameObject.SetActive(false);
+        
         timerText.text = waveTime.ToString("f2");
-        waveCountText.text = wave == 0 ? "Prepare for first Wave" + "\n now attacking: " + AttackingBuilding.name + "\n next attacking: " + NextAttackingBuilding.name : "Wave " + wave + "\n now attacking: " + AttackingBuilding.name + "\n next attacking: " + NextAttackingBuilding.name;
+
+        WaveTextGui = AttackingBuilding == null ? "Destroyed!" : AttackingBuilding.name;
+        if (wave == 0)
+        {
+            waveCountText.text = "First Wave incoming, You have 60 seconds!" + "\n now attacking: " + WaveTextGui +
+                                 "\n next attacking: " + NextAttackingBuilding.name;
+        }
+        else
+        {
+            if (BuildingCount != 1)
+            {
+                waveCountText.text = "Wave " + wave + "\n now attacking: " + WaveTextGui + "\n next attacking: " + NextAttackingBuilding.name;
+            }
+            else
+            {
+                waveCountText.text = "Wave " + wave + "\n This is your last building!: " + NextAttackingBuilding.name;
+            }
+        }
+        
         enemiesLeftText.text = enemiesLeft.ToString();
 
-        nextWaveTime = wave == 0 ? 2f : 60f;
+        nextWaveTime = wave == 0 ? 1f : 90f;
 
         if (waveTime >= nextWaveTime && wave == 0)
         {
@@ -66,11 +88,8 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveTime >= nextWaveTime)
         {
-            // setting new attack points
-            AttackingBuilding.GetComponent<SphereCollider>().enabled = false;
-            AttackingBuilding = NextAttackingBuilding;
-            AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
-            GetNextBuilding();
+            GetBuildings();
+            SetAttack();
             
             waveTime = 0f;
             spawnEnemies(getSpawns(waveCombo), enemiesSpawnType(++wave));
@@ -85,17 +104,42 @@ public class WaveManager : MonoBehaviour
         return Buildings[WhichBuildingToAttack];
     }
 
+    public void SetAttack()
+    {
+        // setting new attack points
+        if(AttackingBuilding != null)
+            AttackingBuilding.GetComponent<SphereCollider>().enabled = false;
+        
+        AttackingBuilding = NextAttackingBuilding;
+        AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
+        GetNextBuilding();
+    }
+    
     private void GetNextBuilding()
     {
-        while (AttackingBuilding == NextAttackingBuilding || NextAttackingBuilding == null)
+        if (Buildings.Count.Equals(1))
         {
-            NextAttackingBuilding = GetAttackPoint();
+            AttackingBuilding = NextAttackingBuilding;
+        }
+        else
+        {
+           while (AttackingBuilding == NextAttackingBuilding || NextAttackingBuilding == null)
+           {
+               NextAttackingBuilding = GetAttackPoint();
+           } 
         }
     }
 
     public void killEnemy()
     {
         enemiesLeft--;
+    }
+    
+    public void GetBuildings()
+    {
+        Buildings.Clear();
+        Buildings = GetSceneObjects(18);
+        BuildingCount = Buildings.Count;
     }
 
     public List<Transform>[] getSpawns(string combo)
@@ -138,54 +182,50 @@ public class WaveManager : MonoBehaviour
 
     public GameObject[] enemiesSpawnType(int x)
     {
+        // 0 - mage
+        // 1 - melee
+        // 2 - range
+        // 3 - tank
         GameObject[] enemiesToSpawn = new GameObject[16];
         switch (x)
         {
             case 1:
             {
-                //front melee
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 4; i+=2)
                 {
-                    // enemiesToSpawn[i] = enemies[1];
+                    enemiesToSpawn[i] = enemies[1];
                 }
                 
                 // this is for testing only!
-                for (int i = 0; i < 4; i++)
-                {
-                    enemiesToSpawn[i] = enemies[i];
-                }
+                // for (int i = 0; i < 4; i++)
+                // {
+                //     enemiesToSpawn[i] = enemies[i];
+                // }
 
                 return enemiesToSpawn;
             }
 
             case 2:
             {
-                //front tank
-                //middle melee
-                enemiesToSpawn[1] = enemies[3];
-                enemiesToSpawn[2] = enemies[3];
-                enemiesToSpawn[4] = enemies[1];
-                enemiesToSpawn[7] = enemies[1];
+                enemiesToSpawn[1] = enemies[1];
+                enemiesToSpawn[2] = enemies[1];
+                enemiesToSpawn[7] = enemies[2];
 
                 return enemiesToSpawn;
             }
             
             case 3:
             {
-                //front melee
-                //middle range
-                enemiesToSpawn[1] = enemies[1];
+                enemiesToSpawn[1] = enemies[3];
                 enemiesToSpawn[2] = enemies[1];
                 enemiesToSpawn[4] = enemies[2];
-                enemiesToSpawn[7] = enemies[2];
+                enemiesToSpawn[7] = enemies[0];
 
                 return enemiesToSpawn;
             }
             
             case 4:
             {
-                //front melee tank 
-                //back range mage weak
                 enemiesToSpawn[1] = enemies[3];
                 enemiesToSpawn[2] = enemies[3];
                 enemiesToSpawn[0] = enemies[1];
@@ -198,8 +238,6 @@ public class WaveManager : MonoBehaviour
             
             case 5:
             {
-                //front melee tank 
-                //back range mage strong
                 enemiesToSpawn[0] = enemies[1];
                 enemiesToSpawn[3] = enemies[1];
                 enemiesToSpawn[1] = enemies[3];
@@ -214,7 +252,6 @@ public class WaveManager : MonoBehaviour
             
             case 6:
             {
-                //front middle melee
                 for(int i = 0; i < 8; i++)
                 {
                     enemiesToSpawn[i] = enemies[1];
@@ -225,8 +262,6 @@ public class WaveManager : MonoBehaviour
             
             case 7:
             {
-                //front tank
-                // middle mix
                 for (int i = 0; i < 4; i++)
                 {
                     enemiesToSpawn[i] = enemies[3];

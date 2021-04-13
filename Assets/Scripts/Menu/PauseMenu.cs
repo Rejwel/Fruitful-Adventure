@@ -17,12 +17,14 @@ public class PauseMenu : MonoBehaviour
     public GameObject Dead;
     public GameObject SureGameover;
     public GameObject progressText;
+    private WaveManager WaveManager;
 
 
     public GameObject GUI;
 
     void Awake()
     {
+        WaveManager = FindObjectOfType<WaveManager>();
         pauseMenuUI.SetActive(false);
         GameIsPaused = false;
         GUI = GameObject.Find("GUI");
@@ -47,26 +49,25 @@ public class PauseMenu : MonoBehaviour
     public void Resume ()
     {
         pauseMenuUI.SetActive(false);
-
         GUI.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        player.GetComponent<PlayerShoot>().enabled = true;
-
+        // player.GetComponent<PlayerShoot>().enabled = true;
+        // player.GetComponent<GrenadeThrow>().enabled = true;
+        player.GetComponent<PlayerShoot>().HoldFire = false;
     }
 
     void Pause ()
     {
+        player.GetComponent<PlayerShoot>().HoldFire = true;
         pauseMenuUI.SetActive(true);
-
         GUI.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        player.GetComponent<PlayerShoot>().enabled = false;
     }
 
     public void SureMenu()
@@ -118,7 +119,7 @@ public class PauseMenu : MonoBehaviour
     public void DeadPlayer()
     {
         Health = FindObjectOfType<HealthPlayer>();
-        if(Health.currentHealth <= 0)
+        if(Health.currentHealth <= 0 || WaveManager.BuildingCount == 0)
         {
             GUI.SetActive(false);
             Dead.SetActive(true);

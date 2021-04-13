@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class OpenShop : MonoBehaviour
 {
+    private bool inShop = false;
     public GameObject inGameGui;
     public GameObject shopGui;
     public GameObject player;
@@ -16,34 +17,62 @@ public class OpenShop : MonoBehaviour
     public HealthBarScript healthBarPlayer;   
     public HealthBarScript healthBarMenu;   
     private HealthPlayer playerHealth;
+    
+    public Transform PlayerTransform;
+    private Transform TempPlayerTransform;
+    
+    public GameObject FocusPoint;
+    public GameObject StandingPoint;
+
+    private float timeOnFocus = 0f;
+    private float Delay = 1.2f;
 
     private void Start()
     {
+        TempPlayerTransform = PlayerTransform.transform;
         money = FindObjectOfType<Money>();
         playerHealth = FindObjectOfType<HealthPlayer>();
     }
 
     private void Update()
     {
+        if(inShop)
+        {
+            if(Time.time <=  timeOnFocus)
+                FocusCamera();
+        }
+
         if (Input.GetKey(KeyCode.E))
         {
+            timeOnFocus = Time.time + Delay;
+            inShop = true;
+            player.GetComponent<PlayerShoot>().HoldFire = true;
             openShop();
         }
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Escape))
         {
+            PlayerTransform.GetComponentInParent<CharacterController>().enabled = true;
+            inShop = false;
             closeShop();
+            player.GetComponent<PlayerShoot>().HoldFire = false;
         }
+    }
+
+    void FocusCamera()
+    {
+        PlayerTransform.GetComponentInParent<CharacterController>().enabled = false;
+        PlayerTransform.transform.rotation = Quaternion.Lerp(PlayerTransform.transform.rotation, FocusPoint.transform.rotation, 3f * Time.deltaTime);
+        PlayerTransform.position = Vector3.Lerp(PlayerTransform.position, StandingPoint.transform.position, 3f * Time.deltaTime);
     }
 
     void openShop()
     {
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         text.SetActive(false);
-        player.GetComponent<PlayerShoot>().enabled = false;
         inGameGui.SetActive(false);
         shopGui.SetActive(true);
         
@@ -58,7 +87,6 @@ public class OpenShop : MonoBehaviour
 
         currentMoney.text = money.CurrentMoney.ToString();
         text.SetActive(true);
-        player.GetComponent<PlayerShoot>().enabled = true;
         inGameGui.SetActive(true);
         shopGui.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;

@@ -10,9 +10,13 @@ using Random = UnityEngine.Random;
 
 public class PlayerShoot : MonoBehaviour
 {
-    [Header("Misc")]
+    [Header("Misc")] 
+    public Transform cameraTransform;
     public Transform firePoint;
-    public GameObject bullet;
+    public GameObject [] BulletObjects;
+    private int NumberOfBullet { get; set; }
+    public GameObject GunPrefab;
+    public bool HoldFire { get; set; }
     private Inventory inventory;
     
     private Gun currentGun;
@@ -34,9 +38,9 @@ public class PlayerShoot : MonoBehaviour
     private float fireRate;
     private float emptyTime = 0.8f;
     private float reloadTime = 2f;
-    private float nextTimeToFire = 0f;
-    private float nextTimeToEmpty = 0f;
-    private float nextTimeToReload = 0f;
+    private float nextTimeToFire { get; set; }
+    private float nextTimeToEmpty { get; set; }
+    private float nextTimeToReload { get; set; }
     
     [Header("TMP")]
     private TextMeshProUGUI  currentGunText;
@@ -45,6 +49,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Start()
     {
+        HoldFire = false;
         originalRotationOfFirepoint = firePoint.transform.localEulerAngles;
         firstEmptyBullet = true;
         inventory = FindObjectOfType<Inventory>();
@@ -60,6 +65,7 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
+
         // RELOADING CANCEL
         if (reloading && Time.time >= nextTimeToFire)
         {
@@ -68,26 +74,33 @@ public class PlayerShoot : MonoBehaviour
         }
 
         // SHOOTING
-        if (Input.GetButtonDown("Fire1")) ReturnToOriginalRecoil();
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine[currentGun.GetId()] > 0) 
-        {
-            Shoot();
-        }
-        else if (magazine[currentGun.GetId()] == 0 && firstEmptyBullet)
-        {
-            firstEmptyBullet = false;
-            nextTimeToEmpty = Time.time + emptyTime;
-        }
-        else if (Input.GetButton("Fire1") && magazine[currentGun.GetId()] == 0 && Time.time >= nextTimeToEmpty)
-        {
-            if (currentGun.GetDesc().Equals("Pistol") && !reloading)
+        if(!HoldFire){
+            GunPrefab.SetActive(true);
+            if (Input.GetButtonDown("Fire1")) ReturnToOriginalRecoil();
+            if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && magazine[currentGun.GetId()] > 0)
             {
-                Empty("Pistol_empty");
+                Shoot();
             }
-            else if (currentGun.GetDesc() != "Pistol" && !reloading)
+            else if (magazine[currentGun.GetId()] == 0 && firstEmptyBullet)
             {
-                Empty("Gun_empty");
+                firstEmptyBullet = false;
+                nextTimeToEmpty = Time.time + emptyTime;
             }
+            else if (Input.GetButton("Fire1") && magazine[currentGun.GetId()] == 0 && Time.time >= nextTimeToEmpty)
+            {
+                if (currentGun.GetDesc().Equals("Pistol") && !reloading)
+                {
+                    Empty("Pistol_empty");
+                }
+                else if (currentGun.GetDesc() != "Pistol" && !reloading)
+                {
+                    Empty("Gun_empty");
+                }
+            }
+        }
+        else
+        {
+            GunPrefab.SetActive(false);
         }
 
         // RELOAD GUN
@@ -158,6 +171,7 @@ public class PlayerShoot : MonoBehaviour
         nextTimeToFire = Time.time + fireRate;
         GameObject InstantiateBullet;
         AudioManager.playSound(desc);
+
         for (int i = 0; i < bullets; i++)
         {
             Vector3 forwardVector = Vector3.forward;
@@ -168,9 +182,32 @@ public class PlayerShoot : MonoBehaviour
             forwardVector = Quaternion.AngleAxis(deviation, Vector3.up) * forwardVector;
             forwardVector = Quaternion.AngleAxis(angle, Vector3.forward) * forwardVector;
             forwardVector = firePoint.transform.rotation * forwardVector;
-            
-            InstantiateBullet = Instantiate(bullet, firePoint.position, Quaternion.identity);
-            InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
+
+            // for minigun
+            if (currentGun.GetId() == 3)
+            {
+                InstantiateBullet = Instantiate(BulletObjects[NumberOfBullet++], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(0, 90,0)));
+                InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
+                if (NumberOfBullet == BulletObjects.Length) NumberOfBullet = 0;
+            }
+            // for pistol
+            else if (currentGun.GetId() == 0)
+            {
+                InstantiateBullet = Instantiate(BulletObjects[5], firePoint.position, transform.rotation  * Quaternion.Euler(new Vector3(0, 90,0)));
+                InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
+            }
+            // for rifle
+            else if (currentGun.GetId() == 2)
+            {
+                InstantiateBullet = Instantiate(BulletObjects[1], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(0, 90,0)));
+                InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
+            }
+            // for shotgun
+            else if (currentGun.GetId() == 1)
+            {
+                InstantiateBullet = Instantiate(BulletObjects[6], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(0, 90,0)));
+                InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
+            }
         }
     }
 
@@ -181,7 +218,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void ChangeGun(Gun currentGun)
     {
-        AudioManager.stopSound();
+        // AudioManager.stopSound("Gun_reload");
         reloading = false;
         
         firstEmptyBullet = true;
@@ -261,5 +298,12 @@ public class PlayerShoot : MonoBehaviour
     private void ReturnToOriginalRecoil()
     {
         firePoint.transform.localEulerAngles = originalRotationOfFirepoint;
+    }
+
+    public void AddDelay()
+    {
+        nextTimeToFire = Time.time + 1f;
+        //nextTimeToReload = Time.time + reloadTime;
+        nextTimeToEmpty = Time.time + emptyTime;
     }
 }

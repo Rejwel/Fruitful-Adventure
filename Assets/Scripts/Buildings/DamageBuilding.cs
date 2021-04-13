@@ -15,18 +15,18 @@ public class DamageBuilding : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            if (_buildingHealth.currentHealth <= 0 && !_buildingHealth.buildingDestroyed)
-            {
-                _buildingHealth.DestroyBuilding();
-            }
-            else
-            {
-                _buildingHealth.TakeDamage(100);
-            }
-            Destroy(other.gameObject);
-        }
+        // if (other.gameObject.CompareTag("Bullet"))
+        // {
+        //     if (_buildingHealth.currentHealth <= 0 && !_buildingHealth.buildingDestroyed)
+        //     {
+        //         _buildingHealth.DestroyBuilding();
+        //     }
+        //     else
+        //     {
+        //         _buildingHealth.TakeDamage(100);
+        //     }
+        //     Destroy(other.gameObject);
+        // }
         
     }
 }

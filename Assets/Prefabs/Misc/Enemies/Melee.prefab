@@ -112,6 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 254587136096602259}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!195 &254587136096602259
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -164,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBar: {fileID: 4331075707790240842}
+  Money: {fileID: 8232618329337579605, guid: bfffc6ff1fda0554e9116830a5e64295, type: 3}
 --- !u!65 &2956680218366870976
 BoxCollider:
   m_ObjectHideFlags: 0

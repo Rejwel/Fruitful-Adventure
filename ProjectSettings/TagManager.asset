@@ -16,6 +16,8 @@ TagManager:
   - Healthbar
   - TurretDetecting
   - Warning Cavas
+  - Grenade
+  - TurretAmmo
   layers:
   - Default
   - TransparentFX
@@ -37,8 +39,8 @@ TagManager:
   - 
   - BuildingToAttack
   - Buildings
-  - 
-  - 
+  - CantJump
+  - Grenade
   - 
   - 
   - 

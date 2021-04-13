@@ -564,6 +564,8 @@ MonoBehaviour:
   MaxHealth: 1000
   currentHealth: 0
   healthBar: {fileID: 2100938010599238924}
+  BrokenBuilding: {fileID: 1510285135426623594, guid: 9aa9fe772d1ad974caf6099ff4f44cb4,
+    type: 3}
 --- !u!114 &4281425835649912218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,7 +1013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a74b9626ee8e9c4bb0d0d08d87e81cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
 --- !u!1 &8167934644043420996
 GameObject:
   m_ObjectHideFlags: 0

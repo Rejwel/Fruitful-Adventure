@@ -6,22 +6,15 @@ public class MageBullet : MonoBehaviour
 {
     private Transform firepoint;
     private HealthPlayer givedamage;
+    private EnemyRanged EnemyRanged;
     private BuildingHealth BH { get; set; }
-   
-
-    void Start()
-    {
-        Destroy(gameObject, 2);
-        
-    }
-
-    private void Update()
-    {
-        
-    }
 
     private void Awake()
     {
+        Physics.IgnoreLayerCollision(15,15);
+        Physics.IgnoreLayerCollision(15, 20);
+        EnemyRanged = FindObjectOfType<EnemyRanged>();
+        Destroy(gameObject, 2);
         firepoint = GetComponent<Transform>();
         givedamage = FindObjectOfType<HealthPlayer>();
     }
@@ -29,7 +22,7 @@ public class MageBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == 19)
+        if (WaveManager.AttackingBuilding != null && other.gameObject.layer == 19 && other.transform.parent.gameObject.Equals(WaveManager.AttackingBuilding.GetComponent<BuildingReference>().Building))
         {
             BH = other.gameObject.GetComponentInParent<BuildingHealth>();
             BH.TakeDamage(35);
@@ -37,8 +30,13 @@ public class MageBullet : MonoBehaviour
             {
                 BH.DestroyBuilding();
             }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else if (other.gameObject.layer == 13)
+        {
+            givedamage.TakePlayerDamage(35/2);
+            Destroy(gameObject);
+        }
     }
 }
 

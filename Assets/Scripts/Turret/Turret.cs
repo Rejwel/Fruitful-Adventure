@@ -4,9 +4,17 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     private Transform target;
+    
 
     [Header("Attributes")]
     public float fireRate = 1f;
+
+    public TurretInfo reloadTurret;
+    public TurretInfoScript turretInfoScript;
+
+    public int maximumAmmountOfAmmunition;
+    private int currentAmmountOfAmmunition;
+    private bool enoughAmmunition = true;
 
     private float fireCountdown = 0f;
     public float range = 15f;
@@ -19,12 +27,26 @@ public class Turret : MonoBehaviour
 
     public GameObject BulletPrefab;
     public Transform firePoint;
+    public Money money;
+    private float basicMagazine;
+    private float basicFireRate;
 
-    
+
+    private void Awake()
+    {
+        basicMagazine = maximumAmmountOfAmmunition;
+        basicFireRate = fireRate;
+        money = FindObjectOfType<Money>();
+        reloadTurret = FindObjectOfType<TurretInfo>();
+        turretInfoScript = FindObjectOfType<TurretInfoScript>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        currentAmmountOfAmmunition = maximumAmmountOfAmmunition;
+        enoughAmmunition = true;
     }
 
     void UpdateTarget(){
@@ -45,9 +67,66 @@ public class Turret : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PlayerMovement"))
+        {
+            reloadTurret.OpenCanvas();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("PlayerMovement"))
+            reloadTurret.CloseCanvas();
+    }
+
     // Update is called once per frame
     void Update()
     {
+
+        if (currentAmmountOfAmmunition == 0)
+        {
+            turretInfoScript.DisplayWarning();
+            enoughAmmunition = false;
+        } else
+        {
+            turretInfoScript.DisplayInfoAmmo(currentAmmountOfAmmunition.ToString(), maximumAmmountOfAmmunition.ToString());
+        }
+
+        if (reloadTurret.issOpen()) { 
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                if (money.CurrentMoney >= 30 && currentAmmountOfAmmunition != maximumAmmountOfAmmunition)
+                {
+                    currentAmmountOfAmmunition = maximumAmmountOfAmmunition;
+                    enoughAmmunition = true;
+                    money.RemoveMoney(30);
+                    
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                if (money.CurrentMoney >= 30 &&  fireRate != basicFireRate*2f)
+                {
+                    fireRate *= 2f;
+                    money.RemoveMoney(30);
+
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                if (money.CurrentMoney >= 30 && maximumAmmountOfAmmunition != 2*basicMagazine)
+                {
+                    maximumAmmountOfAmmunition *= 2;
+                    money.RemoveMoney(30);
+
+                }
+            }
+        }
+        
         if(target == null){
             return;
         }
@@ -58,10 +137,13 @@ public class Turret : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-        if(Time.time >= fireCountdown){
+        if(Time.time >= fireCountdown && enoughAmmunition == true){
             Shoot();
+            currentAmmountOfAmmunition -= 1;
             fireCountdown = 1f / fireRate + Time.time;
         }
+
+        
     }
 
     void Shoot()
