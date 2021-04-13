@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurretInfo : MonoBehaviour
 {
     public GameObject TurretCanvas;
-    public bool isOpen { get; set;}
+
+    public bool isOpen { get; set; }
 
     public void Awake()
     {
@@ -29,4 +31,5 @@ public class TurretInfo : MonoBehaviour
     {
         return isOpen;
     }
+
 }

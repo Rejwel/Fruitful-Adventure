@@ -2,15 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TurretInfoScript : MonoBehaviour
 {
-    public Text information;
+    public TextMeshProUGUI informationOfAmmo;
 
-    // Update is called once per frame
-    void Update()
+    public void Awake()
     {
-        Vector3 informationPosition = Camera.main.WorldToScreenPoint(this.transform.position);
-        information.transform.position = informationPosition;
+        informationOfAmmo = GameObject.Find("TurretAmmo").GetComponent<TextMeshProUGUI>();
+    }
+
+    public void DisplayInfoAmmo(string curr,string max)
+    {
+        informationOfAmmo.color = Color.white;
+        informationOfAmmo.fontSize = 8;
+        informationOfAmmo.text = curr + "/" + max;
+    }
+
+    public void DisplayWarning()
+    {
+        informationOfAmmo.color = Color.red;
+        informationOfAmmo.fontSize = 24;
+        informationOfAmmo.text = "!";
     }
 }
