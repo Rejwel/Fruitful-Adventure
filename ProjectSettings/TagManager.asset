@@ -17,6 +17,7 @@ TagManager:
   - TurretDetecting
   - Warning Cavas
   - Grenade
+  - TurretAmmo
   layers:
   - Default
   - TransparentFX

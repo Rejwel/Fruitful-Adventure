@@ -10,9 +10,10 @@ public class Turret : MonoBehaviour
     public float fireRate = 1f;
 
     public TurretInfo reloadTurret;
+    public TurretInfoScript turretInfoScript;
 
-    public float maximumAmmountOfAmmunition;
-    private float currentAmmountOfAmmunition;
+    public int maximumAmmountOfAmmunition;
+    private int currentAmmountOfAmmunition;
     private bool enoughAmmunition = true;
 
     private float fireCountdown = 0f;
@@ -27,13 +28,19 @@ public class Turret : MonoBehaviour
     public GameObject BulletPrefab;
     public Transform firePoint;
     public Money money;
+    private float basicMagazine;
+    private float basicFireRate;
 
 
     private void Awake()
     {
+        basicMagazine = maximumAmmountOfAmmunition;
+        basicFireRate = fireRate;
         money = FindObjectOfType<Money>();
         reloadTurret = FindObjectOfType<TurretInfo>();
+        turretInfoScript = FindObjectOfType<TurretInfoScript>();
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,21 +84,45 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (reloadTurret.issOpen()) {
-            Debug.Log("weszlo jak w maslo");
+
+        if (currentAmmountOfAmmunition == 0)
+        {
+            turretInfoScript.DisplayWarning();
+            enoughAmmunition = false;
+        } else
+        {
+            turretInfoScript.DisplayInfoAmmo(currentAmmountOfAmmunition.ToString(), maximumAmmountOfAmmunition.ToString());
+        }
+
+        if (reloadTurret.issOpen()) { 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                Debug.Log("K mi dziala");
-                if (money.CurrentMoney >= 30)
+                if (money.CurrentMoney >= 30 && currentAmmountOfAmmunition != maximumAmmountOfAmmunition)
                 {
                     currentAmmountOfAmmunition = maximumAmmountOfAmmunition;
                     enoughAmmunition = true;
                     money.RemoveMoney(30);
-                    Debug.Log("Kupiono amunicje");
+                    
                 }
-                else
+            }
+
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                if (money.CurrentMoney >= 30 &&  fireRate != basicFireRate*2f)
                 {
-                    Debug.Log("Zbyt malo $$$");
+                    fireRate *= 2f;
+                    money.RemoveMoney(30);
+
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                if (money.CurrentMoney >= 30 && maximumAmmountOfAmmunition != 2*basicMagazine)
+                {
+                    maximumAmmountOfAmmunition *= 2;
+                    money.RemoveMoney(30);
+
                 }
             }
         }
@@ -112,11 +143,7 @@ public class Turret : MonoBehaviour
             fireCountdown = 1f / fireRate + Time.time;
         }
 
-        if(currentAmmountOfAmmunition == 0)
-        {
-            enoughAmmunition = false;
-            Debug.Log("Brak amunicji");
-        }
+        
     }
 
     void Shoot()

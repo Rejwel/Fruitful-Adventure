@@ -13,7 +13,7 @@ public class TurretDetecting : MonoBehaviour
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public string Turret = "TurretDetecting";
-    public GameObject progressText;
+    
     public string CurrentBuilding = "cos";
     public float shortestDistanceToBuilding;
     public GameObject House;
@@ -21,7 +21,7 @@ public class TurretDetecting : MonoBehaviour
     private void Awake()
     {
         AC = FindObjectOfType<AreaControl>();
-        progressText = AC.WarningCanvas;
+        
         House = GameObject.Find("house");
     }
     // Start is called before the first frame update
