@@ -14,6 +14,12 @@ public class Money : MonoBehaviour
         CurrentMoney += 3; 
         Score.text = CurrentMoney.ToString();
     }
+    
+    public void AddMoneyAmmount(int money)
+    {
+        CurrentMoney += money; 
+        Score.text = CurrentMoney.ToString();
+    }
 
     public void RemoveMoney(int value)
     {
