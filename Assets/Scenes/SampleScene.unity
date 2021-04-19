@@ -36258,6 +36258,14 @@ PrefabInstance:
       propertyPath: GunPrefab
       value: 
       objectReference: {fileID: 1843848979}
+    - target: {fileID: 604596831, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: Score
+      value: 
+      objectReference: {fileID: 1442725665}
+    - target: {fileID: 604596832, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: thePlayer
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 913872315, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
