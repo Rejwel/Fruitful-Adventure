@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     
     //for dash
     public Image dashImage;
+    private Animator animator;
     public ParticleSystem forwardDashParticle;
     public ParticleSystem backwardDashParticle;
     public ParticleSystem leftDashParticle;
@@ -51,11 +52,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        animator = FindObjectOfType<Animator>();
         inventory = FindObjectOfType<Inventory>();
     }
 
     void Update()
     {
+
         if (inventory.CanDash()) Dash();
         ResetJump();
         
