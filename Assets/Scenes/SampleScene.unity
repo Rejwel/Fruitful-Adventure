@@ -36407,11 +36407,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 9903707bb219b1345a7fab9a11532f92,
         type: 3}
+    - target: {fileID: 1817674679, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1886146142, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 9903707bb219b1345a7fab9a11532f92,
         type: 3}
+    - target: {fileID: 1886146142, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 167356990725721942, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
       propertyPath: m_LocalPosition.z
