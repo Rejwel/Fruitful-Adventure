@@ -27,8 +27,6 @@ public class BulletMechanics : MonoBehaviour
         if (hit.tag.Equals("Enemy"))
         {
             EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
-            // print("bullet: " + gameObject.transform.position);
-            // print("enemy: " + hit.transform.position);
             gun = player.GetCurrentGun();
             enemy.TakeDamage(gun.GetDamage());
             

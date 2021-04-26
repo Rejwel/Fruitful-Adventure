@@ -29,6 +29,7 @@ public class WaveManager : MonoBehaviour
     private EnemyRanged enemyType1;
     private EnemyMelee enemyType2;
     private string WaveTextGui;
+    private Money money;
     
 
     public Spawner [] spawners;
@@ -36,6 +37,7 @@ public class WaveManager : MonoBehaviour
 
     void Start()
     {
+        money = FindObjectOfType<Money>();
         timerText = GameObject.Find("TimerManager").GetComponent<Text>();
         waveCountText = GameObject.Find("WaveManager").GetComponent<Text>();
         enemiesLeftText = GameObject.Find("EnemiesRemain").GetComponent<Text>();
@@ -66,19 +68,22 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
+            if (enemiesLeft == 0)
+            {
+                enemiesLeftText.text = "Skip wave for extra money! (F)";
+                if (Input.GetKeyDown(KeyCode.F))
+                    SkipWave();
+            }
+            else 
+                enemiesLeftText.text = "Enemies left : " + enemiesLeft;
+            
             if (BuildingCount != 1)
-            {
                 waveCountText.text = "Wave " + wave + "\n now attacking: " + WaveTextGui + "\n next attacking: " + NextAttackingBuilding.name;
-            }
             else
-            {
                 waveCountText.text = "Wave " + wave + "\n This is your last building!: " + NextAttackingBuilding.name;
-            }
         }
-        
-        enemiesLeftText.text = enemiesLeft.ToString();
 
-        nextWaveTime = wave == 0 ? 1f : 90f;
+        nextWaveTime = wave == 0 ? 60f : 120f;
 
         if (waveTime >= nextWaveTime && wave == 0)
         {
@@ -128,6 +133,13 @@ public class WaveManager : MonoBehaviour
                NextAttackingBuilding = GetAttackPoint();
            } 
         }
+    }
+
+    private void SkipWave()
+    {
+        int timeSkipped = Convert.ToInt32(nextWaveTime-waveTime);
+        money.AddMoneyAmmount(timeSkipped*3);
+        waveTime += nextWaveTime;
     }
 
     public void killEnemy()

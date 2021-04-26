@@ -12,7 +12,7 @@ public class OpenShop : MonoBehaviour
     public GameObject shopGui;
     public GameObject player;
     public GameObject text;
-    public Text currentMoney;
+    public TextMeshProUGUI currentMoney;
     private Money money;
     public HealthBarScript healthBarPlayer;   
     public HealthBarScript healthBarMenu;   

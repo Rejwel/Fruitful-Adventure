@@ -49,19 +49,18 @@ public class TBullet : MonoBehaviour
     
     private void OnTriggerEnter(Collider hit)
     {
-        EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
         if (hit.tag.Equals("Enemy"))
         {
-            // print("bullet: " + gameObject.transform.position);
-            // print("enemy: " + hit.transform.position);
-            
+            EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
             enemy.TakeDamage(20);
             HitTarget();
-            if (enemy.GetHealth() <= 0)
+            if (enemy.GetHealth() <= 0  && enemy != null)
             {
-                enemy.Die();
-                explosion.explode(hit.gameObject.transform);
+                hit.GetComponent<Collider>().enabled = false;
+                Transform EnemyTransform = enemy.transform;
+                explosion.explode(EnemyTransform);
                 WaveManager.killEnemy();
+                enemy.Die();
             }
             Destroy(gameObject);
         }

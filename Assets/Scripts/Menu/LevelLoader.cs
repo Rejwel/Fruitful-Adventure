@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ public class LevelLoader : MonoBehaviour
 {
     public GameObject loadingscreen;
     public Slider slider;
-    public Text progressText;
+    public TextMeshProUGUI progressText;
 
     public void LoalLevel(int sceneIndex)
     {

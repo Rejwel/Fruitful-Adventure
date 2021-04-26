@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,12 +25,12 @@ public class AreaControl : MonoBehaviour
 
     public void DefaultWarning()
     {
-        WarningCanvas.GetComponent<Text>().text = "Wykryto wroga obok lasu!";
+        WarningCanvas.GetComponent<TextMeshProUGUI>().text = "Wykryto wroga obok lasu!";
     }
     
     public void BuildingWarning(string building)
     {
-        WarningCanvas.GetComponent<Text>().text = "Wykryto wroga obok " + building;
+        WarningCanvas.GetComponent<TextMeshProUGUI>().text = "Wykryto wroga obok " + building;
     }
 
 
