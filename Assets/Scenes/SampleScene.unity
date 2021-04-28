@@ -35607,6 +35607,10 @@ MonoBehaviour:
   WarningCanvas: {fileID: 4130897817917187253}
   location: {fileID: 158416503}
   Turret: {fileID: 0}
+  MainMenuPrefab: {fileID: 1612223754280127311, guid: 176533caedf790540a2c061fc85b7736,
+    type: 3}
+  Canvas: {fileID: 7360080430340160414, guid: 176533caedf790540a2c061fc85b7736, type: 3}
+  Mode: 0
 --- !u!1001 &2093662818
 PrefabInstance:
   m_ObjectHideFlags: 0

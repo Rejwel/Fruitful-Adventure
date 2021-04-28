@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43678b6b39f1cc44ba34eae3c43a5c1e, type: 3}
-  m_Name: Detection Turret
+  m_Name: TurretDetecting
   m_EditorClassIdentifier: 
   Name: 
   Icon: {fileID: 0}

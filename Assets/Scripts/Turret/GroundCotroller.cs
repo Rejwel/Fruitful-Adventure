@@ -9,6 +9,7 @@ public class GroundCotroller : MonoBehaviour
     [SerializeField]
     private GameObject[] placeableObjectPrefabs;
     private uint[] placeableObjectPrefabsCount;
+    
 
     public LayerMask terrain;
     private bool canRotate = false;
@@ -18,14 +19,24 @@ public class GroundCotroller : MonoBehaviour
     public GameObject currentPlaceableObject;
     public GameObject player;
     private float mouseWheelRotation;
-    public bool hope=true;
+    public bool hope = true;
+    private bool Menu = false;
     public GameObject WarningCanvas;
     public Transform location;
     public GameObject Turret;
     private Inventory inv;
+    
+
+    //Ring Menu Controller
+    protected RingMenu MainMenuInstance;
+    public RingMenu MainMenuPrefab;
+    public GameObject Canvas;
+    [HideInInspector]
+    public ControllerMode Mode;
 
     private void Start()
     {
+        SetMode(ControllerMode.Play);
         inv = FindObjectOfType<Inventory>();
     }
 
@@ -47,22 +58,61 @@ public class GroundCotroller : MonoBehaviour
                 WarningCanvas.SetActive(true);
             }
         }
+
+
+        
+            if (Input.GetKeyDown(KeyCode.Q))
+            {        
+            SetMode(ControllerMode.Menu);
+            MainMenuInstance = Instantiate(MainMenuPrefab);
+            //MainMenuInstance.callback = MenuClick;
+            }
+
+            if (Input.GetKeyUp(KeyCode.Q) && Menu)
+            {
+           
+            SetMode(ControllerMode.Build);   
+
+            }
+            if (Input.GetKeyUp(KeyCode.Q) && !Menu)
+            {
+            
+            SetMode(ControllerMode.Play);
+            }
+
+
+            if(Mode == ControllerMode.Build)
+            {
+                if(Input.GetMouseButtonDown(1))
+                {
+                SetMode(ControllerMode.Play);
+                }
+            }
+            
+            if(Mode == ControllerMode.Menu)
+            {
+                
+            }
+
     }
     
+    
+
+
     private void HandleNewObjectHotkey()
     {
         WarningCanvas.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         
-        if (Input.GetKeyDown(KeyCode.Alpha9) && inv.GameObjDictionary["Turret"] > 0)
+        if (inv.GameObjDictionary["Turret"] > 0)
         {
-            player.GetComponent<PlayerShoot>().HoldFire = true;
+            //player.GetComponent<PlayerShoot>().HoldFire = true;
             hope = true;
             WarningCanvas.SetActive(false);
             if (PressedKeyOfCurrentPrefab(0))
             {
-                player.GetComponent<PlayerShoot>().HoldFire = false;
+                //player.GetComponent<PlayerShoot>().HoldFire = false;
                 Destroy(currentPlaceableObject);
             }
             else
@@ -84,14 +134,14 @@ public class GroundCotroller : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha8) && inv.GameObjDictionary["TurretDetecting"] > 0)
+        else if (inv.GameObjDictionary["TurretDetecting"] > 0)
         {
-            player.GetComponent<PlayerShoot>().HoldFire = true;
+            //player.GetComponent<PlayerShoot>().HoldFire = true;
             hope = true;
             WarningCanvas.SetActive(false);
             if (PressedKeyOfCurrentPrefab(1))
             {
-                player.GetComponent<PlayerShoot>().HoldFire = false;
+                //player.GetComponent<PlayerShoot>().HoldFire = false;
                 Destroy(currentPlaceableObject);
             }
             else
@@ -118,6 +168,11 @@ public class GroundCotroller : MonoBehaviour
     private bool PressedKeyOfCurrentPrefab(int i)
     {
         return currentPlaceableObject != null && currentPrefabIndex == i;
+    }
+
+    public void SetMenu(bool menu)
+    {
+        Menu = menu;
     }
 
     private void MoveCurrentObjectToMouse()
@@ -175,4 +230,50 @@ public class GroundCotroller : MonoBehaviour
         }
     }
 
+
+    public void MenuClick(string path)
+    {
+        var paths = path.Split('/');
+        //GetComponent<PlaceBrick>().SetPrefab(int.Parse(paths[1]));    
+    }
+
+    public void SetMode(ControllerMode mode)
+    {
+        Mode = mode;
+        if (mode != ControllerMode.Menu && MainMenuInstance != null)
+            Destroy(MainMenuInstance);
+
+        switch (mode)
+        {
+            case ControllerMode.Build:
+                Canvas.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                Camera.main.GetComponent<MouseLook>().enabled = true;
+                player.GetComponent<PlayerShoot>().HoldFire = true;
+                break;
+            case ControllerMode.Menu:
+                Canvas.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                Camera.main.GetComponent<MouseLook>().enabled = false;
+                player.GetComponent<PlayerShoot>().HoldFire = true;
+                break;
+            case ControllerMode.Play:
+                Canvas.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                Camera.main.GetComponent<MouseLook>().enabled = true;
+                player.GetComponent<PlayerShoot>().HoldFire = false;
+                break;
+        }
+    }
+
+
+    public enum ControllerMode
+    {
+        Play,
+        Build,
+        Menu
+    }
 }

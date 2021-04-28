@@ -62,11 +62,12 @@ public class RingMenu : MonoBehaviour
         }
 
         if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu)
-            {       
+            {
+            Menu.SetMode(GroundCotroller.ControllerMode.Build);
                 var path = Path + Data.Elements[activeElement].Name;
                 Menu.MenuClick(path);
                 callback?.Invoke(path);
-                Menu.SetMenu(false);
+                Menu.SetMenu(true);
                 
                 if(path == "0" && inv.GameObjDictionary["Turret"] == 0)
                 {
