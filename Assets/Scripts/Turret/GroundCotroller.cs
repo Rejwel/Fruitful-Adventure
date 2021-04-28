@@ -64,7 +64,6 @@ public class GroundCotroller : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {        
             SetMode(ControllerMode.Menu);
-            MainMenuInstance = Instantiate(MainMenuPrefab);
             //MainMenuInstance.callback = MenuClick;
             }
 
