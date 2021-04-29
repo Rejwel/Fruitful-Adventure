@@ -21,6 +21,7 @@ public class GroundCotroller : MonoBehaviour
     private float mouseWheelRotation;
     public bool hope = true;
     private bool Menu = false;
+    private bool Empty = false;
     public GameObject WarningCanvas;
     public Transform location;
     public GameObject Turret;
@@ -63,20 +64,20 @@ public class GroundCotroller : MonoBehaviour
         
             if (Input.GetKeyDown(KeyCode.Q))
             {        
-            SetMode(ControllerMode.Menu);
-            //MainMenuInstance.callback = MenuClick;
+            SetMode(ControllerMode.Menu);     
             }
 
             if (Input.GetKeyUp(KeyCode.Q) && Menu)
             {
-           
-            SetMode(ControllerMode.Build);   
-
+            if (!Empty)
+                SetMode(ControllerMode.Build);
+            else if (Empty)
+                SetMode(ControllerMode.Play);
             }
+
             if (Input.GetKeyUp(KeyCode.Q) && !Menu)
-            {
-            
-            SetMode(ControllerMode.Play);
+            {            
+                SetMode(ControllerMode.Play);
             }
 
 
@@ -85,36 +86,31 @@ public class GroundCotroller : MonoBehaviour
                 if(Input.GetMouseButtonDown(1))
                 {
                 SetMode(ControllerMode.Play);
+                Destroy(currentPlaceableObject);
                 }
-            }
-            
-            if(Mode == ControllerMode.Menu)
-            {
-                
             }
 
     }
     
-    
-
 
     private void HandleNewObjectHotkey()
     {
         WarningCanvas.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        
+        if(Mode == ControllerMode.Build)
+        { 
         if (inv.GameObjDictionary["Turret"] > 0)
         {
-            //player.GetComponent<PlayerShoot>().HoldFire = true;
+            player.GetComponent<PlayerShoot>().HoldFire = true;
             hope = true;
             WarningCanvas.SetActive(false);
-            if (PressedKeyOfCurrentPrefab(0))
+            /*if (PressedKeyOfCurrentPrefab(0))
             {
-                //player.GetComponent<PlayerShoot>().HoldFire = false;
+                player.GetComponent<PlayerShoot>().HoldFire = false;
                 Destroy(currentPlaceableObject);
             }
-            else
+            else */
             {
                 if (currentPlaceableObject != null)
                 {
@@ -135,15 +131,15 @@ public class GroundCotroller : MonoBehaviour
         }
         else if (inv.GameObjDictionary["TurretDetecting"] > 0)
         {
-            //player.GetComponent<PlayerShoot>().HoldFire = true;
+            player.GetComponent<PlayerShoot>().HoldFire = true;
             hope = true;
             WarningCanvas.SetActive(false);
-            if (PressedKeyOfCurrentPrefab(1))
+            /*if (PressedKeyOfCurrentPrefab(1))
             {
-                //player.GetComponent<PlayerShoot>().HoldFire = false;
+                player.GetComponent<PlayerShoot>().HoldFire = false;
                 Destroy(currentPlaceableObject);
             }
-            else
+            else */
             {
                 if (currentPlaceableObject != null)
                 {
@@ -162,6 +158,7 @@ public class GroundCotroller : MonoBehaviour
                 }
             }
         }
+        }
     }
 
     private bool PressedKeyOfCurrentPrefab(int i)
@@ -172,6 +169,10 @@ public class GroundCotroller : MonoBehaviour
     public void SetMenu(bool menu)
     {
         Menu = menu;
+    }
+    public void SetEmpty(bool empty)
+    {
+        Empty = empty;
     }
 
     private void MoveCurrentObjectToMouse()
@@ -232,8 +233,7 @@ public class GroundCotroller : MonoBehaviour
 
     public void MenuClick(string path)
     {
-        var paths = path.Split('/');
-        //GetComponent<PlaceBrick>().SetPrefab(int.Parse(paths[1]));    
+        var paths = path.Split('/');   
     }
 
     public void SetMode(ControllerMode mode)

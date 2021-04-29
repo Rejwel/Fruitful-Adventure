@@ -13,6 +13,7 @@ public class RingMenu : MonoBehaviour
     protected RingMenu Parent;
     private GroundCotroller Menu;
     private Inventory inv;
+    public GameObject player;
 
     [HideInInspector]
     public string Path;
@@ -63,30 +64,32 @@ public class RingMenu : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu)
             {
-            Menu.SetMode(GroundCotroller.ControllerMode.Build);
-                var path = Path + Data.Elements[activeElement].Name;
-                Menu.MenuClick(path);
-                callback?.Invoke(path);
-                Menu.SetMenu(true);
-                
-                if(path == "0" && inv.GameObjDictionary["Turret"] == 0)
-                {
-                    Debug.Log("Nie ma TURRETÓWWWW!");
-                    Menu.SetMode(GroundCotroller.ControllerMode.Play);
-                }
-           
-                if (path == "1" && inv.GameObjDictionary["TurretDetecting"] == 0)
-                {
-                    Debug.Log("A gdzie DETECTING TURRETS?");
-                    Menu.SetMode(GroundCotroller.ControllerMode.Play);
-                }
+            Menu.SetMenu(true);
+            var path = Path + Data.Elements[activeElement].Name;
+            Menu.MenuClick(path);
+            callback?.Invoke(path);
+            
 
-                gameObject.SetActive(false);
+            if (path == "0" && inv.GameObjDictionary["Turret"] == 0)
+            {
+                Debug.Log("Nie ma TURRETÓWWWW!");
+                Menu.SetEmpty(true);
             }
+            else if (path == "1" && inv.GameObjDictionary["TurretDetecting"] == 0)
+            {
+                Debug.Log("A gdzie DETECTING TURRETS?");
+                Menu.SetEmpty(true);
+            }
+            else
+            {
+                Menu.SetEmpty(false);
+            }
+            gameObject.SetActive(false);
+        }
         
     }
 
    
-
+  
     private float NormalizeAngle(float a) => (a + 360f) % 360f;
 }
