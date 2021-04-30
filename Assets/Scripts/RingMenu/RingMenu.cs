@@ -62,13 +62,12 @@ public class RingMenu : MonoBehaviour
                 Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.5f);
         }
 
-        if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu)
-            {
+        if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu) //We are in the menu and we clicked LPM 
+        {
             Menu.SetMenu(true);
-            var path = Path + Data.Elements[activeElement].Name;
+            var path = Path + Data.Elements[activeElement].Name;    //path, so far it`s 0 (Turret) or 1 (Detecting Turret) 
             Menu.MenuClick(path);
             callback?.Invoke(path);
-            
 
             if (path == "0" && inv.GameObjDictionary["Turret"] == 0)
             {

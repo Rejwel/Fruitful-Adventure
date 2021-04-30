@@ -61,18 +61,19 @@ public class GroundCotroller : MonoBehaviour
         }
 
 
-        
+        //Cases of clicking Q
+
             if (Input.GetKeyDown(KeyCode.Q))
             {        
-            SetMode(ControllerMode.Menu);     
+                SetMode(ControllerMode.Menu);     
             }
 
             if (Input.GetKeyUp(KeyCode.Q) && Menu)
             {
-            if (!Empty)
-                SetMode(ControllerMode.Build);
-            else if (Empty)
-                SetMode(ControllerMode.Play);
+                if (!Empty)
+                    SetMode(ControllerMode.Build);
+                else if (Empty)
+                    SetMode(ControllerMode.Play);
             }
 
             if (Input.GetKeyUp(KeyCode.Q) && !Menu)
@@ -85,15 +86,15 @@ public class GroundCotroller : MonoBehaviour
             {
                 if(Input.GetMouseButtonDown(1))
                 {
-                SetMode(ControllerMode.Play);
-                Destroy(currentPlaceableObject);
+                    SetMode(ControllerMode.Play);
+                    Destroy(currentPlaceableObject);
                 }
             }
 
     }
     
 
-    private void HandleNewObjectHotkey()
+    private void HandleNewObjectHotkey()        //Magic happens here 
     {
         WarningCanvas.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -202,7 +203,7 @@ public class GroundCotroller : MonoBehaviour
         }
     }
 
-    public void ReleaseIfClicked()
+    public void ReleaseIfClicked()  //We are in Build mode, we have the object in our hand, we place it LPM  
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
@@ -236,7 +237,7 @@ public class GroundCotroller : MonoBehaviour
         var paths = path.Split('/');   
     }
 
-    public void SetMode(ControllerMode mode)
+    public void SetMode(ControllerMode mode)                //We set our modes  
     {
         Mode = mode;
         if (mode != ControllerMode.Menu && MainMenuInstance != null)
@@ -250,6 +251,7 @@ public class GroundCotroller : MonoBehaviour
                 Cursor.visible = false;
                 Camera.main.GetComponent<MouseLook>().enabled = true;
                 player.GetComponent<PlayerShoot>().HoldFire = true;
+                player.GetComponent<PlayerShoot>().AddDelay();
                 break;
             case ControllerMode.Menu:
                 Canvas.SetActive(true);
@@ -257,6 +259,7 @@ public class GroundCotroller : MonoBehaviour
                 Cursor.visible = true;
                 Camera.main.GetComponent<MouseLook>().enabled = false;
                 player.GetComponent<PlayerShoot>().HoldFire = true;
+                player.GetComponent<PlayerShoot>().AddDelay();
                 break;
             case ControllerMode.Play:
                 Canvas.SetActive(false);
