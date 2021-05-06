@@ -127,7 +127,7 @@ public class ShopGui : MonoBehaviour
         currMoney.text = $"= {money.CurrentMoney}";
         currGrenades.text = $"(75) Grenade {inv.GetGrenades()}";
         currShootingTurrets.text = $"(75) Turret {inv.GetShootingTurret()}";
-        currDetectingTurrets.text = $"(75) Detecting Turret {inv.GetDetectingTurret()}";
+        currDetectingTurrets.text = $"(50) Detecting Turret {inv.GetDetectingTurret()}";
         
 
         if(inv.bulletAmmount[1] > 10000)

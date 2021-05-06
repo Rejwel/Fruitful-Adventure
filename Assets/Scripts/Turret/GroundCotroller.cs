@@ -62,7 +62,6 @@ public class GroundCotroller : MonoBehaviour
                 WarningCanvas.SetActive(true);
             }
         }
-        Debug.Log(currentPlaceableObject);
 
         //Cases of clicking Q
 
