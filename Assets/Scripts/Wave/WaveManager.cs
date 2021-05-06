@@ -63,8 +63,10 @@ public class WaveManager : MonoBehaviour
         WaveTextGui = AttackingBuilding == null ? "Destroyed!" : AttackingBuilding.name;
         if (wave == 0)
         {
-            waveCountText.text = "First Wave incoming, You have 60 seconds!" + "\n now attacking: " + WaveTextGui +
+            waveCountText.text = "First Wave incoming, You have 60 seconds!" + " You can skip wave (F)" + "\n now attacking: " + WaveTextGui +
                                  "\n next attacking: " + NextAttackingBuilding.name;
+            if (Input.GetKeyDown(KeyCode.F))
+                SkipFirstWave();
         }
         else
         {
@@ -139,6 +141,11 @@ public class WaveManager : MonoBehaviour
     {
         int timeSkipped = Convert.ToInt32(nextWaveTime-waveTime);
         money.AddMoneyAmmount(timeSkipped*3);
+        waveTime += nextWaveTime;
+    }
+    
+    private void SkipFirstWave()
+    {
         waveTime += nextWaveTime;
     }
 

@@ -76,7 +76,7 @@ public class ShopGui : MonoBehaviour
         
         money = FindObjectOfType<Money>();
         
-         //money.CurrentMoney += 10000;
+        money.CurrentMoney += 140;
     }
     
     void Update()

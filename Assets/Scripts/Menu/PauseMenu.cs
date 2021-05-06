@@ -121,8 +121,8 @@ public class PauseMenu : MonoBehaviour
         Health = FindObjectOfType<HealthPlayer>();
         if(Health.currentHealth <= 0 || WaveManager.BuildingCount == 0)
         {
-            GUI.SetActive(false);
             Dead.SetActive(true);
+            GUI.SetActive(false);
             GameOver = true;
             Health.currentHealth = 1;
             Time.timeScale = 0f;
