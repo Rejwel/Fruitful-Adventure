@@ -75,12 +75,7 @@ public class ShopGui : MonoBehaviour
         minigun = GameObject.Find("BuyMinigun");
         
         money = FindObjectOfType<Money>();
-        
-<<<<<<< HEAD
-        money.CurrentMoney += 10000;
-=======
         money.CurrentMoney += 140;
->>>>>>> remotes/origin/kilifux
     }
     
     void Update()
