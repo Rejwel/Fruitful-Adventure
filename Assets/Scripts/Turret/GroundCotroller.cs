@@ -32,6 +32,8 @@ public class GroundCotroller : MonoBehaviour
     protected RingMenu MainMenuInstance;
     public RingMenu MainMenuPrefab;
     public GameObject Canvas;
+    protected GameObject Prefab;
+
     [HideInInspector]
     public ControllerMode Mode;
 
@@ -39,6 +41,7 @@ public class GroundCotroller : MonoBehaviour
     {
         SetMode(ControllerMode.Play);
         inv = FindObjectOfType<Inventory>();
+        Prefab = placeableObjectPrefabs[0];
     }
 
     private void Update()
@@ -59,7 +62,7 @@ public class GroundCotroller : MonoBehaviour
                 WarningCanvas.SetActive(true);
             }
         }
-
+        Debug.Log(currentPlaceableObject);
 
         //Cases of clicking Q
 
@@ -91,17 +94,18 @@ public class GroundCotroller : MonoBehaviour
                 }
             }
 
+           
     }
     
 
-    private void HandleNewObjectHotkey()        //Magic happens here 
+    private void HandleNewObjectHotkey()         
     {
         WarningCanvas.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         if(Mode == ControllerMode.Build)
         { 
-            if (inv.GameObjDictionary["Turret"] > 0)
+            if (inv.GameObjDictionary["Turret"] > 0 && Prefab != null)
             {
                 player.GetComponent<PlayerShoot>().HoldFire = true;
                 hope = true;
@@ -121,16 +125,16 @@ public class GroundCotroller : MonoBehaviour
                     if (Physics.Raycast(ray, out hitInfo, 15f, terrain))
                     {
                         Turret = GameObject.FindGameObjectWithTag("Turret");
-                        currentPlaceableObject = Instantiate(placeableObjectPrefabs[0]);
+                        currentPlaceableObject = Instantiate(Prefab);
                         currentPrefabIndex = 0;
                     }
                     else {
-                        currentPlaceableObject = Instantiate(placeableObjectPrefabs[0], location.transform.position, Quaternion.Euler(0,0,0)) as GameObject;
+                        currentPlaceableObject = Instantiate(Prefab, location.transform.position, Quaternion.Euler(0,0,0)) as GameObject;
                         currentPrefabIndex = 0;
                     }
                 }
             }
-            else if (inv.GameObjDictionary["TurretDetecting"] > 0)
+            else if (inv.GameObjDictionary["TurretDetecting"] > 0 && Prefab != null)
             {
                 player.GetComponent<PlayerShoot>().HoldFire = true;
                 hope = true;
@@ -150,11 +154,11 @@ public class GroundCotroller : MonoBehaviour
                     if (Physics.Raycast(ray, out hitInfo, 15f, terrain))
                     {
                         Turret = GameObject.FindGameObjectWithTag("Turret");
-                        currentPlaceableObject = Instantiate(placeableObjectPrefabs[1]);
+                        currentPlaceableObject = Instantiate(Prefab);
                         currentPrefabIndex = 1;
                     }
                     else {
-                        currentPlaceableObject = Instantiate(placeableObjectPrefabs[1], location.transform.position, Quaternion.Euler(0,0,0)) as GameObject;
+                        currentPlaceableObject = Instantiate(Prefab, location.transform.position, Quaternion.Euler(0,0,0)) as GameObject;
                         currentPrefabIndex = 1;
                     }
                 }
@@ -212,17 +216,23 @@ public class GroundCotroller : MonoBehaviour
         {
             uint tmpCount = 0;
             string CurrentObj = string.Concat(currentPlaceableObject.ToString().TakeWhile(x => x != '('));
-            
+           
             tmpCount = inv.GameObjDictionary[CurrentObj];
             inv.GameObjDictionary.Remove(CurrentObj);
             
-            if(currentPlaceableObject.ToString().Split('(')[0].Equals("Turret")) inv.RemoveShootingTurret();
-            if(currentPlaceableObject.ToString().Split('(')[0].Equals("TurretDetecting")) inv.RemoveDetectingTurret();
+            if(Prefab.ToString().Split('(')[0].Equals("Turret ")) inv.RemoveShootingTurret();
+            if(Prefab.ToString().Split('(')[0].Equals("TurretDetecting ")) inv.RemoveDetectingTurret();
+            //Debug.Log(inv.GetDetectingTurret());
+            //Debug.Log(inv.GetShootingTurret());
+            
 
             inv.GameObjDictionary.Add(CurrentObj, --tmpCount);
-            
             currentPlaceableObject.tag = "ABC";
-            currentPlaceableObject = null;
+            currentPlaceableObject = null; 
+            if(tmpCount == 0)
+            { 
+            Prefab = null;
+            }
             player.GetComponent<PlayerShoot>().AddDelay();
             player.GetComponent<PlayerShoot>().HoldFire = false;
         }
@@ -230,8 +240,9 @@ public class GroundCotroller : MonoBehaviour
 
 
     public void MenuClick(string path)
-    {
-        var paths = path.Split('/');   
+    {  
+        SetPrefab(int.Parse(path));
+        //SetMode(ControllerMode.Build);
     }
 
     public void SetMode(ControllerMode mode)                //We set our modes  
@@ -275,4 +286,11 @@ public class GroundCotroller : MonoBehaviour
         Build,
         Menu
     }
+
+
+    public void SetPrefab(int number)
+    {
+        Prefab = placeableObjectPrefabs[number]; 
+    }
+
 }
