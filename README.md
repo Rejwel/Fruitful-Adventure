@@ -1,6 +1,6 @@
 ![cover](./Cover/coverPhoto.PNG)
 
-# first_game by Salto angels
+# Fruitful Adventure by Salto angels
 ### Autorzy:
 [Filip Grzelak](https://github.com/filipgrzelak)
 [Anastazja Załataja](https://github.com/Bananasa)
