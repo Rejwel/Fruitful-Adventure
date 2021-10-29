@@ -13,8 +13,8 @@ public class DamageBuilding : MonoBehaviour
         _buildingHealth = GetComponentInParent<BuildingHealth>();
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
+    //private void OnCollisionEnter(Collision other)
+    //{
         // if (other.gameObject.CompareTag("Bullet"))
         // {
         //     if (_buildingHealth.currentHealth <= 0 && !_buildingHealth.buildingDestroyed)
@@ -28,5 +28,5 @@ public class DamageBuilding : MonoBehaviour
         //     Destroy(other.gameObject);
         // }
         
-    }
+    //}
 }
