@@ -59,7 +59,7 @@ public class TBullet : MonoBehaviour
                 hit.GetComponent<Collider>().enabled = false;
                 Transform EnemyTransform = enemy.transform;
                 explosion.explode(EnemyTransform);
-                WaveManager.killEnemy();
+                WaveManager.UpdateEnemyCounter();
                 enemy.Die();
             }
             Destroy(gameObject);
