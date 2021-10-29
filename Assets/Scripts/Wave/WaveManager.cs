@@ -70,6 +70,7 @@ public class WaveManager : MonoBehaviour
             if (enemiesLeft == 0)
             {
                 enemiesLeftText.text = "All enemies defeated!\nPress (F) to start next wave!";
+                
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     NextWave();
@@ -81,7 +82,9 @@ public class WaveManager : MonoBehaviour
             }
 
             if (BuildingCount != 1)
-                waveCountText.text = "Wave " + wave + "\n now attacking: " + WaveTextGui + "\n next attacking: " + NextAttackingBuilding.name;
+            {
+                waveCountText.text = enemiesLeft == 0 ? waveCountText.text = "Wave " + wave + "\n next attacking: " + NextAttackingBuilding.name : waveCountText.text = "Wave " + wave + "\n now attacking: " + WaveTextGui + "\n next attacking: " + NextAttackingBuilding.name;
+            }
             else
                 waveCountText.text = "Wave " + wave + "\n This is your last building!: " + NextAttackingBuilding.name;
             
