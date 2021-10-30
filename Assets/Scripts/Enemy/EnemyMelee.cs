@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Diagnostics;
+using UnityEngine.Events;
+using UnityEngine.iOS;
 
 public class EnemyMelee : MonoBehaviour
 {
@@ -17,7 +19,10 @@ public class EnemyMelee : MonoBehaviour
     private float NextAttack = 0f;
 
     public LayerMask whatIsPlayer;
+    public LayerMask buildingLayermask;
     private bool InRange;
+    private bool InBuildingAttackingRange;
+    private bool triggeredByPlayer = false;
 
     private void Start()
     {
@@ -26,14 +31,20 @@ public class EnemyMelee : MonoBehaviour
         WhatToAttack = WaveManager.AttackingBuilding;
     }
     
-
     void Update()
     {
         WhatToAttack = WaveManager.AttackingBuilding;
-
         InRange = Physics.CheckSphere(transform.position, 20, whatIsPlayer);
+        InBuildingAttackingRange = Physics.CheckSphere(transform.position, 6, buildingLayermask);
 
-        // WhatToAttack.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>().buildingDestroyed
+        
+        // attack building
+        if (InBuildingAttackingRange && !triggeredByPlayer)
+            AttackBuilding();
+        else
+            StopAttackingBuilding();
+        
+        
         if (InRange && !IsAttacking || WhatToAttack == null)
         {
             transform.LookAt(Player.transform);
@@ -49,6 +60,7 @@ public class EnemyMelee : MonoBehaviour
         
             if (!IsAttacking && !InRange)
             {
+                triggeredByPlayer = false;
                 enemy.SetDestination(WhatToAttack.transform.localPosition);
                 transform.LookAt(WhatToAttack.transform);
             }
@@ -64,31 +76,37 @@ public class EnemyMelee : MonoBehaviour
                 }
                 Attack = false;
             }
-        
         }
+        
+        //add attack delay
         NextAttack += Time.deltaTime;
     }
-
-    private void OnCollisionEnter(Collision other)
+    
+    private void AttackBuilding()
     {
-        if (WaveManager.AttackingBuilding != null && other.gameObject.layer == 19 && other.transform.parent.gameObject.Equals(WaveManager.AttackingBuilding.GetComponent<BuildingReference>().Building))
-        {
-            IsAttacking = true;
-            enemy.isStopped = true;
-            EnemyRB.constraints = RigidbodyConstraints.FreezeAll;
-            BH = other.gameObject.GetComponentInParent<BuildingHealth>();
-        }
+        BH = WaveManager.AttackingBuilding.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>();
+        IsAttacking = true;
+        enemy.isStopped = true;
+        EnemyRB.constraints = RigidbodyConstraints.FreezeAll;
     }
 
-    private void OnCollisionExit(Collision other)
+    private void StopAttackingBuilding()
     {
-        if (other.gameObject.layer == 19)
+        BH = null;
+        IsAttacking = false;
+        enemy.isStopped = false;
+        EnemyRB.constraints = RigidbodyConstraints.None;
+    }
+    public void StartAttackingPlayer()
+    {
+        if (IsAttacking && InRange)
         {
-            BH = null;
+            triggeredByPlayer = true;
             IsAttacking = false;
             enemy.isStopped = false;
             EnemyRB.constraints = RigidbodyConstraints.None;
+            transform.LookAt(Player.transform);
+            enemy.SetDestination(Player.transform.position);
         }
     }
-    
 }

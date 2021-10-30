@@ -58,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &3464215114637409808
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -110,6 +112,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93805292836e664980346f122a5cc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackedByPlayer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 254587136096602264, guid: 7266a973fe33c5e418c39d684d89598b,
+          type: 3}
+        m_TargetAssemblyTypeName: EnemyMelee, Assembly-CSharp
+        m_MethodName: StartAttackingPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!64 &7157229129190277130
 MeshCollider:
   m_ObjectHideFlags: 0
