@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BulletMechanics : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class BulletMechanics : MonoBehaviour
     {
         if (hit.tag.Equals("Enemy"))
         {
+            if(hit.GetComponent<EnemyMelee>() != null) hit.GetComponent<EnemyMelee>().StartAttackingPlayer();
             EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
             gun = player.GetCurrentGun();
             enemy.TakeDamage(gun.GetDamage());
@@ -41,4 +43,5 @@ public class BulletMechanics : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Experimental.TerrainAPI;
 
@@ -80,7 +81,8 @@ public class BuildingHealth : MonoBehaviour
         }
         for(int i = 0; i < childrenList.Count; i++)
         {
-            childrenList[i].GetComponent<MeshCollider>().convex = false;
+            if(childrenList[i].GetComponent<MeshCollider>() != null)
+                childrenList[i].GetComponent<MeshCollider>().convex = false;
         }
     }
 }
