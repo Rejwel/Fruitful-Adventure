@@ -81,7 +81,7 @@ public class Grenade : MonoBehaviour
         }
         for (int i = 0; i < killed; i++)
         {
-            WaveManager.killEnemy();
+            WaveManager.UpdateEnemyCounter();
         }
         
         Destroy(gameObject);    //granat "znika"

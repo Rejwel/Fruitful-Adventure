@@ -52,4 +52,7 @@ MonoBehaviour:
   RingCakePiecePrefab: {fileID: -3761441384937248177, guid: 76f5be4989fb59e49abb9dc19ad7db2a,
     type: 3}
   GapWidthDegree: 1
+  player: {fileID: 0}
+  Amount: {fileID: 2380608397325214306, guid: 53e6af2315c6df347967ebf6fbfe58d7, type: 3}
+  currentAmountTurret: 0
   Path: 

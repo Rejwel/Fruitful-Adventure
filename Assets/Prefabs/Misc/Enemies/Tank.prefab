@@ -117,6 +117,9 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8192
+  buildingLayermask:
+    serializedVersion: 2
+    m_Bits: 262144
 --- !u!195 &6142323270256696194
 NavMeshAgent:
   m_ObjectHideFlags: 0
