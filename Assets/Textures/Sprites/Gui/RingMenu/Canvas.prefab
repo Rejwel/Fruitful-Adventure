@@ -82,6 +82,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &7360080430340160412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,4 +116,5 @@ MonoBehaviour:
   RingCakePiecePrefab: {fileID: -3761441384937248177, guid: 76f5be4989fb59e49abb9dc19ad7db2a,
     type: 3}
   GapWidthDegree: 1
+  player: {fileID: 0}
   Path: 

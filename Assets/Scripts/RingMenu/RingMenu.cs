@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 public class RingMenu : MonoBehaviour
@@ -14,6 +16,10 @@ public class RingMenu : MonoBehaviour
     private GroundCotroller Menu;
     private Inventory inv;
     public GameObject player;
+
+
+    public TextMeshProUGUI Amount;
+    public int currentAmountTurret;
 
     [HideInInspector]
     public string Path;
@@ -39,7 +45,7 @@ public class RingMenu : MonoBehaviour
             Pieces[i].CakePiece.fillAmount = 1f / Data.Elements.Length - GapWidthDegree / 360f;
             Pieces[i].CakePiece.transform.localPosition = Vector3.zero;
             Pieces[i].CakePiece.transform.localRotation = Quaternion.Euler(0, 0, -stepLength / 2.0f + GapWidthDegree / 2.0f + i * stepLength);
-            Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.5f);
+            Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.6f);
 
             //set icon
             Pieces[i].Icon.transform.localPosition = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
@@ -49,25 +55,28 @@ public class RingMenu : MonoBehaviour
     }
 
     private void Update()
-    {
+    {     
         var stepLength = 360f / Data.Elements.Length;       //How many degrees does CakePiece take 
         var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - transform.position, Vector3.forward) + (stepLength + 175f) / 2f);  //Counts at what angle the cursor is 
         var activeElement = (int)(mouseAngle / stepLength);
-    
+        var path = Path + Data.Elements[activeElement].Name;  //path, so far it`s 0 (Turret) or 1 (Detecting Turret) 
+
         for (int i = 0; i < Data.Elements.Length; i++)
         {
             if (i == activeElement)
-                Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.75f);
+                Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.7f);
             else
-                Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.5f);
+                Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.4f);
         }
+
 
         if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu) //We are in the menu and we clicked LPM 
         {
             Menu.SetMenu(true);
-            var path = Path + Data.Elements[activeElement].Name;    //path, so far it`s 0 (Turret) or 1 (Detecting Turret) 
+              
             Menu.MenuClick(path);
             callback?.Invoke(path);
+       
 
             if (path == "0" && inv.GameObjDictionary["Turret"] == 0)
             {
@@ -85,10 +94,9 @@ public class RingMenu : MonoBehaviour
             }
             gameObject.SetActive(false);
         }
-        
+       
     }
 
-   
-  
     private float NormalizeAngle(float a) => (a + 360f) % 360f;
+
 }

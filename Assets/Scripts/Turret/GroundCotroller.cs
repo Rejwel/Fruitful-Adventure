@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 public class GroundCotroller : MonoBehaviour
 {
     [SerializeField]
@@ -26,7 +27,6 @@ public class GroundCotroller : MonoBehaviour
     public Transform location;
     public GameObject Turret;
     private Inventory inv;
-    
 
     //Ring Menu Controller
     protected RingMenu MainMenuInstance;
@@ -63,14 +63,14 @@ public class GroundCotroller : MonoBehaviour
             }
         }
 
-        //Cases of clicking Q
+        //Cases of clicking Tab
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {        
                 SetMode(ControllerMode.Menu);     
             }
 
-            if (Input.GetKeyUp(KeyCode.Q) && Menu)
+            if (Input.GetKeyUp(KeyCode.Tab) && Menu)
             {
                 if (!Empty)
                     SetMode(ControllerMode.Build);
@@ -78,7 +78,7 @@ public class GroundCotroller : MonoBehaviour
                     SetMode(ControllerMode.Play);
             }
 
-            if (Input.GetKeyUp(KeyCode.Q) && !Menu)
+            if (Input.GetKeyUp(KeyCode.Tab) && !Menu)
             {            
                 SetMode(ControllerMode.Play);
             }
@@ -90,10 +90,8 @@ public class GroundCotroller : MonoBehaviour
                 {
                     SetMode(ControllerMode.Play);
                     Destroy(currentPlaceableObject);
-                }
-            }
-
-           
+                }                        
+            }         
     }
     
 
@@ -258,7 +256,7 @@ public class GroundCotroller : MonoBehaviour
                 Cursor.visible = false;
                 Camera.main.GetComponent<MouseLook>().enabled = true;
                 player.GetComponent<PlayerShoot>().HoldFire = true;
-                player.GetComponent<PlayerShoot>().AddDelay();
+                player.GetComponent<PlayerShoot>().AddDelay();             
                 break;
             case ControllerMode.Menu:
                 Canvas.SetActive(true);
