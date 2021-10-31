@@ -90,12 +90,8 @@ public class GroundCotroller : MonoBehaviour
                 {
                     SetMode(ControllerMode.Play);
                     Destroy(currentPlaceableObject);
-                }
-             
-                
-            }
-
-           
+                }                        
+            }         
     }
     
 
