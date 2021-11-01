@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.iOS;
 
 public class BulletMechanics : MonoBehaviour
 {
     private WaveManager WaveManager;
-    private Explosion explosion;
     private PlayerShoot player;
     private Gun gun;
 
@@ -15,7 +16,7 @@ public class BulletMechanics : MonoBehaviour
     {
         Physics.IgnoreLayerCollision(15,15);
         Physics.IgnoreLayerCollision(15, 20);
-        explosion = FindObjectOfType<Explosion>();
+        //explosion = FindObjectOfType<Explosion>();
         player = FindObjectOfType<PlayerShoot>();
         WaveManager = FindObjectOfType<WaveManager>();
         gameObject.tag = "Bullet";
@@ -35,13 +36,22 @@ public class BulletMechanics : MonoBehaviour
             if (enemy.GetHealth() <= 0 && enemy != null)
             {
                 hit.GetComponent<Collider>().enabled = false;
-                Transform EnemyTransform = enemy.transform;
-                explosion.explode(EnemyTransform);
+                StartCoroutine(ExplodeEnemy(hit));
                 WaveManager.UpdateEnemyCounter();
                 enemy.Die();
             }
             Destroy(gameObject);
         }
     }
-    
+
+    IEnumerator ExplodeEnemy(Collider hit)
+    {
+        Explosion explosion = hit.GetComponent<Explosion>();
+        EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
+        Transform EnemyTransform = enemy.transform;
+        hit.GetComponent<Collider>().enabled = false;
+        if(explosion != null)
+            explosion.explode(EnemyTransform);
+        yield return null;
+    }
 }

@@ -11,7 +11,6 @@ public class EnemyRanged : MonoBehaviour
     public NavMeshAgent agent;
     private GameObject Player;
     private Rigidbody enemyRb;
-    private bool follow = false;
     private Quaternion rotation;
     
     //Shooting

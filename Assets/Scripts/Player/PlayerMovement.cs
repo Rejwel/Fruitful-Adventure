@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private int buttonCount = 0;
     KeyCode CurrKey;
     private float dashCounter = 0f;
-    private float dashTime = 0.1f;
     private float dashStrength = 800f;
     private float dashCd = 5f;
 
