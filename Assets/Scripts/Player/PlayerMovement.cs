@@ -100,12 +100,13 @@ public class PlayerMovement : MonoBehaviour
             knockBackCounter -= Time.deltaTime;
         }
         
-        controller.Move(move * speed * Time.deltaTime);
-        
-        //jumping
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-
+        // movement and jumping
+        if (controller.enabled)
+        {
+            controller.Move(move * speed * Time.deltaTime);
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+        }
     }
 
     public void Knockback(Vector3 direction)
