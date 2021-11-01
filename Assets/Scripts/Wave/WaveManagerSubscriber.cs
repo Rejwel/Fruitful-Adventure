@@ -85,7 +85,6 @@ public class WaveManagerSubscriber : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 SpawnFirstWave();
-                Debug.Log($"Factor for melee: {meleeEnemiesSpawnScaleFactor}, Factor for ranged: {rangedEnemiesSpawnScaleFactor}");
             }
         }
         else if (_wave == 11)
