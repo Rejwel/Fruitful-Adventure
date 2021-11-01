@@ -30,6 +30,7 @@ public class Turret : MonoBehaviour
     public Money money;
     private float basicMagazine;
     private float basicFireRate;
+    private GroundCotroller mode;
 
 
     private void Awake()
@@ -39,6 +40,7 @@ public class Turret : MonoBehaviour
         money = FindObjectOfType<Money>();
         reloadTurret = FindObjectOfType<TurretInfo>();
         turretInfoScript = FindObjectOfType<TurretInfoScript>();
+        mode = FindObjectOfType<GroundCotroller>();
     }
 
     // Start is called before the first frame update
@@ -69,7 +71,7 @@ public class Turret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PlayerMovement"))
+        if (other.CompareTag("PlayerMovement")) // && mode.Mode == GroundCotroller.ControllerMode.Play)// || mode.Mode == GroundCotroller.ControllerMode.Play )
         {
             reloadTurret.OpenCanvas();
         }
@@ -77,7 +79,7 @@ public class Turret : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("PlayerMovement"))
+        if (other.CompareTag("PlayerMovement"))// && mode.Mode != GroundCotroller.ControllerMode.Play)
             reloadTurret.CloseCanvas();
     }
 

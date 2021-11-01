@@ -17,9 +17,8 @@ public class RingMenu : MonoBehaviour
     private Inventory inv;
     public GameObject player;
 
-
-    public TextMeshProUGUI Amount;
-    public int currentAmountTurret;
+    private int currentAmountTurret;
+    private int currentAmountDetectingTurret;
 
     [HideInInspector]
     public string Path;
@@ -27,6 +26,7 @@ public class RingMenu : MonoBehaviour
     void Start()
     {
         inv = FindObjectOfType<Inventory>();
+        
         var stepLength = 360f / Data.Elements.Length;
         var iconDist = Vector3.Distance(RingCakePiecePrefab.Icon.transform.position, RingCakePiecePrefab.CakePiece.transform.position);
         Menu = FindObjectOfType<GroundCotroller>();
@@ -49,8 +49,7 @@ public class RingMenu : MonoBehaviour
 
             //set icon
             Pieces[i].Icon.transform.localPosition = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
-            Pieces[i].Icon.sprite = Data.Elements[i].Icon;
-
+            Pieces[i].Icon.sprite = Data.Elements[i].Icon;      
         }
     }
 
@@ -59,14 +58,36 @@ public class RingMenu : MonoBehaviour
         var stepLength = 360f / Data.Elements.Length;       //How many degrees does CakePiece take 
         var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - transform.position, Vector3.forward) + (stepLength + 175f) / 2f);  //Counts at what angle the cursor is 
         var activeElement = (int)(mouseAngle / stepLength);
-        var path = Path + Data.Elements[activeElement].Name;  //path, so far it`s 0 (Turret) or 1 (Detecting Turret) 
+        var path = Path + Data.Elements[activeElement].Name;  //path, so far it`s 0 (Turret) or 1 (Detecting Turret)    
 
         for (int i = 0; i < Data.Elements.Length; i++)
         {
             if (i == activeElement)
-                Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.7f);
+            {
+                Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.7f);               
+            }
             else
                 Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.4f);
+        }
+
+        for (int i = 0; i < Data.Elements.Length; i++)
+        {
+            if (i == activeElement)
+            {
+                if(i == 1 || i == 3)
+                {
+                    currentAmountTurret = (int)inv.GameObjDictionary["Turret"];
+                    RingCakePiecePrefab.Amount.text = currentAmountTurret.ToString();
+                    Debug.Log(RingCakePiecePrefab.Amount.text = currentAmountTurret.ToString());
+
+                }
+                else if(i == 0 || i == 2)
+                {
+                    currentAmountDetectingTurret = (int)inv.GameObjDictionary["TurretDetecting"];
+                    RingCakePiecePrefab.Amount.text = currentAmountDetectingTurret.ToString();
+                    Debug.Log(RingCakePiecePrefab.Amount.text = currentAmountDetectingTurret.ToString());
+                }
+            }
         }
 
 
@@ -94,7 +115,7 @@ public class RingMenu : MonoBehaviour
             }
             gameObject.SetActive(false);
         }
-       
+                
     }
 
     private float NormalizeAngle(float a) => (a + 360f) % 360f;

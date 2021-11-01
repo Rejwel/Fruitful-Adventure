@@ -67,8 +67,11 @@ public class GroundCotroller : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Tab))
             {        
-                SetMode(ControllerMode.Menu);     
-            }
+                SetMode(ControllerMode.Menu);
+                Destroy(currentPlaceableObject);
+                currentPlaceableObject = null;
+                Prefab = null;
+        }
 
             if (Input.GetKeyUp(KeyCode.Tab) && Menu)
             {
@@ -90,8 +93,14 @@ public class GroundCotroller : MonoBehaviour
                 {
                     SetMode(ControllerMode.Play);
                     Destroy(currentPlaceableObject);
-                }                        
-            }         
+                }          
+           
+            }
+       /* if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            SetMode(ControllerMode.Menu);
+            Destroy(currentPlaceableObject);
+        } */
     }
     
 
@@ -101,7 +110,7 @@ public class GroundCotroller : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         if(Mode == ControllerMode.Build)
-        { 
+        {          
             if (inv.GameObjDictionary["Turret"] > 0 && Prefab != null)
             {
                 player.GetComponent<PlayerShoot>().HoldFire = true;
@@ -172,7 +181,7 @@ public class GroundCotroller : MonoBehaviour
     {
         Menu = menu;
     }
-    public void SetEmpty(bool empty)
+    public void SetEmpty(bool empty)    //we clicked LPM and it checks we have turret in inventory
     {
         Empty = empty;
     }
@@ -259,7 +268,7 @@ public class GroundCotroller : MonoBehaviour
                 player.GetComponent<PlayerShoot>().AddDelay();             
                 break;
             case ControllerMode.Menu:
-                Canvas.SetActive(true);
+                Canvas.SetActive(true);               
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Camera.main.GetComponent<MouseLook>().enabled = false;

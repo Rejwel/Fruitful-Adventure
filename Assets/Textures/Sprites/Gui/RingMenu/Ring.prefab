@@ -53,6 +53,7 @@ MonoBehaviour:
     type: 3}
   GapWidthDegree: 1
   player: {fileID: 0}
-  Amount: {fileID: 2380608397325214306, guid: 53e6af2315c6df347967ebf6fbfe58d7, type: 3}
   currentAmountTurret: 0
+  currentAmountDetectingTurret: 0
+  Amount: {fileID: 4592870072435559788, guid: 53e6af2315c6df347967ebf6fbfe58d7, type: 3}
   Path: 

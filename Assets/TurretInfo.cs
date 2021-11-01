@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class TurretInfo : MonoBehaviour
 {
     public GameObject TurretCanvas;
-
     public bool isOpen { get; set; }
 
     public void Awake()
