@@ -26,12 +26,12 @@ public class WaveManagerSubscriber : MonoBehaviour
     [SerializeField] private Spawner[] spawners;
     [SerializeField] private GameObject[] enemies;
     
-    void Start()
+    void Awake()
     {
         waveManager = GetComponent<WaveManager>();
+        waveManager.OnStartSetup += SetSetupParameters;
         waveManager.OnStartSetup += GetAllStartingBuildings;
         waveManager.OnStartSetup += GetStartingAttackPoints;
-        waveManager.OnStartSetup += SetSetupParameters;
         waveManager.TurnOff += TurnOffWaveManager;
         waveManager.MainLogic += MainLogic;
     }
@@ -85,6 +85,7 @@ public class WaveManagerSubscriber : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 SpawnFirstWave();
+                Debug.Log($"Factor for melee: {meleeEnemiesSpawnScaleFactor}, Factor for ranged: {rangedEnemiesSpawnScaleFactor}");
             }
         }
         else if (_wave == 11)
@@ -137,7 +138,6 @@ public class WaveManagerSubscriber : MonoBehaviour
 
     private GameObject GetFirstAttackPoint()
     {
-        Debug.Log("in" + $"{Buildings.Count}");
         WhichBuildingToAttack = Random.Range(0, Buildings.Count);
         return Buildings[WhichBuildingToAttack];
     }
@@ -283,6 +283,13 @@ public class WaveManagerSubscriber : MonoBehaviour
                 ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
                 : null;
         }
-        return enemiesToSpawn;
+
+        // check if spawn equals null
+        foreach (var spawn in enemiesToSpawn)
+        {
+            if (spawn != null) return enemiesToSpawn;
+        }
+
+        return enemiesSpawnType();
     }
 }
