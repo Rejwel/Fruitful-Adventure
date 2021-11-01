@@ -8,7 +8,7 @@ using UnityEngine.iOS;
 
 public class BulletMechanics : MonoBehaviour
 {
-    private WaveManager WaveManager;
+    private WaveManagerSubscriber WaveManager;
     private PlayerShoot player;
     private Gun gun;
 
@@ -18,7 +18,7 @@ public class BulletMechanics : MonoBehaviour
         Physics.IgnoreLayerCollision(15, 20);
         //explosion = FindObjectOfType<Explosion>();
         player = FindObjectOfType<PlayerShoot>();
-        WaveManager = FindObjectOfType<WaveManager>();
+        WaveManager = FindObjectOfType<WaveManagerSubscriber>();
         gameObject.tag = "Bullet";
         Destroy(gameObject, 5);
         gameObject.GetComponent<MeshCollider>().enabled = true;

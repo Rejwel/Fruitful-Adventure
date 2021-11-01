@@ -28,12 +28,12 @@ public class EnemyMelee : MonoBehaviour
     {
         Player = FindObjectOfType<HealthPlayer>().gameObject;
         EnemyRB = GetComponent<Rigidbody>();
-        WhatToAttack = WaveManager.AttackingBuilding;
+        WhatToAttack = WaveManagerSubscriber.AttackingBuilding;
     }
     
     void Update()
     {
-        WhatToAttack = WaveManager.AttackingBuilding;
+        WhatToAttack = WaveManagerSubscriber.AttackingBuilding;
         InRange = Physics.CheckSphere(transform.position, 20, whatIsPlayer);
         InBuildingAttackingRange = Physics.CheckSphere(transform.position, 6, buildingLayermask);
 

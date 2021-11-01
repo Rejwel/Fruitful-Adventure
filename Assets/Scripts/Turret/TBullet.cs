@@ -8,7 +8,7 @@ public class TBullet : MonoBehaviour
     private Transform target;
     private Explosion explosion;
     
-    private WaveManager WaveManager;
+    private WaveManagerSubscriber WaveManager;
 
     public GameObject impactEfect;
     public float speed = 70f;
@@ -19,7 +19,7 @@ public class TBullet : MonoBehaviour
     private void Start()
     {
         explosion = FindObjectOfType<Explosion>();
-        WaveManager = FindObjectOfType<WaveManager>();
+        WaveManager = FindObjectOfType<WaveManagerSubscriber>();
     }
 
     void Update()

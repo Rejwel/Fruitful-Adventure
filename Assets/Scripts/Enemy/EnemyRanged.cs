@@ -39,7 +39,7 @@ public class EnemyRanged : MonoBehaviour
 
     private void Awake()
     {
-        WhatToAttack = WaveManager.AttackingBuilding;
+        WhatToAttack = WaveManagerSubscriber.AttackingBuilding;
         agent = GetComponent<NavMeshAgent>();
         Player = FindObjectOfType<HealthPlayer>().gameObject;
     }
@@ -48,7 +48,7 @@ public class EnemyRanged : MonoBehaviour
     {
         //print(WhatToAttack);
         
-        WhatToAttack = WaveManager.AttackingBuilding;
+        WhatToAttack = WaveManagerSubscriber.AttackingBuilding;
         
         InRange = Physics.CheckSphere(transform.position, 20, PlayerLayer);
 
