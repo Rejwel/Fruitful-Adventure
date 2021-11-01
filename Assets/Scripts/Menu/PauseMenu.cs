@@ -17,14 +17,14 @@ public class PauseMenu : MonoBehaviour
     public GameObject Dead;
     public GameObject SureGameover;
     public GameObject progressText;
-    private WaveManager WaveManager;
+    private WaveManagerSubscriber WaveManager;
 
 
     public GameObject GUI;
 
     void Awake()
     {
-        WaveManager = FindObjectOfType<WaveManager>();
+        WaveManager = FindObjectOfType<WaveManagerSubscriber>();
         pauseMenuUI.SetActive(false);
         GameIsPaused = false;
         GUI = GameObject.Find("GUI");
@@ -39,7 +39,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
-            else if (GameIsPaused == false && shopMenu.active == false && shopMenu2.active == false && GameOver == false && BigMiniMap.MiniMapOpen==false)
+            else if (GameIsPaused == false && shopMenu.activeSelf == false && shopMenu2.activeSelf == false && GameOver == false && BigMiniMap.MiniMapOpen==false)
             {
                 Pause();
             }
