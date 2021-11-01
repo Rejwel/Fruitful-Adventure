@@ -22,7 +22,7 @@ public class MageBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (WaveManager.AttackingBuilding != null && other.gameObject.layer == 19 && other.transform.parent.gameObject.Equals(WaveManager.AttackingBuilding.GetComponent<BuildingReference>().Building))
+        if (WaveManagerSubscriber.AttackingBuilding != null && other.gameObject.layer == 19 && other.transform.parent.gameObject.Equals(WaveManagerSubscriber.AttackingBuilding.GetComponent<BuildingReference>().Building))
         {
             BH = other.gameObject.GetComponentInParent<BuildingHealth>();
             BH.TakeDamage(35);

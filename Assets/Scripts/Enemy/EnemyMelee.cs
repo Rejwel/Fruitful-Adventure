@@ -28,18 +28,17 @@ public class EnemyMelee : MonoBehaviour
     {
         Player = FindObjectOfType<HealthPlayer>().gameObject;
         EnemyRB = GetComponent<Rigidbody>();
-        WhatToAttack = WaveManager.AttackingBuilding;
+        WhatToAttack = WaveManagerSubscriber.AttackingBuilding;
     }
     
     void Update()
     {
-        WhatToAttack = WaveManager.AttackingBuilding;
+        WhatToAttack = WaveManagerSubscriber.AttackingBuilding;
         InRange = Physics.CheckSphere(transform.position, 20, whatIsPlayer);
         InBuildingAttackingRange = Physics.CheckSphere(transform.position, 6, buildingLayermask);
 
-        
         // attack building
-        if (InBuildingAttackingRange && !triggeredByPlayer)
+        if (InBuildingAttackingRange && !triggeredByPlayer && WhatToAttack != null)
             AttackBuilding();
         else
             StopAttackingBuilding();
@@ -84,7 +83,8 @@ public class EnemyMelee : MonoBehaviour
     
     private void AttackBuilding()
     {
-        BH = WaveManager.AttackingBuilding.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>();
+        if(WhatToAttack.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>() != null)
+            BH = WhatToAttack.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>();
         IsAttacking = true;
         enemy.isStopped = true;
         EnemyRB.constraints = RigidbodyConstraints.FreezeAll;

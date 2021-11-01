@@ -13,7 +13,7 @@ public class BuildingHealth : MonoBehaviour
     public int currentHealth;
     public HealthBarScript healthBar;
     public static LayerMask BuildingLayerMask;
-    private WaveManager WaveManager;
+    private WaveManagerSubscriber WaveManager;
 
     private GameObject[] Buildings;
     public GameObject BrokenBuilding;
@@ -22,7 +22,7 @@ public class BuildingHealth : MonoBehaviour
     {
         BuildingLayerMask = LayerMask.NameToLayer("BuildingToAttack");
         Buildings = GetSceneObjects(BuildingLayerMask);
-        WaveManager = FindObjectOfType<WaveManager>();
+        WaveManager = FindObjectOfType<WaveManagerSubscriber>();
         buildingDestroyed = false;
         InitColliders();
         currentHealth = MaxHealth;
@@ -44,13 +44,13 @@ public class BuildingHealth : MonoBehaviour
     public void DestroyBuilding()
     {
         Buildings = GetSceneObjects(BuildingLayerMask);
-        if (GetThisBuilding() == WaveManager.AttackingBuilding)
+        if (GetThisBuilding() == WaveManagerSubscriber.AttackingBuilding)
         {
-            WaveManager.AttackingBuilding = null;
+            WaveManagerSubscriber.AttackingBuilding = null;
         }
         Destroy(GetThisBuilding());
         WaveManager.BuildingCount--;
-        WaveManager.AttackingBuilding = null;
+        WaveManagerSubscriber.AttackingBuilding = null;
         buildingDestroyed = true;
 
         Destroy(this.gameObject);

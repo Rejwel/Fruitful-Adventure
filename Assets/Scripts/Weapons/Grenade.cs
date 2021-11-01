@@ -44,7 +44,7 @@ public class Grenade : MonoBehaviour
     void Explode()
     {
         int killed = 0;
-        WaveManager WaveManager = FindObjectOfType<WaveManager>();
+        WaveManagerSubscriber WaveManager = FindObjectOfType<WaveManagerSubscriber>();
         Collider[] colliders = Physics.OverlapSphere(transform.position, 5f);       //przechowuje dane przeciwników, któzy znaleźli się w obszarze wybuchu
 
         foreach (Collider nearbyObject in colliders)    //pęętlaa 

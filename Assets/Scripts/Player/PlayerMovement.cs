@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private int buttonCount = 0;
     KeyCode CurrKey;
     private float dashCounter = 0f;
-    private float dashTime = 0.1f;
     private float dashStrength = 800f;
     private float dashCd = 5f;
 
@@ -100,12 +99,13 @@ public class PlayerMovement : MonoBehaviour
             knockBackCounter -= Time.deltaTime;
         }
         
-        controller.Move(move * speed * Time.deltaTime);
-        
-        //jumping
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-
+        // movement and jumping
+        if (controller.enabled)
+        {
+            controller.Move(move * speed * Time.deltaTime);
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+        }
     }
 
     public void Knockback(Vector3 direction)
