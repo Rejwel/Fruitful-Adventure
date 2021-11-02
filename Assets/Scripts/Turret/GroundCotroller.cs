@@ -10,7 +10,7 @@ public class GroundCotroller : MonoBehaviour
     [SerializeField]
     private GameObject[] placeableObjectPrefabs;
     private uint[] placeableObjectPrefabsCount;
-    
+
 
     public LayerMask terrain;
     private bool canRotate = false;
@@ -22,7 +22,6 @@ public class GroundCotroller : MonoBehaviour
     private float mouseWheelRotation;
     public bool hope = true;
     private bool Menu = false;
-    private bool Empty = false;
     private bool isShop = false;
     public GameObject WarningCanvas;
     public Transform location;
@@ -48,7 +47,7 @@ public class GroundCotroller : MonoBehaviour
     private void Update()
     {
         HandleNewObjectHotkey();
-        
+
         if (currentPlaceableObject != null)
         {
             MoveCurrentObjectToMouse();
@@ -66,27 +65,14 @@ public class GroundCotroller : MonoBehaviour
 
         //Cases of clicking Tab
 
-            if (Input.GetKeyDown(KeyCode.Tab) && isShop == false)
-            {        
-                SetMode(ControllerMode.Menu);
-                Prefab = null;
-                Destroy(currentPlaceableObject);
-            }
+        if (Input.GetKeyDown(KeyCode.Tab) && !isShop)
+        {
+            SetMode(ControllerMode.Menu);
+            Prefab = null;
+            Destroy(currentPlaceableObject);
+        }
 
-            if (Input.GetKeyUp(KeyCode.Tab) && Menu && isShop == false)
-            {
-                if (!Empty)
-                    SetMode(ControllerMode.Build);
-                else if (Empty)
-                    SetMode(ControllerMode.Play);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Tab) && !Menu && isShop == false)
-            {            
-                SetMode(ControllerMode.Play);
-            }
-
-            if(Mode == ControllerMode.Build)
+        if (Mode == ControllerMode.Build)
             {
                 if(Input.GetMouseButtonDown(1))
                 {
@@ -177,10 +163,6 @@ public class GroundCotroller : MonoBehaviour
     public void SetMenu(bool menu)
     {
         Menu = menu;
-    }
-    public void SetEmpty(bool empty)    //we clicked LPM and it checks we have turret in inventory
-    {
-        Empty = empty;
     }
     public void SetShop(bool shop)
     {

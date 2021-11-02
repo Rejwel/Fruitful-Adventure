@@ -93,6 +93,7 @@ public class RingMenu : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu) //We are in the menu and we clicked LPM 
         {
+            Menu.SetMode(GroundCotroller.ControllerMode.Build);
             Menu.SetMenu(true);
               
             Menu.MenuClick(path);
@@ -102,18 +103,22 @@ public class RingMenu : MonoBehaviour
             if (path == "0" && inv.GameObjDictionary["Turret"] == 0)
             {
                 Debug.Log("Nie ma TURRETÓWWWW!");
-                Menu.SetEmpty(true);
+                Menu.SetMode(GroundCotroller.ControllerMode.Play);
             }
             else if (path == "1" && inv.GameObjDictionary["TurretDetecting"] == 0)
             {
                 Debug.Log("A gdzie DETECTING TURRETS?");
-                Menu.SetEmpty(true);
+                Menu.SetMode(GroundCotroller.ControllerMode.Play);
             }
             else
             {
-                Menu.SetEmpty(false);
+                Menu.SetMode(GroundCotroller.ControllerMode.Build);
             }
             gameObject.SetActive(false);
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab) && Menu.Mode == GroundCotroller.ControllerMode.Menu)
+        {
+            Menu.SetMode(GroundCotroller.ControllerMode.Play);
         }
                 
     }
