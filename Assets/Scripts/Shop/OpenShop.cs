@@ -27,11 +27,14 @@ public class OpenShop : MonoBehaviour
     private float timeOnFocus = 0f;
     private float Delay = 1.2f;
 
+    private GroundCotroller mode;
+
     private void Start()
     {
         TempPlayerTransform = PlayerTransform.transform;
         money = FindObjectOfType<Money>();
         playerHealth = FindObjectOfType<HealthPlayer>();
+        mode = FindObjectOfType<GroundCotroller>();
     }
 
     private void Update()
@@ -48,7 +51,13 @@ public class OpenShop : MonoBehaviour
             inShop = true;
             player.GetComponent<PlayerShoot>().HoldFire = true;
             openShop();
+            mode.SetShop(true);
         }
+
+       /* if(inShop && Input.GetKeyDown(KeyCode.Tab))
+        {
+            mode.SetMode(GroundCotroller.ControllerMode.Shop);
+        }*/
 
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Escape))
         {
@@ -56,6 +65,7 @@ public class OpenShop : MonoBehaviour
             inShop = false;
             closeShop();
             player.GetComponent<PlayerShoot>().HoldFire = false;
+            mode.SetShop(false);
         }
     }
 

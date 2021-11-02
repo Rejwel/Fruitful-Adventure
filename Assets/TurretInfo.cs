@@ -16,8 +16,8 @@ public class TurretInfo : MonoBehaviour
 
     public void OpenCanvas()
     {
-        TurretCanvas.SetActive(true);
-        isOpen = true;
+            TurretCanvas.SetActive(true);
+            isOpen = true;     
     }
 
     public void CloseCanvas()

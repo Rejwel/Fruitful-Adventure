@@ -23,6 +23,7 @@ public class GroundCotroller : MonoBehaviour
     public bool hope = true;
     private bool Menu = false;
     private bool Empty = false;
+    private bool isShop = false;
     public GameObject WarningCanvas;
     public Transform location;
     public GameObject Turret;
@@ -65,15 +66,14 @@ public class GroundCotroller : MonoBehaviour
 
         //Cases of clicking Tab
 
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (Input.GetKeyDown(KeyCode.Tab) && isShop == false)
             {        
                 SetMode(ControllerMode.Menu);
-                Destroy(currentPlaceableObject);
-                currentPlaceableObject = null;
                 Prefab = null;
-        }
+                Destroy(currentPlaceableObject);
+            }
 
-            if (Input.GetKeyUp(KeyCode.Tab) && Menu)
+            if (Input.GetKeyUp(KeyCode.Tab) && Menu && isShop == false)
             {
                 if (!Empty)
                     SetMode(ControllerMode.Build);
@@ -81,11 +81,10 @@ public class GroundCotroller : MonoBehaviour
                     SetMode(ControllerMode.Play);
             }
 
-            if (Input.GetKeyUp(KeyCode.Tab) && !Menu)
+            if (Input.GetKeyUp(KeyCode.Tab) && !Menu && isShop == false)
             {            
                 SetMode(ControllerMode.Play);
             }
-
 
             if(Mode == ControllerMode.Build)
             {
@@ -93,14 +92,12 @@ public class GroundCotroller : MonoBehaviour
                 {
                     SetMode(ControllerMode.Play);
                     Destroy(currentPlaceableObject);
-                }          
-           
-            }
-       /* if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            SetMode(ControllerMode.Menu);
-            Destroy(currentPlaceableObject);
-        } */
+                }
+                if (Prefab == null)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+            }    
     }
     
 
@@ -184,6 +181,10 @@ public class GroundCotroller : MonoBehaviour
     public void SetEmpty(bool empty)    //we clicked LPM and it checks we have turret in inventory
     {
         Empty = empty;
+    }
+    public void SetShop(bool shop)
+    {
+        isShop = shop;
     }
 
     private void MoveCurrentObjectToMouse()
@@ -281,7 +282,7 @@ public class GroundCotroller : MonoBehaviour
                 Cursor.visible = false;
                 Camera.main.GetComponent<MouseLook>().enabled = true;
                 player.GetComponent<PlayerShoot>().HoldFire = false;
-                break;
+                break;            
         }
     }
 

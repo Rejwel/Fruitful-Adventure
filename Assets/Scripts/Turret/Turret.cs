@@ -71,15 +71,13 @@ public class Turret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PlayerMovement")) // && mode.Mode == GroundCotroller.ControllerMode.Play)// || mode.Mode == GroundCotroller.ControllerMode.Play )
-        {
+        if (other.CompareTag("PlayerMovement"))
             reloadTurret.OpenCanvas();
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("PlayerMovement"))// && mode.Mode != GroundCotroller.ControllerMode.Play)
+        if (other.CompareTag("PlayerMovement"))
             reloadTurret.CloseCanvas();
     }
 
