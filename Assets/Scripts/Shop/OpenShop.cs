@@ -45,7 +45,7 @@ public class OpenShop : MonoBehaviour
                 FocusCamera();
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E) && mode.Mode == GroundCotroller.ControllerMode.Play)
         {
             timeOnFocus = Time.time + Delay;
             inShop = true;
@@ -53,11 +53,6 @@ public class OpenShop : MonoBehaviour
             openShop();
             mode.SetShop(true);
         }
-
-       /* if(inShop && Input.GetKeyDown(KeyCode.Tab))
-        {
-            mode.SetMode(GroundCotroller.ControllerMode.Shop);
-        }*/
 
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Escape))
         {
