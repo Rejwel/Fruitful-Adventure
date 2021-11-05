@@ -137,7 +137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 5739171508766134116}
   CakePiece: {fileID: 3908231631217528578}
-  Amount: {fileID: 4592870072435559788, guid: 53e6af2315c6df347967ebf6fbfe58d7, type: 3}
 --- !u!1 &7589682668679582885
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4592870072435559788, guid: 53e6af2315c6df347967ebf6fbfe58d7,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8890590588917764066, guid: 53e6af2315c6df347967ebf6fbfe58d7,
         type: 3}

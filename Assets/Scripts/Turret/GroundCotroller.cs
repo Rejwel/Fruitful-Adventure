@@ -7,9 +7,11 @@ using UnityEngine;
 
 public class GroundCotroller : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] placeableObjectPrefabs;
-    private uint[] placeableObjectPrefabsCount;
+
+    [SerializeField] private GameObject[] placeableObjectPrefabs;
+    [SerializeField] private uint[] placeableObjectPrefabsCount;
+    [SerializeField] private GameObject shopIndicator;
+
 
 
     public LayerMask terrain;
@@ -67,6 +69,10 @@ public class GroundCotroller : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab) && !isShop)
         {
+            if(shopIndicator.activeSelf)
+            {
+                shopIndicator.SetActive(false);
+            }
             SetMode(ControllerMode.Menu);
             Prefab = null;
             Destroy(currentPlaceableObject);

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2785027457993453217}
   - component: {fileID: 7075693179289608419}
+  - component: {fileID: 8347798559875634113}
   m_Layer: 13
   m_Name: Ring
   m_TagString: Untagged
@@ -53,7 +54,12 @@ MonoBehaviour:
     type: 3}
   GapWidthDegree: 1
   player: {fileID: 0}
-  currentAmountTurret: 0
-  currentAmountDetectingTurret: 0
-  Amount: {fileID: 4592870072435559788, guid: 53e6af2315c6df347967ebf6fbfe58d7, type: 3}
   Path: 
+--- !u!222 &8347798559875634113
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578293295088348472}
+  m_CullTransparentMesh: 1
