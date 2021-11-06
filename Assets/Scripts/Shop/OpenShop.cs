@@ -62,6 +62,15 @@ public class OpenShop : MonoBehaviour
             player.GetComponent<PlayerShoot>().HoldFire = false;
             mode.SetShop(false);
         }
+
+        if((mode.Mode == GroundCotroller.ControllerMode.Menu || mode.Mode == GroundCotroller.ControllerMode.Build) && !inShop)
+        {
+            text.SetActive(false);
+        }
+        else if(mode.Mode == GroundCotroller.ControllerMode.Play && !inShop)
+        {
+            text.SetActive(true);
+        }
     }
 
     void FocusCamera()

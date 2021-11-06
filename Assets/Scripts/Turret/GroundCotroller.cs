@@ -68,11 +68,7 @@ public class GroundCotroller : MonoBehaviour
         //Cases of clicking Tab
 
         if (Input.GetKeyDown(KeyCode.Tab) && !isShop)
-        {
-            if(shopIndicator.activeSelf)
-            {
-                shopIndicator.SetActive(false);
-            }
+        {     
             SetMode(ControllerMode.Menu);
             Prefab = null;
             Destroy(currentPlaceableObject);
