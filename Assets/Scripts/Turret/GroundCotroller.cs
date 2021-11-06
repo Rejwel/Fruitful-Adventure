@@ -7,10 +7,12 @@ using UnityEngine;
 
 public class GroundCotroller : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] placeableObjectPrefabs;
-    private uint[] placeableObjectPrefabsCount;
-    
+
+    [SerializeField] private GameObject[] placeableObjectPrefabs;
+    [SerializeField] private uint[] placeableObjectPrefabsCount;
+    [SerializeField] private GameObject shopIndicator;
+
+
 
     public LayerMask terrain;
     private bool canRotate = false;
@@ -22,7 +24,7 @@ public class GroundCotroller : MonoBehaviour
     private float mouseWheelRotation;
     public bool hope = true;
     private bool Menu = false;
-    private bool Empty = false;
+    private bool isShop = false;
     public GameObject WarningCanvas;
     public Transform location;
     public GameObject Turret;
@@ -47,7 +49,7 @@ public class GroundCotroller : MonoBehaviour
     private void Update()
     {
         HandleNewObjectHotkey();
-        
+
         if (currentPlaceableObject != null)
         {
             MoveCurrentObjectToMouse();
@@ -65,33 +67,29 @@ public class GroundCotroller : MonoBehaviour
 
         //Cases of clicking Tab
 
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {        
-                SetMode(ControllerMode.Menu);     
-            }
-
-            if (Input.GetKeyUp(KeyCode.Tab) && Menu)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isShop)
+        {
+            if(shopIndicator.activeSelf)
             {
-                if (!Empty)
-                    SetMode(ControllerMode.Build);
-                else if (Empty)
-                    SetMode(ControllerMode.Play);
+                shopIndicator.SetActive(false);
             }
+            SetMode(ControllerMode.Menu);
+            Prefab = null;
+            Destroy(currentPlaceableObject);
+        }
 
-            if (Input.GetKeyUp(KeyCode.Tab) && !Menu)
-            {            
-                SetMode(ControllerMode.Play);
-            }
-
-
-            if(Mode == ControllerMode.Build)
+        if (Mode == ControllerMode.Build)
             {
                 if(Input.GetMouseButtonDown(1))
                 {
                     SetMode(ControllerMode.Play);
                     Destroy(currentPlaceableObject);
-                }                        
-            }         
+                }
+                if (Prefab == null)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+            }    
     }
     
 
@@ -101,7 +99,7 @@ public class GroundCotroller : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         if(Mode == ControllerMode.Build)
-        { 
+        {          
             if (inv.GameObjDictionary["Turret"] > 0 && Prefab != null)
             {
                 player.GetComponent<PlayerShoot>().HoldFire = true;
@@ -172,9 +170,9 @@ public class GroundCotroller : MonoBehaviour
     {
         Menu = menu;
     }
-    public void SetEmpty(bool empty)
+    public void SetShop(bool shop)
     {
-        Empty = empty;
+        isShop = shop;
     }
 
     private void MoveCurrentObjectToMouse()
@@ -259,7 +257,7 @@ public class GroundCotroller : MonoBehaviour
                 player.GetComponent<PlayerShoot>().AddDelay();             
                 break;
             case ControllerMode.Menu:
-                Canvas.SetActive(true);
+                Canvas.SetActive(true);               
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Camera.main.GetComponent<MouseLook>().enabled = false;
@@ -272,7 +270,7 @@ public class GroundCotroller : MonoBehaviour
                 Cursor.visible = false;
                 Camera.main.GetComponent<MouseLook>().enabled = true;
                 player.GetComponent<PlayerShoot>().HoldFire = false;
-                break;
+                break;            
         }
     }
 

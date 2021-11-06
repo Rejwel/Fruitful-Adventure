@@ -117,4 +117,6 @@ MonoBehaviour:
     type: 3}
   GapWidthDegree: 1
   player: {fileID: 0}
+  currentAmountTurret: 0
+  currentAmountDetectingTurret: 0
   Path: 

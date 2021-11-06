@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class TurretInfo : MonoBehaviour
 {
     public GameObject TurretCanvas;
-
     public bool isOpen { get; set; }
 
     public void Awake()
@@ -17,8 +16,8 @@ public class TurretInfo : MonoBehaviour
 
     public void OpenCanvas()
     {
-        TurretCanvas.SetActive(true);
-        isOpen = true;
+            TurretCanvas.SetActive(true);
+            isOpen = true;     
     }
 
     public void CloseCanvas()
