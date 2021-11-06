@@ -17,16 +17,13 @@ public class RingMenu : MonoBehaviour
     private Inventory inv;
     public GameObject player;
 
-
-    public TextMeshProUGUI Amount;
-    public int currentAmountTurret;
-
     [HideInInspector]
     public string Path;
 
     void Start()
     {
         inv = FindObjectOfType<Inventory>();
+        
         var stepLength = 360f / Data.Elements.Length;
         var iconDist = Vector3.Distance(RingCakePiecePrefab.Icon.transform.position, RingCakePiecePrefab.CakePiece.transform.position);
         Menu = FindObjectOfType<GroundCotroller>();
@@ -34,9 +31,11 @@ public class RingMenu : MonoBehaviour
         //Position it
         Pieces = new RingCakePiece[Data.Elements.Length];
 
+
         for (int i = 0; i < Data.Elements.Length; i++)
         {
             Pieces[i] = Instantiate(RingCakePiecePrefab, transform);
+            Pieces[i].gameObject.AddComponent<TextMeshProUGUI>();
             //set root element
             Pieces[i].transform.localPosition = Vector3.zero;
             Pieces[i].transform.localRotation = Quaternion.identity;
@@ -49,8 +48,7 @@ public class RingMenu : MonoBehaviour
 
             //set icon
             Pieces[i].Icon.transform.localPosition = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
-            Pieces[i].Icon.sprite = Data.Elements[i].Icon;
-
+            Pieces[i].Icon.sprite = Data.Elements[i].Icon;      
         }
     }
 
@@ -59,19 +57,63 @@ public class RingMenu : MonoBehaviour
         var stepLength = 360f / Data.Elements.Length;       //How many degrees does CakePiece take 
         var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - transform.position, Vector3.forward) + (stepLength + 175f) / 2f);  //Counts at what angle the cursor is 
         var activeElement = (int)(mouseAngle / stepLength);
-        var path = Path + Data.Elements[activeElement].Name;  //path, so far it`s 0 (Turret) or 1 (Detecting Turret) 
+        var path = Path + Data.Elements[activeElement].Name;  //path, so far it`s 0 (Turret) or 1 (Detecting Turret)        
+
 
         for (int i = 0; i < Data.Elements.Length; i++)
         {
             if (i == activeElement)
-                Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.7f);
+            {   
+                    switch (i)
+                {
+                    case 0:
+                        changeState(i, Pieces, inv.GetDetectingTurret().ToString());
+                        break;
+                    case 1:
+                        changeState(i, Pieces, inv.GetShootingTurret().ToString());
+                        break;
+                    case 2:
+                        changeState(i, Pieces, inv.GetDetectingTurret().ToString());
+                        break;
+                    case 3:
+                        changeState(i, Pieces, inv.GetShootingTurret().ToString());
+                        break;
+                }
+                Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.7f); 
+                
+            }
             else
+            {
                 Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.4f);
+            }
+                
         }
+
+       /* for (int i = 0; i < Data.Elements.Length; i++)
+        {
+            if (i == activeElement)
+            {
+                if(i == 1 || i == 3)
+                {
+                    //Pieces[i].CakePiece.Amount.text = inv.GetShootingTurret().ToString();
+                    Pieces[i].Amount.text
+                    //RingCakePiecePrefab.Amount.text = currentAmountTurret.ToString();
+                    //Debug.Log(RingCakePiecePrefab.Amount.text = currentAmountTurret.ToString());
+
+                }
+                else if(i == 0 || i == 2)
+                {
+                    Pieces[i].Amount.text = inv.GetDetectingTurret().ToString();
+                    //RingCakePiecePrefab.Amount.text = currentAmountDetectingTurret.ToString();
+                    //Debug.Log(RingCakePiecePrefab.Amount.text = currentAmountDetectingTurret.ToString());
+                }
+            }
+        }*/
 
 
         if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu) //We are in the menu and we clicked LPM 
         {
+            Menu.SetMode(GroundCotroller.ControllerMode.Build);
             Menu.SetMenu(true);
               
             Menu.MenuClick(path);
@@ -80,21 +122,32 @@ public class RingMenu : MonoBehaviour
 
             if (path == "0" && inv.GameObjDictionary["Turret"] == 0)
             {
-                Debug.Log("Nie ma TURRETÓWWWW!");
-                Menu.SetEmpty(true);
+                Menu.SetMode(GroundCotroller.ControllerMode.Play);
             }
             else if (path == "1" && inv.GameObjDictionary["TurretDetecting"] == 0)
             {
-                Debug.Log("A gdzie DETECTING TURRETS?");
-                Menu.SetEmpty(true);
+                Menu.SetMode(GroundCotroller.ControllerMode.Play);
             }
             else
             {
-                Menu.SetEmpty(false);
+                Menu.SetMode(GroundCotroller.ControllerMode.Build);
             }
             gameObject.SetActive(false);
         }
-       
+        else if (Input.GetKeyUp(KeyCode.Tab) && Menu.Mode == GroundCotroller.ControllerMode.Menu)
+        {
+            Menu.SetMode(GroundCotroller.ControllerMode.Play);
+        }
+                
+    }
+
+    private void changeState(int activeElement, RingCakePiece[] pieces, string size)
+    {
+        foreach (var item in pieces)
+        {
+            item.GetComponent<TextMeshProUGUI>().text = "";
+        }
+        pieces[activeElement].GetComponent<TextMeshProUGUI>().text = size;
     }
 
     private float NormalizeAngle(float a) => (a + 360f) % 360f;
