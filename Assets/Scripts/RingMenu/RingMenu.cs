@@ -67,16 +67,16 @@ public class RingMenu : MonoBehaviour
                     switch (i)
                 {
                     case 0:
-                        changeState(i, Pieces, inv.GetDetectingTurret().ToString());
+                        changeState(i, Pieces, "Detecting Turret", inv.GetDetectingTurret().ToString());
                         break;
                     case 1:
-                        changeState(i, Pieces, inv.GetShootingTurret().ToString());
+                        changeState(i, Pieces, "Shooting Turret", inv.GetShootingTurret().ToString());
                         break;
                     case 2:
-                        changeState(i, Pieces, inv.GetDetectingTurret().ToString());
+                        changeState(i, Pieces, "Detecting Turret", inv.GetDetectingTurret().ToString());
                         break;
                     case 3:
-                        changeState(i, Pieces, inv.GetShootingTurret().ToString());
+                        changeState(i, Pieces, "Shooting Turret", inv.GetShootingTurret().ToString());
                         break;
                 }
                 Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.7f); 
@@ -88,28 +88,6 @@ public class RingMenu : MonoBehaviour
             }
                 
         }
-
-       /* for (int i = 0; i < Data.Elements.Length; i++)
-        {
-            if (i == activeElement)
-            {
-                if(i == 1 || i == 3)
-                {
-                    //Pieces[i].CakePiece.Amount.text = inv.GetShootingTurret().ToString();
-                    Pieces[i].Amount.text
-                    //RingCakePiecePrefab.Amount.text = currentAmountTurret.ToString();
-                    //Debug.Log(RingCakePiecePrefab.Amount.text = currentAmountTurret.ToString());
-
-                }
-                else if(i == 0 || i == 2)
-                {
-                    Pieces[i].Amount.text = inv.GetDetectingTurret().ToString();
-                    //RingCakePiecePrefab.Amount.text = currentAmountDetectingTurret.ToString();
-                    //Debug.Log(RingCakePiecePrefab.Amount.text = currentAmountDetectingTurret.ToString());
-                }
-            }
-        }*/
-
 
         if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu) //We are in the menu and we clicked LPM 
         {
@@ -141,13 +119,13 @@ public class RingMenu : MonoBehaviour
                 
     }
 
-    private void changeState(int activeElement, RingCakePiece[] pieces, string size)
+    private void changeState(int activeElement, RingCakePiece[] pieces, string name, string size)
     {
         foreach (var item in pieces)
         {
             item.GetComponent<TextMeshProUGUI>().text = "";
         }
-        pieces[activeElement].GetComponent<TextMeshProUGUI>().text = size;
+        pieces[activeElement].GetComponent<TextMeshProUGUI>().text = name + "\n\n\t  " + size;
     }
 
     private float NormalizeAngle(float a) => (a + 360f) % 360f;
