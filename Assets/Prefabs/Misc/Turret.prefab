@@ -84,11 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-<<<<<<< HEAD
   m_PresetInfoIsWorld: 0
-=======
-  m_PresetInfoIsWorld: 1
->>>>>>> origin
 --- !u!114 &7317293528823294103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +379,7 @@ GameObject:
   - component: {fileID: 1663844377603718768}
   m_Layer: 2
   m_Name: Turret
-  m_TagString: Turret
+  m_TagString: ABC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -395,8 +391,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2334235848864080058}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.082, z: 0.043}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -46.769608, y: 6.026088, z: -54.1503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4955474964163776886}

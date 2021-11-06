@@ -23,15 +23,6 @@ public class Inventory : MonoBehaviour
 
    private void Awake()
    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-
       GameObjDictionary = new Dictionary<string, uint>();
       GameObjDictionary.Add("Turret", ShootingTurretAmmount);
       GameObjDictionary.Add("TurretDetecting", DetectingTurretAmmount);

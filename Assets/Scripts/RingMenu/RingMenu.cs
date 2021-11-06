@@ -64,7 +64,7 @@ public class RingMenu : MonoBehaviour
         {
             if (i == activeElement)
             {   
-                    switch (i)
+                switch (i)
                 {
                     case 0:
                         changeState(i, Pieces, inv.GetDetectingTurret().ToString());
@@ -89,36 +89,11 @@ public class RingMenu : MonoBehaviour
                 
         }
 
-       /* for (int i = 0; i < Data.Elements.Length; i++)
-        {
-            if (i == activeElement)
-            {
-                if(i == 1 || i == 3)
-                {
-                    //Pieces[i].CakePiece.Amount.text = inv.GetShootingTurret().ToString();
-                    Pieces[i].Amount.text
-                    //RingCakePiecePrefab.Amount.text = currentAmountTurret.ToString();
-                    //Debug.Log(RingCakePiecePrefab.Amount.text = currentAmountTurret.ToString());
-
-                }
-                else if(i == 0 || i == 2)
-                {
-                    Pieces[i].Amount.text = inv.GetDetectingTurret().ToString();
-                    //RingCakePiecePrefab.Amount.text = currentAmountDetectingTurret.ToString();
-                    //Debug.Log(RingCakePiecePrefab.Amount.text = currentAmountDetectingTurret.ToString());
-                }
-            }
-        }*/
-
-
         if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu) //We are in the menu and we clicked LPM 
         {
             Menu.SetMode(GroundCotroller.ControllerMode.Build);
             Menu.SetMenu(true);
-              
-            Menu.MenuClick(path);
-            callback?.Invoke(path);
-       
+            Menu.SetPrefab(int.Parse(path));
 
             if (path == "0" && inv.GameObjDictionary["Turret"] == 0)
             {

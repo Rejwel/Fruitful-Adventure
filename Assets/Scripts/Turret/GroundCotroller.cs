@@ -11,7 +11,6 @@ public class GroundCotroller : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private float mouseWheelRotation;
     [SerializeField] private bool Menu = false;
-    [SerializeField] private bool Empty = false;
     [SerializeField] private Inventory inv;
     [SerializeField] private uint[] placeableObjectPrefabsCount;
     [SerializeField] private GameObject shopIndicator;
@@ -32,6 +31,8 @@ public class GroundCotroller : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log($"current placable object: {currentPlaceableObject}");
+
         HandleNewObjectHotkey();
 
         if (currentPlaceableObject != null)
@@ -139,51 +140,51 @@ public class GroundCotroller : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
-            uint tmpCount = 0;
-            string CurrentObj = string.Concat(currentPlaceableObject.ToString().TakeWhile(x => x != '('));
+            //     uint tmpCount = 0;
+            //     string currentObj = string.Concat(currentPlaceableObject.ToString().TakeWhile(x => x != '('));
+            //     
+            //     int pos = currentObj.IndexOf("Transparent");  
+            //     if (pos >= 0) {
+            //         string afterFounder = currentObj.Remove(pos);
+            //         currentObj = afterFounder;
+            //     } 
+            //    
+            //     tmpCount = inv.GameObjDictionary[currentObj];
+            //     inv.GameObjDictionary.Remove(currentObj);
+            //
+            //     if (Prefab.name.Equals("Turret"))
+            //     {
+            //         Prefab = placeableObjectPrefabs[0];
+            //         currentPlaceableObject = placeableObjectPrefabs[0];
+            //         inv.RemoveShootingTurret();
+            //     }
+            //     else if (Prefab.name.Equals("TurretDetecting"))
+            //     {
+            //         Prefab = placeableObjectPrefabs[1];
+            //         currentPlaceableObject = placeableObjectPrefabs[1];
+            //         inv.RemoveDetectingTurret();
+            //     }
+            //     
+            //     inv.GameObjDictionary.Add(currentObj, --tmpCount);
+            //     currentPlaceableObject = null; 
+            //     if(tmpCount == 0)
+            //     { 
+            //         Prefab = null;
+            //     }
+            //     player.GetComponent<PlayerShoot>().AddDelay();
+            //     player.GetComponent<PlayerShoot>().HoldFire = false;
+            // }
+            // Prefab = placeableObjectPrefabs[0];
+            // currentPlaceableObject = Prefab;
+            Prefab = placeableObjectPrefabs[0];
+            currentPlaceableObject = null;
             
-            int pos = CurrentObj.IndexOf("Transparent");  
-            if (pos >= 0) {
-                string afterFounder = CurrentObj.Remove(pos);
-                CurrentObj = afterFounder;
-                Debug.Log(CurrentObj);
-            } 
-           
-            tmpCount = inv.GameObjDictionary[CurrentObj];
-            inv.GameObjDictionary.Remove(CurrentObj);
-        
-            if (Prefab.ToString().Split('(')[0].Equals("Turret"))
-            {
-                Prefab = placeableObjectPrefabs[0];
-                currentPlaceableObject = placeableObjectPrefabs[0];
-                inv.RemoveShootingTurret();
-            }
-        
-            if (Prefab.ToString().Split('(')[0].Equals("TurretDetecting"))
-            {
-                Prefab = placeableObjectPrefabs[1];
-                currentPlaceableObject = placeableObjectPrefabs[0];
-                inv.RemoveDetectingTurret();
-            }
-        
-        
-            inv.GameObjDictionary.Add(CurrentObj, --tmpCount);
-            currentPlaceableObject.tag = "ABC";
-            currentPlaceableObject = null; 
-            if(tmpCount == 0)
-            { 
-                Prefab = null;
-            }
-            player.GetComponent<PlayerShoot>().AddDelay();
-            player.GetComponent<PlayerShoot>().HoldFire = false;
+            
+            // this is associated with ring menu
+            Prefab = null;
         }
     }
-
-
-    public void MenuClick(string path)
-    {  
-        SetPrefab(int.Parse(path));
-    }
+    
 
     public void SetMode(ControllerMode mode)
     {
@@ -218,8 +219,7 @@ public class GroundCotroller : MonoBehaviour
                 break;            
         }
     }
-
-
+    
     public enum ControllerMode
     {
         Play,
