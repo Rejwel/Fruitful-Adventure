@@ -1,47 +1,29 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 
 public class GroundCotroller : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] placeableObjectPrefabs;
-    private uint[] placeableObjectPrefabsCount;
-    
-
-    public LayerMask terrain;
-    private bool canRotate = false;
-
-    private int currentPrefabIndex = -1;
-
-    public GameObject currentPlaceableObject;
-    public GameObject player;
-    private float mouseWheelRotation;
-    public bool hope = true;
-    private bool Menu = false;
-    private bool Empty = false;
-    public GameObject WarningCanvas;
-    public Transform location;
-    public GameObject Turret;
-    private Inventory inv;
+    [SerializeField] private GameObject[] placeableObjectPrefabs;
+    [SerializeField] private LayerMask terrain;
+    [SerializeField] private GameObject currentPlaceableObject;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float mouseWheelRotation;
+    [SerializeField] private bool Menu = false;
+    [SerializeField] private bool Empty = false;
+    [SerializeField] private Inventory inv;
 
     //Ring Menu Controller
-    protected RingMenu MainMenuInstance;
-    public RingMenu MainMenuPrefab;
-    public GameObject Canvas;
-    protected GameObject Prefab;
-
-    [HideInInspector]
-    public ControllerMode Mode;
+    [SerializeField] private RingMenu MainMenuInstance;
+    [SerializeField] private RingMenu MainMenuPrefab;
+    [SerializeField] private GameObject Canvas;
+    [SerializeField] private GameObject Prefab;
+    public ControllerMode Mode {  get; set; }
 
     private void Start()
     {
         SetMode(ControllerMode.Play);
         inv = FindObjectOfType<Inventory>();
-        Prefab = placeableObjectPrefabs[0];
     }
 
     private void Update()
@@ -52,52 +34,40 @@ public class GroundCotroller : MonoBehaviour
         {
             MoveCurrentObjectToMouse();
             RotateFromMouseWheel();
-            if (hope)
-            {
-                WarningCanvas.SetActive(false);
-                ReleaseIfClicked();
-            }
-            else
-            {
-                WarningCanvas.SetActive(true);
-            }
+            ReleaseIfClicked();
         }
 
-        //Cases of clicking Tab
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {        
+            SetMode(ControllerMode.Menu);     
+        }
 
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {        
-                SetMode(ControllerMode.Menu);     
-            }
-
-            if (Input.GetKeyUp(KeyCode.Tab) && Menu)
-            {
-                if (!Empty)
-                    SetMode(ControllerMode.Build);
-                else if (Empty)
-                    SetMode(ControllerMode.Play);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Tab) && !Menu)
-            {            
+        if (Input.GetKeyUp(KeyCode.Tab) && Menu)
+        {
+            if (!Empty)
+                SetMode(ControllerMode.Build);
+            else if (Empty)
                 SetMode(ControllerMode.Play);
-            }
+        }
 
-
-            if(Mode == ControllerMode.Build)
+        if (Input.GetKeyUp(KeyCode.Tab) && !Menu)
+        {            
+            SetMode(ControllerMode.Play);
+        }
+        
+        if(Mode == ControllerMode.Build)
+        {
+            if(Input.GetMouseButtonDown(1))
             {
-                if(Input.GetMouseButtonDown(1))
-                {
-                    SetMode(ControllerMode.Play);
-                    Destroy(currentPlaceableObject);
-                }                        
-            }         
+                SetMode(ControllerMode.Play);
+                Destroy(currentPlaceableObject);
+            }                        
+        }         
     }
     
 
     private void HandleNewObjectHotkey()         
     {
-        WarningCanvas.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         if(Mode == ControllerMode.Build)
@@ -105,69 +75,31 @@ public class GroundCotroller : MonoBehaviour
             if (inv.GameObjDictionary["Turret"] > 0 && Prefab != null)
             {
                 player.GetComponent<PlayerShoot>().HoldFire = true;
-                hope = true;
-                WarningCanvas.SetActive(false);
-                /*if (PressedKeyOfCurrentPrefab(0))
+                if (currentPlaceableObject != null)
                 {
-                    player.GetComponent<PlayerShoot>().HoldFire = false;
                     Destroy(currentPlaceableObject);
                 }
-                else */
+                if (Physics.Raycast(ray, out hitInfo, 15f, terrain))
                 {
-                    if (currentPlaceableObject != null)
-                    {
-                        Destroy(currentPlaceableObject);
-                    }
-
-                    if (Physics.Raycast(ray, out hitInfo, 15f, terrain))
-                    {
-                        Turret = GameObject.FindGameObjectWithTag("Turret");
-                        currentPlaceableObject = Instantiate(Prefab);
-                        currentPrefabIndex = 0;
-                    }
-                    else {
-                        currentPlaceableObject = Instantiate(Prefab, location.transform.position, Quaternion.Euler(0,0,0)) as GameObject;
-                        currentPrefabIndex = 0;
-                    }
+                    currentPlaceableObject = Instantiate(Prefab);
                 }
             }
             else if (inv.GameObjDictionary["TurretDetecting"] > 0 && Prefab != null)
             {
                 player.GetComponent<PlayerShoot>().HoldFire = true;
-                hope = true;
-                WarningCanvas.SetActive(false);
-                /*if (PressedKeyOfCurrentPrefab(1))
+
+                if (currentPlaceableObject != null)
                 {
-                    player.GetComponent<PlayerShoot>().HoldFire = false;
                     Destroy(currentPlaceableObject);
                 }
-                else */
+                if (Physics.Raycast(ray, out hitInfo, 15f, terrain))
                 {
-                    if (currentPlaceableObject != null)
-                    {
-                        Destroy(currentPlaceableObject);
-                    }
-
-                    if (Physics.Raycast(ray, out hitInfo, 15f, terrain))
-                    {
-                        Turret = GameObject.FindGameObjectWithTag("Turret");
-                        currentPlaceableObject = Instantiate(Prefab);
-                        currentPrefabIndex = 1;
-                    }
-                    else {
-                        currentPlaceableObject = Instantiate(Prefab, location.transform.position, Quaternion.Euler(0,0,0)) as GameObject;
-                        currentPrefabIndex = 1;
-                    }
+                    currentPlaceableObject = Instantiate(Prefab);
                 }
             }
         }
     }
-
-    private bool PressedKeyOfCurrentPrefab(int i)
-    {
-        return currentPlaceableObject != null && currentPrefabIndex == i;
-    }
-
+    
     public void SetMenu(bool menu)
     {
         Menu = menu;
@@ -181,15 +113,14 @@ public class GroundCotroller : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, 20f, terrain))
+        if (Physics.Raycast(ray, out hitInfo, 10f, terrain))
         {
-            canRotate = true;
             currentPlaceableObject.transform.position = hitInfo.point;
             currentPlaceableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
         }
         else
         {
-            canRotate = false;
+            Destroy(currentPlaceableObject);
         }
     }
 
@@ -197,11 +128,8 @@ public class GroundCotroller : MonoBehaviour
     private void RotateFromMouseWheel()
     {
         currentPlaceableObject.transform.Rotate(Vector3.up, 0f);
-        if (canRotate)
-        {
-            mouseWheelRotation += Input.mouseScrollDelta.y;
-            currentPlaceableObject.transform.Rotate(Vector3.up, mouseWheelRotation * 10f);
-        }
+        mouseWheelRotation += Input.mouseScrollDelta.y;
+        currentPlaceableObject.transform.Rotate(Vector3.up, mouseWheelRotation * 10f);
     }
 
     public void ReleaseIfClicked()  //We are in Build mode, we have the object in our hand, we place it LPM  
@@ -213,22 +141,38 @@ public class GroundCotroller : MonoBehaviour
         {
             uint tmpCount = 0;
             string CurrentObj = string.Concat(currentPlaceableObject.ToString().TakeWhile(x => x != '('));
+            
+            int pos = CurrentObj.IndexOf("Transparent");  
+            if (pos >= 0) {
+                string afterFounder = CurrentObj.Remove(pos);
+                CurrentObj = afterFounder;
+                Debug.Log(CurrentObj);
+            } 
            
             tmpCount = inv.GameObjDictionary[CurrentObj];
             inv.GameObjDictionary.Remove(CurrentObj);
-            
-            if(Prefab.ToString().Split('(')[0].Equals("Turret ")) inv.RemoveShootingTurret();
-            if(Prefab.ToString().Split('(')[0].Equals("TurretDetecting ")) inv.RemoveDetectingTurret();
-            //Debug.Log(inv.GetDetectingTurret());
-            //Debug.Log(inv.GetShootingTurret());
-            
-
+        
+            if (Prefab.ToString().Split('(')[0].Equals("Turret"))
+            {
+                Prefab = placeableObjectPrefabs[0];
+                currentPlaceableObject = placeableObjectPrefabs[0];
+                inv.RemoveShootingTurret();
+            }
+        
+            if (Prefab.ToString().Split('(')[0].Equals("TurretDetecting"))
+            {
+                Prefab = placeableObjectPrefabs[1];
+                currentPlaceableObject = placeableObjectPrefabs[0];
+                inv.RemoveDetectingTurret();
+            }
+        
+        
             inv.GameObjDictionary.Add(CurrentObj, --tmpCount);
             currentPlaceableObject.tag = "ABC";
             currentPlaceableObject = null; 
             if(tmpCount == 0)
             { 
-            Prefab = null;
+                Prefab = null;
             }
             player.GetComponent<PlayerShoot>().AddDelay();
             player.GetComponent<PlayerShoot>().HoldFire = false;
@@ -239,10 +183,9 @@ public class GroundCotroller : MonoBehaviour
     public void MenuClick(string path)
     {  
         SetPrefab(int.Parse(path));
-        //SetMode(ControllerMode.Build);
     }
 
-    public void SetMode(ControllerMode mode)                //We set our modes  
+    public void SetMode(ControllerMode mode)
     {
         Mode = mode;
         if (mode != ControllerMode.Menu && MainMenuInstance != null)
