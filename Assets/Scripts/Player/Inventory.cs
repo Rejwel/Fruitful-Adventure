@@ -102,11 +102,16 @@ public class Inventory : MonoBehaviour
    public void AddShootingTurret()
    {
       ShootingTurretAmmount++;
+      GameObjDictionary["Turret"] = ShootingTurretAmmount;
    }
    
    public void RemoveShootingTurret()
    {
-      ShootingTurretAmmount--;
+      if (ShootingTurretAmmount > 0)
+      {
+         ShootingTurretAmmount--;
+         GameObjDictionary["Turret"] = ShootingTurretAmmount;
+      }
    }
    
    public uint GetDetectingTurret()
@@ -116,11 +121,17 @@ public class Inventory : MonoBehaviour
    public void AddDetectingTurret()
    {
       DetectingTurretAmmount++;
+      GameObjDictionary["TurretDetecting"] = DetectingTurretAmmount;
    }
    
    public void RemoveDetectingTurret()
    {
-      DetectingTurretAmmount--;
+      if (DetectingTurretAmmount > 0)
+      {
+         DetectingTurretAmmount--;
+         GameObjDictionary["TurretDetecting"] = DetectingTurretAmmount;
+      }
+         
    }
    
    public uint GetGrenades()

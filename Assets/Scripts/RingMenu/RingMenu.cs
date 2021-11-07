@@ -16,8 +16,6 @@ public class RingMenu : MonoBehaviour
     private GroundCotroller Menu;
     private Inventory inv;
     public GameObject player;
-
-    [HideInInspector]
     public string Path;
 
     void Start()
@@ -57,8 +55,7 @@ public class RingMenu : MonoBehaviour
         var stepLength = 360f / Data.Elements.Length;       //How many degrees does CakePiece take 
         var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - transform.position, Vector3.forward) + (stepLength + 175f) / 2f);  //Counts at what angle the cursor is 
         var activeElement = (int)(mouseAngle / stepLength);
-        var path = Path + Data.Elements[activeElement].Name;  //path, so far it`s 0 (Turret) or 1 (Detecting Turret)        
-
+        var path = Path + Data.Elements[activeElement].Name;  //path, so far it`s 0 (Turret) or 1 (Detecting Turret)      
 
         for (int i = 0; i < Data.Elements.Length; i++)
         {

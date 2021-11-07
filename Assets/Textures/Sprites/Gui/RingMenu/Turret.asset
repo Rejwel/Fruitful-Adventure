@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74f5bd2af4938743a0dd7a79912e688, type: 3}
   m_Name: Turret
   m_EditorClassIdentifier: 
-  Name: 1
+  Name: 3
   Icon: {fileID: 21300000, guid: 72282741919c4c34c951499952b93c07, type: 3}
