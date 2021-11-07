@@ -217,8 +217,6 @@ public class ShopGui : MonoBehaviour
         {
             money.CurrentMoney -= ShootingTurretPrice;
             inv.AddShootingTurret();
-            inv.GameObjDictionary.Remove("Turret");
-            inv.GameObjDictionary.Add("Turret", inv.GetShootingTurret());
         }
     }
     
@@ -228,8 +226,6 @@ public class ShopGui : MonoBehaviour
         {
             money.CurrentMoney -= DetectingTurretPrice;
             inv.AddDetectingTurret();
-            inv.GameObjDictionary.Remove("TurretDetecting");
-            inv.GameObjDictionary.Add("TurretDetecting", inv.GetDetectingTurret());
         }
     }
     

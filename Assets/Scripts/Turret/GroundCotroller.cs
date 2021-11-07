@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using UnityEditor.Experimental.TerrainAPI;
 using UnityEngine;
 
 
@@ -9,157 +7,61 @@ public class GroundCotroller : MonoBehaviour
 {
 
     [SerializeField] private GameObject[] placeableObjectPrefabs;
-    [SerializeField] private uint[] placeableObjectPrefabsCount;
-    [SerializeField] private GameObject shopIndicator;
-
-
-
-    public LayerMask terrain;
-    private bool canRotate = false;
-
-    private int currentPrefabIndex = -1;
-
-    public GameObject currentPlaceableObject;
-    public GameObject player;
-    private float mouseWheelRotation;
-    public bool hope = true;
-    private bool Menu = false;
-    private bool isShop = false;
-    public GameObject WarningCanvas;
-    public Transform location;
-    public GameObject Turret;
-    private Inventory inv;
-
+    [SerializeField] private LayerMask terrain;
+    [SerializeField] private GameObject currentPlaceableObject;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float mouseWheelRotation;
+    [SerializeField] private bool Menu;
+    [SerializeField] private Inventory inv;
+    [SerializeField] private bool isShop;
+    
     //Ring Menu Controller
-    protected RingMenu MainMenuInstance;
-    public RingMenu MainMenuPrefab;
-    public GameObject Canvas;
-    protected GameObject Prefab;
-
-    [HideInInspector]
-    public ControllerMode Mode;
+    [SerializeField] private RingMenu MainMenuInstance;
+    [SerializeField] private GameObject Canvas;
+    [SerializeField] private GameObject Prefab;
+    public ControllerMode Mode {  get; set; }
 
     private void Start()
     {
         SetMode(ControllerMode.Play);
         inv = FindObjectOfType<Inventory>();
-        Prefab = placeableObjectPrefabs[0];
     }
 
     private void Update()
     {
-        HandleNewObjectHotkey();
-
-        if (currentPlaceableObject != null)
-        {
-            MoveCurrentObjectToMouse();
-            RotateFromMouseWheel();
-            if (hope)
-            {
-                WarningCanvas.SetActive(false);
-                ReleaseIfClicked();
-            }
-            else
-            {
-                WarningCanvas.SetActive(true);
-            }
-        }
-
-        //Cases of clicking Tab
-
         if (Input.GetKeyDown(KeyCode.Tab) && !isShop)
         {     
             SetMode(ControllerMode.Menu);
-            Prefab = null;
-            Destroy(currentPlaceableObject);
+            ClearCurrentObject();
         }
-
         if (Mode == ControllerMode.Build)
+        {
+            if (currentPlaceableObject == null) HandleNewObjectHotkey();
+            else
             {
-                if(Input.GetMouseButtonDown(1))
-                {
-                    SetMode(ControllerMode.Play);
-                    Destroy(currentPlaceableObject);
-                }
-                if (Prefab == null)
-                {
-                    SetMode(ControllerMode.Play);
-                }
-            }    
+                MoveCurrentObjectToMouse();
+                RotateFromMouseWheel();
+                ReleaseIfClicked();
+            }
+            
+            // if clicked right button then exit
+            if(Input.GetMouseButtonDown(1))
+            {
+                SetMode(ControllerMode.Play);
+                ClearCurrentObject();
+            }
+        }
     }
     
-
     private void HandleNewObjectHotkey()         
     {
-        WarningCanvas.SetActive(false);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if(Mode == ControllerMode.Build)
-        {          
-            if (inv.GameObjDictionary["Turret"] > 0 && Prefab != null)
-            {
-                player.GetComponent<PlayerShoot>().HoldFire = true;
-                hope = true;
-                WarningCanvas.SetActive(false);
-                /*if (PressedKeyOfCurrentPrefab(0))
-                {
-                    player.GetComponent<PlayerShoot>().HoldFire = false;
-                    Destroy(currentPlaceableObject);
-                }
-                else */
-                {
-                    if (currentPlaceableObject != null)
-                    {
-                        Destroy(currentPlaceableObject);
-                    }
-
-                    if (Physics.Raycast(ray, out hitInfo, 15f, terrain))
-                    {
-                        Turret = GameObject.FindGameObjectWithTag("Turret");
-                        currentPlaceableObject = Instantiate(Prefab);
-                        currentPrefabIndex = 0;
-                    }
-                    else {
-                        currentPlaceableObject = Instantiate(Prefab, location.transform.position, Quaternion.Euler(0,0,0)) as GameObject;
-                        currentPrefabIndex = 0;
-                    }
-                }
-            }
-            else if (inv.GameObjDictionary["TurretDetecting"] > 0 && Prefab != null)
-            {
-                player.GetComponent<PlayerShoot>().HoldFire = true;
-                hope = true;
-                WarningCanvas.SetActive(false);
-                /*if (PressedKeyOfCurrentPrefab(1))
-                {
-                    player.GetComponent<PlayerShoot>().HoldFire = false;
-                    Destroy(currentPlaceableObject);
-                }
-                else */
-                {
-                    if (currentPlaceableObject != null)
-                    {
-                        Destroy(currentPlaceableObject);
-                    }
-
-                    if (Physics.Raycast(ray, out hitInfo, 15f, terrain))
-                    {
-                        Turret = GameObject.FindGameObjectWithTag("Turret");
-                        currentPlaceableObject = Instantiate(Prefab);
-                        currentPrefabIndex = 1;
-                    }
-                    else {
-                        currentPlaceableObject = Instantiate(Prefab, location.transform.position, Quaternion.Euler(0,0,0)) as GameObject;
-                        currentPrefabIndex = 1;
-                    }
-                }
-            }
+        player.GetComponent<PlayerShoot>().HoldFire = true;
+        if (Physics.Raycast(ray, out hitInfo, 15f, terrain) && Prefab != null)
+        {
+            currentPlaceableObject = Instantiate(Prefab, hitInfo.transform.position, hitInfo.transform.rotation);
         }
-    }
-
-    private bool PressedKeyOfCurrentPrefab(int i)
-    {
-        return currentPlaceableObject != null && currentPrefabIndex == i;
     }
 
     public void SetMenu(bool menu)
@@ -175,15 +77,14 @@ public class GroundCotroller : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, 20f, terrain))
+        if (Physics.Raycast(ray, out hitInfo, 10f, terrain))
         {
-            canRotate = true;
             currentPlaceableObject.transform.position = hitInfo.point;
             currentPlaceableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
         }
         else
         {
-            canRotate = false;
+            Destroy(currentPlaceableObject);
         }
     }
 
@@ -191,52 +92,51 @@ public class GroundCotroller : MonoBehaviour
     private void RotateFromMouseWheel()
     {
         currentPlaceableObject.transform.Rotate(Vector3.up, 0f);
-        if (canRotate)
-        {
-            mouseWheelRotation += Input.mouseScrollDelta.y;
-            currentPlaceableObject.transform.Rotate(Vector3.up, mouseWheelRotation * 10f);
-        }
+        mouseWheelRotation += Input.mouseScrollDelta.y;
+        currentPlaceableObject.transform.Rotate(Vector3.up, mouseWheelRotation * 10f);
+    }
+    
+    private void ClearCurrentObject()
+    {
+        Destroy(currentPlaceableObject);
+        currentPlaceableObject = null;
     }
 
-    public void ReleaseIfClicked()  //We are in Build mode, we have the object in our hand, we place it LPM  
+    private void PlaceCurrentObject(int prefabIndex, RaycastHit where)
+    {
+        Transform savedTransform = currentPlaceableObject.transform;
+        ClearCurrentObject();
+        SetPrefab(prefabIndex);
+        currentPlaceableObject = Instantiate(Prefab);
+        currentPlaceableObject.transform.position = where.point;
+        currentPlaceableObject.transform.rotation = savedTransform.rotation;
+        currentPlaceableObject = null;
+        Destroy(currentPlaceableObject);
+        Prefab = null;
+        SetMode(ControllerMode.Play);
+    }
+
+    public void ReleaseIfClicked()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
-        {
-            uint tmpCount = 0;
-            string CurrentObj = string.Concat(currentPlaceableObject.ToString().TakeWhile(x => x != '('));
-           
-            tmpCount = inv.GameObjDictionary[CurrentObj];
-            inv.GameObjDictionary.Remove(CurrentObj);
-            
-            if(Prefab.ToString().Split('(')[0].Equals("Turret ")) inv.RemoveShootingTurret();
-            if(Prefab.ToString().Split('(')[0].Equals("TurretDetecting ")) inv.RemoveDetectingTurret();
-            //Debug.Log(inv.GetDetectingTurret());
-            //Debug.Log(inv.GetShootingTurret());
-            
-
-            inv.GameObjDictionary.Add(CurrentObj, --tmpCount);
-            currentPlaceableObject.tag = "ABC";
-            currentPlaceableObject = null; 
-            if(tmpCount == 0)
-            { 
-            Prefab = null;
+        { 
+            if (Prefab.name.Equals("TurretTransparent"))
+            {
+                PlaceCurrentObject(0, hitInfo);
+                inv.RemoveShootingTurret();
             }
-            player.GetComponent<PlayerShoot>().AddDelay();
-            player.GetComponent<PlayerShoot>().HoldFire = false;
+            if (Prefab.name.Equals("TurretDetectingTransparent"))
+            {
+                PlaceCurrentObject(1, hitInfo);
+                inv.RemoveDetectingTurret();
+            }
         }
     }
 
-
-    public void MenuClick(string path)
-    {  
-        SetPrefab(int.Parse(path));
-        //SetMode(ControllerMode.Build);
-    }
-
-    public void SetMode(ControllerMode mode)                //We set our modes  
+    public void SetMode(ControllerMode mode)
     {
         Mode = mode;
         if (mode != ControllerMode.Menu && MainMenuInstance != null)
@@ -266,11 +166,11 @@ public class GroundCotroller : MonoBehaviour
                 Cursor.visible = false;
                 Camera.main.GetComponent<MouseLook>().enabled = true;
                 player.GetComponent<PlayerShoot>().HoldFire = false;
+                player.GetComponent<PlayerShoot>().AddDelay();
                 break;            
         }
     }
-
-
+    
     public enum ControllerMode
     {
         Play,
@@ -278,10 +178,30 @@ public class GroundCotroller : MonoBehaviour
         Menu
     }
 
-
     public void SetPrefab(int number)
     {
-        Prefab = placeableObjectPrefabs[number]; 
+        switch (number)
+        {
+            // 0 in index of turret In Array
+            case 0:
+                Prefab = inv.GetShootingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                break;
+            // 1 in index of turretDetecting InArray
+            case 1:
+                Prefab = inv.GetDetectingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                break;
+            // 2 in index of turretTransparent In Array
+            case 2:
+                Prefab = inv.GetShootingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                break;
+            // 3 in index of turretDetectingTransparent In Array
+            case 3:
+                Prefab = inv.GetDetectingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                break;
+            default:
+                Prefab = null;
+                Debug.Log("Error with setting numbers in prefab array");
+                break;
+        }
     }
-
 }

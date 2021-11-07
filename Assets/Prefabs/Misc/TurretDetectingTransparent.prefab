@@ -43,9 +43,8 @@ GameObject:
   - component: {fileID: 1762813976542563576}
   - component: {fileID: 2228943520004433689}
   - component: {fileID: 3388170913306825264}
-  - component: {fileID: 2899706631731588115}
   m_Layer: 2
-  m_Name: TurretDetecting
+  m_Name: TurretDetectingTransparent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,8 +57,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762813976542563578}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.21573, y: 6.026088, z: -56.268456}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 118.36, y: 0, z: -18.445892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8995791694519450934}
@@ -75,7 +74,7 @@ BoxCollider:
   m_GameObject: {fileID: 1762813976542563578}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.5, y: 2, z: 1.5}
   m_Center: {x: 0, y: 1, z: 0}
@@ -95,24 +94,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2899706631731588115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762813976542563578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01e268de04382994ba50db0d0a5f8a0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 15
-  enemyTag: Enemy
-  Turret: TurretDetecting
-  CurrentBuilding: 
-  shortestDistanceToBuilding: 0
-  House: {fileID: 0}
 --- !u!1 &1762813977012365068
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +154,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f917c8d2a053b8e4192e2511e0a6c415, type: 2}
+  - {fileID: 2100000, guid: 938eee972e0c76149a8f5dc28f4cfe25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -204,7 +185,7 @@ BoxCollider:
   m_GameObject: {fileID: 1762813977012365068}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -300,7 +281,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f917c8d2a053b8e4192e2511e0a6c415, type: 2}
+  - {fileID: 2100000, guid: 938eee972e0c76149a8f5dc28f4cfe25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -331,7 +312,7 @@ BoxCollider:
   m_GameObject: {fileID: 1762813977368865932}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.00000011920929, z: 0}
@@ -344,7 +325,7 @@ MeshCollider:
   m_GameObject: {fileID: 1762813977368865932}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
