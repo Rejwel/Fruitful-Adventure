@@ -22982,6 +22982,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5550324620086176462, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
+    - target: {fileID: 1612223754280127311, guid: 176533caedf790540a2c061fc85b7736,
+        type: 3}
+      propertyPath: meshText
+      value: 
+      objectReference: {fileID: 7615057307810867932, guid: 08934c9b39ebf5248b081686ea1b1506,
+        type: 3}
     - target: {fileID: 7360080430340160414, guid: 176533caedf790540a2c061fc85b7736,
         type: 3}
       propertyPath: m_Name
@@ -35660,6 +35666,8 @@ MonoBehaviour:
   - {fileID: 1762813976542563578, guid: 8dd9fe273f67fea49af0d5a19f14dade, type: 3}
   - {fileID: 2334235848864080058, guid: 36e46d4ccac81f84ab28de335008343b, type: 3}
   - {fileID: 1762813976542563578, guid: 5e6e1fe7ac87c9544b8f2cffb0ae044f, type: 3}
+  placeableObjectPrefabsCount: 
+  shopIndicator: {fileID: 521923786}
   terrain:
     serializedVersion: 2
     m_Bits: 4096

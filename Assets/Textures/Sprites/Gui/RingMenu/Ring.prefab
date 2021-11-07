@@ -54,6 +54,8 @@ MonoBehaviour:
     type: 3}
   GapWidthDegree: 1
   player: {fileID: 0}
+  meshText: {fileID: 7615057307810867932, guid: 08934c9b39ebf5248b081686ea1b1506,
+    type: 3}
   Path: 
 --- !u!222 &8347798559875634113
 CanvasRenderer:

@@ -43,11 +43,7 @@ public class GroundCotroller : MonoBehaviour
         }
         
         if (Input.GetKeyDown(KeyCode.Tab) && !isShop)
-        {
-            if(shopIndicator.activeSelf)
-            {
-                shopIndicator.SetActive(false);
-            }
+        {     
             SetMode(ControllerMode.Menu);
             Prefab = null;
             Destroy(currentPlaceableObject);
