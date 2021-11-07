@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7868800222025981270}
   - component: {fileID: 6529167816481870579}
   - component: {fileID: 9041174992267535929}
-  - component: {fileID: 4998420192660802741}
+  - component: {fileID: 6218564049308162222}
   m_Layer: 0
   m_Name: sp2
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4998420192660802741
-MeshCollider:
+--- !u!136 &6218564049308162222
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -91,8 +91,8 @@ MeshCollider:
   m_GameObject: {fileID: 7383731513599182828}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5818063044284238064, guid: 8ee911f6fe6a325499b02c1d874c706a, type: 3}
+  m_Enabled: 1
+  m_Radius: 1.9000609
+  m_Height: 8.470215
+  m_Direction: 1
+  m_Center: {x: -0.05567336, y: 2.8225384, z: -0.1331842}
