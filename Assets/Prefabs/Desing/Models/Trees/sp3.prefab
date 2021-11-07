@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5993180277380475381}
   - component: {fileID: 7242868061926909520}
   - component: {fileID: 4856887458672677530}
-  - component: {fileID: 8881768099092871190}
+  - component: {fileID: 5224566668556965852}
   m_Layer: 0
   m_Name: sp3
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8881768099092871190
-MeshCollider:
+--- !u!136 &5224566668556965852
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -91,8 +91,8 @@ MeshCollider:
   m_GameObject: {fileID: 6370303297895773007}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1616458658916155781, guid: ad29cbb9344bd6949b57dc10e41cfe0c, type: 3}
+  m_Enabled: 1
+  m_Radius: 2.9468424
+  m_Height: 8.284729
+  m_Direction: 1
+  m_Center: {x: -0.047130346, y: 1.7255231, z: 0.063922405}
