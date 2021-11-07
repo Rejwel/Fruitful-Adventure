@@ -123,12 +123,12 @@ public class GroundCotroller : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
         { 
-            if (Prefab.name.Equals("TurretTransparent"))
+            if (Prefab != null && Prefab.name.Equals("TurretTransparent"))
             {
                 PlaceCurrentObject(0, hitInfo);
                 inv.RemoveShootingTurret();
             }
-            if (Prefab.name.Equals("TurretDetectingTransparent"))
+            else if (Prefab != null && Prefab.name.Equals("TurretDetectingTransparent"))
             {
                 PlaceCurrentObject(1, hitInfo);
                 inv.RemoveDetectingTurret();
@@ -185,21 +185,38 @@ public class GroundCotroller : MonoBehaviour
             // 0 in index of turret In Array
             case 0:
                 Prefab = inv.GetShootingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
                 break;
             // 1 in index of turretDetecting InArray
             case 1:
                 Prefab = inv.GetDetectingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
                 break;
             // 2 in index of turretTransparent In Array
             case 2:
                 Prefab = inv.GetShootingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
                 break;
             // 3 in index of turretDetectingTransparent In Array
             case 3:
                 Prefab = inv.GetDetectingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
                 break;
             default:
                 Prefab = null;
+                SetMode(ControllerMode.Play);
                 Debug.Log("Error with setting numbers in prefab array");
                 break;
         }

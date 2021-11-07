@@ -100,10 +100,6 @@ public class RingMenu : MonoBehaviour
             {
                 Menu.SetMode(GroundCotroller.ControllerMode.Play);
             }
-            else
-            {
-                Menu.SetMode(GroundCotroller.ControllerMode.Build);
-            }
             gameObject.SetActive(false);
         }
         else if (Input.GetKeyUp(KeyCode.Tab) && Menu.Mode == GroundCotroller.ControllerMode.Menu)
