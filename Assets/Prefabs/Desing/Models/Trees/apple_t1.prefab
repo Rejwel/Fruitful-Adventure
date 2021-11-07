@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 191991589313248872}
   - component: {fileID: 3820684984284344781}
   - component: {fileID: 1360434026283730183}
-  - component: {fileID: 3081724279764594571}
+  - component: {fileID: 8000257074880125641}
   m_Layer: 0
   m_Name: apple_t1
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3081724279764594571
-MeshCollider:
+--- !u!136 &8000257074880125641
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -91,8 +91,8 @@ MeshCollider:
   m_GameObject: {fileID: 712070091756315858}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8188482996487996659, guid: 075f10fbf1eaac4409dd09eb9ff039d1, type: 3}
+  m_Enabled: 1
+  m_Radius: 2.7539012
+  m_Height: 7.503662
+  m_Direction: 1
+  m_Center: {x: 0.0106499195, y: 3.234282, z: -0.09364629}

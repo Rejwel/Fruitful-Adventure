@@ -13,6 +13,8 @@ public class PlayerShoot : MonoBehaviour
     [Header("Misc")] 
     public Transform cameraTransform;
     public Transform firePoint;
+    [SerializeField] private Transform gunPosition;
+    
     public GameObject [] BulletObjects;
     private int NumberOfBullet { get; set; }
     public GameObject GunPrefab;
