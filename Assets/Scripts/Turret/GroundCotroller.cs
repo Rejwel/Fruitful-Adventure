@@ -77,7 +77,7 @@ public class GroundCotroller : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, 10f, terrain))
+        if (Physics.Raycast(ray, out hitInfo, 10f, terrain) && hitInfo.normal == Vector3.up)
         {
             currentPlaceableObject.transform.position = hitInfo.point;
             currentPlaceableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
@@ -122,7 +122,7 @@ public class GroundCotroller : MonoBehaviour
         RaycastHit hitInfo;
 
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
-        { 
+        {
             if (Prefab != null && Prefab.name.Equals("TurretTransparent"))
             {
                 PlaceCurrentObject(0, hitInfo);
