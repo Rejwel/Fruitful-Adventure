@@ -10,8 +10,10 @@ public class Inventory : MonoBehaviour
    // pistol ammo, shotgun ammo, rifle ammo, minigun ammo
    public int[] bulletAmmount;
    private uint GrenadesAmmount = 0;
-   private uint ShootingTurretAmmount = 0;
-   private uint DetectingTurretAmmount = 0;
+   private uint ShootingTurretAmmount = 3;
+   private uint DetectingTurretAmmount = 3;
+   private uint SlowTrapAmmount = 3;
+   private uint DamageTrapAmmount = 3; 
    public List<Gun> currentGuns = new List<Gun>();
    
    public Dictionary <string, uint> GameObjDictionary { get; set; }
@@ -26,6 +28,9 @@ public class Inventory : MonoBehaviour
       GameObjDictionary = new Dictionary<string, uint>();
       GameObjDictionary.Add("Turret", ShootingTurretAmmount);
       GameObjDictionary.Add("TurretDetecting", DetectingTurretAmmount);
+      GameObjDictionary.Add("SlowTrap", SlowTrapAmmount);
+      GameObjDictionary.Add("DamageTrap", DamageTrapAmmount);
+
 
       bulletAmmount = new int[] {999999, GunContainer.guns[1].GetMagazine(), GunContainer.guns[2].GetMagazine(), GunContainer.guns[3].GetMagazine()};
       currentGuns.Add(GunContainer.GetGun(0));
@@ -134,6 +139,45 @@ public class Inventory : MonoBehaviour
          
    }
    
+    public uint GetSlowTrap()
+    {
+        return SlowTrapAmmount;
+    }
+
+    public void AddSlowTrap()
+    {
+        SlowTrapAmmount++;
+        GameObjDictionary["SlowTrap"] = SlowTrapAmmount;
+    }
+
+    public void RemoveSlowTrap()
+    {
+        if (SlowTrapAmmount > 0)
+        {
+            SlowTrapAmmount--;
+            GameObjDictionary["SlowTrap"] = SlowTrapAmmount;
+        }
+    }
+
+    public uint GetDamageTrap()
+    {
+       return DamageTrapAmmount;
+    }
+    public void AddDamageTrap()
+    {
+       DamageTrapAmmount++;
+       GameObjDictionary["DamageTrap"] = DamageTrapAmmount;
+    }
+
+    public void RemoveDamageTrap()
+    {
+       if (DamageTrapAmmount > 0)
+       {
+          DamageTrapAmmount--;
+          GameObjDictionary["DamageTrap"] = DamageTrapAmmount;
+       }
+    }
+
    public uint GetGrenades()
    {
       return GrenadesAmmount;

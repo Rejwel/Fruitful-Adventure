@@ -133,6 +133,16 @@ public class GroundCotroller : MonoBehaviour
                 PlaceCurrentObject(1, hitInfo);
                 inv.RemoveDetectingTurret();
             }
+            else if (Prefab != null && Prefab.name.Equals("SlowTrapTransparent"))
+            {
+                PlaceCurrentObject(5, hitInfo);
+                inv.RemoveSlowTrap();
+            }
+            else if (Prefab != null && Prefab.name.Equals("DamageTrapTransparent"))
+            {
+                PlaceCurrentObject(7, hitInfo);
+                inv.RemoveDamageTrap();
+            }
         }
     }
 
@@ -209,6 +219,38 @@ public class GroundCotroller : MonoBehaviour
             // 3 in index of turretDetectingTransparent In Array
             case 3:
                 Prefab = inv.GetDetectingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 4 in index of SlowTrapTransparent In Array
+            case 4:
+                Prefab = inv.GetSlowTrap() > 0 ? placeableObjectPrefabs[number] : null;
+                if(!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 5 in index of SlowTrap In Array
+            case 5:
+                Prefab = inv.GetSlowTrap() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 6 in index of DamageTrapTransparent In Array
+            case 6:
+                Prefab = inv.GetDamageTrap() > 0 ? placeableObjectPrefabs[number] : null;
+                if(!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 7 in index of DamageTrap In Array
+            case 7:
+                Prefab = inv.GetDamageTrap() > 0 ? placeableObjectPrefabs[number] : null;
                 if (!Prefab)
                 {
                     SetMode(ControllerMode.Play);

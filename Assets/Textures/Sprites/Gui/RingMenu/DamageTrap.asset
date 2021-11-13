@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b74f5bd2af4938743a0dd7a79912e688, type: 3}
-  m_Name: DetectingTurret
+  m_Name: DamageTrap
   m_EditorClassIdentifier: 
-  Name: 3
-  Icon: {fileID: 21300000, guid: 4ff66f79656eac040a4b85388372cf62, type: 3}
+  Name: 6
+  Icon: {fileID: 21300000, guid: d68d8a3d09b8d9043be9e55c83d94448, type: 3}

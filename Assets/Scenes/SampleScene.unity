@@ -23985,7 +23985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 641243424}
   m_Layer: 0
-  m_Name: ------- TERRAIN -------
+  m_Name: '------- TERRAIN -------'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27877,8 +27877,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Press "K" to buy ammunition. Cost 30
 
-    Press "J" to buy bigger magazine.
-    Cost 30
+    Press "J" to buy bigger magazine. Cost 30
 
     Press "L" to buy faster turret shooting. Cost 30'
   m_isRightToLeft: 0
@@ -30059,7 +30058,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1380009383}
   m_Layer: 0
-  m_Name: ------- ENEMIES -------
+  m_Name: '------- ENEMIES -------'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32994,7 +32993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1669957429}
   m_Layer: 0
-  m_Name: ------- PLAYER -------
+  m_Name: '------- PLAYER -------'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41114,6 +41113,10 @@ MonoBehaviour:
   - {fileID: 1762813976542563578, guid: 8dd9fe273f67fea49af0d5a19f14dade, type: 3}
   - {fileID: 2334235848864080058, guid: 36e46d4ccac81f84ab28de335008343b, type: 3}
   - {fileID: 1762813976542563578, guid: 5e6e1fe7ac87c9544b8f2cffb0ae044f, type: 3}
+  - {fileID: 774156266540196921, guid: dadcb613d4d15584f938e542bc59ed18, type: 3}
+  - {fileID: 1669643666607611132, guid: f5b3656f7c297b64aa5459534e42b5a3, type: 3}
+  - {fileID: 815140481464378425, guid: 11621dc7b39cd224d94da3d96ae82024, type: 3}
+  - {fileID: 1464582739493540536, guid: f2f2ec5b631d62b41a6ac2fcc1e0ca94, type: 3}
   terrain:
     serializedVersion: 2
     m_Bits: 2147487744
