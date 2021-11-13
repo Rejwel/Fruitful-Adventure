@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 1762813976542563576}
   - component: {fileID: 2228943520004433689}
   - component: {fileID: 3388170913306825264}
-  - component: {fileID: -8493134074461511195}
   - component: {fileID: 2899706631731588115}
   m_Layer: 2
   m_Name: TurretDetecting
@@ -59,8 +58,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762813976542563578}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 118.36, y: 0, z: -18.445892}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -49.21573, y: 6.026088, z: -56.268456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8995791694519450934}
@@ -96,19 +95,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8493134074461511195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762813976542563578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 850997be6c04403478526ddbd5d13dce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ground: {fileID: 0}
 --- !u!114 &2899706631731588115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +110,6 @@ MonoBehaviour:
   range: 15
   enemyTag: Enemy
   Turret: TurretDetecting
-  progressText: {fileID: 0}
   CurrentBuilding: 
   shortestDistanceToBuilding: 0
   House: {fileID: 0}
@@ -184,6 +169,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -208,6 +194,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1762813977012365066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -309,6 +296,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -333,6 +321,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1762813977368865930
 BoxCollider:
   m_ObjectHideFlags: 0

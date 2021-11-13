@@ -1,12 +1,11 @@
-﻿    using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-    using TMPro;
-    using UnityEditor;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
-using Quaternion = System.Numerics.Quaternion;
 
-public class GrenadeThrow : MonoBehaviour
+    public class GrenadeThrow : MonoBehaviour
 {
 
     public float throwForce = 13f;

@@ -16,8 +16,6 @@ public class RingMenu : MonoBehaviour
     private GroundCotroller Menu;
     private Inventory inv;
     public GameObject player;
-
-    [HideInInspector]
     public string Path;
 
     void Start()
@@ -47,7 +45,7 @@ public class RingMenu : MonoBehaviour
             Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.6f);
 
             //set icon
-            Pieces[i].Icon.transform.localPosition = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
+            Pieces[i].Icon.transform.localPosition = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength - 90, Vector3.forward) * Vector3.up * iconDist;
             Pieces[i].Icon.sprite = Data.Elements[i].Icon;      
         }
     }
@@ -57,23 +55,22 @@ public class RingMenu : MonoBehaviour
         var stepLength = 360f / Data.Elements.Length;       //How many degrees does CakePiece take 
         var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - transform.position, Vector3.forward) + (stepLength + 175f) / 2f);  //Counts at what angle the cursor is 
         var activeElement = (int)(mouseAngle / stepLength);
-        var path = Path + Data.Elements[activeElement].Name;  //path, so far it`s 0 (Turret) or 1 (Detecting Turret)        
-
-
+        var path = Path + Data.Elements[activeElement].Name;        
+        //Debug.Log(Data.Elements[activeElement].Name);
         for (int i = 0; i < Data.Elements.Length; i++)
         {
             if (i == activeElement)
             {   
-                    switch (i)
+                switch (i)
                 {
                     case 0:
                         changeState(i, Pieces, "Detecting Turret", inv.GetDetectingTurret().ToString());
                         break;
                     case 1:
-                        changeState(i, Pieces, "Shooting Turret", inv.GetShootingTurret().ToString());
+                        changeState(i, Pieces, "Damage Trap", inv.GetDamageTrap().ToString());
                         break;
                     case 2:
-                        changeState(i, Pieces, "Detecting Turret", inv.GetDetectingTurret().ToString());
+                        changeState(i, Pieces, "Slow Trap", inv.GetSlowTrap().ToString());
                         break;
                     case 3:
                         changeState(i, Pieces, "Shooting Turret", inv.GetShootingTurret().ToString());
@@ -93,23 +90,7 @@ public class RingMenu : MonoBehaviour
         {
             Menu.SetMode(GroundCotroller.ControllerMode.Build);
             Menu.SetMenu(true);
-              
-            Menu.MenuClick(path);
-            callback?.Invoke(path);
-       
-
-            if (path == "0" && inv.GameObjDictionary["Turret"] == 0)
-            {
-                Menu.SetMode(GroundCotroller.ControllerMode.Play);
-            }
-            else if (path == "1" && inv.GameObjDictionary["TurretDetecting"] == 0)
-            {
-                Menu.SetMode(GroundCotroller.ControllerMode.Play);
-            }
-            else
-            {
-                Menu.SetMode(GroundCotroller.ControllerMode.Build);
-            }
+            Menu.SetPrefab(int.Parse(path));
             gameObject.SetActive(false);
         }
         else if (Input.GetKeyUp(KeyCode.Tab) && Menu.Mode == GroundCotroller.ControllerMode.Menu)
