@@ -52,11 +52,11 @@ public class RingMenu : MonoBehaviour
 
     private void Update()
     {     
-        var stepLength = 360f / Data.Elements.Length;       //How many degrees does CakePiece take 
+        var stepLength = 360f / Data.Elements.Length;     
         var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - transform.position, Vector3.forward) + (stepLength + 175f) / 2f);  //Counts at what angle the cursor is 
         var activeElement = (int)(mouseAngle / stepLength);
-        var path = Path + Data.Elements[activeElement].Name;        
-        //Debug.Log(Data.Elements[activeElement].Name);
+        var path = Path + Data.Elements[activeElement].Name;     
+
         for (int i = 0; i < Data.Elements.Length; i++)
         {
             if (i == activeElement)
@@ -86,7 +86,7 @@ public class RingMenu : MonoBehaviour
                 
         }
 
-        if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu) //We are in the menu and we clicked LPM 
+        if (Input.GetMouseButtonDown(0) && Menu.Mode == GroundCotroller.ControllerMode.Menu) 
         {
             Menu.SetMode(GroundCotroller.ControllerMode.Build);
             Menu.SetMenu(true);

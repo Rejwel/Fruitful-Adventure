@@ -9,29 +9,18 @@ public class SlowTrap : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.CompareTag("Enemy")  && other.GetComponent<NavMeshAgent>() != null)
         {
-            var defaultSpeed = other.GetComponent<NavMeshAgent>().speed;
-            other.GetComponent<NavMeshAgent>().speed = defaultSpeed - 2;
-            //Debug.Log(other.GetComponent<NavMeshAgent>().speed);
+            other.GetComponent<NavMeshAgent>().speed -= 2;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == "Mage(Clone)" || other.name == "Melee(Clone)")
+        if (other.CompareTag("Enemy") && other.GetComponent<NavMeshAgent>() != null)
         {
-            other.GetComponent<NavMeshAgent>().speed = 4;
-        }
-        if (other.name == "Tank(Clone)")
-        {
-            other.GetComponent<NavMeshAgent>().speed = 3;
-        }
-        if (other.name == "Range(Clone)")
-        {
-            other.GetComponent<NavMeshAgent>().speed = 5;
+            other.GetComponent<NavMeshAgent>().speed += 2;
         }
     }
-
-   
+    
 }

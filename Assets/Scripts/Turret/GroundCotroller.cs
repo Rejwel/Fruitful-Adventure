@@ -19,7 +19,6 @@ public class GroundCotroller : MonoBehaviour
     [SerializeField] private RingMenu MainMenuInstance;
     [SerializeField] private GameObject Canvas;
     [SerializeField] private GameObject Prefab;
-    public bool hope;
     public ControllerMode Mode {  get; set; }
 
     private void Start()
@@ -192,7 +191,7 @@ public class GroundCotroller : MonoBehaviour
     public void SetPrefab(int number)
     {
         switch (number)
-        {          
+        {
             // 0 in index of turret In Array
             case 0:
                 Prefab = inv.GetShootingTurret() > 0 ? placeableObjectPrefabs[number] : null;

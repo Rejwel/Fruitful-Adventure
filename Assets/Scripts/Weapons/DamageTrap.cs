@@ -7,28 +7,68 @@ public class DamageTrap : MonoBehaviour
 {
     [SerializeField] private float counter = 1f;
     [SerializeField] private float wait = 2f;
+    [SerializeField] private WaveManagerSubscriber _waveManager;
+    [SerializeField] private List<GameObject> _enemies;
+    
 
-    //private bool _isDamage = false;
-    private void OnTriggerStay(Collider other)
+    private void Awake()
     {
-        if (other.tag == "Enemy")
-        {
-            if (counter < wait)
-            {
-                counter += Time.deltaTime;
-            }
-            else if (counter >= wait)
-            { 
-                counter = 0f;
-                other.GetComponent<EnemyMechanics>().TakeDamage(30);
-            }
+        _waveManager = FindObjectOfType<WaveManagerSubscriber>();
+    }
 
-            if (other.GetComponent<EnemyMechanics>().GetHealth() <= 0) 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            _enemies.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            _enemies.Remove(other.gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (counter < wait)
+        {
+            counter += Time.deltaTime;
+        }
+        else if (counter >= wait)
+        { 
+            counter = 0f;
+            foreach (var enemy in _enemies)
             {
-                other.GetComponent<EnemyMechanics>().Die();
-                other.GetComponent<Explosion>().explode(other.transform);
+                if (enemy != null && enemy.GetComponent<EnemyMechanics>() != null)
+                {
+                    enemy.GetComponent<EnemyMechanics>().TakeDamage(30);
+                }
+            }
+        }
+        foreach (var enemy in _enemies)
+        {
+            if (enemy != null && enemy.GetComponent<EnemyMechanics>() != null && enemy.GetComponent<EnemyMechanics>().GetHealth() <= 0)
+            {
+                enemy.GetComponent<Collider>().enabled = false;
+                StartCoroutine(ExplodeEnemy(enemy.GetComponent<Collider>()));
+                _waveManager.UpdateEnemyCounter();
+                enemy.GetComponent<EnemyMechanics>().Die();
             }
         }
     }
-    
+
+    IEnumerator ExplodeEnemy(Collider hit)
+    {
+        Explosion explosion = hit.GetComponent<Explosion>();
+        EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
+        Transform EnemyTransform = enemy.transform;
+        hit.GetComponent<Collider>().enabled = false;
+        if(explosion != null)
+            explosion.explode(EnemyTransform);
+        yield return null;
+    }
 }

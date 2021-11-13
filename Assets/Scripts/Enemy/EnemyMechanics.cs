@@ -47,7 +47,7 @@ public class EnemyMechanics : MonoBehaviour
             enemyRb.constraints = RigidbodyConstraints.None;
         }
     }
-
+    
     public void Die()
     {
         Destroy(gameObject);
