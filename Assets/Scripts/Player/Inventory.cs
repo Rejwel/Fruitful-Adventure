@@ -31,14 +31,17 @@ public class Inventory : MonoBehaviour
       GameObjDictionary.Add("SlowTrap", SlowTrapAmmount);
       GameObjDictionary.Add("DamageTrap", DamageTrapAmmount);
 
+   }
 
+   private void Start()
+   {
       bulletAmmount = new int[] {999999, GunContainer.guns[1].GetMagazine(), GunContainer.guns[2].GetMagazine(), GunContainer.guns[3].GetMagazine()};
       currentGuns.Add(GunContainer.GetGun(0));
       doubleJump = false;
       dash = false;
       shield = false;
    }
-   
+
    public uint LengthOfTurrets()
    {
       uint tempCount = 0;

@@ -1,38 +1,38 @@
 ﻿
+using System;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-     public float mouseSensitivity = 100f;
+    [SerializeField] private float mouseSensitivity = 1f;
+    
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject camera;
 
-    public Transform playerBody;
+    private float _clampAngle = 80.0f;
+    private float _xRot;
+    private float _yRot;
+    private float _xCurrRot;
+    private float _yCurrRot;
+    private float _xRotVelocity;
+    private float _yRotVelocity;
+    private float _smoothDampTime = 0.02f;
 
-    float xRotation = 0f;
-    private float mouseX;
-
-    private float mouseY;
-    // Start is called before the first frame update
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        mouseX = Input.GetAxis("Mouse X")*mouseSensitivity*Time.deltaTime;
-        mouseY = Input.GetAxis("Mouse Y")*mouseSensitivity*Time.deltaTime;
+        _xRot += -Input.GetAxis("Mouse Y") * mouseSensitivity;
+        _yRot += Input.GetAxis("Mouse X") * mouseSensitivity;
+        _xRot = Mathf.Clamp(_xRot,-_clampAngle,_clampAngle);
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        _xCurrRot = Mathf.SmoothDamp(_xCurrRot, _xRot, ref _xRotVelocity, _smoothDampTime);
+        _yCurrRot = Mathf.SmoothDamp(_yCurrRot, _yRot, ref _yRotVelocity, _smoothDampTime);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f , 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
-    }
-
-    public float playerRotation()
-    {
-        return mouseX;
+        camera.transform.rotation = Quaternion.Euler(_xCurrRot,_yCurrRot,0f);
+        player.transform.rotation = Quaternion.Euler(0f,_yCurrRot,0f);
     }
 }

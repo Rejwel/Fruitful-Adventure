@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
+    [SerializeField] private CharacterController controller;
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        controller = GetComponent<CharacterController>();
         animator = FindObjectOfType<Animator>();
         inventory = FindObjectOfType<Inventory>();
     }
