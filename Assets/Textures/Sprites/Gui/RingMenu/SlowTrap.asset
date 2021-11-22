@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SlowTrap
   m_EditorClassIdentifier: 
   Name: 4
-  Icon: {fileID: 21300000, guid: ff31a66e3ead8974a944d0200e9c7741, type: 3}
+  Icon: {fileID: 21300000, guid: 82a04290fb197c04d9b680dc1509992c, type: 3}

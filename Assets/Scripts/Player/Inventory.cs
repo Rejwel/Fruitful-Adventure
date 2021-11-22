@@ -10,10 +10,10 @@ public class Inventory : MonoBehaviour
    // pistol ammo, shotgun ammo, rifle ammo, minigun ammo
    public int[] bulletAmmount;
    private uint GrenadesAmmount = 0;
-   private uint ShootingTurretAmmount = 3;
-   private uint DetectingTurretAmmount = 3;
-   private uint SlowTrapAmmount = 3;
-   private uint DamageTrapAmmount = 3; 
+   private uint ShootingTurretAmmount = 0;
+   private uint DetectingTurretAmmount = 0;
+   private uint SlowTrapAmmount = 0;
+   private uint DamageTrapAmmount = 0; 
    public List<Gun> currentGuns = new List<Gun>();
    
    public Dictionary <string, uint> GameObjDictionary { get; set; }
