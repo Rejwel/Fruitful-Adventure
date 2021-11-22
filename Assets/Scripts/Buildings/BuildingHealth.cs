@@ -12,6 +12,7 @@ public class BuildingHealth : MonoBehaviour
     public int MaxHealth;
     public int currentHealth;
     public HealthBarScript healthBar;
+    [SerializeField] private HealthBarScript _healthBarMap;
     public static LayerMask BuildingLayerMask;
     private WaveManagerSubscriber WaveManager;
 
@@ -27,12 +28,14 @@ public class BuildingHealth : MonoBehaviour
         InitColliders();
         currentHealth = MaxHealth;
         healthBar.SetMaxHealth(MaxHealth);
+        _healthBarMap.SetMaxHealth(MaxHealth);
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        _healthBarMap.SetHealth(currentHealth);
     }
     
     private GameObject [] GetSceneObjects(int layer)
