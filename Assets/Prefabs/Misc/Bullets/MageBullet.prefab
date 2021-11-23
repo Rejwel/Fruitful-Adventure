@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3731326075763220377}
   - component: {fileID: 3731326075763220376}
   - component: {fileID: 6666615467071764605}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MageBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &3731326075763220377
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -123,4 +125,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86503fe7f3c83645acb5020cb093e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 3731326075763220376}
