@@ -62,7 +62,7 @@ public class OpenShop : MonoBehaviour
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Escape))
         {
             playerController.enabled = true;
-            mouseLook.enabled = true;
+            mouseLook.CancelLookingAtObject();
 
             inShop = false;
             closeShop();
@@ -82,10 +82,8 @@ public class OpenShop : MonoBehaviour
 
     void FocusCamera()
     {
-        mouseLook.enabled = false;
         playerController.GetComponent<CharacterController>().enabled = false;
-        
-        player.transform.rotation = Quaternion.Lerp(player.transform.rotation, FocusPoint.transform.rotation, 3f * Time.deltaTime);
+        mouseLook.LookAtObject(FocusPoint);
         player.transform.position = Vector3.Lerp(player.transform.position, StandingPoint.transform.position, 3f * Time.deltaTime);
     }
 
