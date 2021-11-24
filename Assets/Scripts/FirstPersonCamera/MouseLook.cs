@@ -10,9 +10,9 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private GameObject camera;
 
     private float _clampAngle = 80.0f;
-    private float mouseX;
-    private float mouseY;
-    private float xRotation;
+    private float _mouseX;
+    private float _mouseY;
+    private float _xRotation;
 
     private Quaternion _lookingCameraRotation;
     private Quaternion _lookingPlayerRotation;
@@ -42,20 +42,20 @@ public class MouseLook : MonoBehaviour
 
     private void PlayerMouseMove()
     {
-        mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        _mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        _mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation,-_clampAngle,_clampAngle);
+        _xRotation -= _mouseY;
+        _xRotation = Mathf.Clamp(_xRotation,-_clampAngle,_clampAngle);
 
-        camera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        player.transform.Rotate(Vector3.up * mouseX * mouseSensitivity/2 * Time.deltaTime);
+        camera.transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
+        player.transform.Rotate(Vector3.up * _mouseX * mouseSensitivity/2 * Time.deltaTime);
         
     }
 
     public void LookAtObject(GameObject focusPoint)
     {
-        xRotation = 0;
+        _xRotation = 0;
         _lookingCounter += Time.time + _lookingTime;
         _isLookingAt = true;
 
