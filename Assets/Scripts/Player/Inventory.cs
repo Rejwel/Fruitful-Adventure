@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ public class Inventory : MonoBehaviour
    private uint ShootingTurretAmmount = 0;
    private uint DetectingTurretAmmount = 0;
    private uint SlowTrapAmmount = 0;
-   private uint DamageTrapAmmount = 0; 
+   private uint DamageTrapAmmount = 0;
+   private uint TrapFence = 0;
    public List<Gun> currentGuns = new List<Gun>();
    
    public Dictionary <string, uint> GameObjDictionary { get; set; }
@@ -30,6 +32,7 @@ public class Inventory : MonoBehaviour
       GameObjDictionary.Add("TurretDetecting", DetectingTurretAmmount);
       GameObjDictionary.Add("SlowTrap", SlowTrapAmmount);
       GameObjDictionary.Add("DamageTrap", DamageTrapAmmount);
+      GameObjDictionary.Add("TrapFence", TrapFence);
 
    }
 
@@ -38,6 +41,7 @@ public class Inventory : MonoBehaviour
       bulletAmmount = new int[] {999999, GunContainer.guns[1].GetMagazine(), GunContainer.guns[2].GetMagazine(), GunContainer.guns[3].GetMagazine()};
       currentGuns.Add(GunContainer.GetGun(0));
 
+      TrapFence = 2;
       SlowTrapAmmount = 2;
       DetectingTurretAmmount = 2;
       
@@ -185,6 +189,26 @@ public class Inventory : MonoBehaviour
        }
     }
 
+    public uint GetTrapFence()
+    {
+       return TrapFence;
+    }
+
+    public void AddTrapFence()
+    {
+       TrapFence++;
+       GameObjDictionary["TrapFence"] = TrapFence;
+    }
+
+    public void RemoveTrapFence()
+    {
+       if (TrapFence > 0)
+       {
+          TrapFence--;
+          GameObjDictionary["TrapFence"] = TrapFence;
+       }
+    }
+    
    public uint GetGrenades()
    {
       return GrenadesAmmount;

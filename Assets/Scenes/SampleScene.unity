@@ -16905,6 +16905,8 @@ MonoBehaviour:
   - {fileID: 1669643666607611132, guid: f5b3656f7c297b64aa5459534e42b5a3, type: 3}
   - {fileID: 815140481464378425, guid: 11621dc7b39cd224d94da3d96ae82024, type: 3}
   - {fileID: 1464582739493540536, guid: f2f2ec5b631d62b41a6ac2fcc1e0ca94, type: 3}
+  - {fileID: 6088035493268800341, guid: 3b712c3c42bca2c4788e3e7dabacbcd6, type: 3}
+  - {fileID: 5822204221768311055, guid: a520e4bae8349a540a86f42f136f3228, type: 3}
   terrain:
     serializedVersion: 2
     m_Bits: 2147487744

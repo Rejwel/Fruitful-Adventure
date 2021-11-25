@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using UnityEditor.Analytics;
 using UnityEditor.Experimental.TerrainAPI;
 using UnityEngine;
 
@@ -144,6 +145,11 @@ public class GroundCotroller : MonoBehaviour
                 PlaceCurrentObject(7, hitInfo);
                 inv.RemoveDamageTrap();
             }
+            else if (Prefab != null && Prefab.name.Equals("FenceTrapTransparent"))
+            {
+                PlaceCurrentObject(9, hitInfo);
+                inv.RemoveTrapFence();
+            }
         }
     }
 
@@ -252,6 +258,22 @@ public class GroundCotroller : MonoBehaviour
             // 7 in index of DamageTrap In Array
             case 7:
                 Prefab = inv.GetDamageTrap() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 8 in index of TrapFence In Array
+            case 8:
+                Prefab = inv.GetTrapFence() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 9 in index of TrapFence In Array
+            case 9:
+                Prefab = inv.GetTrapFence() > 0 ? placeableObjectPrefabs[number] : null;
                 if (!Prefab)
                 {
                     SetMode(ControllerMode.Play);

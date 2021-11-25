@@ -45,15 +45,16 @@ public class RingMenu : MonoBehaviour
             Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.6f);
 
             //set icon
-            Pieces[i].Icon.transform.localPosition = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength - 90, Vector3.forward) * Vector3.up * iconDist;
+            Pieces[i].Icon.transform.localPosition = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength - (360/Data.Elements.Length), Vector3.forward) * Vector3.up * iconDist;
             Pieces[i].Icon.sprite = Data.Elements[i].Icon;      
         }
     }
 
     private void Update()
     {     
-        var stepLength = 360f / Data.Elements.Length;     
-        var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - transform.position, Vector3.forward) + (stepLength + 175f) / 2f);  //Counts at what angle the cursor is 
+        var stepLength = 360f / Data.Elements.Length;
+        var formula = 180f/Data.Elements.Length;
+        var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - transform.position, Vector3.forward) + stepLength + formula);
         var activeElement = (int)(mouseAngle / stepLength);
         var path = Path + Data.Elements[activeElement].Name;     
 
@@ -74,6 +75,9 @@ public class RingMenu : MonoBehaviour
                         break;
                     case 3:
                         changeState(i, Pieces, "Shooting Turret", inv.GetShootingTurret().ToString());
+                        break;
+                    case 4:
+                        changeState(i, Pieces, "Trap Fence", inv.GetTrapFence().ToString());
                         break;
                 }
                 Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.7f); 
