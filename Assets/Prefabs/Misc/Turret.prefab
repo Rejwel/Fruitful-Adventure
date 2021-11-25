@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7317293528823294103}
   - component: {fileID: 7664387390360177035}
   - component: {fileID: 4628522919110167219}
-  m_Layer: 5
+  m_Layer: 24
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7317293528823294103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 2334235848394214216}
   - component: {fileID: 2334235848394214217}
   - component: {fileID: 2334235848394214218}
-  m_Layer: 2
+  m_Layer: 24
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 2334235848624914633}
   - component: {fileID: 2334235848624914634}
   - component: {fileID: 9069476700137831101}
-  m_Layer: 2
+  m_Layer: 24
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2334235848651705820}
-  m_Layer: 2
+  m_Layer: 24
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 2334235848864080057}
   - component: {fileID: 2809356153671813977}
   - component: {fileID: 1663844377603718768}
-  m_Layer: 2
+  m_Layer: 24
   m_Name: Turret
   m_TagString: ABC
   m_Icon: {fileID: 0}
@@ -435,8 +435,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.779523, y: 2, z: 9.9659195}
-  m_Center: {x: 0.101780415, y: 1, z: -0.485672}
+  m_Size: {x: 2.5, y: 2, z: 2.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &1663844377603718768
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -462,7 +462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2334235849235807623}
-  m_Layer: 2
+  m_Layer: 24
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 2334235850194418427}
   - component: {fileID: 2334235850194418428}
   - component: {fileID: 2334235850194418429}
-  m_Layer: 2
+  m_Layer: 24
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4955474964163776886}
-  m_Layer: 2
+  m_Layer: 24
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 474936383813935945}
   - component: {fileID: 7636817692968932684}
   - component: {fileID: 6340918197305048860}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: TurretAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7931688072856538259}
-  m_Layer: 2
+  m_Layer: 24
   m_Name: RotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

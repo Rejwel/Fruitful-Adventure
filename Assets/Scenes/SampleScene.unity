@@ -16908,6 +16908,9 @@ MonoBehaviour:
   terrain:
     serializedVersion: 2
     m_Bits: 2147487744
+  placableObjects:
+    serializedVersion: 2
+    m_Bits: 16777216
   currentPlaceableObject: {fileID: 0}
   player: {fileID: 1948208340}
   mouseWheelRotation: 0
@@ -17583,6 +17586,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1669957429}
     m_Modifications:
+    - target: {fileID: 963194227, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 24969015
+      objectReference: {fileID: 0}
     - target: {fileID: 963194229, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
       propertyPath: camera
       value: 

@@ -8,6 +8,7 @@ public class GroundCotroller : MonoBehaviour
 
     [SerializeField] private GameObject[] placeableObjectPrefabs;
     [SerializeField] private LayerMask terrain;
+    [SerializeField] private LayerMask placableObjects;
     [SerializeField] private GameObject currentPlaceableObject;
     [SerializeField] private GameObject player;
     [SerializeField] private float mouseWheelRotation;
@@ -77,7 +78,7 @@ public class GroundCotroller : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, 10f, terrain) && hitInfo.normal == Vector3.up)
+        if (!Physics.Raycast(ray, out hitInfo, 10f, placableObjects) && Physics.Raycast(ray, out hitInfo, 10f, terrain) && hitInfo.normal == Vector3.up)
         {
             currentPlaceableObject.transform.position = hitInfo.point;
             currentPlaceableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
@@ -121,7 +122,7 @@ public class GroundCotroller : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
-        if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
+        if (Input.GetMouseButtonDown(0) && !Physics.Raycast(ray, out hitInfo, 10f, placableObjects) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
             if (Prefab != null && Prefab.name.Equals("TurretTransparent"))
             {
