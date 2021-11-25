@@ -64,7 +64,7 @@ public class BuildingHealth : MonoBehaviour
     {
         foreach (var building in Buildings)
         {
-            if (building.GetComponent<BuildingReference>().Building.name == this.gameObject.name)
+            if (building.name == gameObject.name)
             {
                 return building;
             }

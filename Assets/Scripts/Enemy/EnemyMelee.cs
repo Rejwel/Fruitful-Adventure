@@ -23,28 +23,31 @@ public class EnemyMelee : MonoBehaviour
     private bool InRange;
     private bool InBuildingAttackingRange;
     private bool triggeredByPlayer = false;
+    private NavMeshPath _thisEnemyNavMeshPath;
+    private bool _pathToPlayerIsPossible;
 
-    private void Start()
+    private void Awake()
     {
+        _thisEnemyNavMeshPath = new NavMeshPath();
         Player = FindObjectOfType<HealthPlayer>().gameObject;
         EnemyRB = GetComponent<Rigidbody>();
         WhatToAttack = WaveManagerSubscriber.AttackingBuilding;
     }
-    
+
     void Update()
     {
+        _pathToPlayerIsPossible = enemy.CalculatePath(Player.transform.position, _thisEnemyNavMeshPath);
         WhatToAttack = WaveManagerSubscriber.AttackingBuilding;
         InRange = Physics.CheckSphere(transform.position, 20, whatIsPlayer);
         InBuildingAttackingRange = Physics.CheckSphere(transform.position, 6, buildingLayermask);
-
+        
         // attack building
         if (InBuildingAttackingRange && !triggeredByPlayer && WhatToAttack != null)
             AttackBuilding();
         else
             StopAttackingBuilding();
-        
-        
-        if (InRange && !IsAttacking || WhatToAttack == null)
+
+        if (_pathToPlayerIsPossible && InRange && !IsAttacking || WhatToAttack == null)
         {
             transform.LookAt(Player.transform);
             enemy.SetDestination(Player.transform.position);
@@ -57,7 +60,7 @@ public class EnemyMelee : MonoBehaviour
                 NextAttack = 0f;
             }
         
-            if (!IsAttacking && !InRange)
+            if (!IsAttacking && !InRange || InRange && !_pathToPlayerIsPossible)
             {
                 triggeredByPlayer = false;
                 enemy.SetDestination(WhatToAttack.transform.localPosition);
@@ -69,8 +72,6 @@ public class EnemyMelee : MonoBehaviour
                 BH.TakeDamage(20);
                 if (BH.currentHealth <= 0 && BH.buildingDestroyed == false)
                 {
-                    // transform.LookAt(Player.transform);
-                    // enemy.SetDestination(Player.transform.position);
                     BH.DestroyBuilding();
                 }
                 Attack = false;
@@ -83,8 +84,8 @@ public class EnemyMelee : MonoBehaviour
     
     private void AttackBuilding()
     {
-        if(WhatToAttack.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>() != null)
-            BH = WhatToAttack.GetComponent<BuildingReference>().GetBuilding().GetComponent<BuildingHealth>();
+        if(WhatToAttack.GetComponent<BuildingHealth>() != null)
+            BH = WhatToAttack.GetComponent<BuildingHealth>();
         IsAttacking = true;
         enemy.isStopped = true;
         EnemyRB.constraints = RigidbodyConstraints.FreezeAll;

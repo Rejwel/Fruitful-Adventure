@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 746936031}
   - component: {fileID: 746936030}
   - component: {fileID: 746936032}
+  - component: {fileID: 8632510548202692859}
   m_Layer: 0
   m_Name: garage
   m_TagString: TurretDetecting
@@ -681,6 +682,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Building: Garage
+--- !u!135 &8632510548202692859
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294943026723114262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4675226294103803520
 GameObject:
   m_ObjectHideFlags: 0

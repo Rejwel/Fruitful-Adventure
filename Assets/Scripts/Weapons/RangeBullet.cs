@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 
 public class RangeBullet: MonoBehaviour
@@ -23,7 +24,7 @@ public class RangeBullet: MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (WaveManagerSubscriber.AttackingBuilding != null && other.gameObject.layer == 19 && other.transform.parent.gameObject.Equals(WaveManagerSubscriber.AttackingBuilding.GetComponent<BuildingReference>().Building))
+        if (WaveManagerSubscriber.AttackingBuilding != null && other.gameObject.layer == 19 && other.transform.parent.gameObject.Equals(WaveManagerSubscriber.AttackingBuilding))
         {
             BH = other.gameObject.GetComponentInParent<BuildingHealth>();
             BH.TakeDamage(35);
