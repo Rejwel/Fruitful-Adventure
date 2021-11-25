@@ -37,6 +37,10 @@ public class Inventory : MonoBehaviour
    {
       bulletAmmount = new int[] {999999, GunContainer.guns[1].GetMagazine(), GunContainer.guns[2].GetMagazine(), GunContainer.guns[3].GetMagazine()};
       currentGuns.Add(GunContainer.GetGun(0));
+
+      SlowTrapAmmount = 2;
+      DetectingTurretAmmount = 2;
+      
       doubleJump = false;
       dash = false;
       shield = false;
