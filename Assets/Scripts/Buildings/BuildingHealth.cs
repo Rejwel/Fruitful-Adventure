@@ -37,6 +37,11 @@ public class BuildingHealth : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         _healthBarMap.SetHealth(currentHealth);
     }
+
+    public int GetHealth()
+    {
+        return currentHealth;
+    }
     
     private GameObject [] GetSceneObjects(int layer)
     {
