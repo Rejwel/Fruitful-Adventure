@@ -16,7 +16,7 @@ public class TBullet : MonoBehaviour
         target = _target;
     }
 
-    private void Start()
+    private void Awake()
     {
         explosion = FindObjectOfType<Explosion>();
         WaveManager = FindObjectOfType<WaveManagerSubscriber>();
@@ -57,12 +57,22 @@ public class TBullet : MonoBehaviour
             if (enemy.GetHealth() <= 0  && enemy != null)
             {
                 hit.GetComponent<Collider>().enabled = false;
-                Transform EnemyTransform = enemy.transform;
-                explosion.explode(EnemyTransform);
+                StartCoroutine(ExplodeEnemy(hit));
                 WaveManager.UpdateEnemyCounter();
                 enemy.Die();
             }
             Destroy(gameObject);
         }
+    }
+    
+    IEnumerator ExplodeEnemy(Collider hit)
+    {
+        Explosion explosion = hit.GetComponent<Explosion>();
+        EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
+        Transform EnemyTransform = enemy.transform;
+        hit.GetComponent<Collider>().enabled = false;
+        if(explosion != null)
+            explosion.explode(EnemyTransform);
+        yield return null;
     }
 }

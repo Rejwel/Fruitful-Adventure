@@ -26,7 +26,7 @@ public class BulletMechanics : MonoBehaviour
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.tag.Equals("Enemy"))
+        if (hit.CompareTag("Enemy"))
         {
             if(hit.GetComponent<EnemyMelee>() != null) hit.GetComponent<EnemyMelee>().StartAttackingPlayer();
             EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
@@ -39,6 +39,28 @@ public class BulletMechanics : MonoBehaviour
                 StartCoroutine(ExplodeEnemy(hit));
                 WaveManager.UpdateEnemyCounter();
                 enemy.Die();
+            }
+            Destroy(gameObject);
+        } 
+        /*else if ()
+        {
+            Debug.Log("Fence!");
+        }*/
+        
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Fence"))
+        {
+            BuildingHealth fence = other.gameObject.GetComponent<BuildingHealth>();
+            gun = player.GetCurrentGun();
+            fence.TakeDamage(gun.GetDamage());
+
+            if (fence.GetHealth() <= 0 && fence != null)
+            {
+                other.gameObject.GetComponent<Collider>().enabled = false;
+                fence.DestroyBuilding();
             }
             Destroy(gameObject);
         }

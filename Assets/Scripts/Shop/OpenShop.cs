@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,6 @@ public class OpenShop : MonoBehaviour
     private bool inShop = false;
     public GameObject inGameGui;
     public GameObject shopGui;
-    public GameObject player;
     public GameObject text;
     public TextMeshProUGUI currentMoney;
     private Money money;
@@ -18,8 +18,12 @@ public class OpenShop : MonoBehaviour
     public HealthBarScript healthBarMenu;   
     private HealthPlayer playerHealth;
     
-    public Transform PlayerTransform;
-    private Transform TempPlayerTransform;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private MouseLook mouseLook;
+    [SerializeField] private CharacterController playerController;
+    [SerializeField] private GameObject player;
+    private Transform savedPlayerTransform;
+    
     
     public GameObject FocusPoint;
     public GameObject StandingPoint;
@@ -29,9 +33,10 @@ public class OpenShop : MonoBehaviour
 
     private GroundCotroller mode;
 
-    private void Start()
+    private void Awake()
     {
-        TempPlayerTransform = PlayerTransform.transform;
+        mouseLook = cameraTransform.GetComponent<MouseLook>();
+        playerController = FindObjectOfType<CharacterController>();
         money = FindObjectOfType<Money>();
         playerHealth = FindObjectOfType<HealthPlayer>();
         mode = FindObjectOfType<GroundCotroller>();
@@ -56,7 +61,9 @@ public class OpenShop : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Escape))
         {
-            PlayerTransform.GetComponentInParent<CharacterController>().enabled = true;
+            playerController.enabled = true;
+            mouseLook.CancelLookingAtObject();
+
             inShop = false;
             closeShop();
             player.GetComponent<PlayerShoot>().HoldFire = false;
@@ -75,15 +82,13 @@ public class OpenShop : MonoBehaviour
 
     void FocusCamera()
     {
-        PlayerTransform.GetComponentInParent<CharacterController>().enabled = false;
-        PlayerTransform.transform.rotation = Quaternion.Lerp(PlayerTransform.transform.rotation, FocusPoint.transform.rotation, 3f * Time.deltaTime);
-        PlayerTransform.position = Vector3.Lerp(PlayerTransform.position, StandingPoint.transform.position, 3f * Time.deltaTime);
+        playerController.GetComponent<CharacterController>().enabled = false;
+        mouseLook.LookAtObject(FocusPoint);
+        player.transform.position = Vector3.Lerp(player.transform.position, StandingPoint.transform.position, 3f * Time.deltaTime);
     }
 
     void openShop()
     {
-        // Time.timeScale = 0f;
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         text.SetActive(false);

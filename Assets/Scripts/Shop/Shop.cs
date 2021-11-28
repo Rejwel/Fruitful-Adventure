@@ -9,13 +9,13 @@ public class Shop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("PlayerMovement"))
+        if(other.CompareTag("Player"))
             openShop.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("PlayerMovement"))
+        if(other.CompareTag("Player"))
             openShop.SetActive(false);
     }
 }

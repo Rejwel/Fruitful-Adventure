@@ -48,18 +48,19 @@ public class PlayerShoot : MonoBehaviour
     private TextMeshProUGUI  currentGunText;
     private TextMeshProUGUI currentAmmoText;
     private TextMeshProUGUI  currentStashAmmoText;
-
+    
     private void Start()
     {
+        inventory = GetComponent<Inventory>();
+        SetStartingAmmo();
+        
         HoldFire = false;
         originalRotationOfFirepoint = firePoint.transform.localEulerAngles;
         firstEmptyBullet = true;
-        inventory = FindObjectOfType<Inventory>();
         currentStashAmmoText = GameObject.Find("StashAmmo").GetComponent<TextMeshProUGUI>();
         currentGunText = GameObject.Find("CurrentGunText").GetComponent<TextMeshProUGUI>();
         currentAmmoText = GameObject.Find("Magazine").GetComponent<TextMeshProUGUI>();
-        SetStartingAmmo();
-        
+
         currentGun = inventory.currentGuns[0];
         currentGunIndex = currentGun.GetId();
         ChangeGun(currentGun);

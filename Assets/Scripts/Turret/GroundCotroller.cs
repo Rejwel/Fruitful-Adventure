@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using UnityEditor.Analytics;
 using UnityEditor.Experimental.TerrainAPI;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class GroundCotroller : MonoBehaviour
 
     [SerializeField] private GameObject[] placeableObjectPrefabs;
     [SerializeField] private LayerMask terrain;
+    [SerializeField] private LayerMask placableObjects;
     [SerializeField] private GameObject currentPlaceableObject;
     [SerializeField] private GameObject player;
     [SerializeField] private float mouseWheelRotation;
@@ -77,7 +79,7 @@ public class GroundCotroller : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, 10f, terrain) && hitInfo.normal == Vector3.up)
+        if (!Physics.Raycast(ray, out hitInfo, 10f, placableObjects) && Physics.Raycast(ray, out hitInfo, 10f, terrain) && hitInfo.normal == Vector3.up)
         {
             currentPlaceableObject.transform.position = hitInfo.point;
             currentPlaceableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
@@ -121,7 +123,7 @@ public class GroundCotroller : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
-        if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
+        if (Input.GetMouseButtonDown(0) && !Physics.Raycast(ray, out hitInfo, 10f, placableObjects) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
         {
             if (Prefab != null && Prefab.name.Equals("TurretTransparent"))
             {
@@ -132,6 +134,21 @@ public class GroundCotroller : MonoBehaviour
             {
                 PlaceCurrentObject(1, hitInfo);
                 inv.RemoveDetectingTurret();
+            }
+            else if (Prefab != null && Prefab.name.Equals("SlowTrapTransparent"))
+            {
+                PlaceCurrentObject(5, hitInfo);
+                inv.RemoveSlowTrap();
+            }
+            else if (Prefab != null && Prefab.name.Equals("DamageTrapTransparent"))
+            {
+                PlaceCurrentObject(7, hitInfo);
+                inv.RemoveDamageTrap();
+            }
+            else if (Prefab != null && Prefab.name.Equals("FenceTrapTransparent"))
+            {
+                PlaceCurrentObject(9, hitInfo);
+                inv.RemoveTrapFence();
             }
         }
     }
@@ -209,6 +226,54 @@ public class GroundCotroller : MonoBehaviour
             // 3 in index of turretDetectingTransparent In Array
             case 3:
                 Prefab = inv.GetDetectingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 4 in index of SlowTrapTransparent In Array
+            case 4:
+                Prefab = inv.GetSlowTrap() > 0 ? placeableObjectPrefabs[number] : null;
+                if(!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 5 in index of SlowTrap In Array
+            case 5:
+                Prefab = inv.GetSlowTrap() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 6 in index of DamageTrapTransparent In Array
+            case 6:
+                Prefab = inv.GetDamageTrap() > 0 ? placeableObjectPrefabs[number] : null;
+                if(!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 7 in index of DamageTrap In Array
+            case 7:
+                Prefab = inv.GetDamageTrap() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 8 in index of TrapFence In Array
+            case 8:
+                Prefab = inv.GetTrapFence() > 0 ? placeableObjectPrefabs[number] : null;
+                if (!Prefab)
+                {
+                    SetMode(ControllerMode.Play);
+                }
+                break;
+            // 9 in index of TrapFence In Array
+            case 9:
+                Prefab = inv.GetTrapFence() > 0 ? placeableObjectPrefabs[number] : null;
                 if (!Prefab)
                 {
                     SetMode(ControllerMode.Play);

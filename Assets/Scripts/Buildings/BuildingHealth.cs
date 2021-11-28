@@ -12,6 +12,7 @@ public class BuildingHealth : MonoBehaviour
     public int MaxHealth;
     public int currentHealth;
     public HealthBarScript healthBar;
+    [SerializeField] private HealthBarScript _healthBarMap;
     public static LayerMask BuildingLayerMask;
     private WaveManagerSubscriber WaveManager;
 
@@ -27,12 +28,19 @@ public class BuildingHealth : MonoBehaviour
         InitColliders();
         currentHealth = MaxHealth;
         healthBar.SetMaxHealth(MaxHealth);
+        _healthBarMap.SetMaxHealth(MaxHealth);
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        _healthBarMap.SetHealth(currentHealth);
+    }
+
+    public int GetHealth()
+    {
+        return currentHealth;
     }
     
     private GameObject [] GetSceneObjects(int layer)
@@ -61,7 +69,7 @@ public class BuildingHealth : MonoBehaviour
     {
         foreach (var building in Buildings)
         {
-            if (building.GetComponent<BuildingReference>().Building.name == this.gameObject.name)
+            if (building.name == gameObject.name)
             {
                 return building;
             }
