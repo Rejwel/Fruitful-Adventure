@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7537063421246608970}
   - component: {fileID: 5727998691939082880}
   - component: {fileID: 8599817106277648396}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FenceTrapTransparent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ MeshCollider:
   m_GameObject: {fileID: 6088035493268800341}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30

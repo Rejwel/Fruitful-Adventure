@@ -9,7 +9,7 @@ public class SlowTrap : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy")  && other.GetComponent<NavMeshAgent>() != null)
+        if (other.CompareTag("Enemy")  && other.GetComponent<NavMeshAgent>() != null && other.GetComponent<NavMeshAgent>().speed > 0)
         {
             other.GetComponent<NavMeshAgent>().speed -= 2;
         }

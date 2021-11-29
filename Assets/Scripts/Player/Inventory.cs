@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
    // pistol ammo, shotgun ammo, rifle ammo, minigun ammo
    public int[] bulletAmmount;
    private uint GrenadesAmmount = 0;
-   private uint ShootingTurretAmmount = 0;
+   private uint ShootingTurretAmmount = 4;
    private uint DetectingTurretAmmount = 0;
    private uint SlowTrapAmmount = 0;
    private uint DamageTrapAmmount = 0;

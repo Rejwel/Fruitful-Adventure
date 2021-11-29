@@ -1,24 +1,23 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Serialization;
 
-public class TBullet : MonoBehaviour
+public class SlowingBullet : MonoBehaviour
 {
     private Transform target;
-    private Explosion explosion;
-    
+
     private WaveManagerSubscriber WaveManager;
 
-    public GameObject impactEfect;
-    [SerializeField] private float speed = 60f;
+    public GameObject impactSlowingEfect;
+    [SerializeField] private float speed = 40f;
     public void Seek (Transform _target){
         target = _target;
     }
 
     private void Awake()
     {
-        explosion = FindObjectOfType<Explosion>();
         WaveManager = FindObjectOfType<WaveManagerSubscriber>();
     }
 
@@ -42,26 +41,16 @@ public class TBullet : MonoBehaviour
 
     void HitTarget()
     {
-        GameObject effectIns = Instantiate(impactEfect, transform.position,transform.rotation);
+        GameObject effectIns = Instantiate(impactSlowingEfect, transform.position,transform.rotation);
         Destroy(effectIns,1.5f);
         Destroy(gameObject);
     }
     
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.tag.Equals("Enemy"))
+        if (hit.CompareTag("Enemy") && hit.GetComponent<NavMeshAgent>() != null)
         {
-            EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
-            enemy.TakeDamage(20);
-            HitTarget();
-            if (enemy.GetHealth() <= 0  && enemy != null)
-            {
-                hit.GetComponent<Collider>().enabled = false;
-                StartCoroutine(ExplodeEnemy(hit));
-                WaveManager.UpdateEnemyCounter();
-                enemy.Die();
-            }
-            Destroy(gameObject);
+            //work in progress
         }
     }
     
