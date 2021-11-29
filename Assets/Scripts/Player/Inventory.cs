@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
    public int[] bulletAmmount;
    private uint GrenadesAmmount = 0;
    private uint ShootingTurretAmmount = 4;
-   private uint DetectingTurretAmmount = 0;
+   private uint _slowingTurretAmmout = 0;
    private uint SlowTrapAmmount = 0;
    private uint DamageTrapAmmount = 0;
    private uint TrapFence = 0;
@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
    {
       GameObjDictionary = new Dictionary<string, uint>();
       GameObjDictionary.Add("Turret", ShootingTurretAmmount);
-      GameObjDictionary.Add("TurretDetecting", DetectingTurretAmmount);
+      GameObjDictionary.Add("TurretSlowing", _slowingTurretAmmout);
       GameObjDictionary.Add("SlowTrap", SlowTrapAmmount);
       GameObjDictionary.Add("DamageTrap", DamageTrapAmmount);
       GameObjDictionary.Add("TrapFence", TrapFence);
@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour
 
       TrapFence = 2;
       SlowTrapAmmount = 2;
-      DetectingTurretAmmount = 2;
+      _slowingTurretAmmout = 2;
       
       doubleJump = false;
       dash = false;
@@ -130,22 +130,22 @@ public class Inventory : MonoBehaviour
       }
    }
    
-   public uint GetDetectingTurret()
+   public uint GetSlowingTurret()
    {
-      return DetectingTurretAmmount;
+      return _slowingTurretAmmout;
    }
-   public void AddDetectingTurret()
+   public void AddSlowingTurret()
    {
-      DetectingTurretAmmount++;
-      GameObjDictionary["TurretDetecting"] = DetectingTurretAmmount;
+      _slowingTurretAmmout++;
+      GameObjDictionary["TurretSlowing"] = _slowingTurretAmmout;
    }
    
-   public void RemoveDetectingTurret()
+   public void RemoveSlowingTurret()
    {
-      if (DetectingTurretAmmount > 0)
+      if (_slowingTurretAmmout > 0)
       {
-         DetectingTurretAmmount--;
-         GameObjDictionary["TurretDetecting"] = DetectingTurretAmmount;
+         _slowingTurretAmmout--;
+         GameObjDictionary["TurretSlowing"] = _slowingTurretAmmout;
       }
          
    }

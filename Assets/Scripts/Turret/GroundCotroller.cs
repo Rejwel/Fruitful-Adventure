@@ -133,7 +133,7 @@ public class GroundCotroller : MonoBehaviour
             else if (Prefab != null && Prefab.name.Equals("SlowingTurretTransparent"))
             {
                 PlaceCurrentObject(1, hitInfo);
-                inv.RemoveDetectingTurret();
+                inv.RemoveSlowingTurret();
             }
             else if (Prefab != null && Prefab.name.Equals("SlowTrapTransparent"))
             {
@@ -207,9 +207,9 @@ public class GroundCotroller : MonoBehaviour
                     SetMode(ControllerMode.Play);
                 }
                 break;
-            // 1 in index of turretDetecting InArray
+            // 1 in index of turretSlowing InArray
             case 1:
-                Prefab = inv.GetDetectingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                Prefab = inv.GetSlowingTurret() > 0 ? placeableObjectPrefabs[number] : null;
                 if (!Prefab)
                 {
                     SetMode(ControllerMode.Play);
@@ -225,7 +225,7 @@ public class GroundCotroller : MonoBehaviour
                 break;
             // 3 in index of turretDetectingTransparent In Array
             case 3:
-                Prefab = inv.GetDetectingTurret() > 0 ? placeableObjectPrefabs[number] : null;
+                Prefab = inv.GetSlowingTurret() > 0 ? placeableObjectPrefabs[number] : null;
                 if (!Prefab)
                 {
                     SetMode(ControllerMode.Play);

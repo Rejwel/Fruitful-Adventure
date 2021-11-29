@@ -3018,6 +3018,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6532267307625641575}
   - component: {fileID: 3540694338521653176}
+  - component: {fileID: -6397539287456745638}
   m_Layer: 24
   m_Name: Turret
   m_TagString: Untagged
@@ -3066,6 +3067,19 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 6172080525264823966}
   money: {fileID: 0}
+--- !u!65 &-6397539287456745638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903258333109562589}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5465229, y: 1.7388787, z: 1}
+  m_Center: {x: 0.0012261689, y: 0.79315656, z: -2.590737e-11}
 --- !u!1 &5931688377524527779
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ public class RingMenu : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        changeState(i, Pieces, "Detecting Turret", inv.GetDetectingTurret().ToString());
+                        changeState(i, Pieces, "Detecting Turret", inv.GetSlowingTurret().ToString());
                         break;
                     case 1:
                         changeState(i, Pieces, "Damage Trap", inv.GetDamageTrap().ToString());

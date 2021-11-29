@@ -4329,6 +4329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8674139609358174401}
   - component: {fileID: 7324246585471325629}
+  - component: {fileID: 4256697215100531518}
   m_Layer: 24
   m_Name: SlowingTurret
   m_TagString: Untagged
@@ -4377,6 +4378,19 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 4975466765971176493}
   money: {fileID: 0}
+--- !u!65 &4256697215100531518
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298846211352351355}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5465229, y: 1.7388787, z: 1}
+  m_Center: {x: 0.0012261689, y: 0.79315656, z: -2.590737e-11}
 --- !u!1 &8336711249427490958
 GameObject:
   m_ObjectHideFlags: 0

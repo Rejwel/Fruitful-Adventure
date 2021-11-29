@@ -36,7 +36,7 @@ public class ShopGui : MonoBehaviour
     private TextMeshProUGUI currMinigunAmmo;
     private TextMeshProUGUI currGrenades;
     private TextMeshProUGUI currShootingTurrets;
-    private TextMeshProUGUI currDetectingTurrets;
+    private TextMeshProUGUI currSlowingTurrets;
     private ColorBlock GreenColorDisabled;
 
     private GameObject dash;
@@ -64,7 +64,7 @@ public class ShopGui : MonoBehaviour
         
         currGrenades = GameObject.Find("CurrGrenades").GetComponent<TextMeshProUGUI>();
         currShootingTurrets = GameObject.Find("CurrShootingTurrets").GetComponent<TextMeshProUGUI>();
-        currDetectingTurrets = GameObject.Find("CurrDetectingTurrets").GetComponent<TextMeshProUGUI>();
+        currSlowingTurrets = GameObject.Find("CurrSlowingTurrets").GetComponent<TextMeshProUGUI>();
 
         dash = GameObject.Find("BuyDash");
         dJump = GameObject.Find("BuyDoubleJump");
@@ -127,7 +127,7 @@ public class ShopGui : MonoBehaviour
         currMoney.text = $"= {money.CurrentMoney}";
         currGrenades.text = $"(75) Grenade {inv.GetGrenades()}";
         currShootingTurrets.text = $"(75) Turret {inv.GetShootingTurret()}";
-        currDetectingTurrets.text = $"(50) Detecting Turret {inv.GetDetectingTurret()}";
+        currSlowingTurrets.text = $"(50) Slowing Turret {inv.GetSlowingTurret()}";
         
 
         if(inv.bulletAmmount[1] > 10000)
@@ -225,7 +225,7 @@ public class ShopGui : MonoBehaviour
         if (money.CurrentMoney >= DetectingTurretPrice)
         {
             money.CurrentMoney -= DetectingTurretPrice;
-            inv.AddDetectingTurret();
+            inv.AddSlowingTurret();
         }
     }
     
