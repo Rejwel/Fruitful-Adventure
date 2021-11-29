@@ -11,7 +11,7 @@ public class TBullet : MonoBehaviour
     private WaveManagerSubscriber WaveManager;
 
     public GameObject impactEfect;
-    [SerializeField] private float speed = 60f;
+    [SerializeField] private float speed = 50f;
     public void Seek (Transform _target){
         target = _target;
     }
