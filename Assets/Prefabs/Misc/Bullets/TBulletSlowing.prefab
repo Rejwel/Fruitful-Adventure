@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 1468490633961862146}
   - component: {fileID: 5379143004303622748}
   - component: {fileID: 7130402614064863198}
-  - component: {fileID: -1822543697851247294}
   - component: {fileID: -8547026943660405019}
+  - component: {fileID: 4331312116558286261}
+  - component: {fileID: 1304276518697770966}
   m_Layer: 15
-  m_Name: TBullet
+  m_Name: TBulletSlowing
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0f61f426bb58fc14695698c653faa75f, type: 2}
+  - {fileID: 2100000, guid: cf506443fe81e774ab759ef3e1cebd2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,21 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-1822543697851247294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241270803229334794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40233bbf854ced942b574785d1f0dcc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactEfect: {fileID: 3469111594310983775, guid: 026640530e14e6f4c9e6eecf591862d2,
-    type: 3}
-  speed: 50
 --- !u!135 &-8547026943660405019
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -111,3 +97,32 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.49999997
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4331312116558286261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241270803229334794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96617eb2f22464a40beafc1408cbba54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactSlowingEfect: {fileID: 0}
+  speed: 40
+--- !u!114 &1304276518697770966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241270803229334794}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40233bbf854ced942b574785d1f0dcc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactEfect: {fileID: 3469111594310983775, guid: 4d576978a1517fb47a5d956e640c32f1,
+    type: 3}
+  speed: 60

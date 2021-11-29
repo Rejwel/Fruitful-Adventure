@@ -103,7 +103,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3158980375516513155}
   m_LocalRotation: {x: 0.00058617117, y: -0.7071066, z: 0.00053691526, w: 0.7071066}
-  m_LocalPosition: {x: 0, y: 0, z: 2.242}
+  m_LocalPosition: {x: 0, y: 0, z: 0.03}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.1}
   m_Children:
   - {fileID: 4057459536653348258}
@@ -278,7 +278,6 @@ GameObject:
   - component: {fileID: 3174689601955384012}
   - component: {fileID: 7504443950952601684}
   - component: {fileID: 3984237691075361780}
-  - component: {fileID: 3466525437688314854}
   m_Layer: 24
   m_Name: FenceTrap
   m_TagString: Fence
@@ -294,7 +293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5822204221768311055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1500976, y: 0, z: 2.6659086}
+  m_LocalPosition: {x: 2.1500976, y: 0, z: 4.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4023032872619564416}
@@ -309,7 +308,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5822204221768311055}
-  m_Mesh: {fileID: -1248493575886784827, guid: 00ea51b72f71c014684aac1f51c92e08, type: 3}
+  m_Mesh: {fileID: 3027789279775803906, guid: 2be4e6ef2437bf1488049945e0e8c32a, type: 3}
 --- !u!23 &5461849936589488346
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -364,7 +363,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -1248493575886784827, guid: 00ea51b72f71c014684aac1f51c92e08, type: 3}
+  m_Mesh: {fileID: 3027789279775803906, guid: 2be4e6ef2437bf1488049945e0e8c32a, type: 3}
 --- !u!65 &3174689601955384012
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -406,22 +405,8 @@ MonoBehaviour:
   currentHealth: 150
   healthBar: {fileID: 8291573659386328813}
   _healthBarMap: {fileID: 8291573659386328813}
-  BrokenBuilding: {fileID: 0}
---- !u!114 &3466525437688314854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5822204221768311055}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4343971245533874f90cdbaa199ce10d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 150
-  healthBar: {fileID: 8291573659386328813}
-  Money: {fileID: 8232618329337579605, guid: bfffc6ff1fda0554e9116830a5e64295, type: 3}
+  BrokenBuilding: {fileID: 1807002864171977235, guid: 5cd6bcb1756cef84aaa5df31a5dff6d5,
+    type: 3}
 --- !u!1 &6445929607814816845
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,7 +566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6908751503655522323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.004, y: 0.768, z: 2.205}
+  m_LocalPosition: {x: -0.004, y: 0.768, z: -0.019}
   m_LocalScale: {x: 0.1, y: 1.5, z: 4.5}
   m_Children: []
   m_Father: {fileID: 6595327353905740725}

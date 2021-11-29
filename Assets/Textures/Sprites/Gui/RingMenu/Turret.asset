@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Turret
   m_EditorClassIdentifier: 
   Name: 2
-  Icon: {fileID: 21300000, guid: 72282741919c4c34c951499952b93c07, type: 3}
+  Icon: {fileID: 21300000, guid: adbb201a7e285b44d8f2006a2fe95a45, type: 3}

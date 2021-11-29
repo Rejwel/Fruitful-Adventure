@@ -130,7 +130,7 @@ public class GroundCotroller : MonoBehaviour
                 PlaceCurrentObject(0, hitInfo);
                 inv.RemoveShootingTurret();
             }
-            else if (Prefab != null && Prefab.name.Equals("TurretDetectingTransparent"))
+            else if (Prefab != null && Prefab.name.Equals("SlowingTurretTransparent"))
             {
                 PlaceCurrentObject(1, hitInfo);
                 inv.RemoveDetectingTurret();
