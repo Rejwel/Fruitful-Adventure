@@ -18,7 +18,7 @@ TagManager:
   - Warning Cavas
   - Grenade
   - TurretAmmo
-  - Fence
+  - DefendingStructure
   layers:
   - Default
   - TransparentFX

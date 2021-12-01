@@ -277,10 +277,10 @@ GameObject:
   - component: {fileID: 8352246541205350998}
   - component: {fileID: 3174689601955384012}
   - component: {fileID: 7504443950952601684}
-  - component: {fileID: 3984237691075361780}
+  - component: {fileID: 1250099791721952077}
   m_Layer: 24
   m_Name: FenceTrap
-  m_TagString: Fence
+  m_TagString: DefendingStructure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -375,8 +375,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.30004406, y: 1.5268031, z: 4.3999963}
-  m_Center: {x: 0.0058135986, y: 0.7483397, z: 2.1999981}
+  m_Size: {x: 0.30004406, y: 1.5268031, z: 2.273693}
+  m_Center: {x: 0.0058135986, y: 0.7483397, z: 1.1368465}
 --- !u!114 &7504443950952601684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a18e255742bca4d958128d89e88614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3984237691075361780
+--- !u!114 &1250099791721952077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -398,14 +398,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5822204221768311055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9385b3e18b490a448ab4b67e1a9dcff8, type: 3}
+  m_Script: {fileID: 11500000, guid: 552000aad4a93b44da4c27a3525e455a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 150
+  maxHealth: 150
   currentHealth: 150
   healthBar: {fileID: 8291573659386328813}
-  _healthBarMap: {fileID: 8291573659386328813}
-  BrokenBuilding: {fileID: 1807002864171977235, guid: 5cd6bcb1756cef84aaa5df31a5dff6d5,
+  healthBarMap: {fileID: 8291573659386328813}
+  brokenStructure: {fileID: 1807002864171977235, guid: 5cd6bcb1756cef84aaa5df31a5dff6d5,
     type: 3}
 --- !u!1 &6445929607814816845
 GameObject:

@@ -42,28 +42,7 @@ public class BulletMechanics : MonoBehaviour
             }
             Destroy(gameObject);
         } 
-        /*else if ()
-        {
-            Debug.Log("Fence!");
-        }*/
-        
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Fence"))
-        {
-            BuildingHealth fence = other.gameObject.GetComponent<BuildingHealth>();
-            gun = player.GetCurrentGun();
-            fence.TakeDamage(gun.GetDamage());
-
-            if (fence.GetHealth() <= 0 && fence != null)
-            {
-                other.gameObject.GetComponent<Collider>().enabled = false;
-                fence.DestroyBuilding();
-            }
-            Destroy(gameObject);
-        }
+       
     }
 
     IEnumerator ExplodeEnemy(Collider hit)
