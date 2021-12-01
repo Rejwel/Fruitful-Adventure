@@ -10,6 +10,7 @@ public class EnemyRanged : MonoBehaviour
     //Following 
     public NavMeshAgent agent;
     private GameObject Player;
+    private GameObject DefendingStructure;
     private Rigidbody enemyRb;
     private Quaternion rotation;
     
@@ -26,9 +27,11 @@ public class EnemyRanged : MonoBehaviour
     //Distance from Player
     private CharacterController PlayerTransform;
     private bool InRange;
+    private bool InDefendingStructureRange;
     private bool IsAttacking;
     public LayerMask PlayerLayer;
     public LayerMask BuildingLayer;
+    public LayerMask DefendingStructureLayer;
     private bool InShortRange;
     private bool InLongRange;
     private bool InCenterRange;
@@ -46,20 +49,50 @@ public class EnemyRanged : MonoBehaviour
 
     void Update()
     {
-        //print(WhatToAttack);
-        
-        WhatToAttack = WaveManagerSubscriber.AttackingBuilding;
-        
-        InRange = Physics.CheckSphere(transform.position, 20, PlayerLayer);
+        SphereCheckers();
 
         if (InRange || WhatToAttack == null)
         {
             Attack(Player, PlayerLayer);
         }
+        else if (DefendingStructure != null)
+        {
+            Attack(DefendingStructure, DefendingStructureLayer);
+        }
         else if (WhatToAttack != null)
         {
             Attack(WhatToAttack, BuildingLayer);
         }
+    }
+
+    private void SphereCheckers()
+    {
+        WhatToAttack = WaveManagerSubscriber.AttackingBuilding;
+        InRange = Physics.CheckSphere(transform.position, 20, PlayerLayer);
+        InDefendingStructureRange = Physics.CheckSphere(transform.position, 20, DefendingStructureLayer);
+        if (InDefendingStructureRange)
+        {
+            DefendingStructure = FindClosestDefendingStructure();
+        }
+    }
+    
+    private GameObject FindClosestDefendingStructure()
+    {
+        List<GameObject> defStructures = Player.GetComponent<Inventory>().getDefendingStructures();
+        float distance = float.MaxValue;
+        GameObject attackingStructure = null;
+        if (defStructures.Count > 0)
+        {
+            foreach (var structure in defStructures)
+            {
+                if ((structure.transform.position - agent.transform.position).magnitude < distance)
+                {
+                    distance = (structure.transform.position - agent.transform.position).magnitude;
+                    attackingStructure = structure;
+                }
+            }
+        }
+        return attackingStructure;
     }
 
     void Attack(GameObject AttackingObject, LayerMask AttackingObjectLayer)
