@@ -5,46 +5,38 @@ using UnityEngine;
 
 public class TBullet : MonoBehaviour
 {
-    private Transform target;
-    private Explosion explosion;
-    
+    private Transform _target;
     private WaveManagerSubscriber WaveManager;
 
-    public GameObject impactEfect;
+    //public GameObject impactEfect;    //odblokuje się kiedy będziemy mieli efekt trafienia pocisku ^^
     [SerializeField] private float speed = 50f;
-    public void Seek (Transform _target){
-        target = _target;
-    }
-
     private void Awake()
     {
-        explosion = FindObjectOfType<Explosion>();
         WaveManager = FindObjectOfType<WaveManagerSubscriber>();
     }
 
     void Update()
     {
-        if(target == null){
+        if(_target == null){
             Destroy(gameObject);
             return;
         }
 
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = _target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
-
-        // if(dir.magnitude <= distanceThisFrame){
-        //     //HitTarget();
-        //     return;
-        // }
+        
         transform.Translate (dir.normalized * distanceThisFrame, Space.World);
-
     }
 
-    void HitTarget()
+    /*void HitTarget()  
     {
         GameObject effectIns = Instantiate(impactEfect, transform.position,transform.rotation);
         Destroy(effectIns,1.5f);
         Destroy(gameObject);
+    }*/
+    
+    public void Seek (Transform _target){
+        this._target = _target;
     }
     
     private void OnTriggerEnter(Collider hit)
@@ -53,7 +45,7 @@ public class TBullet : MonoBehaviour
         {
             EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
             enemy.TakeDamage(20);
-            HitTarget();
+            //HitTarget();
             if (enemy.GetHealth() <= 0  && enemy != null)
             {
                 hit.GetComponent<Collider>().enabled = false;
