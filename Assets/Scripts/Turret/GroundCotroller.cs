@@ -82,7 +82,7 @@ public class GroundCotroller : MonoBehaviour
         if (!Physics.Raycast(ray, out hitInfo, 10f, placableObjects) && Physics.Raycast(ray, out hitInfo, 10f, terrain) && hitInfo.normal == Vector3.up)
         {
             currentPlaceableObject.transform.position = hitInfo.point;
-            currentPlaceableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            currentPlaceableObject.transform.rotation = player.transform.rotation;
         }
         else
         {
