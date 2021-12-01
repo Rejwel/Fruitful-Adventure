@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,14 @@ public class DefendingDestroyable : MonoBehaviour
     [SerializeField] private HealthBarScript healthBar;
     [SerializeField] private HealthBarScript healthBarMap;
     [SerializeField] private GameObject brokenStructure;
-    
+    [SerializeField] private Inventory playerInventory;
+
+
+    private void Awake()
+    {
+        playerInventory = FindObjectOfType<Inventory>();
+    }
+
     void Start()
     {
         InitColliders();
@@ -33,6 +41,7 @@ public class DefendingDestroyable : MonoBehaviour
     public void DestroyStructure()
     {
         Destroy(gameObject);
+        playerInventory.defendingStructures.Remove(gameObject);
         Instantiate(brokenStructure, transform.position, transform.rotation);
     }
     

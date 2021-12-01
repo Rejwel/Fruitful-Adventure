@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7537063421246608970}
   - component: {fileID: 5727998691939082880}
   - component: {fileID: 8599817106277648396}
-  m_Layer: 2
+  m_Layer: 25
   m_Name: FenceTrapTransparent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
