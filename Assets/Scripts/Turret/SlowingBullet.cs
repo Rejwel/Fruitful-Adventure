@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,15 +46,18 @@ public class SlowingBullet : MonoBehaviour
         Destroy(effectIns,1.5f);
         Destroy(gameObject);
     }
-    
-    private void OnTriggerEnter(Collider hit)
+
+    private void OnCollisionEnter(Collision other)
     {
-        if (hit.CompareTag("Enemy") && hit.GetComponent<NavMeshAgent>() != null)
+        var enemy = other.gameObject.GetComponent<EnemyMechanics>();
+        /*float counter = 1;
+        float end = 5;*/
+        /*if (other.gameObject.CompareTag("Enemy"))
         {
-            //work in progress
-        }
+            enemy.SetSpeed(3);
+        }*/
     }
-    
+
     IEnumerator ExplodeEnemy(Collider hit)
     {
         Explosion explosion = hit.GetComponent<Explosion>();

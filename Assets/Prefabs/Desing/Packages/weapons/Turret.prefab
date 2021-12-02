@@ -3021,7 +3021,7 @@ GameObject:
   - component: {fileID: -6397539287456745638}
   m_Layer: 24
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3055,6 +3055,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57630d4b69ed9f64ca1ac332b69decfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletObjects:
+  - {fileID: 2979627026766474492, guid: f5b762ec1d9c1ab4cb7ed95e0de160c6, type: 3}
+  - {fileID: 7330237526804577193, guid: e8de5fd2532b69845a4a7966644b628c, type: 3}
+  - {fileID: 5836571717425974221, guid: ba3b09a37f22c744e9a562fda1967c52, type: 3}
+  - {fileID: 7040328683472923368, guid: 80c9d6a47a6fb5844a36483cb0cec5d7, type: 3}
+  - {fileID: 34166863652101008, guid: 27d8788fce9c0ef4192a12f3b08d9db0, type: 3}
+  - {fileID: 3769623708822710321, guid: 457d14bfdd2a1ea408f87522961495c5, type: 3}
+  - {fileID: 3270163898234157466, guid: 4f60c98e21289ca44b4b33867b93f98e, type: 3}
   fireRate: 1
   reloadTurret: {fileID: 0}
   turretInfoScript: {fileID: 0}
@@ -3296,7 +3304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6073710987615954926}
   m_LocalRotation: {x: -0.000000008844556, y: 0.9144585, z: 0.000000019986125, w: 0.40467975}
-  m_LocalPosition: {x: -0.002, y: 0.846, z: 0.299}
+  m_LocalPosition: {x: 0.024, y: 0.846, z: 0.328}
   m_LocalScale: {x: 0.485892, y: 0.48589212, z: 0.485892}
   m_Children: []
   m_Father: {fileID: 6532267307625641575}

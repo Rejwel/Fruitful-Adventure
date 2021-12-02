@@ -11,7 +11,6 @@ public class BulletMechanics : MonoBehaviour
     private WaveManagerSubscriber WaveManager;
     private PlayerShoot player;
     private Gun gun;
-
     void Start()
     {
         Physics.IgnoreLayerCollision(15,15);
@@ -41,12 +40,7 @@ public class BulletMechanics : MonoBehaviour
                 enemy.Die();
             }
             Destroy(gameObject);
-        } 
-        /*else if ()
-        {
-            Debug.Log("Fence!");
-        }*/
-        
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -77,3 +71,4 @@ public class BulletMechanics : MonoBehaviour
         yield return null;
     }
 }
+
