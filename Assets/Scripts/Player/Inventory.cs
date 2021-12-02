@@ -41,10 +41,10 @@ public class Inventory : MonoBehaviour
 
    private void Start()
    {
-      bulletAmmount = new int[] {999999, GunContainer.guns[1].GetMagazine(), GunContainer.guns[2].GetMagazine(), GunContainer.guns[3].GetMagazine()};
+      bulletAmmount = new int[] {999999, GunContainer.guns[1].GetMagazine(), GunContainer.guns[2].GetMagazine(), GunContainer.guns[3].GetMagazine(), GunContainer.guns[4].GetMagazine()};
       currentGuns.Add(GunContainer.GetGun(0));
 
-      TrapFence = 20;
+      TrapFence = 2;
       SlowTrapAmmount = 2;
       _slowingTurretAmmout = 2;
 
@@ -118,6 +118,11 @@ public class Inventory : MonoBehaviour
    public void AddMinigun()
    {
       currentGuns.Add(GunContainer.GetGun(3));
+   }
+   
+   public void AddSniper()
+   {
+      currentGuns.Add(GunContainer.GetGun(4));
    }
    public uint GetShootingTurret()
    {
