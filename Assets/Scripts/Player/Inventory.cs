@@ -16,7 +16,9 @@ public class Inventory : MonoBehaviour
    private uint SlowTrapAmmount = 0;
    private uint DamageTrapAmmount = 0;
    private uint TrapFence = 0;
+   
    public List<Gun> currentGuns = new List<Gun>();
+   public List<GameObject> defendingStructures;
    
    public Dictionary <string, uint> GameObjDictionary { get; set; }
 
@@ -27,6 +29,7 @@ public class Inventory : MonoBehaviour
 
    private void Awake()
    {
+      defendingStructures = new List<GameObject>();
       GameObjDictionary = new Dictionary<string, uint>();
       GameObjDictionary.Add("Turret", ShootingTurretAmmount);
       GameObjDictionary.Add("TurretSlowing", _slowingTurretAmmout);
@@ -38,18 +41,23 @@ public class Inventory : MonoBehaviour
 
    private void Start()
    {
-      bulletAmmount = new int[] {999999, GunContainer.guns[1].GetMagazine(), GunContainer.guns[2].GetMagazine(), GunContainer.guns[3].GetMagazine()};
+      bulletAmmount = new int[] {999999, GunContainer.guns[1].GetMagazine(), GunContainer.guns[2].GetMagazine(), GunContainer.guns[3].GetMagazine(), GunContainer.guns[4].GetMagazine()};
       currentGuns.Add(GunContainer.GetGun(0));
 
       TrapFence = 2;
       SlowTrapAmmount = 2;
       _slowingTurretAmmout = 2;
-      
+
       doubleJump = false;
       dash = false;
       shield = false;
    }
 
+   public List<GameObject> getDefendingStructures()
+   {
+      return defendingStructures;
+   }
+   
    public uint LengthOfTurrets()
    {
       uint tempCount = 0;
@@ -110,6 +118,11 @@ public class Inventory : MonoBehaviour
    public void AddMinigun()
    {
       currentGuns.Add(GunContainer.GetGun(3));
+   }
+   
+   public void AddSniper()
+   {
+      currentGuns.Add(GunContainer.GetGun(4));
    }
    public uint GetShootingTurret()
    {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8690728621519748979}
   - component: {fileID: 1397280392359616321}
   - component: {fileID: 4311600291157097264}
-  m_Layer: 24
+  m_Layer: 25
   m_Name: Heart
   m_TagString: Healthbar
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 105444470893906371}
   - component: {fileID: 3669925326275092825}
   - component: {fileID: 6160008872092554003}
-  m_Layer: 24
+  m_Layer: 25
   m_Name: healthBar
   m_TagString: Healthbar
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 3892177039578513649}
   - component: {fileID: 60041004932675151}
   - component: {fileID: 8791200845065641198}
-  m_Layer: 24
+  m_Layer: 25
   m_Name: Border
   m_TagString: Healthbar
   m_Icon: {fileID: 0}
@@ -277,10 +277,10 @@ GameObject:
   - component: {fileID: 8352246541205350998}
   - component: {fileID: 3174689601955384012}
   - component: {fileID: 7504443950952601684}
-  - component: {fileID: 3984237691075361780}
-  m_Layer: 24
+  - component: {fileID: 1250099791721952077}
+  m_Layer: 25
   m_Name: FenceTrap
-  m_TagString: Fence
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -372,11 +372,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5822204221768311055}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.30004406, y: 1.5268031, z: 4.3999963}
-  m_Center: {x: 0.0058135986, y: 0.7483397, z: 2.1999981}
+  m_Size: {x: 0.28051126, y: 1.5268031, z: 4.5153847}
+  m_Center: {x: -0.01715678, y: 0.7634017, z: -0.018799186}
 --- !u!114 &7504443950952601684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a18e255742bca4d958128d89e88614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3984237691075361780
+--- !u!114 &1250099791721952077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -398,15 +398,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5822204221768311055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9385b3e18b490a448ab4b67e1a9dcff8, type: 3}
+  m_Script: {fileID: 11500000, guid: 552000aad4a93b44da4c27a3525e455a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 150
+  maxHealth: 150
   currentHealth: 150
   healthBar: {fileID: 8291573659386328813}
-  _healthBarMap: {fileID: 8291573659386328813}
-  BrokenBuilding: {fileID: 1807002864171977235, guid: 5cd6bcb1756cef84aaa5df31a5dff6d5,
+  healthBarMap: {fileID: 8291573659386328813}
+  brokenStructure: {fileID: 1807002864171977235, guid: 5cd6bcb1756cef84aaa5df31a5dff6d5,
     type: 3}
+  playerInventory: {fileID: 0}
 --- !u!1 &6445929607814816845
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +419,7 @@ GameObject:
   - component: {fileID: 4057459536653348258}
   - component: {fileID: 8782386461878994249}
   - component: {fileID: 8291573659386328813}
-  m_Layer: 24
+  m_Layer: 25
   m_Name: HealthBar
   m_TagString: Healthbar
   m_Icon: {fileID: 0}
@@ -551,7 +552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3980485378561956970}
   - component: {fileID: 7452582840948192685}
-  m_Layer: 24
+  m_Layer: 25
   m_Name: NavigationBlocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +600,7 @@ GameObject:
   - component: {fileID: 5658685670456616385}
   - component: {fileID: 6268693486150777704}
   - component: {fileID: 5522502282035412008}
-  m_Layer: 24
+  m_Layer: 25
   m_Name: Fill
   m_TagString: Healthbar
   m_Icon: {fileID: 0}

@@ -12,8 +12,9 @@ public class Gun
     private string description;
     private int damage;
     private int magazine;
+    private GameObject gunModel;
 
-    public Gun(int id, float fireRate, int bullets, float spread, float speed, string desc, int damage, int magazine)
+    public Gun(int id, float fireRate, int bullets, float spread, float speed, string desc, int damage, int magazine, GameObject gunModel)
     {
         this.id = id;
         this.fireRate = fireRate;
@@ -23,6 +24,7 @@ public class Gun
         this.description = desc;
         this.damage = damage;
         this.magazine = magazine;
+        this.gunModel = gunModel;
     }
 
     public float GetFireRate()
@@ -63,5 +65,15 @@ public class Gun
     public int GetId()
     {
         return id;
+    }
+
+    public GameObject GetGunModel()
+    {
+        return gunModel;
+    }
+
+    public void setGunModel(GameObject model)
+    {
+        gunModel = model;
     }
 }

@@ -29,7 +29,7 @@ public class PlayerShoot : MonoBehaviour
     private Vector3 originalRotationOfFirepoint;
     private float bulletSpread;
     private float bulletSpeed = 500f;
-    private int[] magazine = new int[4];
+    private int[] magazine = new int[5];
     private int stashAmmo;
     private int bullets;
     private string desc;
@@ -68,15 +68,14 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
+        ShootingLogic();
+        Reloading();
+        ChangeGunFromScrollInput();
+        ChangeGunFromKeyboardInput();
+    }
 
-        // RELOADING CANCEL
-        if (reloading && Time.time >= nextTimeToFire)
-        {
-            LowerStashAmmo(currentGun);
-            reloading = false;
-        }
-
-        // SHOOTING
+    private void ShootingLogic()
+    {
         if(!HoldFire){
             GunPrefab.SetActive(true);
             if (Input.GetButtonDown("Fire1")) ReturnToOriginalRecoil();
@@ -105,14 +104,24 @@ public class PlayerShoot : MonoBehaviour
         {
             GunPrefab.SetActive(false);
         }
+    }
 
-        // RELOAD GUN
+    private void Reloading()
+    {
+        if (reloading && Time.time >= nextTimeToFire)
+        {
+            LowerStashAmmo(currentGun);
+            reloading = false;
+        }
+        
         if (Input.GetKey(KeyCode.R) && Time.time >= nextTimeToReload && inventory.bulletAmmount[currentGun.GetId()] > 0 && magazine[currentGun.GetId()] != currentGun.GetMagazine())
         {
             Reload(currentGun);
         }
+    }
 
-        //SCROLL GUN INPUT
+    private void ChangeGunFromScrollInput()
+    {
         if (Input.GetAxis("Mouse ScrollWheel") != 0f)
         {
             currentGunIndex += (Convert.ToInt32(Input.GetAxis("Mouse ScrollWheel") * 10));
@@ -124,15 +133,19 @@ public class PlayerShoot : MonoBehaviour
             {
                 currentGunIndex = inventory.currentGuns.Count-1;
             }
+            currentGun.GetGunModel().SetActive(false);
             currentGun = inventory.currentGuns[currentGunIndex];
             ChangeGun(currentGun);
         }
-        
-        //KEYBOARD GUN INPUT
+    }
+
+    private void ChangeGunFromKeyboardInput()
+    {
         if (Input.GetKeyDown("1"))
         {
             if (inventory.currentGuns.ElementAtOrDefault(0) != null)
             {
+                currentGun.GetGunModel().SetActive(false);
                 currentGun = inventory.currentGuns[0];
                 ChangeGun(currentGun);
             }
@@ -141,6 +154,7 @@ public class PlayerShoot : MonoBehaviour
         {
             if (inventory.currentGuns.ElementAtOrDefault(1) != null)
             {
+                currentGun.GetGunModel().SetActive(false);
                 currentGun = inventory.currentGuns[1];
                 ChangeGun(currentGun);
             }
@@ -149,6 +163,7 @@ public class PlayerShoot : MonoBehaviour
         {
             if (inventory.currentGuns.ElementAtOrDefault(2) != null)
             {
+                currentGun.GetGunModel().SetActive(false);
                 currentGun = inventory.currentGuns[2];
                 ChangeGun(currentGun);
             }
@@ -157,7 +172,17 @@ public class PlayerShoot : MonoBehaviour
         {
             if (inventory.currentGuns.ElementAtOrDefault(3) != null)
             {
+                currentGun.GetGunModel().SetActive(false);
                 currentGun = inventory.currentGuns[3];
+                ChangeGun(currentGun);
+            }
+        }
+        if (Input.GetKeyDown("5"))
+        {
+            if (inventory.currentGuns.ElementAtOrDefault(4) != null)
+            {
+                currentGun.GetGunModel().SetActive(false);
+                currentGun = inventory.currentGuns[4];
                 ChangeGun(currentGun);
             }
         }
@@ -211,6 +236,12 @@ public class PlayerShoot : MonoBehaviour
                 InstantiateBullet = Instantiate(BulletObjects[6], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(0, 90,0)));
                 InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
             }
+            // for sniper
+            else if (currentGun.GetId() == 4)
+            {
+                InstantiateBullet = Instantiate(BulletObjects[1], firePoint.position, transform.rotation * Quaternion.Euler(new Vector3(0, 90,0)));
+                InstantiateBullet.GetComponent<Rigidbody>().AddForce(forwardVector * bulletSpeed);
+            }
         }
     }
 
@@ -224,8 +255,11 @@ public class PlayerShoot : MonoBehaviour
         // AudioManager.stopSound("Gun_reload");
         reloading = false;
         
+        currentGun.GetGunModel().SetActive(true);
+        
         firstEmptyBullet = true;
         fireRate = currentGun.GetFireRate();
+        bulletSpeed = currentGun.GetSpeed();
         bulletSpread = currentGun.GetSpread();
 
         if(inventory.bulletAmmount[currentGun.GetId()] > 100000)
@@ -287,7 +321,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void SetStartingAmmo()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < GunContainer.guns.Count; i++)
         {
             magazine[i] = GunContainer.GetGun(i).GetMagazine();
         }
@@ -306,7 +340,6 @@ public class PlayerShoot : MonoBehaviour
     public void AddDelay()
     {
         nextTimeToFire = Time.time + 1f;
-        //nextTimeToReload = Time.time + reloadTime;
         nextTimeToEmpty = Time.time + emptyTime;
     }
 }

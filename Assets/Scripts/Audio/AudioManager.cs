@@ -40,6 +40,9 @@ public class AudioManager : MonoBehaviour
             case "Rifle":
                 audioSrc.PlayOneShot(rifle);
                 break;
+            case "Sniper":
+                audioSrc.PlayOneShot(rifle);
+                break;
             case "Minigun":
                 audioSrc.PlayOneShot(minigun);
                 break;

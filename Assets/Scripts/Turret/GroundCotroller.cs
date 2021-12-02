@@ -10,6 +10,7 @@ public class GroundCotroller : MonoBehaviour
     [SerializeField] private GameObject[] placeableObjectPrefabs;
     [SerializeField] private LayerMask terrain;
     [SerializeField] private LayerMask placableObjects;
+    [SerializeField] private LayerMask defendingStructures;
     [SerializeField] private GameObject currentPlaceableObject;
     [SerializeField] private GameObject player;
     [SerializeField] private float mouseWheelRotation;
@@ -79,10 +80,13 @@ public class GroundCotroller : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (!Physics.Raycast(ray, out hitInfo, 10f, placableObjects) && Physics.Raycast(ray, out hitInfo, 10f, terrain) && hitInfo.normal == Vector3.up)
+        if (!Physics.Raycast(ray, out hitInfo, 10f, placableObjects) 
+            && !Physics.Raycast(ray, out hitInfo, 10f, defendingStructures) 
+            && Physics.Raycast(ray, out hitInfo, 10f, terrain) 
+            && hitInfo.normal == Vector3.up)
         {
             currentPlaceableObject.transform.position = hitInfo.point;
-            currentPlaceableObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            currentPlaceableObject.transform.rotation = player.transform.rotation;
         }
         else
         {
@@ -112,10 +116,19 @@ public class GroundCotroller : MonoBehaviour
         currentPlaceableObject = Instantiate(Prefab);
         currentPlaceableObject.transform.position = where.point;
         currentPlaceableObject.transform.rotation = savedTransform.rotation;
+        AddIfIsDefendingStructureObject();
         currentPlaceableObject = null;
         Destroy(currentPlaceableObject);
         Prefab = null;
         SetMode(ControllerMode.Play);
+    }
+
+    private void AddIfIsDefendingStructureObject()
+    {
+        if (currentPlaceableObject.layer.Equals(25))
+        {
+            inv.defendingStructures.Add(currentPlaceableObject);
+        }
     }
 
     public void ReleaseIfClicked()
