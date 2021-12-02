@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57630d4b69ed9f64ca1ac332b69decfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletObjects: []
   fireRate: 1
   reloadTurret: {fileID: 0}
   turretInfoScript: {fileID: 0}

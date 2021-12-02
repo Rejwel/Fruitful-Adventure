@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7130402614064863198}
   - component: {fileID: -8547026943660405019}
   - component: {fileID: 4331312116558286261}
-  - component: {fileID: 1304276518697770966}
   m_Layer: 15
   m_Name: TBulletSlowing
   m_TagString: Bullet
@@ -109,20 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96617eb2f22464a40beafc1408cbba54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactSlowingEfect: {fileID: 0}
-  speed: 40
---- !u!114 &1304276518697770966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241270803229334794}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40233bbf854ced942b574785d1f0dcc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactEfect: {fileID: 3469111594310983775, guid: 4d576978a1517fb47a5d956e640c32f1,
+  impactSlowingEfect: {fileID: 3469111594310983775, guid: 4d576978a1517fb47a5d956e640c32f1,
     type: 3}
-  speed: 60
+  speed: 40

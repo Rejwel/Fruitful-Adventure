@@ -9,18 +9,21 @@ public class SlowTrap : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy")  && other.GetComponent<NavMeshAgent>() != null && other.GetComponent<NavMeshAgent>().speed > 0)
+        var enemy = other.GetComponent<EnemyMechanics>();
+        if (enemy.CompareTag("Enemy") && enemy.GetSpeed() > 0)    
         {
-            other.GetComponent<NavMeshAgent>().speed -= 2;
+            enemy.SetSpeed(2);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy") && other.GetComponent<NavMeshAgent>() != null)
+        var enemy = other.GetComponent<EnemyMechanics>();
+        if (enemy.CompareTag("Enemy"))
         {
-            other.GetComponent<NavMeshAgent>().speed += 2;
+            enemy.SetSpeed(-2);
         }
     }
     
 }
+

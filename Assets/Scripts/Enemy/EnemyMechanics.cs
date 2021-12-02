@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMechanics : MonoBehaviour
 {
@@ -52,5 +53,13 @@ public class EnemyMechanics : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    public float GetSpeed()
+    {
+        return gameObject.GetComponent<NavMeshAgent>().speed;
+    }
 
+    public void SetSpeed(float speed)
+    {
+        gameObject.GetComponent<NavMeshAgent>().speed -= speed;
+    }
 }

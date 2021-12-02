@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    private Transform target;
-    
-
+    private Transform _target;
+    public GameObject[] BulletObjects;
+    private int _numberOfBullets;
     [Header("Attributes")]
     public float fireRate = 1f;
 
@@ -30,9 +30,7 @@ public class Turret : MonoBehaviour
     public Money money;
     private float basicMagazine;
     private float basicFireRate;
-    private GroundCotroller mode;
-
-
+    
     private void Awake()
     {
         basicMagazine = maximumAmmountOfAmmunition;
@@ -40,7 +38,6 @@ public class Turret : MonoBehaviour
         money = FindObjectOfType<Money>();
         reloadTurret = FindObjectOfType<TurretInfo>();
         turretInfoScript = FindObjectOfType<TurretInfoScript>();
-        mode = FindObjectOfType<GroundCotroller>();
     }
 
     // Start is called before the first frame update
@@ -63,9 +60,9 @@ public class Turret : MonoBehaviour
             }
         }
         if(nearestEnemy != null && shortestDistance <= range){
-            target = nearestEnemy.transform;
+            _target = nearestEnemy.transform;
         } else {
-            target = null;
+            _target = null;
         }
     }
 
@@ -127,12 +124,12 @@ public class Turret : MonoBehaviour
             }
         }
         
-        if(target == null){
+        if(_target == null){
             return;
         }
         
         //Target lock on
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = _target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
@@ -148,13 +145,14 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bulletGO = (GameObject)Instantiate(BulletPrefab, firePoint.position, firePoint.rotation);
-		TBullet bullet = bulletGO.GetComponent<TBullet>();
+            GameObject bulletGO = Instantiate(BulletObjects[_numberOfBullets++], firePoint.position, firePoint.rotation);
+            TBullet bullet = bulletGO.GetComponent<TBullet>();
 
-		if(bullet !=null){
-			bullet.Seek(target);
-		}
-	}	
+            if(bullet !=null) {
+                bullet.Seek(_target);
+            }
+            if (_numberOfBullets == BulletObjects.Length) _numberOfBullets = 0;
+    }	
 
     void OnDrawGizmosSelected(){
         Gizmos.color = Color.red;
