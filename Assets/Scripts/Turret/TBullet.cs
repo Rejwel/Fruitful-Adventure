@@ -17,7 +17,7 @@ public class TBullet : MonoBehaviour
 
     void Update()
     {
-        if(_target == null){
+        if (_target == null) {
             Destroy(gameObject);
             return;
         }
@@ -35,13 +35,14 @@ public class TBullet : MonoBehaviour
         Destroy(gameObject);
     }*/
     
-    public void Seek (Transform _target){
+    public void Seek (Transform _target)
+    {
         this._target = _target;
     }
     
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.tag.Equals("Enemy"))
+        if (hit.CompareTag("Enemy"))
         {
             EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
             enemy.TakeDamage(20);

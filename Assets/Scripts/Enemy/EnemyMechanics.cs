@@ -60,6 +60,9 @@ public class EnemyMechanics : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        gameObject.GetComponent<NavMeshAgent>().speed -= speed;
+        if (GetSpeed() >= 0)
+        { 
+          gameObject.GetComponent<NavMeshAgent>().speed -= speed;
+        }
     }
 }

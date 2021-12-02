@@ -4328,8 +4328,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8674139609358174401}
-  - component: {fileID: 7324246585471325629}
   - component: {fileID: 4256697215100531518}
+  - component: {fileID: 8820540226946065891}
   m_Layer: 24
   m_Name: SlowingTurret
   m_TagString: Untagged
@@ -4354,30 +4354,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7324246585471325629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8298846211352351355}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57630d4b69ed9f64ca1ac332b69decfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 1
-  reloadTurret: {fileID: 0}
-  turretInfoScript: {fileID: 0}
-  maximumAmmountOfAmmunition: 30
-  range: 15
-  enemyTag: Enemy
-  partToRotate: {fileID: 3158985813418780321}
-  turnSpeed: 2
-  BulletPrefab: {fileID: 2241270803229334794, guid: 3605201a7548ad04a906f745351696dd,
-    type: 3}
-  firePoint: {fileID: 4975466765971176493}
-  money: {fileID: 0}
 --- !u!65 &4256697215100531518
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4391,6 +4367,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5465229, y: 1.7388787, z: 1}
   m_Center: {x: 0.0012261689, y: 0.79315656, z: -2.590737e-11}
+--- !u!114 &8820540226946065891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298846211352351355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6ca9c0648d22f4b864778c09395144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2241270803229334794, guid: 3605201a7548ad04a906f745351696dd,
+    type: 3}
+  partToRotate: {fileID: 3158985813418780321}
+  firePoint: {fileID: 4975466765971176493}
+  reloadTurret: {fileID: 0}
+  turretInfoScript: {fileID: 0}
+  maximumAmmountOfAmmunition: 20
+  range: 20
+  turnSpeed: 1
 --- !u!1 &8336711249427490958
 GameObject:
   m_ObjectHideFlags: 0
