@@ -30,7 +30,6 @@ public class Turret : MonoBehaviour
     public Money money;
     private float basicMagazine;
     private float basicFireRate;
-    
     private void Awake()
     {
         basicMagazine = maximumAmmountOfAmmunition;

@@ -108,6 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96617eb2f22464a40beafc1408cbba54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactSlowingEfect: {fileID: 3469111594310983775, guid: 4d576978a1517fb47a5d956e640c32f1,
-    type: 3}
-  speed: 40
+  speed: 30
+  trap: {fileID: 1669643666607611132, guid: f5b3656f7c297b64aa5459534e42b5a3, type: 3}

@@ -2,70 +2,47 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 public class SlowingBullet : MonoBehaviour
 {
-    private Transform target;
-
-    private WaveManagerSubscriber WaveManager;
-
-    public GameObject impactSlowingEfect;
-    [SerializeField] private float speed = 40f;
-    public void Seek (Transform _target){
-        target = _target;
-    }
-
-    private void Awake()
-    {
-        WaveManager = FindObjectOfType<WaveManagerSubscriber>();
-    }
-
+    private Transform _target;
+    [SerializeField] private float speed = 30f;
+    [SerializeField] private GameObject trap;
+    
     void Update()
     {
-        if(target == null){
+        if (_target == null) {
             Destroy(gameObject);
             return;
         }
-
-        Vector3 dir = target.position - transform.position;
+        
+        Vector3 dir = _target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
-
-        // if(dir.magnitude <= distanceThisFrame){
-        //     //HitTarget();
-        //     return;
-        // }
+        
         transform.Translate (dir.normalized * distanceThisFrame, Space.World);
-
     }
-
-    void HitTarget()
+    
+    public void Seeking (Transform _target)
     {
-        GameObject effectIns = Instantiate(impactSlowingEfect, transform.position,transform.rotation);
-        Destroy(effectIns,1.5f);
-        Destroy(gameObject);
+        this._target = _target;
     }
-
-    private void OnCollisionEnter(Collision other)
+    
+    private void OnTriggerEnter(Collider hit)
     {
-        var enemy = other.gameObject.GetComponent<EnemyMechanics>();
-        /*float counter = 1;
-        float end = 5;*/
-        /*if (other.gameObject.CompareTag("Enemy"))
+        if (hit.CompareTag("Enemy"))
         {
-            enemy.SetSpeed(3);
-        }*/
-    }
+            Debug.Log("Trafiono wroga! Mammma Mia!");
+            //EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
+            Destroy(gameObject);
 
-    IEnumerator ExplodeEnemy(Collider hit)
-    {
-        Explosion explosion = hit.GetComponent<Explosion>();
-        EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
-        Transform EnemyTransform = enemy.transform;
-        hit.GetComponent<Collider>().enabled = false;
-        if(explosion != null)
-            explosion.explode(EnemyTransform);
-        yield return null;
+            GameObject itIsATrap = Instantiate(trap, transform.position, transform.rotation);
+            itIsATrap.transform.localScale = new Vector3(10, 0.01f, 10);
+            Destroy(itIsATrap,2.5f);
+        }
     }
+    
+    
+    
+    
+    
 }
