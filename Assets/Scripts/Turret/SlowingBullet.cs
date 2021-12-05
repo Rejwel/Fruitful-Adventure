@@ -34,7 +34,6 @@ public class SlowingBullet : MonoBehaviour
         {
             Destroy(gameObject);
             GameObject itIsATrap = Instantiate(trap, transform.position, transform.rotation);
-            itIsATrap.transform.localScale = new Vector3(12, 0.01f, 12);
             itIsATrap.transform.position = new Vector3(transform.position.x, 0.1f, transform.position.z);
             Destroy(itIsATrap,4.5f);
         }
