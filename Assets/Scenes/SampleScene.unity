@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_5 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
       propertyPath: m_RootOrder
@@ -288,6 +293,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fence_5 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
@@ -671,6 +681,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: t1 1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3051048052741630575, guid: 429d04cf860d36a4bbf0e806f5f68d8d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429d04cf860d36a4bbf0e806f5f68d8d, type: 3}
 --- !u!4 &82185685 stripped
@@ -935,6 +950,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fence_5 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
@@ -2309,6 +2329,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_5 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
       propertyPath: m_RootOrder
@@ -3351,6 +3376,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_5
       objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
       propertyPath: m_RootOrder
@@ -4118,6 +4148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fence_5 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
@@ -5021,6 +5056,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_5 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
       propertyPath: m_RootOrder
@@ -5671,6 +5711,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: apple_t2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6307547289283730211, guid: 679ac165aeadeb44caef529d9c509349,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6684248375682679193, guid: 679ac165aeadeb44caef529d9c509349,
         type: 3}
       propertyPath: m_RootOrder
@@ -5824,6 +5869,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: t1 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3051048052741630575, guid: 429d04cf860d36a4bbf0e806f5f68d8d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429d04cf860d36a4bbf0e806f5f68d8d, type: 3}
@@ -6196,6 +6246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: t2 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119456073240332088, guid: 51aa6fecb2eea0543b47728a068342dc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51aa6fecb2eea0543b47728a068342dc, type: 3}
@@ -7112,6 +7167,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: apple_t1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 712070091756315858, guid: c15f4dd9e8506cd4aa77885226b9c0a7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15f4dd9e8506cd4aa77885226b9c0a7, type: 3}
 --- !u!4 &729435103 stripped
@@ -7757,6 +7817,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: t2 1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4119456073240332088, guid: 51aa6fecb2eea0543b47728a068342dc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51aa6fecb2eea0543b47728a068342dc, type: 3}
 --- !u!1 &793095713
@@ -7969,6 +8034,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fence_5 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
@@ -9460,6 +9530,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_5 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
       propertyPath: m_RootOrder
@@ -10054,6 +10129,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fence_5 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
@@ -11327,6 +11407,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: apple_t2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6307547289283730211, guid: 679ac165aeadeb44caef529d9c509349,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6684248375682679193, guid: 679ac165aeadeb44caef529d9c509349,
         type: 3}
       propertyPath: m_RootOrder
@@ -12438,6 +12523,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: apple_t1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 712070091756315858, guid: c15f4dd9e8506cd4aa77885226b9c0a7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15f4dd9e8506cd4aa77885226b9c0a7, type: 3}
@@ -13582,6 +13672,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: apple_t1
       objectReference: {fileID: 0}
+    - target: {fileID: 712070091756315858, guid: c15f4dd9e8506cd4aa77885226b9c0a7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15f4dd9e8506cd4aa77885226b9c0a7, type: 3}
 --- !u!4 &1382914901 stripped
@@ -14201,6 +14296,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_5 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
       propertyPath: m_RootOrder
@@ -14370,6 +14470,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fence_5 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
@@ -14810,6 +14915,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fence_5 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
@@ -16224,6 +16334,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: apple_t1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 712070091756315858, guid: c15f4dd9e8506cd4aa77885226b9c0a7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15f4dd9e8506cd4aa77885226b9c0a7, type: 3}
 --- !u!4 &1613549892 stripped
@@ -16796,6 +16911,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: apple_t1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 712070091756315858, guid: c15f4dd9e8506cd4aa77885226b9c0a7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15f4dd9e8506cd4aa77885226b9c0a7, type: 3}
@@ -17935,6 +18055,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: apple_t2
       objectReference: {fileID: 0}
+    - target: {fileID: 6307547289283730211, guid: 679ac165aeadeb44caef529d9c509349,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6684248375682679193, guid: 679ac165aeadeb44caef529d9c509349,
         type: 3}
       propertyPath: m_RootOrder
@@ -18373,6 +18498,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fence_5 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
@@ -18992,6 +19122,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_5 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
       propertyPath: m_RootOrder
@@ -19170,6 +19305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: apple_t2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307547289283730211, guid: 679ac165aeadeb44caef529d9c509349,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6684248375682679193, guid: 679ac165aeadeb44caef529d9c509349,
         type: 3}
@@ -19577,6 +19717,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fence_5 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556510991897555922, guid: 604f20c469d1af044bb113bd01b20497,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2896198974381697384, guid: 604f20c469d1af044bb113bd01b20497,
         type: 3}
