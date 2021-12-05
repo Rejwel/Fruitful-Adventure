@@ -13,6 +13,7 @@ public class GroundCotroller : MonoBehaviour
     [SerializeField] private LayerMask defendingStructures;
     [SerializeField] private GameObject currentPlaceableObject;
     [SerializeField] private GameObject player;
+    [SerializeField] private MouseLook mouseLook;
     [SerializeField] private float mouseWheelRotation;
     [SerializeField] private bool Menu;
     [SerializeField] private Inventory inv;
@@ -178,7 +179,7 @@ public class GroundCotroller : MonoBehaviour
                 Canvas.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                Camera.main.GetComponent<MouseLook>().enabled = true;
+                mouseLook.enabled = true;
                 player.GetComponent<PlayerShoot>().HoldFire = true;
                 player.GetComponent<PlayerShoot>().AddDelay();             
                 break;
@@ -186,7 +187,7 @@ public class GroundCotroller : MonoBehaviour
                 Canvas.SetActive(true);               
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                Camera.main.GetComponent<MouseLook>().enabled = false;
+                mouseLook.enabled = false;
                 player.GetComponent<PlayerShoot>().HoldFire = true;
                 player.GetComponent<PlayerShoot>().AddDelay();
                 break;
@@ -194,7 +195,7 @@ public class GroundCotroller : MonoBehaviour
                 Canvas.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                Camera.main.GetComponent<MouseLook>().enabled = true;
+                mouseLook.enabled = true;
                 player.GetComponent<PlayerShoot>().HoldFire = false;
                 player.GetComponent<PlayerShoot>().AddDelay();
                 break;            
