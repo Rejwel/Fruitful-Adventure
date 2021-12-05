@@ -63,17 +63,20 @@ public class SlowingTurret : MonoBehaviour
             _turretInfoScript.DisplayInfoAmmo(_currentAmmountOfAmmunition.ToString(), maximumAmmountOfAmmunition.ToString());
             _enoughAmmunition = true;
         }
-        
-        Vector3 dir = _target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-        if (Time.time >= _fireCountdown && _enoughAmmunition)
+        if (_target != null)
         {
-            Shoot();
-            _currentAmmountOfAmmunition -= 1;
-            _fireCountdown = 6f / 1f + Time.time;
+            Vector3 dir = _target.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+            if (Time.time >= _fireCountdown && _enoughAmmunition)
+            {
+                Shoot();
+                _currentAmmountOfAmmunition -= 1;
+                _fireCountdown = 6f / 1f + Time.time;
+            }
         }
     }
     

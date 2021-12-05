@@ -18,7 +18,7 @@ public class OpenShop : MonoBehaviour
     public HealthBarScript healthBarMenu;   
     private HealthPlayer playerHealth;
     
-    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Transform cameraHolder;
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private CharacterController playerController;
     [SerializeField] private GameObject player;
@@ -35,7 +35,7 @@ public class OpenShop : MonoBehaviour
 
     private void Awake()
     {
-        mouseLook = cameraTransform.GetComponent<MouseLook>();
+        mouseLook = cameraHolder.GetComponent<MouseLook>();
         playerController = FindObjectOfType<CharacterController>();
         money = FindObjectOfType<Money>();
         playerHealth = FindObjectOfType<HealthPlayer>();
