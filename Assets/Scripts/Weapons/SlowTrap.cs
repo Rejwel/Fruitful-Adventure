@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class SlowTrap : MonoBehaviour
 {
+
     private void OnTriggerEnter(Collider other)
     {
         var enemy = other.GetComponent<EnemyMechanics>();
         
-        if (enemy.CompareTag("Enemy") && enemy.GetSpeed() >= 0)    
+        if (enemy.CompareTag("Enemy") && enemy.GetSpeed() >= 2.5)
         {
-            enemy.SetSpeed(2);
+            enemy.ReduceSpeed(2);
         }
     }
 
@@ -20,9 +21,9 @@ public class SlowTrap : MonoBehaviour
     {
         var enemy = other.GetComponent<EnemyMechanics>();
         
-        if (enemy.CompareTag("Enemy"))
+        if (enemy.CompareTag("Enemy") && enemy.GetSpeed() <= 3)
         {
-            enemy.SetSpeed(-2);
+            enemy.ReduceSpeed(-2);
         }
     }
     

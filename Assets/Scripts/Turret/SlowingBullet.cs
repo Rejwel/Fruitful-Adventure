@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class SlowingBullet : MonoBehaviour
@@ -31,18 +32,11 @@ public class SlowingBullet : MonoBehaviour
     {
         if (hit.CompareTag("Enemy"))
         {
-            Debug.Log("Trafiono wroga! Mammma Mia!");
-            //EnemyMechanics enemy = hit.GetComponent<EnemyMechanics>();
             Destroy(gameObject);
-
             GameObject itIsATrap = Instantiate(trap, transform.position, transform.rotation);
-            itIsATrap.transform.localScale = new Vector3(10, 0.01f, 10);
-            Destroy(itIsATrap,2.5f);
+            itIsATrap.transform.position = new Vector3(transform.position.x, 0.1f, transform.position.z);
+            Destroy(itIsATrap,4.5f);
         }
     }
-    
-    
-    
-    
     
 }

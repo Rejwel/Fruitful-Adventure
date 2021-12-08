@@ -109,4 +109,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  trap: {fileID: 1669643666607611132, guid: f5b3656f7c297b64aa5459534e42b5a3, type: 3}
+  trap: {fileID: 1669643666607611132, guid: e42feca7d7652ad489c26575789e0703, type: 3}

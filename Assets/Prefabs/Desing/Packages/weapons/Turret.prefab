@@ -1663,7 +1663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a58465dc22a16d4da06c0f3326d2a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  informationOfAmmo: {fileID: 0}
+  informationOfAmmo: {fileID: 5268080283655752518}
 --- !u!1 &3914494466575357939
 GameObject:
   m_ObjectHideFlags: 0
@@ -3083,10 +3083,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5903258333109562589}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5465229, y: 1.7388787, z: 1}
+  m_Size: {x: 1.8, y: 1.8, z: 1.5}
   m_Center: {x: 0.0012261689, y: 0.79315656, z: -2.590737e-11}
 --- !u!1 &5931688377524527779
 GameObject:
