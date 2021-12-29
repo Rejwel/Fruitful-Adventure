@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using TMPro;
 using UnityEditor.Analytics;
 using UnityEditor.Experimental.TerrainAPI;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 
@@ -17,8 +19,10 @@ public class GroundCotroller : MonoBehaviour
     [SerializeField] private float mouseWheelRotation;
     [SerializeField] private bool Menu;
     [SerializeField] private Inventory inv;
-    [SerializeField] private bool isShop;
     
+    [SerializeField] private bool isShop;
+    [SerializeField] private int placedTurrets;
+    [SerializeField] private TextMeshProUGUI placedTurretsText;
     //Ring Menu Controller
     [SerializeField] private RingMenu MainMenuInstance;
     [SerializeField] private GameObject Canvas;
@@ -142,11 +146,13 @@ public class GroundCotroller : MonoBehaviour
             if (Prefab != null && Prefab.name.Equals("TurretTransparent"))
             {
                 PlaceCurrentObject(0, hitInfo);
+                placedTurrets++;
                 inv.RemoveShootingTurret();
             }
             else if (Prefab != null && Prefab.name.Equals("SlowingTurretTransparent"))
             {
                 PlaceCurrentObject(1, hitInfo);
+                placedTurrets++;
                 inv.RemoveSlowingTurret();
             }
             else if (Prefab != null && Prefab.name.Equals("SlowTrapTransparent"))
@@ -299,5 +305,11 @@ public class GroundCotroller : MonoBehaviour
                 Debug.Log("Error with setting numbers in prefab array");
                 break;
         }
+    }
+
+    public int GetPlacedTurrets()
+    {
+        placedTurretsText.text = "Placed turrets: " + placedTurrets.ToString();
+        return placedTurrets;
     }
 }
