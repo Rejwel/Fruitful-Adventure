@@ -298,6 +298,9 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 4814133869411677445}
   Money: {fileID: 8232618329337579605, guid: bfffc6ff1fda0554e9116830a5e64295, type: 3}
+  killedEnemies: 0
+  killedEnemiesText: {fileID: 1742110861467734902, guid: 2c6d88c1ae40b4a47a5409e46f926037,
+    type: 3}
 --- !u!114 &5069802828548225875
 MonoBehaviour:
   m_ObjectHideFlags: 0

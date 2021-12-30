@@ -18,6 +18,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject SureGameover;
     public GameObject progressText;
     private WaveManagerSubscriber WaveManager;
+    private Money _money;
+    private GroundCotroller _groundCotroller;
 
 
     public GameObject GUI;
@@ -28,6 +30,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         GameIsPaused = false;
         GUI = GameObject.Find("GUI");
+        _money = FindObjectOfType<Money>();
+        _groundCotroller = FindObjectOfType<GroundCotroller>();
     }
 
     void Update()
@@ -113,12 +117,15 @@ public class PauseMenu : MonoBehaviour
     public void NoSureGameOver()
     {
         Dead.SetActive(true);
+        
         SureGameover.SetActive(false);
     }
 
     public void DeadPlayer()
     {
         Health = FindObjectOfType<HealthPlayer>();
+        _money.GetEarnedMoney();
+        _groundCotroller.GetPlacedTurrets();
         if(Health.currentHealth <= 0 || WaveManager.BuildingCount == 0)
         {
             Dead.SetActive(true);

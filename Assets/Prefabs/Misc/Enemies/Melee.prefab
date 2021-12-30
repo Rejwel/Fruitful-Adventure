@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 254587136096602259}
+  enemyDamage: 0
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8192
@@ -122,9 +123,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 262144
   inRangeOfDefendingStructure: 0
+  inAttackRangeOfDefendingStructure: 0
   defendingStructureLayer:
     serializedVersion: 2
     m_Bits: 33554432
+  defendingStructure: {fileID: 0}
 --- !u!195 &254587136096602259
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -178,6 +181,9 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 4331075707790240842}
   Money: {fileID: 8232618329337579605, guid: bfffc6ff1fda0554e9116830a5e64295, type: 3}
+  killedEnemies: 0
+  killedEnemiesText: {fileID: 1742110861467734902, guid: 2c6d88c1ae40b4a47a5409e46f926037,
+    type: 3}
 --- !u!65 &2956680218366870976
 BoxCollider:
   m_ObjectHideFlags: 0

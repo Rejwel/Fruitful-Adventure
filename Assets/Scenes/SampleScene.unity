@@ -3743,6 +3743,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1349504709}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &375996814 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 158470648423811656, guid: a5d1c6b1fd001ec4e921a769a3910204,
+    type: 3}
+  m_PrefabInstance: {fileID: 2874718898421768074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &377925597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6888,6 +6900,18 @@ Transform:
   m_Father: {fileID: 641243424}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 44.9, y: 31.4, z: -104.9}
+--- !u!114 &709531904 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8564922265722221604, guid: a5d1c6b1fd001ec4e921a769a3910204,
+    type: 3}
+  m_PrefabInstance: {fileID: 2874718898421768074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &719052242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20691,6 +20715,8 @@ MonoBehaviour:
   Menu: 0
   inv: {fileID: 0}
   isShop: 0
+  placedTurrets: 0
+  placedTurretsText: {fileID: 709531904}
   MainMenuInstance: {fileID: 0}
   Canvas: {fileID: 644472529}
   Prefab: {fileID: 0}
@@ -21476,6 +21502,14 @@ PrefabInstance:
       propertyPath: gunPosition
       value: 
       objectReference: {fileID: 2874718898421768076}
+    - target: {fileID: 604596831, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: EarnedMoney
+      value: 
+      objectReference: {fileID: 375996814}
+    - target: {fileID: 604596831, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
+      propertyPath: earnedMoneyText
+      value: 
+      objectReference: {fileID: 375996814}
     - target: {fileID: 963194227, guid: a5d1c6b1fd001ec4e921a769a3910204, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 58523447
@@ -21517,6 +21551,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 158470648423811656, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: m_text
+      value: 'Earned money: 0'
+      objectReference: {fileID: 0}
     - target: {fileID: 429145502974990137, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
       propertyPath: m_Enabled
@@ -21548,6 +21587,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b604cfe621aab27479d91396a364c108,
         type: 3}
+    - target: {fileID: 1984513385361842684, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2115541836800164273, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -21693,6 +21737,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4813116623753883910, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100874401406289734, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 5237523504196733434, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
       propertyPath: m_RootOrder
@@ -21717,6 +21771,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101431716339436078, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 73
       objectReference: {fileID: 0}
     - target: {fileID: 6378274478260973006, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
@@ -21743,6 +21802,11 @@ PrefabInstance:
       propertyPath: shopMenu2
       value: 
       objectReference: {fileID: 946384531}
+    - target: {fileID: 7289221548644462160, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 248
+      objectReference: {fileID: 0}
     - target: {fileID: 7374486809161113428, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
       propertyPath: m_RootOrder
@@ -21823,6 +21887,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 52.779
       objectReference: {fileID: 0}
+    - target: {fileID: 8424739583720069536, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 127
+      objectReference: {fileID: 0}
     - target: {fileID: 8483774315923964402, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
       propertyPath: m_Layer
@@ -21837,6 +21906,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564922265722221604, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: m_text
+      value: 'Placed turret: 0'
       objectReference: {fileID: 0}
     - target: {fileID: 8862343092548981280, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
