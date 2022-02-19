@@ -8,8 +8,12 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public TMP_Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
     Resolution[] resolutions;
+    [SerializeField] private AudioSource audioEffect;
+    [SerializeField] private AudioSource audioBackground;
+    
+    
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -47,10 +51,21 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Wychodze");
         Application.Quit();
     }
+
+    public void setEffectVolume(float volume)
+    {
+        audioEffect.volume = volume;
+    }
+    
+    public void setBackgroundVolume(float volume)
+    {
+        audioBackground.volume = volume;
+    }
     
     public void setVolume(float volume)
     {
-        Debug.Log("Does not work yet: " + volume);
+        audioEffect.volume = volume;
+        audioBackground.volume = volume;
     }
 
     public void SetQuality(int qualityIndex)
