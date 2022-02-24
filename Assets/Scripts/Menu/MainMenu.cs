@@ -10,10 +10,17 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     Resolution[] resolutions;
+    
     [SerializeField] private AudioSource audioEffect;
     [SerializeField] private AudioSource audioBackground;
     
-    
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject gameplayMenu;
+    [SerializeField] private GameObject audioMenu;
+    [SerializeField] private GameObject videoMenu;
+
+
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -38,6 +45,23 @@ public class MainMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape) && (gameplayMenu.active || audioMenu.active || videoMenu.active))
+        {
+            gameplayMenu.SetActive(false);
+            audioMenu.SetActive(false);
+            videoMenu.SetActive(false);
+            optionsMenu.SetActive(true);
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && optionsMenu.active)
+        {
+            optionsMenu.SetActive(false);
+            mainMenu.SetActive(true);
+        }
     }
 
     public void SetResolution(int resolutionIndex)
