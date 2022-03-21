@@ -18,7 +18,10 @@ public class MainMenu : MonoBehaviour
     Resolution[] resolutions;
     [SerializeField] private Toggle fullScreenToggle;
     private int _screenInt;
-    private bool isFullScreen = false;
+    private bool _isFullScreen;
+    [SerializeField] private Toggle vSyncToggle;
+    private int _vSyncInt;
+    private bool _isVSync;
 
     [SerializeField] private AudioSource audioEffect;
     [SerializeField] private AudioSource audioBackground;
@@ -32,23 +35,36 @@ public class MainMenu : MonoBehaviour
     private const string graphicsOption = "graphics_option";
     private const string resolutionOption = "resolution_option";
     private const string fullScreenOption = "full_screen_option";
+    private const string vSyncOption = "vSync_option";
     private const string generalSliderValue = "general_slider_value";
     private const string musicSliderValue = "music_slider_value";
     private const string effectsSliderValue = "master_slider_value";
+    
     
 
     void Awake()
     {
         _screenInt = PlayerPrefs.GetInt(fullScreenOption);
+        _vSyncInt = PlayerPrefs.GetInt(vSyncOption);
 
         if (_screenInt == 1)
         {
-            isFullScreen = true;
+            _isFullScreen = true;
             fullScreenToggle.isOn = true;
         }
         else
         {
             fullScreenToggle.isOn = false;
+        }
+        
+        if (_vSyncInt == 1)
+        {
+            _isVSync = true;
+            vSyncToggle.isOn = true;
+        }
+        else
+        {
+            vSyncToggle.isOn = false;
         }
         
         qualityDropdown.onValueChanged.AddListener(new UnityAction<int>(index =>
@@ -154,7 +170,7 @@ public class MainMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullScreen;
 
-        if (isFullScreen == false)
+        if (!isFullScreen)
         {
             PlayerPrefs.SetInt(fullScreenOption, 0);
         }
@@ -162,6 +178,21 @@ public class MainMenu : MonoBehaviour
         {
             isFullScreen = true;
             PlayerPrefs.SetInt(fullScreenOption, 1);
+        }
+    }
+
+    public void SetVSync(bool isVSync)
+    {
+        if (!isVSync)
+        {
+            PlayerPrefs.SetInt(vSyncOption, 0);
+            QualitySettings.vSyncCount = PlayerPrefs.GetInt(vSyncOption);
+        }
+        else
+        {
+            isVSync = true;
+            PlayerPrefs.SetInt(vSyncOption, 1);
+            QualitySettings.vSyncCount = PlayerPrefs.GetInt(vSyncOption);
         }
     }
     

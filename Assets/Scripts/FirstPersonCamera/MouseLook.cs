@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MouseLook : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class MouseLook : MonoBehaviour
     
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject camera;
+    [SerializeField] private Slider mouseSensivitySlider;
 
     private float _clampAngle = 80.0f;
     private float _mouseX;
@@ -20,12 +22,18 @@ public class MouseLook : MonoBehaviour
     private float _lookingTime = 3f;
     private float _lookingCounter = 0f;
 
+    private const string mouseSensitivitySliderValue = "mouse_sensivity_slider_value";
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        mouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 300f);
     }
+
+    void Start()
+    {
+        mouseSensivitySlider.value = PlayerPrefs.GetFloat(mouseSensitivitySliderValue, 300f);
+    }
+
     void Update()
     {
         
@@ -66,5 +74,11 @@ public class MouseLook : MonoBehaviour
     public void CancelLookingAtObject()
     {
         _isLookingAt = false;
+    }
+
+    public void setMouseSensitivity(float sensitivity)
+    {
+        PlayerPrefs.SetFloat(mouseSensitivitySliderValue, sensitivity);
+        mouseSensitivity = PlayerPrefs.GetFloat(mouseSensitivitySliderValue);
     }
 }
