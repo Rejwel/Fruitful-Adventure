@@ -24,6 +24,7 @@ public class MouseLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        mouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 300f);
     }
     void Update()
     {

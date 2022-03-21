@@ -3,14 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private Slider generalSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider effectsSlider;
+    
+    [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     Resolution[] resolutions;
-    
+    [SerializeField] private Toggle fullScreenToggle;
+    private int _screenInt;
+    private bool isFullScreen = false;
+
     [SerializeField] private AudioSource audioEffect;
     [SerializeField] private AudioSource audioBackground;
     
@@ -20,9 +29,50 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject audioMenu;
     [SerializeField] private GameObject videoMenu;
 
+    private const string graphicsOption = "graphics_option";
+    private const string resolutionOption = "resolution_option";
+    private const string fullScreenOption = "full_screen_option";
+    private const string generalSliderValue = "general_slider_value";
+    private const string musicSliderValue = "music_slider_value";
+    private const string effectsSliderValue = "master_slider_value";
+    
+
+    void Awake()
+    {
+        _screenInt = PlayerPrefs.GetInt(fullScreenOption);
+
+        if (_screenInt == 1)
+        {
+            isFullScreen = true;
+            fullScreenToggle.isOn = true;
+        }
+        else
+        {
+            fullScreenToggle.isOn = false;
+        }
+        
+        qualityDropdown.onValueChanged.AddListener(new UnityAction<int>(index =>
+        {
+            PlayerPrefs.SetInt(graphicsOption, qualityDropdown.value);
+            PlayerPrefs.Save();
+        }));    
+        
+        resolutionDropdown.onValueChanged.AddListener(new UnityAction<int>(index =>
+            {
+                PlayerPrefs.SetInt(resolutionOption, resolutionDropdown.value);
+                PlayerPrefs.Save();
+            }));
+    }
 
     void Start()
     {
+        qualityDropdown.value = PlayerPrefs.GetInt(graphicsOption, 3);
+
+        generalSlider.value = PlayerPrefs.GetFloat(generalSliderValue, 0.4f);
+        effectsSlider.value = PlayerPrefs.GetFloat(effectsSliderValue, 0.4f);
+        musicSlider.value = PlayerPrefs.GetFloat(musicSliderValue, 0.4f);
+        
+        
         resolutions = Screen.resolutions;
         
         resolutionDropdown.ClearOptions();
@@ -43,7 +93,7 @@ public class MainMenu : MonoBehaviour
         }
 
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.value = PlayerPrefs.GetInt(resolutionOption, currentResolutionIndex);
         resolutionDropdown.RefreshShownValue();
     }
 
@@ -78,18 +128,21 @@ public class MainMenu : MonoBehaviour
 
     public void setEffectVolume(float volume)
     {
-        audioEffect.volume = volume;
+        PlayerPrefs.SetFloat(effectsSliderValue, volume);
+        audioEffect.volume = PlayerPrefs.GetFloat(effectsSliderValue);
     }
     
     public void setBackgroundVolume(float volume)
     {
-        audioBackground.volume = volume;
+        PlayerPrefs.SetFloat(musicSliderValue, volume);
+        audioBackground.volume = PlayerPrefs.GetFloat(musicSliderValue);
     }
     
     public void setVolume(float volume)
     {
-        audioEffect.volume = volume;
-        audioBackground.volume = volume;
+        PlayerPrefs.SetFloat(generalSliderValue, volume);
+        audioEffect.volume = PlayerPrefs.GetFloat(generalSliderValue);
+        audioBackground.volume = PlayerPrefs.GetFloat(generalSliderValue);
     }
 
     public void SetQuality(int qualityIndex)
@@ -100,6 +153,16 @@ public class MainMenu : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+
+        if (isFullScreen == false)
+        {
+            PlayerPrefs.SetInt(fullScreenOption, 0);
+        }
+        else
+        {
+            isFullScreen = true;
+            PlayerPrefs.SetInt(fullScreenOption, 1);
+        }
     }
     
 }
