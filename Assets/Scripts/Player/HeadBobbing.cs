@@ -18,6 +18,7 @@ public class HeadBobbing : MonoBehaviour
 
     private void Awake()
     {
+        _amplitude = PlayerPrefs.GetFloat("head_bobbing_slider_value");
         _controller = GetComponent<CharacterController>();
         _startPos = _camera.localPosition;
     }

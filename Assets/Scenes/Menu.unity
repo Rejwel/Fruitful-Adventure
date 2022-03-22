@@ -237,6 +237,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &590443366 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3064161644056040665, guid: 7fc93710f62d0dd4982137384fc8000e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4061679020403016994}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &676786170
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +582,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2086802298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1821960029484859801, guid: 7fc93710f62d0dd4982137384fc8000e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4061679020403016994}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4061679020403016994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -577,6 +601,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 46467905663829310, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 46467905663829310, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -612,17 +641,112 @@ PrefabInstance:
       propertyPath: fullScreenToggle
       value: 
       objectReference: {fileID: 696733340}
+    - target: {fileID: 53783901219759304, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: headBobbingSlider
+      value: 
+      objectReference: {fileID: 2086802298}
+    - target: {fileID: 53783901219759304, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: mouseSensitivitySlider
+      value: 
+      objectReference: {fileID: 590443366}
+    - target: {fileID: 817070656428645322, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_Name
+      value: MOUSESENSITIVITY
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744274598077377967, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744274598077377967, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744274598077377967, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821960029484859801, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821960029484859801, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821960029484859801, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_MinValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821960029484859801, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 50615260}
+    - target: {fileID: 1821960029484859801, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setHeadBobbing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812483913525975729, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_Name
+      value: MouseSensitivitySlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064161644056040665, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3064161644056040665, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
       propertyPath: m_MaxValue
-      value: 500
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064161644056040665, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_MinValue
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3064161644056040665, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 50615260}
+    - target: {fileID: 3064161644056040665, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setMouseSensitivity
+      objectReference: {fileID: 0}
     - target: {fileID: 3168872470003464431, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168872470003464431, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168872470003464431, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3705308460758143102, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3705308460758143102, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1212,6 +1336,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetFullScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4775537981623393271, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_text
+      value: MOUSE SENSITIVITY
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4061679019997196692, guid: 7fc93710f62d0dd4982137384fc8000e, type: 3}
