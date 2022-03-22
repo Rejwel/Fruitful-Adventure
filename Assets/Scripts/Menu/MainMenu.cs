@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Slider generalSlider;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider effectsSlider;
+    [SerializeField] private Slider mouseSensitivitySlider;
+    [SerializeField] private Slider headBobbingSlider;
     
     [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
@@ -39,8 +41,8 @@ public class MainMenu : MonoBehaviour
     private const string generalSliderValue = "general_slider_value";
     private const string musicSliderValue = "music_slider_value";
     private const string effectsSliderValue = "master_slider_value";
-    
-    
+    private const string mouseSensitivitySliderValue = "mouse_sensitivity_slider_value";
+    private const string headBobbingSliderValue = "head_bobbing_slider_value";
 
     void Awake()
     {
@@ -83,7 +85,9 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         qualityDropdown.value = PlayerPrefs.GetInt(graphicsOption, 3);
-
+        mouseSensitivitySlider.value = PlayerPrefs.GetFloat(mouseSensitivitySliderValue, 300f);
+        headBobbingSlider.value = PlayerPrefs.GetFloat(headBobbingSliderValue, 0.4f);
+        
         generalSlider.value = PlayerPrefs.GetFloat(generalSliderValue, 0.4f);
         effectsSlider.value = PlayerPrefs.GetFloat(effectsSliderValue, 0.4f);
         musicSlider.value = PlayerPrefs.GetFloat(musicSliderValue, 0.4f);
@@ -194,6 +198,16 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetInt(vSyncOption, 1);
             QualitySettings.vSyncCount = PlayerPrefs.GetInt(vSyncOption);
         }
+    }
+    
+    public void setMouseSensitivity(float sensitivity)
+    {
+        PlayerPrefs.SetFloat(mouseSensitivitySliderValue, sensitivity);
+    }
+
+    public void setHeadBobbing(float amplitude)
+    {
+        PlayerPrefs.SetFloat(headBobbingSliderValue, amplitude);
     }
     
 }

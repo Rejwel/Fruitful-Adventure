@@ -21691,6 +21691,12 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 646275212}
+    - target: {fileID: 6378274478260973006, guid: a5d1c6b1fd001ec4e921a769a3910204,
+        type: 3}
+      propertyPath: mouseSensivitySlider
+      value: 
+      objectReference: {fileID: 7914037198596994715, guid: fe3bd28e52e0f7447b5f0d0da22a4198,
+        type: 3}
     - target: {fileID: 6653281010104153049, guid: a5d1c6b1fd001ec4e921a769a3910204,
         type: 3}
       propertyPath: m_RootOrder
