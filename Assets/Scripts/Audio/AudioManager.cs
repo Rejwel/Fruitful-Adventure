@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         audioSrc = GetComponent<AudioSource>();
+        audioSrc.volume = PlayerPrefs.GetFloat("effects_slider_value");
     }
 
     private void Start()

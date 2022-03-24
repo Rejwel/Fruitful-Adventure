@@ -10,6 +10,7 @@ public class BackgroundAudio : MonoBehaviour
         audioSrc = GetComponent<AudioSource>();
         audioSrc.loop = true;
         audioSrc.clip = Resources.Load<AudioClip>("Background");
+        audioSrc.volume = PlayerPrefs.GetFloat("music_slider_value");
         audioSrc.Play();
     }
 }
