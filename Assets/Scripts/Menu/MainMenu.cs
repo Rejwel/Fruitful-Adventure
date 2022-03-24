@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private Slider generalSlider;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider effectsSlider;
     [SerializeField] private Slider mouseSensitivitySlider;
@@ -24,9 +24,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Toggle vSyncToggle;
     private int _vSyncInt;
     private bool _isVSync;
-
-    [SerializeField] private AudioSource audioEffect;
-    [SerializeField] private AudioSource audioBackground;
     
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject optionsMenu;
@@ -38,16 +35,15 @@ public class MainMenu : MonoBehaviour
     private const string resolutionOption = "resolution_option";
     private const string fullScreenOption = "full_screen_option";
     private const string vSyncOption = "vSync_option";
-    private const string generalSliderValue = "general_slider_value";
     private const string musicSliderValue = "music_slider_value";
-    private const string effectsSliderValue = "master_slider_value";
+    private const string effectsSliderValue = "effects_slider_value";
     private const string mouseSensitivitySliderValue = "mouse_sensitivity_slider_value";
     private const string headBobbingSliderValue = "head_bobbing_slider_value";
 
     void Awake()
     {
-        _screenInt = PlayerPrefs.GetInt(fullScreenOption);
-        _vSyncInt = PlayerPrefs.GetInt(vSyncOption);
+        _screenInt = PlayerPrefs.GetInt(fullScreenOption, 1);
+        _vSyncInt = PlayerPrefs.GetInt(vSyncOption, 1);
 
         if (_screenInt == 1)
         {
@@ -88,7 +84,6 @@ public class MainMenu : MonoBehaviour
         mouseSensitivitySlider.value = PlayerPrefs.GetFloat(mouseSensitivitySliderValue, 300f);
         headBobbingSlider.value = PlayerPrefs.GetFloat(headBobbingSliderValue, 0.4f);
         
-        generalSlider.value = PlayerPrefs.GetFloat(generalSliderValue, 0.4f);
         effectsSlider.value = PlayerPrefs.GetFloat(effectsSliderValue, 0.4f);
         musicSlider.value = PlayerPrefs.GetFloat(musicSliderValue, 0.4f);
         
@@ -145,24 +140,14 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Wychodze");
         Application.Quit();
     }
-
     public void setEffectVolume(float volume)
     {
         PlayerPrefs.SetFloat(effectsSliderValue, volume);
-        audioEffect.volume = PlayerPrefs.GetFloat(effectsSliderValue);
     }
     
     public void setBackgroundVolume(float volume)
     {
         PlayerPrefs.SetFloat(musicSliderValue, volume);
-        audioBackground.volume = PlayerPrefs.GetFloat(musicSliderValue);
-    }
-    
-    public void setVolume(float volume)
-    {
-        PlayerPrefs.SetFloat(generalSliderValue, volume);
-        audioEffect.volume = PlayerPrefs.GetFloat(generalSliderValue);
-        audioBackground.volume = PlayerPrefs.GetFloat(generalSliderValue);
     }
 
     public void SetQuality(int qualityIndex)
