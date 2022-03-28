@@ -423,18 +423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1268035719 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4061679019905695015, guid: 7fc93710f62d0dd4982137384fc8000e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4061679020403016994}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1364863013 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4061679021759229191, guid: 7fc93710f62d0dd4982137384fc8000e,
@@ -636,7 +624,7 @@ PrefabInstance:
         type: 3}
       propertyPath: generalSlider
       value: 
-      objectReference: {fileID: 1268035719}
+      objectReference: {fileID: 0}
     - target: {fileID: 53783901219759304, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
       propertyPath: qualityDropdown
@@ -1260,7 +1248,7 @@ PrefabInstance:
     - target: {fileID: 4061679021318173136, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4061679021343512242, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
@@ -1280,7 +1268,7 @@ PrefabInstance:
     - target: {fileID: 4061679021349432477, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4061679021416911684, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
