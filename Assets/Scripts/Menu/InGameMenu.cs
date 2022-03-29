@@ -29,7 +29,12 @@ public class InGameMenu : MonoBehaviour
     [SerializeField] private GameObject gameplayMenu;
     [SerializeField] private GameObject audioMenu;
     [SerializeField] private GameObject videoMenu;
-
+    [SerializeField] private AudioSource audioEffect;
+    [SerializeField] private AudioSource audioBackground;
+    
+    private MouseLook _mouseLook;
+    private HeadBobbing _headBobbing;
+    
     private const string graphicsOption = "graphics_option";
     private const string resolutionOption = "resolution_option";
     private const string fullScreenOption = "full_screen_option";
@@ -41,6 +46,10 @@ public class InGameMenu : MonoBehaviour
 
     void Awake()
     {
+        _mouseLook = FindObjectOfType<MouseLook>();
+        _headBobbing = FindObjectOfType<HeadBobbing>();
+        
+        
         _screenInt = PlayerPrefs.GetInt(fullScreenOption, 1);
         _vSyncInt = PlayerPrefs.GetInt(vSyncOption, 1);
 
@@ -119,8 +128,8 @@ public class InGameMenu : MonoBehaviour
             audioMenu.SetActive(false);
             videoMenu.SetActive(false);
             optionsMenu.SetActive(true);
-            
         }
+
     }
 
     public void SetResolution(int resolutionIndex)
@@ -137,11 +146,13 @@ public class InGameMenu : MonoBehaviour
     public void setEffectVolume(float volume)
     {
         PlayerPrefs.SetFloat(effectsSliderValue, volume);
+        audioEffect.volume = volume;
     }
     
     public void setBackgroundVolume(float volume)
     {
         PlayerPrefs.SetFloat(musicSliderValue, volume);
+        audioBackground.volume = volume;
     }
 
     public void SetQuality(int qualityIndex)
@@ -182,11 +193,13 @@ public class InGameMenu : MonoBehaviour
     public void setMouseSensitivity(float sensitivity)
     {
         PlayerPrefs.SetFloat(mouseSensitivitySliderValue, sensitivity);
+        _mouseLook.mouseSensitivity = sensitivity;
     }
 
     public void setHeadBobbing(float amplitude)
     {
         PlayerPrefs.SetFloat(headBobbingSliderValue, amplitude);
+        _headBobbing._amplitude = amplitude;
     }
     
 }
