@@ -1,45 +1,22 @@
-![cover](./Cover/coverPhoto.PNG)
-
 # Fruitful Adventure by Salto angels
-### Autorzy:
-[Filip Grzelak](https://github.com/filipgrzelak)
-[Anastazja Załataja](https://github.com/Bananasa)
-[Mateusz Banasik](https://github.com/kilifux)
-[Paweł Dera](https://github.com/Rejwel)
+![cover](./Cover/gameplay.gif)
 
-[Link do gry](https://drive.google.com/drive/folders/1iIM1e2dCnZIbMTmhUjMNdBpNJc5fkVYt?usp=sharing")
-
--------------------------------------------------------------
-
-## v. 0.4
-
-Gra na stan obecny opiera sie na zabijaniu przeciwnikow. Gracz wygrywa
-
-zabijajac wszystkich przeciwnikow po ostatnim wave hol hol.
+Authors
+[**Anastazja Załataja**](https://github.com/Bananasa) our  graphic designer and model maker
+[**Mateusz Banasik**](https://github.com/Bananasa) our programmer
+[**Filip Grzelak**](https://github.com/Bananasa) our programmer
+[**Paweł Dera**](https://github.com/Bananasa) our programmer
 
 
-### Zaimplementowane demo :
-- sklep
-- skille (dash,djump,shield) 
-- movement 
-- strzelanie wraz z przeładowaniem 
-- SFX 
-- system amunicji 
-- bronie (klawisze 1-4) 
-- towery (stawiamy na klawisz "p")
-- waluta 
-- wave system 
-- enemy 
+## Fruitful Adventure V. 1.1
 
-### Modele :
-- Drzewa 
-- Fontanna
-- Dom 
-- Stodoła 
-- Szopa 
+Welcome to our tower defense, in this game we are defending our farm family buildings from candy monsters!
+
+Basic controls:
+- **W,A,S,D** - Movement
+- **G** - Grenade
+- **TAB** - Equipment
+- **Scroll or 1-5** - Weapons
 
 
-### Znane bugi : 
-- Po utracie hp nadal zyjemy
-
-
+Download game [**Here**](https://drive.google.com/drive/folders/1iIM1e2dCnZIbMTmhUjMNdBpNJc5fkVYt?usp=sharing")
