@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class MouseLook : MonoBehaviour
 {
-    [SerializeField] private float mouseSensitivity = 150f;
+    [SerializeField] public float mouseSensitivity = 150f;
     
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject camera;
