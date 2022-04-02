@@ -7,7 +7,6 @@ using UnityEngine.AI;
 using UnityEngine.Diagnostics;
 using UnityEngine.Events;
 using UnityEngine.Experimental.TerrainAPI;
-using UnityEngine.iOS;
 
 public class EnemyMelee : MonoBehaviour
 {
