@@ -3,9 +3,9 @@
 
 Authors  
 [**Anastazja Załataja**](https://github.com/Bananasa) our  graphic designer and model maker  
-[**Mateusz Banasik**](https://github.com/Bananasa) our programmer  
-[**Filip Grzelak**](https://github.com/Bananasa) our programmer  
-[**Paweł Dera**](https://github.com/Bananasa) our programmer  
+[**Mateusz Banasik**](https://github.com/kilifux) our programmer  
+[**Filip Grzelak**](https://github.com/filipgrzelak) our programmer  
+[**Paweł Dera**](https://github.com/Rejwel) our programmer  
 
 
 ## Fruitful Adventure V. 1.1
