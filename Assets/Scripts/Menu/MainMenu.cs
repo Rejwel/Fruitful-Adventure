@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -86,30 +87,8 @@ public class MainMenu : MonoBehaviour
         
         effectsSlider.value = PlayerPrefs.GetFloat(effectsSliderValue, 0.4f);
         musicSlider.value = PlayerPrefs.GetFloat(musicSliderValue, 0.4f);
-        
-        
-        resolutions = Screen.resolutions;
-        
-        resolutionDropdown.ClearOptions();
 
-        List<string> options = new List<string>();
-
-        int currentResolutionIndex = 0;
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
-
-            if (resolutions[i].width == Screen.currentResolution. width &&
-                resolutions[i].height == Screen.currentResolution. height)
-            {
-                currentResolutionIndex = i;
-            }
-        }
-
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = PlayerPrefs.GetInt(resolutionOption, currentResolutionIndex);
-        resolutionDropdown.RefreshShownValue();
+        initResolutions();
     }
 
     void Update()
@@ -127,6 +106,31 @@ public class MainMenu : MonoBehaviour
             optionsMenu.SetActive(false);
             mainMenu.SetActive(true);
         }
+    }
+    
+    private void initResolutions()
+    {
+        resolutions = Screen.resolutions.Where(resolution => resolution.refreshRate == 60 || resolution.refreshRate == 144).ToArray();
+
+        resolutionDropdown.ClearOptions();
+        List<string> options = new List<string>();
+
+        int currentResolutionIndex = 0;
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height + " " + resolutions[i].refreshRate + "Hz";
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = PlayerPrefs.GetInt(resolutionOption, currentResolutionIndex);
+        resolutionDropdown.RefreshShownValue();
     }
 
     public void SetResolution(int resolutionIndex)
