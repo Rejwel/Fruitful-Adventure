@@ -20,7 +20,8 @@ public class PauseMenu : MonoBehaviour
     private WaveManagerSubscriber WaveManager;
     private Money _money;
     private GroundCotroller _groundCotroller;
-
+    [SerializeField] private GameObject SettingsMenu;
+    private bool _isSettingsMenu;
 
     public GameObject GUI;
 
@@ -39,18 +40,19 @@ public class PauseMenu : MonoBehaviour
         DeadPlayer();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(GameIsPaused==true && GameOver==false)
+            if (GameIsPaused == true && GameOver == false)
             {
                 Resume();
             }
-            else if (GameIsPaused == false && shopMenu.activeSelf == false && shopMenu2.activeSelf == false && GameOver == false && BigMiniMap.MiniMapOpen==false)
+            else if (GameIsPaused == false && shopMenu.activeSelf == false && shopMenu2.activeSelf == false &&
+                     GameOver == false && BigMiniMap.MiniMapOpen == false)
             {
                 Pause();
             }
         }
     }
 
-    public void Resume ()
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         GUI.SetActive(true);
@@ -63,7 +65,7 @@ public class PauseMenu : MonoBehaviour
         player.GetComponent<PlayerShoot>().HoldFire = false;
     }
 
-    void Pause ()
+    void Pause()
     {
         player.GetComponent<PlayerShoot>().HoldFire = true;
         pauseMenuUI.SetActive(true);
@@ -80,6 +82,23 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         AreYouSureMenu.SetActive(true);
     }
+
+    public void InGameSettingsMenu()
+    {
+        GameOver = true;
+        _isSettingsMenu = true;
+        pauseMenuUI.SetActive(false);
+        SettingsMenu.SetActive(true);
+    }
+
+    public void OutInGameSettingsMenu()
+    {
+        GameOver = false;
+        _isSettingsMenu = false;
+        pauseMenuUI.SetActive(true);
+        SettingsMenu.SetActive(false);
+    }
+    
 
     public void SureQuit()
     {

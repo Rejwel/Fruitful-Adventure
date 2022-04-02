@@ -6,7 +6,7 @@ public class HeadBobbing : MonoBehaviour
 {
     [SerializeField] private bool _enable = true;
 
-    [SerializeField, Range(0, 0.5f)] private float _amplitude = 0.015f;
+    [SerializeField, Range(0, 0.5f)] public float _amplitude = 0.015f;
     [SerializeField, Range(0, 30)] private float _frequency = 10.0f;
 
     [SerializeField] private Transform _camera = null;
