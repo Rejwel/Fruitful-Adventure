@@ -1,11 +1,11 @@
 # Fruitful Adventure by Salto angels
 ![cover](./Cover/gameplay.gif)
 
-Authors
-[**Anastazja Załataja**](https://github.com/Bananasa) our  graphic designer and model maker
-[**Mateusz Banasik**](https://github.com/Bananasa) our programmer
-[**Filip Grzelak**](https://github.com/Bananasa) our programmer
-[**Paweł Dera**](https://github.com/Bananasa) our programmer
+Authors  
+[**Anastazja Załataja**](https://github.com/Bananasa) our  graphic designer and model maker  
+[**Mateusz Banasik**](https://github.com/Bananasa) our programmer  
+[**Filip Grzelak**](https://github.com/Bananasa) our programmer  
+[**Paweł Dera**](https://github.com/Bananasa) our programmer  
 
 
 ## Fruitful Adventure V. 1.1
