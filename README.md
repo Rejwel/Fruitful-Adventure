@@ -1,5 +1,5 @@
 # Fruitful Adventure by Salto angels
-![cover](./Cover/gameplay.gif)
+![cover](./gameplay.gif)
 
 Authors  
 [**Anastazja Załataja**](https://github.com/Bananasa) our  graphic designer and model maker  
