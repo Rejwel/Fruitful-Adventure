@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject gameplayMenu;
     [SerializeField] private GameObject audioMenu;
     [SerializeField] private GameObject videoMenu;
+    [SerializeField] private GameObject selectMenu;
 
     private const string graphicsOption = "graphics_option";
     private const string resolutionOption = "resolution_option";
@@ -104,6 +105,11 @@ public class MainMenu : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Escape) && optionsMenu.active)
         {
             optionsMenu.SetActive(false);
+            mainMenu.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && selectMenu.active)
+        {
+            selectMenu.SetActive(false);
             mainMenu.SetActive(true);
         }
     }
@@ -198,5 +204,12 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat(headBobbingSliderValue, amplitude);
     }
+
+    public void setSelectMenu()
+    {
+        mainMenu.SetActive(false);
+        selectMenu.SetActive(true);
+    }
+    
     
 }
