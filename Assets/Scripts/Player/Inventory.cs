@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
    // pistol ammo, shotgun ammo, rifle ammo, minigun ammo
    public int[] bulletAmmount;
    private uint GrenadesAmmount = 0;
-   private uint ShootingTurretAmmount = 4;
+   private uint ShootingTurretAmmount = 0;
    private uint _slowingTurretAmmout = 0;
    private uint SlowTrapAmmount = 0;
    private uint DamageTrapAmmount = 0;
@@ -43,10 +43,6 @@ public class Inventory : MonoBehaviour
    {
       bulletAmmount = new int[] {999999, GunContainer.guns[1].GetMagazine(), GunContainer.guns[2].GetMagazine(), GunContainer.guns[3].GetMagazine(), GunContainer.guns[4].GetMagazine()};
       currentGuns.Add(GunContainer.GetGun(0));
-
-      TrapFence = 2;
-      SlowTrapAmmount = 2;
-      _slowingTurretAmmout = 2;
 
       doubleJump = false;
       dash = false;

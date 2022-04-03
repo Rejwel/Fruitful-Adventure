@@ -429,6 +429,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4061679020403016994}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1527876555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4532894935750645057, guid: 7fc93710f62d0dd4982137384fc8000e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4061679020403016994}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1609715221 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3999013469195723823, guid: 7fc93710f62d0dd4982137384fc8000e,
@@ -607,6 +613,11 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 53783901219759304, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
+      propertyPath: selectMenu
+      value: 
+      objectReference: {fileID: 1527876555}
+    - target: {fileID: 53783901219759304, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
       propertyPath: musicSlider
       value: 
       objectReference: {fileID: 1614085733}
@@ -650,6 +661,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MOUSESENSITIVITY
       objectReference: {fileID: 0}
+    - target: {fileID: 1651637771902727814, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 687467595}
     - target: {fileID: 1744274598077377967, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -695,6 +711,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MouseSensitivitySlider
       objectReference: {fileID: 0}
+    - target: {fileID: 2825673996636190156, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 687467595}
     - target: {fileID: 3064161644056040665, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
       propertyPath: m_Value
@@ -1142,9 +1163,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4061679020542083981, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061679020542083981, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 687467595}
+      objectReference: {fileID: 50615260}
+    - target: {fileID: 4061679020542083981, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setSelectMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061679020542083981, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4061679020738159432, guid: 7fc93710f62d0dd4982137384fc8000e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1386,6 +1422,11 @@ PrefabInstance:
       propertyPath: m_text
       value: MOUSE SENSITIVITY
       objectReference: {fileID: 0}
+    - target: {fileID: 8063716172820936254, guid: 7fc93710f62d0dd4982137384fc8000e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 687467595}
     m_RemovedComponents:
     - {fileID: 4061679019997196692, guid: 7fc93710f62d0dd4982137384fc8000e, type: 3}
     - {fileID: 4061679021318173142, guid: 7fc93710f62d0dd4982137384fc8000e, type: 3}
