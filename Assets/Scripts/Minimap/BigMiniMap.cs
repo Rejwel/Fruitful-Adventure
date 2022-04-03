@@ -20,7 +20,7 @@ public class BigMiniMap : MonoBehaviour
             if (MiniMapOpen==true)
             {
                 Close();
-            } else if (MiniMapOpen == false && PauseMenu.GameIsPaused == false)
+            } else if (MiniMapOpen == false && PauseMenu.gameIsPaused == false)
             {
                 Open();
             }
