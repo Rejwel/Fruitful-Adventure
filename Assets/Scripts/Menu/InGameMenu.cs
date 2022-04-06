@@ -33,6 +33,7 @@ public class InGameMenu : MonoBehaviour
     [SerializeField] private AudioSource audioEffect;
     [SerializeField] private AudioSource audioBackground;
     
+    
     private MouseLook _mouseLook;
     private HeadBobbing _headBobbing;
     
@@ -107,7 +108,6 @@ public class InGameMenu : MonoBehaviour
             videoMenu.SetActive(false);
             optionsMenu.SetActive(true);
         }
-
     }
 
     private void initResolutions()

@@ -2,34 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
-    public static bool GameOver = false;
-    public GameObject pauseMenuUI;
-    public GameObject AreYouSureMenu;
-    public GameObject AreYouSureQuit;
-    public GameObject player;
-    public GameObject shopMenu;
-    public GameObject shopMenu2;
-    public HealthPlayer Health;
-    public GameObject Dead;
-    public GameObject SureGameover;
-    public GameObject progressText;
-    private WaveManagerSubscriber WaveManager;
+    public static bool gameIsPaused;
+    private static bool _gameOver;
+    private bool _isSettingsMenu;
+    
+    private WaveManagerSubscriber _waveManager;
     private Money _money;
     private GroundCotroller _groundCotroller;
-    [SerializeField] private GameObject SettingsMenu;
-    private bool _isSettingsMenu;
-
-    public GameObject GUI;
+    
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject areYouSureMenu;
+    [SerializeField] private GameObject areYouSureQuit;
+    [SerializeField] private GameObject areYouSureQuitMainMenu;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject shopMenu;
+    [SerializeField] private GameObject shopMenu2;
+    [SerializeField] private HealthPlayer health;
+    [SerializeField] private GameObject dead;
+    [SerializeField] private GameObject sureGameover;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject GUI;
 
     void Awake()
     {
-        WaveManager = FindObjectOfType<WaveManagerSubscriber>();
+        _waveManager = FindObjectOfType<WaveManagerSubscriber>();
         pauseMenuUI.SetActive(false);
-        GameIsPaused = false;
+        gameIsPaused = false;
         GUI = GameObject.Find("GUI");
         _money = FindObjectOfType<Money>();
         _groundCotroller = FindObjectOfType<GroundCotroller>();
@@ -40,12 +42,12 @@ public class PauseMenu : MonoBehaviour
         DeadPlayer();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused == true && GameOver == false)
+            if (gameIsPaused == true && _gameOver == false)
             {
                 Resume();
             }
-            else if (GameIsPaused == false && shopMenu.activeSelf == false && shopMenu2.activeSelf == false &&
-                     GameOver == false && BigMiniMap.MiniMapOpen == false)
+            else if (gameIsPaused == false && shopMenu.activeSelf == false && shopMenu2.activeSelf == false &&
+                     _gameOver == false && BigMiniMap.MiniMapOpen == false)
             {
                 Pause();
             }
@@ -57,7 +59,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         GUI.SetActive(true);
         Time.timeScale = 1f;
-        GameIsPaused = false;
+        gameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         // player.GetComponent<PlayerShoot>().enabled = true;
@@ -71,51 +73,58 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         GUI.SetActive(false);
         Time.timeScale = 0f;
-        GameIsPaused = true;
+        gameIsPaused = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
     public void SureMenu()
     {
-        GameOver = true;
+        _gameOver = true;
         pauseMenuUI.SetActive(false);
-        AreYouSureMenu.SetActive(true);
+        areYouSureMenu.SetActive(true);
     }
 
     public void InGameSettingsMenu()
     {
-        GameOver = true;
+        _gameOver = true;
         _isSettingsMenu = true;
         pauseMenuUI.SetActive(false);
-        SettingsMenu.SetActive(true);
+        settingsMenu.SetActive(true);
     }
 
     public void OutInGameSettingsMenu()
     {
-        GameOver = false;
+        _gameOver = false;
         _isSettingsMenu = false;
         pauseMenuUI.SetActive(true);
-        SettingsMenu.SetActive(false);
+        settingsMenu.SetActive(false);
     }
     
 
-    public void SureQuit()
+    public void SureQuitDesktop()
     {
-        GameOver = true;
+        _gameOver = true;
         pauseMenuUI.SetActive(false);
-        AreYouSureQuit.SetActive(true);
+        areYouSureQuit.SetActive(true);
+    }
+    
+    public void SureQuitMainMenu()
+    {
+        _gameOver = true;
+        pauseMenuUI.SetActive(false);
+        areYouSureQuitMainMenu.SetActive(true);
     }
 
     public void SureQuitGameOver()
     {
-        Dead.SetActive(false);
-        SureGameover.SetActive(true);
+        dead.SetActive(false);
+        sureGameover.SetActive(true);
     }
 
     public void LoadMenu()
     {
-        GameOver = false;
+        _gameOver = false;
         SceneManager.LoadScene(0);
     }
 
@@ -124,35 +133,37 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Wyjdz");
         Application.Quit();
     }    
+    
 
     public void NoSure()
     {
-        GameOver = false;
+        _gameOver = false;
         pauseMenuUI.SetActive(true);
-        AreYouSureMenu.SetActive(false); 
-        AreYouSureQuit.SetActive(false);
+        areYouSureMenu.SetActive(false); 
+        areYouSureQuit.SetActive(false);
+        areYouSureQuitMainMenu.SetActive(false);
     }
 
     public void NoSureGameOver()
     {
-        Dead.SetActive(true);
+        dead.SetActive(true);
         
-        SureGameover.SetActive(false);
+        sureGameover.SetActive(false);
     }
 
     public void DeadPlayer()
     {
-        Health = FindObjectOfType<HealthPlayer>();
+        health = FindObjectOfType<HealthPlayer>();
         _money.GetEarnedMoney();
         _groundCotroller.GetPlacedTurrets();
-        if(Health.currentHealth <= 0 || WaveManager.BuildingCount == 0)
+        if(health.currentHealth <= 0 || _waveManager.BuildingCount == 0)
         {
-            Dead.SetActive(true);
+            dead.SetActive(true);
             GUI.SetActive(false);
-            GameOver = true;
-            Health.currentHealth = 1;
+            _gameOver = true;
+            health.currentHealth = 1;
             Time.timeScale = 0f;
-            GameIsPaused = true;
+            gameIsPaused = true;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             player.GetComponent<PlayerShoot>().enabled = false;
