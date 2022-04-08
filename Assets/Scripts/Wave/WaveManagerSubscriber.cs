@@ -268,6 +268,8 @@ public class WaveManagerSubscriber : MonoBehaviour
         GameObject[] enemiesToSpawn = new GameObject[16];
         
         // soon there will be also boss spawn
+        if (_wave != 4) 
+        {
         // front spawn, only melee and tanks
         for (int i = 0; i < 8; i++)
         {
@@ -282,7 +284,7 @@ public class WaveManagerSubscriber : MonoBehaviour
                 ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
                 : null;
         }
-
+        }
         // check if spawn equals null
         foreach (var spawn in enemiesToSpawn)
         {
