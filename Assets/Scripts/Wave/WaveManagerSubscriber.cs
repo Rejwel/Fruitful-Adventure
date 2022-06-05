@@ -267,10 +267,11 @@ public class WaveManagerSubscriber : MonoBehaviour
         // 2 - range
         // 3 - tank
         // 4 - tank boss
+        // 5 - ninja boss
         GameObject[] enemiesToSpawn = new GameObject[16];
         
         // soon there will be also boss spawn
-        if (_wave == 4) 
+        if (_wave == 3) 
         {
             enemiesToSpawn[0] = enemies[4];
             // front spawn, only melee and tanks
@@ -281,7 +282,7 @@ public class WaveManagerSubscriber : MonoBehaviour
                     : null;
             }
             // back spawn, only mage and range
-            for (int i = 5; i < 8; i++)
+            for (int i = 4; i < 8; i++)
             {
                 enemiesToSpawn[i] = IsEquitableForRangedEnemiesSpawn()
                     ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
@@ -307,7 +308,25 @@ public class WaveManagerSubscriber : MonoBehaviour
             }
             
         }
-        else 
+        else if (_wave == 5)
+        {
+            enemiesToSpawn[0] = enemies[5];
+            // front spawn, only melee and tanks
+            for (int i = 1; i < 8; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForMeleeEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[3] : enemies[1]
+                    : null;
+            }
+            // back spawn, only mage and range
+            for (int i = 8; i < 16; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForRangedEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
+                    : null;
+            }
+        }
+        else
         {
             // front spawn, only melee and tanks
             for (int i = 0; i < 8; i++)
