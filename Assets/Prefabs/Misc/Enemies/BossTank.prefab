@@ -47,9 +47,8 @@ GameObject:
   - component: {fileID: 3439582408475586933}
   - component: {fileID: 1749972371398000570}
   - component: {fileID: 164754609933119948}
-  - component: {fileID: 4013294701551369892}
   m_Layer: 7
-  m_Name: Boss
+  m_Name: BossTank
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,36 +225,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4013294701551369892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5064100879003627350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bdb0c8b2629ed64ab2adc41fd18a0ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 1249731667822927839}
-  czekaj: 2
-  strzalaPrefab: {fileID: 9142128983991355959, guid: 92411f463ca4a0f4cbfc071a11516143,
-    type: 3}
-  predkosc: 7
-  patrzNaGracza: 0
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  BuildingLayer:
-    serializedVersion: 2
-    m_Bits: 262144
-  DefendingStructureLayer:
-    serializedVersion: 2
-    m_Bits: 33554432
-  shortAttack: 15
-  longAttack: 30
-  centerPoint: 25
 --- !u!1 &5576858662050786135
 GameObject:
   m_ObjectHideFlags: 0
