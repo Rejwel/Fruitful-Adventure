@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,7 +27,10 @@ public class WaveManagerSubscriber : MonoBehaviour
     [SerializeField] private string waveCombo; // "0123" | "0" -> 0 spawner on
     [SerializeField] private Spawner[] spawners;
     [SerializeField] private GameObject[] enemies;
-    
+    [SerializeField] private GameObject deadMenu;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private TextMeshProUGUI titleText;
+
     void Awake()
     {
         waveManager = GetComponent<WaveManager>();
@@ -91,6 +95,14 @@ public class WaveManagerSubscriber : MonoBehaviour
         else if (_wave == 11)
         {
             _waveCountText.text = "Last wave " + _wave + "\n now attacking: " + WaveTextGui;
+
+            if (_enemiesLeft == 0)
+            {
+                titleText.text = "YOU WON!";
+                deadMenu.SetActive(true);
+                pauseMenu.GetComponent<PauseMenu>().End();
+                
+            }
         }
         else
         {
