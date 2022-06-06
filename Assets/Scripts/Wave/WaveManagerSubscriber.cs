@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +27,10 @@ public class WaveManagerSubscriber : MonoBehaviour
     [SerializeField] private string waveCombo; // "0123" | "0" -> 0 spawner on
     [SerializeField] private Spawner[] spawners;
     [SerializeField] private GameObject[] enemies;
-    
+    [SerializeField] private GameObject deadMenu;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private TextMeshProUGUI titleText;
+
     void Awake()
     {
         waveManager = GetComponent<WaveManager>();
@@ -90,6 +95,14 @@ public class WaveManagerSubscriber : MonoBehaviour
         else if (_wave == 11)
         {
             _waveCountText.text = "Last wave " + _wave + "\n now attacking: " + WaveTextGui;
+
+            if (_enemiesLeft == 0)
+            {
+                titleText.text = "YOU WON!";
+                deadMenu.SetActive(true);
+                pauseMenu.GetComponent<PauseMenu>().End();
+                
+            }
         }
         else
         {
@@ -265,24 +278,84 @@ public class WaveManagerSubscriber : MonoBehaviour
         // 1 - melee
         // 2 - range
         // 3 - tank
+        // 4 - tank boss
+        // 5 - ninja boss
         GameObject[] enemiesToSpawn = new GameObject[16];
         
         // soon there will be also boss spawn
-        // front spawn, only melee and tanks
-        for (int i = 0; i < 8; i++)
+        if (_wave == 3) 
         {
-            enemiesToSpawn[i] = IsEquitableForMeleeEnemiesSpawn()
-                ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[3] : enemies[1]
-                : null;
+            enemiesToSpawn[0] = enemies[4];
+            // front spawn, only melee and tanks
+            for (int i = 1; i < 4; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForMeleeEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[3] : enemies[1]
+                    : null;
+            }
+            // back spawn, only mage and range
+            for (int i = 4; i < 8; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForRangedEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
+                    : null;
+            }
         }
-        // back spawn, only mage and range
-        for (int i = 8; i < 16; i++)
+        else if (_wave == 10)
         {
-            enemiesToSpawn[i] = IsEquitableForRangedEnemiesSpawn()
-                ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
-                : null;
+            enemiesToSpawn[0] = enemies[4];
+            // front spawn, only melee and tanks
+            for (int i = 1; i < 8; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForMeleeEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[3] : enemies[1]
+                    : null;
+            }
+            // back spawn, only mage and range
+            for (int i = 8; i < 16; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForRangedEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
+                    : null;
+            }
+            
         }
-
+        else if (_wave == 5)
+        {
+            enemiesToSpawn[0] = enemies[5];
+            // front spawn, only melee and tanks
+            for (int i = 1; i < 8; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForMeleeEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[3] : enemies[1]
+                    : null;
+            }
+            // back spawn, only mage and range
+            for (int i = 8; i < 16; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForRangedEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
+                    : null;
+            }
+        }
+        else
+        {
+            // front spawn, only melee and tanks
+            for (int i = 0; i < 8; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForMeleeEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[3] : enemies[1]
+                    : null;
+            }
+            // back spawn, only mage and range
+            for (int i = 8; i < 16; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForRangedEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
+                    : null;
+            }
+        }
+        
         // check if spawn equals null
         foreach (var spawn in enemiesToSpawn)
         {

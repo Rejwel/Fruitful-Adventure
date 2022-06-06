@@ -13,16 +13,30 @@ public class EnemyMechanics : MonoBehaviour
     private int currentHealth;
     public HealthBarScript healthBar;
     private Rigidbody enemyRb;
+    private Explosion _explosion;
     public GameObject Money;
 
-    private void Start()
+    private void Awake()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         enemyRb = gameObject.GetComponent<Rigidbody>();
         gameObject.AddComponent<Explosion>();
+       
+        if (gameObject.layer.Equals(7))
+        {
+            gameObject.GetComponent<Explosion>().cubesInRow = 4;
+            gameObject.GetComponent<Explosion>().explosionForce = 60f;
+            gameObject.GetComponent<Explosion>().explosionRadius = 20f;
+        }
+        else if (gameObject.layer.Equals(10))
+        {
+            gameObject.GetComponent<Explosion>().cubesInRow = 2;
+            gameObject.GetComponent<Explosion>().explosionForce = 50f;
+            gameObject.GetComponent<Explosion>().explosionRadius = 5f;
+        }
     }
-    
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;

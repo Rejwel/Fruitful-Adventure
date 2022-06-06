@@ -67,10 +67,20 @@ public class PauseMenu : MonoBehaviour
         player.GetComponent<PlayerShoot>().HoldFire = false;
     }
 
-    void Pause()
+    public void Pause()
     {
         player.GetComponent<PlayerShoot>().HoldFire = true;
         pauseMenuUI.SetActive(true);
+        GUI.SetActive(false);
+        Time.timeScale = 0f;
+        gameIsPaused = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    
+    public void End()
+    {
+        player.GetComponent<PlayerShoot>().HoldFire = true;
         GUI.SetActive(false);
         Time.timeScale = 0f;
         gameIsPaused = true;

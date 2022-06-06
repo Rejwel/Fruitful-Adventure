@@ -54,4 +54,5 @@ public class Explosion : MonoBehaviour
     {
         Instantiate(SugarCube, EnemyTransform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot, transform.rotation);
     }
+    
 }
