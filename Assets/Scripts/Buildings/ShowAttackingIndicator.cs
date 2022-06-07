@@ -1,20 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShowAttackingIndicator : MonoBehaviour
 {
-    [SerializeField] private static GameObject _objectIndicator;
+    [SerializeField] private GameObject _objectIndicator;
 
-    public static void toggleIndicator()
+    public void Start()
     {
-        if (_objectIndicator.gameObject.activeSelf)
-        {
-            _objectIndicator.gameObject.SetActive(false);
-        }
-        else
-        {
-            _objectIndicator.gameObject.SetActive(true);
-        }
+        _objectIndicator = gameObject;
+        Deactivate();
+    }
+
+    public void Deactivate()
+    {
+        _objectIndicator.SetActive(false);
+    }
+    
+    public void Activate()
+    {
+        _objectIndicator.SetActive(true);
     }
 }

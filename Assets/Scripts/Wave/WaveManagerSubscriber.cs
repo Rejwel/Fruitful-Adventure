@@ -45,6 +45,7 @@ public class WaveManagerSubscriber : MonoBehaviour
     private void GetStartingAttackPoints()
     {
         AttackingBuilding = GetFirstAttackPoint();
+        AttackingBuilding.GetComponent<IndicatorActivator>().ActivateIndicator();
         AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
         GetNextBuilding();
         waveManager.OnStartSetup -= GetStartingAttackPoints;
@@ -90,6 +91,7 @@ public class WaveManagerSubscriber : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 SpawnFirstWave();
+                AttackingBuilding.GetComponentInChildren<ShowAttackingIndicator>().Deactivate();
             }
         }
         else if (_wave == 11)
@@ -108,6 +110,8 @@ public class WaveManagerSubscriber : MonoBehaviour
         {
             if (_enemiesLeft == 0)
             {
+                NextAttackingBuilding.GetComponent<IndicatorActivator>().ActivateIndicator();
+                
                 _enemiesLeftText.text = "All enemies defeated!\nPress (F) to start next wave!";
                 if (Input.GetKeyDown(KeyCode.F))
                 {
@@ -193,7 +197,8 @@ public class WaveManagerSubscriber : MonoBehaviour
         // setting new attack points
         if (AttackingBuilding != null)
             AttackingBuilding.GetComponent<SphereCollider>().enabled = false;
-
+        
+        NextAttackingBuilding.GetComponent<IndicatorActivator>().DeactivateIndicator();
         AttackingBuilding = NextAttackingBuilding;
         AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
         GetNextBuilding();
