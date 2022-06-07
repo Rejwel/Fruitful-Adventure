@@ -62,8 +62,6 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        // player.GetComponent<PlayerShoot>().enabled = true;
-        // player.GetComponent<GrenadeThrow>().enabled = true;
         player.GetComponent<PlayerShoot>().HoldFire = false;
     }
 

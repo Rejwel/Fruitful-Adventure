@@ -38,20 +38,21 @@ public class MouseLook : MonoBehaviour
         }
         else
         {
-            PlayerMouseMove();
+            if (Time.timeScale != 0)
+                PlayerMouseMove();
         }
     }
 
     private void PlayerMouseMove()
     {
-        _mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        _mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        _mouseX = Input.GetAxis("Mouse X") * mouseSensitivity / 150;
+        _mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity / 150;
 
         _xRotation -= _mouseY;
         _xRotation = Mathf.Clamp(_xRotation,-_clampAngle,_clampAngle);
 
         camera.transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
-        player.transform.Rotate(Vector3.up * _mouseX * mouseSensitivity/2 * Time.deltaTime);
+        player.transform.Rotate(Vector3.up * _mouseX * mouseSensitivity / 150);
         
     }
 
