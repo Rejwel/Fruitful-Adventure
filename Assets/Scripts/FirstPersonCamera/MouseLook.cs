@@ -20,6 +20,7 @@ public class MouseLook : MonoBehaviour
     private bool _isLookingAt = false;
     private float _lookingTime = 3f;
     private float _lookingCounter = 0f;
+
     
     void Awake()
     {
@@ -63,6 +64,8 @@ public class MouseLook : MonoBehaviour
         _isLookingAt = true;
 
         camera.transform.localRotation = Quaternion.Lerp(camera.transform.localRotation, Quaternion.Euler(0,0,0), 6f * Time.deltaTime);
+        
+        
         player.transform.rotation = Quaternion.Lerp(player.transform.rotation, focusPoint.transform.rotation, 3f * Time.deltaTime);
     }
 

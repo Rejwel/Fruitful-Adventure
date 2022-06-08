@@ -27,7 +27,7 @@ public class OpenShop : MonoBehaviour
     
     [SerializeField] private GameObject FocusPoint;
     [SerializeField] private GameObject StandingPoint;
-    
+
     private float Delay = 1.2f;
 
     private GroundCotroller mode;
@@ -58,9 +58,9 @@ public class OpenShop : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Escape))
         {
-            playerController.enabled = true;
             mouseLook.CancelLookingAtObject();
-
+            playerController.enabled = true;
+            
             inShop = false;
             closeShop();
             player.GetComponent<PlayerShoot>().HoldFire = false;
