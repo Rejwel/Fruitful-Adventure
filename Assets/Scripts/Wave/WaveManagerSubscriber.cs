@@ -103,7 +103,7 @@ public class WaveManagerSubscriber : MonoBehaviour
         {
             _waveCountText.text = "Last wave " + _wave + "\n now attacking: " + WaveTextGui;
 
-            if (_enemiesLeft == 0)
+            if (_enemiesLeft <= 0)
             {
                 titleText.text = "YOU WON!";
                 deadMenu.SetActive(true);
@@ -113,7 +113,7 @@ public class WaveManagerSubscriber : MonoBehaviour
         }
         else
         {
-            if (_enemiesLeft == 0)
+            if (_enemiesLeft <= 0)
             {
                 NextAttackingBuilding.GetComponent<IndicatorActivator>().ActivateIndicator();
                 
@@ -132,7 +132,7 @@ public class WaveManagerSubscriber : MonoBehaviour
 
             if (BuildingCount != 1)
             {
-                _waveCountText.text = _enemiesLeft == 0
+                _waveCountText.text = _enemiesLeft <= 0
                     ? _waveCountText.text = "Wave " + _wave + "\n next attacking: " + NextAttackingBuilding.name
                     : _waveCountText.text = "Wave " + _wave + "\n now attacking: " + WaveTextGui + "\n next attacking: " +
                                             NextAttackingBuilding.name;
