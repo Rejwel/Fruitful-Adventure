@@ -1222,7 +1222,7 @@ GameObject:
   - component: {fileID: 1469018779}
   - component: {fileID: 3730998913979657550}
   - component: {fileID: -636868852191628366}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: mill
   m_TagString: TurretDetecting
   m_Icon: {fileID: 0}
@@ -1412,7 +1412,7 @@ GameObject:
   - component: {fileID: 4835177989181069161}
   - component: {fileID: 9040420712675029458}
   - component: {fileID: 5488040781319951634}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

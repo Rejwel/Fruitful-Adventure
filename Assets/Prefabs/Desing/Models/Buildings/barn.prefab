@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 6384468579177911749}
   - component: {fileID: 7035289724603303795}
   - component: {fileID: 6004357753971323123}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1507,7 +1507,7 @@ GameObject:
   - component: {fileID: 919132147983763882}
   - component: {fileID: 9216606113701793727}
   - component: {fileID: 7967457904571534371}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: barn
   m_TagString: TurretDetecting
   m_Icon: {fileID: 0}

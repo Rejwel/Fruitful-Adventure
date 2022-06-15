@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 4001174654546824661}
   - component: {fileID: 1030002106772296145}
   - component: {fileID: 5179803645387094213}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 746936032}
   - component: {fileID: 8632510548202692859}
   - component: {fileID: 3621315261522053045}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: garage
   m_TagString: TurretDetecting
   m_Icon: {fileID: 0}

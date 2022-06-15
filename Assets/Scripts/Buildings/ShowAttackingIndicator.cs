@@ -7,7 +7,7 @@ public class ShowAttackingIndicator : MonoBehaviour
 {
     [SerializeField] private GameObject _objectIndicator;
 
-    public void Start()
+    public void Awake()
     {
         _objectIndicator = gameObject;
         Deactivate();
