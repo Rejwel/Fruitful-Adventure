@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DamageTrap
   m_EditorClassIdentifier: 
   Name: 6
-  Icon: {fileID: 21300000, guid: d68d8a3d09b8d9043be9e55c83d94448, type: 3}
+  Icon: {fileID: 21300000, guid: 2cd71434877b4094ba4c0548898d2913, type: 3}
