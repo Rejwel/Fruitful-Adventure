@@ -4383,10 +4383,8 @@ MonoBehaviour:
     type: 3}
   partToRotate: {fileID: 3158985813418780321}
   firePoint: {fileID: 4975466765971176493}
-  reloadTurret: {fileID: 0}
-  turretInfoScript: {fileID: 0}
   maximumAmmountOfAmmunition: 20
-  range: 20
+  range: 10
   turnSpeed: 1
 --- !u!1 &8336711249427490958
 GameObject:

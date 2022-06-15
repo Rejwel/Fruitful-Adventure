@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -24,7 +25,13 @@ public class GroundCotroller : MonoBehaviour
     [SerializeField] private RingMenu MainMenuInstance;
     [SerializeField] private GameObject Canvas;
     [SerializeField] private GameObject Prefab;
+    private PauseMenu _pauseMenu;
     public ControllerMode Mode {  get; set; }
+
+    private void Awake()
+    {
+        _pauseMenu = FindObjectOfType<PauseMenu>();
+    }
 
     private void Start()
     {
@@ -82,9 +89,9 @@ public class GroundCotroller : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (!Physics.Raycast(ray, out hitInfo, 10f, placableObjects) 
-            && !Physics.Raycast(ray, out hitInfo, 10f, defendingStructures) 
-            && Physics.Raycast(ray, out hitInfo, 10f, terrain) 
+        if (!Physics.Raycast(ray, out hitInfo, 14f, placableObjects) 
+            && !Physics.Raycast(ray, out hitInfo, 14f, defendingStructures) 
+            && Physics.Raycast(ray, out hitInfo, 14f, terrain) 
             && hitInfo.normal == Vector3.up)
         {
             currentPlaceableObject.transform.position = hitInfo.point;
@@ -101,7 +108,7 @@ public class GroundCotroller : MonoBehaviour
     {
         currentPlaceableObject.transform.Rotate(Vector3.up, 0f);
         mouseWheelRotation += Input.mouseScrollDelta.y;
-        currentPlaceableObject.transform.Rotate(Vector3.up, mouseWheelRotation * 10f);
+        currentPlaceableObject.transform.Rotate(Vector3.up, mouseWheelRotation * 12f);
     }
     
     private void ClearCurrentObject()
@@ -138,7 +145,7 @@ public class GroundCotroller : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
-        if (Input.GetMouseButtonDown(0) && !Physics.Raycast(ray, out hitInfo, 10f, placableObjects) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
+        if (Input.GetMouseButtonDown(0) && !Physics.Raycast(ray, out hitInfo, 14f, placableObjects) && Physics.Raycast(ray, out hitInfo, 14f, terrain))
         {
             if (Prefab != null && Prefab.name.Equals("TurretTransparent"))
             {
@@ -179,6 +186,7 @@ public class GroundCotroller : MonoBehaviour
         switch (mode)
         {
             case ControllerMode.Build:
+                _pauseMenu.SetIsInBuildMode(true);
                 Canvas.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -187,6 +195,7 @@ public class GroundCotroller : MonoBehaviour
                 player.GetComponent<PlayerShoot>().AddDelay();             
                 break;
             case ControllerMode.Menu:
+                _pauseMenu.SetIsInBuildMode(false);
                 Canvas.SetActive(true);               
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -195,6 +204,7 @@ public class GroundCotroller : MonoBehaviour
                 player.GetComponent<PlayerShoot>().AddDelay();
                 break;
             case ControllerMode.Play:
+                _pauseMenu.SetIsInBuildMode(false);
                 Canvas.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;

@@ -3067,7 +3067,7 @@ MonoBehaviour:
   reloadTurret: {fileID: 0}
   turretInfoScript: {fileID: 0}
   maximumAmmountOfAmmunition: 30
-  range: 15
+  range: 8
   enemyTag: Enemy
   partToRotate: {fileID: 5027620986694366227}
   turnSpeed: 2
