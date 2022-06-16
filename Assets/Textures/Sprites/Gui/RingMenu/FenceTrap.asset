@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FenceTrap
   m_EditorClassIdentifier: 
   Name: 8
-  Icon: {fileID: 21300000, guid: ff31a66e3ead8974a944d0200e9c7741, type: 3}
+  Icon: {fileID: 21300000, guid: e4678d69e8e31b440ac8b2561f1b182d, type: 3}
