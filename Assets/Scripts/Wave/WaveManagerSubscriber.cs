@@ -10,6 +10,7 @@ public class WaveManagerSubscriber : MonoBehaviour
 {
     private int _wave = 0;
     private float _enemiesLeft = 0;
+    private int _enemiesKilled = 0;
     private Text _waveCountText;
     private Text _enemiesLeftText;
     private string WaveTextGui;
@@ -30,6 +31,8 @@ public class WaveManagerSubscriber : MonoBehaviour
     [SerializeField] private GameObject deadMenu;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI waveText;
+    [SerializeField] private TextMeshProUGUI enemiesKilledText;
 
     void Awake()
     {
@@ -195,6 +198,7 @@ public class WaveManagerSubscriber : MonoBehaviour
     public void UpdateEnemyCounter()
     {
         _enemiesLeft--;
+        _enemiesKilled++;
     }
 
     public void SetAttack()
@@ -395,5 +399,17 @@ public class WaveManagerSubscriber : MonoBehaviour
         }
 
         return enemiesSpawnType();
+    }
+    
+    public int GetWave()
+    {
+        waveText.text = "Wave: " + _wave.ToString();
+        return _wave;
+    }
+    
+    public int GetEnemiesKilled()
+    {
+        enemiesKilledText.text = "Enemies killed: " + _enemiesKilled.ToString();
+        return _enemiesKilled;
     }
 }

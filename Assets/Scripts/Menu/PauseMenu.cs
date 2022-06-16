@@ -164,6 +164,8 @@ public class PauseMenu : MonoBehaviour
     {
         health = FindObjectOfType<HealthPlayer>();
         _money.GetEarnedMoney();
+        _waveManager.GetWave();
+        _waveManager.GetEnemiesKilled();
         _groundCotroller.GetPlacedTurrets();
         if(health.currentHealth <= 0 || _waveManager.BuildingCount == 0)
         {
