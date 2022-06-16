@@ -24,6 +24,7 @@ public class GroundCotroller : MonoBehaviour
     [SerializeField] private RingMenu MainMenuInstance;
     [SerializeField] private GameObject Canvas;
     [SerializeField] private GameObject Prefab;
+    private PauseMenu _pauseMenu; 
     public ControllerMode Mode {  get; set; }
 
     private void Start()
@@ -31,6 +32,11 @@ public class GroundCotroller : MonoBehaviour
         SetMode(ControllerMode.Play);
         inv = FindObjectOfType<Inventory>();
     }
+    
+    private void Awake() 
+    { 
+        _pauseMenu = FindObjectOfType<PauseMenu>(); 
+    } 
 
     private void Update()
     {
@@ -82,9 +88,9 @@ public class GroundCotroller : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (!Physics.Raycast(ray, out hitInfo, 10f, placableObjects) 
-            && !Physics.Raycast(ray, out hitInfo, 10f, defendingStructures) 
-            && Physics.Raycast(ray, out hitInfo, 10f, terrain) 
+        if (!Physics.Raycast(ray, out hitInfo, 14.5f, placableObjects) 
+            && !Physics.Raycast(ray, out hitInfo, 14.5f, defendingStructures) 
+            && Physics.Raycast(ray, out hitInfo, 14.5f, terrain) 
             && hitInfo.normal == Vector3.up)
         {
             currentPlaceableObject.transform.position = hitInfo.point;
@@ -138,7 +144,7 @@ public class GroundCotroller : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
-        if (Input.GetMouseButtonDown(0) && !Physics.Raycast(ray, out hitInfo, 10f, placableObjects) && Physics.Raycast(ray, out hitInfo, 8f, terrain))
+        if (Input.GetMouseButtonDown(0) && !Physics.Raycast(ray, out hitInfo, 14.5f, placableObjects) && Physics.Raycast(ray, out hitInfo, 14.5f, terrain))
         {
             if (Prefab != null && Prefab.name.Equals("TurretTransparent"))
             {
@@ -184,7 +190,8 @@ public class GroundCotroller : MonoBehaviour
                 Cursor.visible = false;
                 mouseLook.enabled = true;
                 player.GetComponent<PlayerShoot>().HoldFire = true;
-                player.GetComponent<PlayerShoot>().AddDelay();             
+                player.GetComponent<PlayerShoot>().AddDelay();     
+                _pauseMenu.SetIsInBuildMode(true); 
                 break;
             case ControllerMode.Menu:
                 Canvas.SetActive(true);               
@@ -193,6 +200,7 @@ public class GroundCotroller : MonoBehaviour
                 mouseLook.enabled = false;
                 player.GetComponent<PlayerShoot>().HoldFire = true;
                 player.GetComponent<PlayerShoot>().AddDelay();
+                _pauseMenu.SetIsInBuildMode(false); 
                 break;
             case ControllerMode.Play:
                 Canvas.SetActive(false);
@@ -201,6 +209,7 @@ public class GroundCotroller : MonoBehaviour
                 mouseLook.enabled = true;
                 player.GetComponent<PlayerShoot>().HoldFire = false;
                 player.GetComponent<PlayerShoot>().AddDelay();
+                _pauseMenu.SetIsInBuildMode(false); 
                 break;            
         }
     }
