@@ -314,8 +314,30 @@ public class WaveManagerSubscriber : MonoBehaviour
         else if (_wave == 10)
         {
             enemiesToSpawn[0] = enemies[4];
+            enemiesToSpawn[1] = enemies[5];
+            enemiesToSpawn[2] = enemies[5];
             // front spawn, only melee and tanks
-            for (int i = 1; i < 8; i++)
+            for (int i = 3; i < 8; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForMeleeEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[3] : enemies[1]
+                    : null;
+            }
+            // back spawn, only mage and range
+            for (int i = 8; i < 16; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForRangedEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
+                    : null;
+            }
+            
+        }
+        else if (_wave == 8)
+        {
+            enemiesToSpawn[0] = enemies[5];
+            enemiesToSpawn[1] = enemies[5];
+            // front spawn, only melee and tanks
+            for (int i = 2; i < 8; i++)
             {
                 enemiesToSpawn[i] = IsEquitableForMeleeEnemiesSpawn()
                     ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[3] : enemies[1]
