@@ -58,11 +58,7 @@ public class WaveManagerSubscriber : MonoBehaviour
     {
         Buildings = GetSceneObjects(18);
         BuildingCount = Buildings.Count;
-
-        foreach (var build in Buildings)
-        {
-            Debug.Log(build);
-        }
+        
         waveManager.OnStartSetup -= GetAllStartingBuildings;
     }
 
