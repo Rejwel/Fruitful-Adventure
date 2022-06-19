@@ -10,6 +10,7 @@ public class WaveManagerSubscriber : MonoBehaviour
 {
     private int _wave = 0;
     private float _enemiesLeft = 0;
+    private int _enemiesKilled = 0;
     private Text _waveCountText;
     private Text _enemiesLeftText;
     private string WaveTextGui;
@@ -30,6 +31,8 @@ public class WaveManagerSubscriber : MonoBehaviour
     [SerializeField] private GameObject deadMenu;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI waveText;
+    [SerializeField] private TextMeshProUGUI enemiesKilledText;
 
     void Awake()
     {
@@ -45,6 +48,7 @@ public class WaveManagerSubscriber : MonoBehaviour
     private void GetStartingAttackPoints()
     {
         AttackingBuilding = GetFirstAttackPoint();
+        AttackingBuilding.GetComponent<IndicatorActivator>().ActivateIndicator();
         AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
         GetNextBuilding();
         waveManager.OnStartSetup -= GetStartingAttackPoints;
@@ -54,6 +58,7 @@ public class WaveManagerSubscriber : MonoBehaviour
     {
         Buildings = GetSceneObjects(18);
         BuildingCount = Buildings.Count;
+        
         waveManager.OnStartSetup -= GetAllStartingBuildings;
     }
 
@@ -90,13 +95,14 @@ public class WaveManagerSubscriber : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 SpawnFirstWave();
+                AttackingBuilding.GetComponentInChildren<ShowAttackingIndicator>().Deactivate();
             }
         }
         else if (_wave == 11)
         {
             _waveCountText.text = "Last wave " + _wave + "\n now attacking: " + WaveTextGui;
 
-            if (_enemiesLeft == 0)
+            if (_enemiesLeft <= 0)
             {
                 titleText.text = "YOU WON!";
                 deadMenu.SetActive(true);
@@ -106,8 +112,10 @@ public class WaveManagerSubscriber : MonoBehaviour
         }
         else
         {
-            if (_enemiesLeft == 0)
+            if (_enemiesLeft <= 0)
             {
+                NextAttackingBuilding.GetComponent<IndicatorActivator>().ActivateIndicator();
+                
                 _enemiesLeftText.text = "All enemies defeated!\nPress (F) to start next wave!";
                 if (Input.GetKeyDown(KeyCode.F))
                 {
@@ -123,7 +131,7 @@ public class WaveManagerSubscriber : MonoBehaviour
 
             if (BuildingCount != 1)
             {
-                _waveCountText.text = _enemiesLeft == 0
+                _waveCountText.text = _enemiesLeft <= 0
                     ? _waveCountText.text = "Wave " + _wave + "\n next attacking: " + NextAttackingBuilding.name
                     : _waveCountText.text = "Wave " + _wave + "\n now attacking: " + WaveTextGui + "\n next attacking: " +
                                             NextAttackingBuilding.name;
@@ -186,6 +194,7 @@ public class WaveManagerSubscriber : MonoBehaviour
     public void UpdateEnemyCounter()
     {
         _enemiesLeft--;
+        _enemiesKilled++;
     }
 
     public void SetAttack()
@@ -193,7 +202,8 @@ public class WaveManagerSubscriber : MonoBehaviour
         // setting new attack points
         if (AttackingBuilding != null)
             AttackingBuilding.GetComponent<SphereCollider>().enabled = false;
-
+        
+        NextAttackingBuilding.GetComponent<IndicatorActivator>().DeactivateIndicator();
         AttackingBuilding = NextAttackingBuilding;
         AttackingBuilding.GetComponent<SphereCollider>().enabled = true;
         GetNextBuilding();
@@ -304,8 +314,30 @@ public class WaveManagerSubscriber : MonoBehaviour
         else if (_wave == 10)
         {
             enemiesToSpawn[0] = enemies[4];
+            enemiesToSpawn[1] = enemies[5];
+            enemiesToSpawn[2] = enemies[5];
             // front spawn, only melee and tanks
-            for (int i = 1; i < 8; i++)
+            for (int i = 3; i < 8; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForMeleeEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[3] : enemies[1]
+                    : null;
+            }
+            // back spawn, only mage and range
+            for (int i = 8; i < 16; i++)
+            {
+                enemiesToSpawn[i] = IsEquitableForRangedEnemiesSpawn()
+                    ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[0] : enemies[2]
+                    : null;
+            }
+            
+        }
+        else if (_wave == 8)
+        {
+            enemiesToSpawn[0] = enemies[5];
+            enemiesToSpawn[1] = enemies[5];
+            // front spawn, only melee and tanks
+            for (int i = 2; i < 8; i++)
             {
                 enemiesToSpawn[i] = IsEquitableForMeleeEnemiesSpawn()
                     ? enemiesToSpawn[i] = IsEquitableForBetterEnemySpawn() ? enemies[3] : enemies[1]
@@ -363,5 +395,17 @@ public class WaveManagerSubscriber : MonoBehaviour
         }
 
         return enemiesSpawnType();
+    }
+    
+    public int GetWave()
+    {
+        waveText.text = "Wave: " + _wave.ToString();
+        return _wave;
+    }
+    
+    public int GetEnemiesKilled()
+    {
+        enemiesKilledText.text = "Enemies killed: " + _enemiesKilled.ToString();
+        return _enemiesKilled;
     }
 }

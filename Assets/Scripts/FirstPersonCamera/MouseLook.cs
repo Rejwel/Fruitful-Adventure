@@ -20,6 +20,7 @@ public class MouseLook : MonoBehaviour
     private bool _isLookingAt = false;
     private float _lookingTime = 3f;
     private float _lookingCounter = 0f;
+
     
     void Awake()
     {
@@ -38,20 +39,21 @@ public class MouseLook : MonoBehaviour
         }
         else
         {
-            PlayerMouseMove();
+            if (Time.timeScale != 0)
+                PlayerMouseMove();
         }
     }
 
     private void PlayerMouseMove()
     {
-        _mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        _mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        _mouseX = Input.GetAxis("Mouse X") * mouseSensitivity / 150;
+        _mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity / 150;
 
         _xRotation -= _mouseY;
         _xRotation = Mathf.Clamp(_xRotation,-_clampAngle,_clampAngle);
 
         camera.transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
-        player.transform.Rotate(Vector3.up * _mouseX * mouseSensitivity/2 * Time.deltaTime);
+        player.transform.Rotate(Vector3.up * _mouseX * mouseSensitivity / 150);
         
     }
 
@@ -62,6 +64,8 @@ public class MouseLook : MonoBehaviour
         _isLookingAt = true;
 
         camera.transform.localRotation = Quaternion.Lerp(camera.transform.localRotation, Quaternion.Euler(0,0,0), 6f * Time.deltaTime);
+        
+        
         player.transform.rotation = Quaternion.Lerp(player.transform.rotation, focusPoint.transform.rotation, 3f * Time.deltaTime);
     }
 

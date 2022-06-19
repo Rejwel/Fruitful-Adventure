@@ -25,10 +25,9 @@ public class OpenShop : MonoBehaviour
     private Transform savedPlayerTransform;
     
     
-    public GameObject FocusPoint;
-    public GameObject StandingPoint;
+    [SerializeField] private GameObject FocusPoint;
+    [SerializeField] private GameObject StandingPoint;
 
-    private float timeOnFocus = 0f;
     private float Delay = 1.2f;
 
     private GroundCotroller mode;
@@ -46,13 +45,11 @@ public class OpenShop : MonoBehaviour
     {
         if(inShop)
         {
-            if(Time.time <=  timeOnFocus)
-                FocusCamera();
+            FocusCamera();
         }
 
         if (Input.GetKey(KeyCode.E) && mode.Mode == GroundCotroller.ControllerMode.Play)
         {
-            timeOnFocus = Time.time + Delay;
             inShop = true;
             player.GetComponent<PlayerShoot>().HoldFire = true;
             openShop();
@@ -61,9 +58,9 @@ public class OpenShop : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Escape))
         {
-            playerController.enabled = true;
             mouseLook.CancelLookingAtObject();
-
+            playerController.enabled = true;
+            
             inShop = false;
             closeShop();
             player.GetComponent<PlayerShoot>().HoldFire = false;

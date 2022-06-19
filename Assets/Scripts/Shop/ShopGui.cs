@@ -27,8 +27,8 @@ public class ShopGui : MonoBehaviour
     private int hp75Price = 130;
     private int hp100Price = 160;
 
-    private int GrenadePrice = 75;
-    private int FencePrice = 75;
+    private int GrenadePrice = 30;
+    private int FencePrice = 35;
     private int ShootingTurretPrice = 75;
     private int SlowingTurretPrice = 50;
     
