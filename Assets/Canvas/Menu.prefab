@@ -1928,6 +1928,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionsMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 3836558628744744733, guid: e30ad042cb731f746abfc3608939f1eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e30ad042cb731f746abfc3608939f1eb, type: 3}
 --- !u!224 &4061679021680253557 stripped

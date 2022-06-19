@@ -65,19 +65,19 @@ public class RingMenu : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        changeState(i, Pieces, "Slowing Turret", inv.GetSlowingTurret().ToString());
-                        break;
-                    case 1:
-                        changeState(i, Pieces, "Damage Trap", inv.GetDamageTrap().ToString());
-                        break;
-                    case 2:
-                        changeState(i, Pieces, "Slow Trap", inv.GetSlowTrap().ToString());
-                        break;
-                    case 3:
                         changeState(i, Pieces, "Shooting Turret", inv.GetShootingTurret().ToString());
                         break;
-                    case 4:
+                    case 1:
+                        changeState(i, Pieces, "Slowing Turret", inv.GetSlowingTurret().ToString());
+                        break;
+                    case 2:
                         changeState(i, Pieces, "Trap Fence", inv.GetTrapFence().ToString());
+                        break;
+                    case 3:
+                        changeState(i, Pieces, "Damage Trap", inv.GetDamageTrap().ToString());
+                        break;
+                    case 4:
+                        changeState(i, Pieces, "Slow Trap", inv.GetSlowTrap().ToString());
                         break;
                 }
                 Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.7f); 

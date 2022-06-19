@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public static bool gameIsPaused;
     private static bool _gameOver;
     private bool _isSettingsMenu;
+    private bool _isInBuildMode;
     
     private WaveManagerSubscriber _waveManager;
     private Money _money;
@@ -42,12 +43,12 @@ public class PauseMenu : MonoBehaviour
         DeadPlayer();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (gameIsPaused == true && _gameOver == false)
+            if (gameIsPaused == true && _gameOver == false && !_isInBuildMode)
             {
                 Resume();
             }
             else if (gameIsPaused == false && shopMenu.activeSelf == false && shopMenu2.activeSelf == false &&
-                     _gameOver == false && BigMiniMap.MiniMapOpen == false)
+                     _gameOver == false && BigMiniMap.MiniMapOpen == false && !_isInBuildMode)
             {
                 Pause();
             }
@@ -163,6 +164,8 @@ public class PauseMenu : MonoBehaviour
     {
         health = FindObjectOfType<HealthPlayer>();
         _money.GetEarnedMoney();
+        _waveManager.GetWave();
+        _waveManager.GetEnemiesKilled();
         _groundCotroller.GetPlacedTurrets();
         if(health.currentHealth <= 0 || _waveManager.BuildingCount == 0)
         {
@@ -176,6 +179,11 @@ public class PauseMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             player.GetComponent<PlayerShoot>().enabled = false;
         }
+    }
+    
+    public void SetIsInBuildMode(bool temp)
+    {
+        _isInBuildMode = temp;
     }
 
 }
